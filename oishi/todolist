@@ -1,0 +1,36 @@
+todo: -
+-------
+
+* use local notification for alarm
+- sound: user .caf
+
+* save alarm data in nsuserdefaults [check]
+
+* alarm model [check]
+- date: nsdate
+- repeats: [bool]
+- on: bool
+- sound: bool
+- vibrate: bool
+- snooze: bool
+- userPhoto: string (*url)
+- sentToFriend: bool
+
+* record sound (.caf)
+
+* record vdo
+- image overlay on top
+- save to gallery with album
+
+* save vdo to gallery (*alamofire)
+
+components: -
+-------------
+
+* button
+- init(frame, image, selector?)
+- init(frame, image, title)
+
+* toggle button
+
+* alarmslider

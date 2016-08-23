@@ -1,0 +1,1059 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1FB87CED1D64631E0097AC74 /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB87CEC1D64631E0097AC74 /* ToggleButton.swift */; };
+		1FB87CEF1D64632D0097AC74 /* SnoozeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB87CEE1D64632D0097AC74 /* SnoozeButton.swift */; };
+		A217B7251D64BBBD00021BFA /* ActionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A217B7231D64BBBD00021BFA /* ActionsTableViewCell.swift */; };
+		A217B7261D64BBBD00021BFA /* ActionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A217B7241D64BBBD00021BFA /* ActionsTableViewCell.xib */; };
+		A217B72E1D64C90A00021BFA /* CenterCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A217B72D1D64C90A00021BFA /* CenterCollectionViewFlowLayout.swift */; };
+		A217B7361D64EC2900021BFA /* ActorsPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A217B7341D64EC2900021BFA /* ActorsPickerTableViewCell.swift */; };
+		A217B7371D64EC2900021BFA /* ActorsPickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A217B7351D64EC2900021BFA /* ActorsPickerTableViewCell.xib */; };
+		A217B7431D65162D00021BFA /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = A217B7421D65162D00021BFA /* iCarousel.m */; };
+		A217B7501D65BC9800021BFA /* DB Helvethaica X Bd It.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A217B74A1D65BC9800021BFA /* DB Helvethaica X Bd It.ttf */; };
+		A217B7511D65BC9800021BFA /* DB Helvethaica X Bd.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A217B74B1D65BC9800021BFA /* DB Helvethaica X Bd.ttf */; };
+		A217B7521D65BC9800021BFA /* DB Helvethaica X It.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A217B74C1D65BC9800021BFA /* DB Helvethaica X It.ttf */; };
+		A217B7531D65BC9800021BFA /* DB Helvethaica X Med It.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A217B74D1D65BC9800021BFA /* DB Helvethaica X Med It.ttf */; };
+		A217B7541D65BC9800021BFA /* DB Helvethaica X Med.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A217B74E1D65BC9800021BFA /* DB Helvethaica X Med.ttf */; };
+		A217B7551D65BC9800021BFA /* DB Helvethaica X.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A217B74F1D65BC9800021BFA /* DB Helvethaica X.ttf */; };
+		A217B7581D65D3CE00021BFA /* Otification+UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A217B7571D65D3CD00021BFA /* Otification+UIButton.swift */; };
+		A217B75C1D65F28E00021BFA /* Otification+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A217B75B1D65F28E00021BFA /* Otification+UIImage.swift */; };
+		A217B7611D66671E00021BFA /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A217B75F1D66671E00021BFA /* MenuTableViewController.swift */; };
+		A217B7621D66671E00021BFA /* MenuTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A217B7601D66671E00021BFA /* MenuTableViewController.xib */; };
+		A217B7641D66679500021BFA /* OtificationColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A217B7631D66679500021BFA /* OtificationColor.swift */; };
+		A22BDE071D670969004FA6CB /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22BDE061D670969004FA6CB /* Action.swift */; };
+		A22BDE0A1D670D34004FA6CB /* MyListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22BDE081D670D34004FA6CB /* MyListTableViewCell.swift */; };
+		A22BDE0B1D670D34004FA6CB /* MyListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A22BDE091D670D34004FA6CB /* MyListTableViewCell.xib */; };
+		A22BDE101D673AA6004FA6CB /* THLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A22BDE0F1D673AA6004FA6CB /* THLabel.m */; };
+		A24E205E1D5B454F00985409 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24E205D1D5B454F00985409 /* AppDelegate.swift */; };
+		A24E20651D5B454F00985409 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A24E20641D5B454F00985409 /* Assets.xcassets */; };
+		A24E20701D5B456B00985409 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A24E206F1D5B456B00985409 /* LaunchScreen.storyboard */; };
+		A2508A2E1D5C45FF00DFD781 /* OishiTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2508A2D1D5C45FF00DFD781 /* OishiTabBarView.swift */; };
+		A2508A301D5C460D00DFD781 /* OishiTabBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2508A2F1D5C460D00DFD781 /* OishiTabBarView.xib */; };
+		A2508A351D5C747C00DFD781 /* OishiTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2508A341D5C747C00DFD781 /* OishiTableViewController.swift */; };
+		A2508A3A1D5C7A1700DFD781 /* ViewControllerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2508A391D5C7A1700DFD781 /* ViewControllerManager.swift */; };
+		A2508A411D5C83C300DFD781 /* MyListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2508A3F1D5C83C300DFD781 /* MyListTableViewController.swift */; };
+		A2508A421D5C83C300DFD781 /* MyListTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2508A401D5C83C300DFD781 /* MyListTableViewController.xib */; };
+		A2508A461D5C88B200DFD781 /* OishiNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2508A451D5C88B200DFD781 /* OishiNavigationBar.swift */; };
+		A2508A491D5CCABD00DFD781 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2508A481D5CCABD00DFD781 /* SectionHeaderView.swift */; };
+		A2508A4C1D5E5C2A00DFD781 /* Otification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2508A4B1D5E5C2A00DFD781 /* Otification.swift */; };
+		A2508A4F1D5E69F800DFD781 /* OtificationAlarmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2508A4E1D5E69F800DFD781 /* OtificationAlarmManager.swift */; };
+		A261D18A1D63A17800DEECF1 /* OtificationTimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A261D1891D63A17800DEECF1 /* OtificationTimePickerView.swift */; };
+		A261D1971D647E5500DEECF1 /* TimePickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A261D1951D647E5500DEECF1 /* TimePickerTableViewCell.swift */; };
+		A261D1981D647E5500DEECF1 /* TimePickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A261D1961D647E5500DEECF1 /* TimePickerTableViewCell.xib */; };
+		A261D19B1D64803B00DEECF1 /* CreateAlarmTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A261D1991D64803B00DEECF1 /* CreateAlarmTableViewController.swift */; };
+		A261D19C1D64803B00DEECF1 /* CreateAlarmTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A261D19A1D64803B00DEECF1 /* CreateAlarmTableViewController.xib */; };
+		A26ECD2B1D666F59004EA733 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26ECD291D666F59004EA733 /* MenuTableViewCell.swift */; };
+		A26ECD2C1D666F59004EA733 /* MenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A26ECD2A1D666F59004EA733 /* MenuTableViewCell.xib */; };
+		A26ECD331D666FAD004EA733 /* DB HelvethaicaMon X Bd It.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A26ECD2D1D666FAD004EA733 /* DB HelvethaicaMon X Bd It.ttf */; };
+		A26ECD341D666FAD004EA733 /* DB HelvethaicaMon X Bd.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A26ECD2E1D666FAD004EA733 /* DB HelvethaicaMon X Bd.ttf */; };
+		A26ECD351D666FAD004EA733 /* DB HelvethaicaMon X It.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A26ECD2F1D666FAD004EA733 /* DB HelvethaicaMon X It.ttf */; };
+		A26ECD361D666FAD004EA733 /* DB HelvethaicaMon X Med It.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A26ECD301D666FAD004EA733 /* DB HelvethaicaMon X Med It.ttf */; };
+		A26ECD371D666FAD004EA733 /* DB HelvethaicaMon X Med.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A26ECD311D666FAD004EA733 /* DB HelvethaicaMon X Med.ttf */; };
+		A26ECD381D666FAD004EA733 /* DB HelvethaicaMon X.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A26ECD321D666FAD004EA733 /* DB HelvethaicaMon X.ttf */; };
+		A272BC4E1D67596D00D06576 /* BWSwipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A272BC4C1D67596D00D06576 /* BWSwipeCell.swift */; };
+		A272BC4F1D67596D00D06576 /* BWSwipeRevealCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A272BC4D1D67596D00D06576 /* BWSwipeRevealCell.swift */; };
+		A272BC531D675CD900D06576 /* EditAlarmTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A272BC511D675CD900D06576 /* EditAlarmTableViewController.swift */; };
+		A272BC541D675CD900D06576 /* EditAlarmTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A272BC521D675CD900D06576 /* EditAlarmTableViewController.xib */; };
+		A272BC581D67627900D06576 /* RepeatAlarmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A272BC561D67627900D06576 /* RepeatAlarmTableViewCell.swift */; };
+		A272BC591D67627900D06576 /* RepeatAlarmTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A272BC571D67627900D06576 /* RepeatAlarmTableViewCell.xib */; };
+		A272BC5C1D679CFF00D06576 /* EditAlarmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A272BC5A1D679CFF00D06576 /* EditAlarmTableViewCell.swift */; };
+		A272BC5D1D679CFF00D06576 /* EditAlarmTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A272BC5B1D679CFF00D06576 /* EditAlarmTableViewCell.xib */; };
+		A272BC621D6AEC3B00D06576 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A272BC5F1D6AEC3B00D06576 /* FBSDKCoreKit.framework */; };
+		A272BC631D6AEC3B00D06576 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A272BC601D6AEC3B00D06576 /* FBSDKLoginKit.framework */; };
+		A272BC641D6AEC3B00D06576 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A272BC611D6AEC3B00D06576 /* FBSDKShareKit.framework */; };
+		A272BC661D6B2A0F00D06576 /* Actor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A272BC651D6B2A0F00D06576 /* Actor.swift */; };
+		A272BC691D6B464700D06576 /* OtificationHTTPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A272BC681D6B464700D06576 /* OtificationHTTPService.swift */; };
+		A272BC6D1D6B9D1900D06576 /* DummyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A272BC6C1D6B9D1900D06576 /* DummyViewController.swift */; };
+		A272BC701D6BAF1500D06576 /* CustomAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A272BC6E1D6BAF1500D06576 /* CustomAlarmViewController.swift */; };
+		A272BC711D6BAF1500D06576 /* CustomAlarmViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A272BC6F1D6BAF1500D06576 /* CustomAlarmViewController.xib */; };
+		A272BC741D6BAF7E00D06576 /* OishiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A272BC731D6BAF7E00D06576 /* OishiViewController.swift */; };
+		A272BC7F1D6BC82800D06576 /* FriendListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A272BC7D1D6BC82800D06576 /* FriendListTableViewController.swift */; };
+		A272BC801D6BC82800D06576 /* FriendListTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A272BC7E1D6BC82800D06576 /* FriendListTableViewController.xib */; };
+		A272BC831D6BC88700D06576 /* CreateFriendTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A272BC811D6BC88700D06576 /* CreateFriendTableViewController.swift */; };
+		A272BC841D6BC88700D06576 /* CreateFriendTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A272BC821D6BC88700D06576 /* CreateFriendTableViewController.xib */; };
+		A272BC881D6BD45F00D06576 /* FriendActorsPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A272BC861D6BD45F00D06576 /* FriendActorsPickerTableViewCell.swift */; };
+		A272BC891D6BD45F00D06576 /* FriendActorsPickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A272BC871D6BD45F00D06576 /* FriendActorsPickerTableViewCell.xib */; };
+		A272BC8B1D6BEB6300D06576 /* ActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A272BC8A1D6BEB6300D06576 /* ActionView.swift */; };
+		A272BC8F1D6BECAD00D06576 /* FriendActionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A272BC8D1D6BECAD00D06576 /* FriendActionsTableViewCell.swift */; };
+		A272BC901D6BECAD00D06576 /* FriendActionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A272BC8E1D6BECAD00D06576 /* FriendActionsTableViewCell.xib */; };
+		A272BC9C1D6BF06600D06576 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A272BC9A1D6BF06600D06576 /* TutorialViewController.swift */; };
+		A272BC9D1D6BF06600D06576 /* TutorialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A272BC9B1D6BF06600D06576 /* TutorialViewController.xib */; };
+		A272BCA11D6BF11E00D06576 /* TutorialCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A272BC9F1D6BF11E00D06576 /* TutorialCollectionViewCell.swift */; };
+		A272BCA21D6BF11E00D06576 /* TutorialCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A272BCA01D6BF11E00D06576 /* TutorialCollectionViewCell.xib */; };
+		A299FF291D6187D700EE74C1 /* todolist in Resources */ = {isa = PBXBuildFile; fileRef = A299FF281D6187D600EE74C1 /* todolist */; };
+		A299FF2B1D618A6100EE74C1 /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = A299FF2A1D618A6100EE74C1 /* Alarm.swift */; };
+		A299FF391D61B13E00EE74C1 /* AlarmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A299FF381D61B13E00EE74C1 /* AlarmManager.swift */; };
+		E50BED52C328C370D430755A /* Pods_oishi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3120A0005AD0263608AFCE2A /* Pods_oishi.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		02A830E2694510FC9206FF21 /* Pods-oishi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-oishi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-oishi/Pods-oishi.debug.xcconfig"; sourceTree = "<group>"; };
+		1FB87CEC1D64631E0097AC74 /* ToggleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
+		1FB87CEE1D64632D0097AC74 /* SnoozeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnoozeButton.swift; sourceTree = "<group>"; };
+		3120A0005AD0263608AFCE2A /* Pods_oishi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_oishi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A217B7231D64BBBD00021BFA /* ActionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionsTableViewCell.swift; sourceTree = "<group>"; };
+		A217B7241D64BBBD00021BFA /* ActionsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActionsTableViewCell.xib; sourceTree = "<group>"; };
+		A217B72D1D64C90A00021BFA /* CenterCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		A217B7341D64EC2900021BFA /* ActorsPickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActorsPickerTableViewCell.swift; sourceTree = "<group>"; };
+		A217B7351D64EC2900021BFA /* ActorsPickerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActorsPickerTableViewCell.xib; sourceTree = "<group>"; };
+		A217B7401D65162D00021BFA /* oishi-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "oishi-Bridging-Header.h"; sourceTree = "<group>"; };
+		A217B7411D65162D00021BFA /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
+		A217B7421D65162D00021BFA /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
+		A217B74A1D65BC9800021BFA /* DB Helvethaica X Bd It.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DB Helvethaica X Bd It.ttf"; sourceTree = "<group>"; };
+		A217B74B1D65BC9800021BFA /* DB Helvethaica X Bd.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DB Helvethaica X Bd.ttf"; sourceTree = "<group>"; };
+		A217B74C1D65BC9800021BFA /* DB Helvethaica X It.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DB Helvethaica X It.ttf"; sourceTree = "<group>"; };
+		A217B74D1D65BC9800021BFA /* DB Helvethaica X Med It.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DB Helvethaica X Med It.ttf"; sourceTree = "<group>"; };
+		A217B74E1D65BC9800021BFA /* DB Helvethaica X Med.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DB Helvethaica X Med.ttf"; sourceTree = "<group>"; };
+		A217B74F1D65BC9800021BFA /* DB Helvethaica X.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DB Helvethaica X.ttf"; sourceTree = "<group>"; };
+		A217B7571D65D3CD00021BFA /* Otification+UIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Otification+UIButton.swift"; sourceTree = "<group>"; };
+		A217B75B1D65F28E00021BFA /* Otification+UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Otification+UIImage.swift"; sourceTree = "<group>"; };
+		A217B75F1D66671E00021BFA /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
+		A217B7601D66671E00021BFA /* MenuTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuTableViewController.xib; sourceTree = "<group>"; };
+		A217B7631D66679500021BFA /* OtificationColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtificationColor.swift; sourceTree = "<group>"; };
+		A22BDE061D670969004FA6CB /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		A22BDE081D670D34004FA6CB /* MyListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyListTableViewCell.swift; sourceTree = "<group>"; };
+		A22BDE091D670D34004FA6CB /* MyListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyListTableViewCell.xib; sourceTree = "<group>"; };
+		A22BDE0E1D673AA6004FA6CB /* THLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THLabel.h; sourceTree = "<group>"; };
+		A22BDE0F1D673AA6004FA6CB /* THLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THLabel.m; sourceTree = "<group>"; };
+		A24E205A1D5B454F00985409 /* oishi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = oishi.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A24E205D1D5B454F00985409 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A24E20641D5B454F00985409 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A24E20691D5B454F00985409 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A24E206F1D5B456B00985409 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A2508A2D1D5C45FF00DFD781 /* OishiTabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OishiTabBarView.swift; sourceTree = "<group>"; };
+		A2508A2F1D5C460D00DFD781 /* OishiTabBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OishiTabBarView.xib; sourceTree = "<group>"; };
+		A2508A341D5C747C00DFD781 /* OishiTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OishiTableViewController.swift; sourceTree = "<group>"; };
+		A2508A391D5C7A1700DFD781 /* ViewControllerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerManager.swift; sourceTree = "<group>"; };
+		A2508A3F1D5C83C300DFD781 /* MyListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyListTableViewController.swift; sourceTree = "<group>"; };
+		A2508A401D5C83C300DFD781 /* MyListTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyListTableViewController.xib; sourceTree = "<group>"; };
+		A2508A451D5C88B200DFD781 /* OishiNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OishiNavigationBar.swift; sourceTree = "<group>"; };
+		A2508A481D5CCABD00DFD781 /* SectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
+		A2508A4B1D5E5C2A00DFD781 /* Otification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Otification.swift; sourceTree = "<group>"; };
+		A2508A4E1D5E69F800DFD781 /* OtificationAlarmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtificationAlarmManager.swift; sourceTree = "<group>"; };
+		A261D1891D63A17800DEECF1 /* OtificationTimePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtificationTimePickerView.swift; sourceTree = "<group>"; };
+		A261D1951D647E5500DEECF1 /* TimePickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePickerTableViewCell.swift; sourceTree = "<group>"; };
+		A261D1961D647E5500DEECF1 /* TimePickerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimePickerTableViewCell.xib; sourceTree = "<group>"; };
+		A261D1991D64803B00DEECF1 /* CreateAlarmTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAlarmTableViewController.swift; sourceTree = "<group>"; };
+		A261D19A1D64803B00DEECF1 /* CreateAlarmTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateAlarmTableViewController.xib; sourceTree = "<group>"; };
+		A26ECD291D666F59004EA733 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
+		A26ECD2A1D666F59004EA733 /* MenuTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuTableViewCell.xib; sourceTree = "<group>"; };
+		A26ECD2D1D666FAD004EA733 /* DB HelvethaicaMon X Bd It.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DB HelvethaicaMon X Bd It.ttf"; sourceTree = "<group>"; };
+		A26ECD2E1D666FAD004EA733 /* DB HelvethaicaMon X Bd.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DB HelvethaicaMon X Bd.ttf"; sourceTree = "<group>"; };
+		A26ECD2F1D666FAD004EA733 /* DB HelvethaicaMon X It.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DB HelvethaicaMon X It.ttf"; sourceTree = "<group>"; };
+		A26ECD301D666FAD004EA733 /* DB HelvethaicaMon X Med It.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DB HelvethaicaMon X Med It.ttf"; sourceTree = "<group>"; };
+		A26ECD311D666FAD004EA733 /* DB HelvethaicaMon X Med.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DB HelvethaicaMon X Med.ttf"; sourceTree = "<group>"; };
+		A26ECD321D666FAD004EA733 /* DB HelvethaicaMon X.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DB HelvethaicaMon X.ttf"; sourceTree = "<group>"; };
+		A272BC4C1D67596D00D06576 /* BWSwipeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BWSwipeCell.swift; sourceTree = "<group>"; };
+		A272BC4D1D67596D00D06576 /* BWSwipeRevealCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BWSwipeRevealCell.swift; sourceTree = "<group>"; };
+		A272BC511D675CD900D06576 /* EditAlarmTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditAlarmTableViewController.swift; sourceTree = "<group>"; };
+		A272BC521D675CD900D06576 /* EditAlarmTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditAlarmTableViewController.xib; sourceTree = "<group>"; };
+		A272BC561D67627900D06576 /* RepeatAlarmTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatAlarmTableViewCell.swift; sourceTree = "<group>"; };
+		A272BC571D67627900D06576 /* RepeatAlarmTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepeatAlarmTableViewCell.xib; sourceTree = "<group>"; };
+		A272BC5A1D679CFF00D06576 /* EditAlarmTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditAlarmTableViewCell.swift; sourceTree = "<group>"; };
+		A272BC5B1D679CFF00D06576 /* EditAlarmTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditAlarmTableViewCell.xib; sourceTree = "<group>"; };
+		A272BC5F1D6AEC3B00D06576 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		A272BC601D6AEC3B00D06576 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		A272BC611D6AEC3B00D06576 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		A272BC651D6B2A0F00D06576 /* Actor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Actor.swift; sourceTree = "<group>"; };
+		A272BC681D6B464700D06576 /* OtificationHTTPService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtificationHTTPService.swift; sourceTree = "<group>"; };
+		A272BC6C1D6B9D1900D06576 /* DummyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyViewController.swift; sourceTree = "<group>"; };
+		A272BC6E1D6BAF1500D06576 /* CustomAlarmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlarmViewController.swift; sourceTree = "<group>"; };
+		A272BC6F1D6BAF1500D06576 /* CustomAlarmViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomAlarmViewController.xib; sourceTree = "<group>"; };
+		A272BC731D6BAF7E00D06576 /* OishiViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OishiViewController.swift; sourceTree = "<group>"; };
+		A272BC7D1D6BC82800D06576 /* FriendListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendListTableViewController.swift; sourceTree = "<group>"; };
+		A272BC7E1D6BC82800D06576 /* FriendListTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendListTableViewController.xib; sourceTree = "<group>"; };
+		A272BC811D6BC88700D06576 /* CreateFriendTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateFriendTableViewController.swift; sourceTree = "<group>"; };
+		A272BC821D6BC88700D06576 /* CreateFriendTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateFriendTableViewController.xib; sourceTree = "<group>"; };
+		A272BC861D6BD45F00D06576 /* FriendActorsPickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendActorsPickerTableViewCell.swift; sourceTree = "<group>"; };
+		A272BC871D6BD45F00D06576 /* FriendActorsPickerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendActorsPickerTableViewCell.xib; sourceTree = "<group>"; };
+		A272BC8A1D6BEB6300D06576 /* ActionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionView.swift; sourceTree = "<group>"; };
+		A272BC8D1D6BECAD00D06576 /* FriendActionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendActionsTableViewCell.swift; sourceTree = "<group>"; };
+		A272BC8E1D6BECAD00D06576 /* FriendActionsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendActionsTableViewCell.xib; sourceTree = "<group>"; };
+		A272BC9A1D6BF06600D06576 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		A272BC9B1D6BF06600D06576 /* TutorialViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialViewController.xib; sourceTree = "<group>"; };
+		A272BC9F1D6BF11E00D06576 /* TutorialCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialCollectionViewCell.swift; sourceTree = "<group>"; };
+		A272BCA01D6BF11E00D06576 /* TutorialCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialCollectionViewCell.xib; sourceTree = "<group>"; };
+		A299FF281D6187D600EE74C1 /* todolist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = todolist; sourceTree = "<group>"; };
+		A299FF2A1D618A6100EE74C1 /* Alarm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
+		A299FF381D61B13E00EE74C1 /* AlarmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmManager.swift; sourceTree = "<group>"; };
+		AAF1991C4397D71880A69B8A /* Pods-oishi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-oishi.release.xcconfig"; path = "Pods/Target Support Files/Pods-oishi/Pods-oishi.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A24E20571D5B454F00985409 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A272BC641D6AEC3B00D06576 /* FBSDKShareKit.framework in Frameworks */,
+				E50BED52C328C370D430755A /* Pods_oishi.framework in Frameworks */,
+				A272BC621D6AEC3B00D06576 /* FBSDKCoreKit.framework in Frameworks */,
+				A272BC631D6AEC3B00D06576 /* FBSDKLoginKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1FB87CEA1D6462F80097AC74 /* snoozebutton */ = {
+			isa = PBXGroup;
+			children = (
+				1FB87CEE1D64632D0097AC74 /* SnoozeButton.swift */,
+			);
+			name = snoozebutton;
+			sourceTree = "<group>";
+		};
+		1FB87CEB1D64630E0097AC74 /* togglebutton */ = {
+			isa = PBXGroup;
+			children = (
+				1FB87CEC1D64631E0097AC74 /* ToggleButton.swift */,
+			);
+			name = togglebutton;
+			sourceTree = "<group>";
+		};
+		59AA73C3CB754314FE2DDC5B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				02A830E2694510FC9206FF21 /* Pods-oishi.debug.xcconfig */,
+				AAF1991C4397D71880A69B8A /* Pods-oishi.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A217B72B1D64BECE00021BFA /* actions */ = {
+			isa = PBXGroup;
+			children = (
+				A217B7231D64BBBD00021BFA /* ActionsTableViewCell.swift */,
+				A217B7241D64BBBD00021BFA /* ActionsTableViewCell.xib */,
+				A272BC8A1D6BEB6300D06576 /* ActionView.swift */,
+			);
+			name = actions;
+			sourceTree = "<group>";
+		};
+		A217B72F1D64E79C00021BFA /* actors */ = {
+			isa = PBXGroup;
+			children = (
+				A217B7341D64EC2900021BFA /* ActorsPickerTableViewCell.swift */,
+				A217B7351D64EC2900021BFA /* ActorsPickerTableViewCell.xib */,
+			);
+			name = actors;
+			sourceTree = "<group>";
+		};
+		A217B73F1D65161000021BFA /* iCarousel */ = {
+			isa = PBXGroup;
+			children = (
+				A217B7411D65162D00021BFA /* iCarousel.h */,
+				A217B7421D65162D00021BFA /* iCarousel.m */,
+			);
+			name = iCarousel;
+			sourceTree = "<group>";
+		};
+		A217B7481D65BC6B00021BFA /* helvethaica x */ = {
+			isa = PBXGroup;
+			children = (
+				A217B74A1D65BC9800021BFA /* DB Helvethaica X Bd It.ttf */,
+				A217B74B1D65BC9800021BFA /* DB Helvethaica X Bd.ttf */,
+				A217B74C1D65BC9800021BFA /* DB Helvethaica X It.ttf */,
+				A217B74D1D65BC9800021BFA /* DB Helvethaica X Med It.ttf */,
+				A217B74E1D65BC9800021BFA /* DB Helvethaica X Med.ttf */,
+				A217B74F1D65BC9800021BFA /* DB Helvethaica X.ttf */,
+			);
+			name = "helvethaica x";
+			sourceTree = "<group>";
+		};
+		A217B7491D65BC7200021BFA /* helvethaicamon x */ = {
+			isa = PBXGroup;
+			children = (
+				A26ECD2D1D666FAD004EA733 /* DB HelvethaicaMon X Bd It.ttf */,
+				A26ECD2E1D666FAD004EA733 /* DB HelvethaicaMon X Bd.ttf */,
+				A26ECD2F1D666FAD004EA733 /* DB HelvethaicaMon X It.ttf */,
+				A26ECD301D666FAD004EA733 /* DB HelvethaicaMon X Med It.ttf */,
+				A26ECD311D666FAD004EA733 /* DB HelvethaicaMon X Med.ttf */,
+				A26ECD321D666FAD004EA733 /* DB HelvethaicaMon X.ttf */,
+			);
+			name = "helvethaicamon x";
+			sourceTree = "<group>";
+		};
+		A217B7561D65D3B600021BFA /* uibutton */ = {
+			isa = PBXGroup;
+			children = (
+				A217B7571D65D3CD00021BFA /* Otification+UIButton.swift */,
+			);
+			name = uibutton;
+			sourceTree = "<group>";
+		};
+		A217B7591D65F25C00021BFA /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A217B75A1D65F26B00021BFA /* uiimage */,
+				A217B7561D65D3B600021BFA /* uibutton */,
+			);
+			name = extensions;
+			sourceTree = "<group>";
+		};
+		A217B75A1D65F26B00021BFA /* uiimage */ = {
+			isa = PBXGroup;
+			children = (
+				A217B75B1D65F28E00021BFA /* Otification+UIImage.swift */,
+			);
+			name = uiimage;
+			sourceTree = "<group>";
+		};
+		A217B75D1D665CBC00021BFA /* main */ = {
+			isa = PBXGroup;
+			children = (
+				A217B7631D66679500021BFA /* OtificationColor.swift */,
+			);
+			name = main;
+			sourceTree = "<group>";
+		};
+		A217B75E1D6666FD00021BFA /* menu */ = {
+			isa = PBXGroup;
+			children = (
+				A26ECD281D666F49004EA733 /* cell */,
+				A217B75F1D66671E00021BFA /* MenuTableViewController.swift */,
+				A217B7601D66671E00021BFA /* MenuTableViewController.xib */,
+			);
+			name = menu;
+			sourceTree = "<group>";
+		};
+		A22BDE0D1D673A8D004FA6CB /* THLabel */ = {
+			isa = PBXGroup;
+			children = (
+				A22BDE0E1D673AA6004FA6CB /* THLabel.h */,
+				A22BDE0F1D673AA6004FA6CB /* THLabel.m */,
+			);
+			name = THLabel;
+			sourceTree = "<group>";
+		};
+		A23118B61D5B8924000422CF /* components */ = {
+			isa = PBXGroup;
+			children = (
+				A2508A4A1D5CCAC200DFD781 /* cell */,
+				1FB87CEB1D64630E0097AC74 /* togglebutton */,
+				1FB87CEA1D6462F80097AC74 /* snoozebutton */,
+				A261D1881D63A15C00DEECF1 /* timepicker */,
+				A272BC721D6BAF6700D06576 /* oishiviewcontroller */,
+				A2508A331D5C745C00DFD781 /* oishitableviewcontroller */,
+				A2508A3B1D5C7D3700DFD781 /* navigationbar */,
+				A2508A321D5C745300DFD781 /* tabbar */,
+				A217B72D1D64C90A00021BFA /* CenterCollectionViewFlowLayout.swift */,
+			);
+			name = components;
+			sourceTree = "<group>";
+		};
+		A24E20511D5B454F00985409 = {
+			isa = PBXGroup;
+			children = (
+				A24E205C1D5B454F00985409 /* oishi */,
+				A24E205B1D5B454F00985409 /* Products */,
+				59AA73C3CB754314FE2DDC5B /* Pods */,
+				F678B39A1D627F975F580CBC /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		A24E205B1D5B454F00985409 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A24E205A1D5B454F00985409 /* oishi.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A24E205C1D5B454F00985409 /* oishi */ = {
+			isa = PBXGroup;
+			children = (
+				A24E20711D5B457200985409 /* controllers */,
+				A2508A371D5C79EB00DFD781 /* manager */,
+				A23118B61D5B8924000422CF /* components */,
+				A2508A3E1D5C802D00DFD781 /* packages */,
+				A272BC671D6B3DA500D06576 /* services */,
+				A217B7591D65F25C00021BFA /* extensions */,
+				A24E20721D5B457700985409 /* models */,
+				A24E205D1D5B454F00985409 /* AppDelegate.swift */,
+				A2508A4B1D5E5C2A00DFD781 /* Otification.swift */,
+				A272BC5E1D6AEC2000D06576 /* frameworks */,
+				A299FF2E1D61B09700EE74C1 /* resources */,
+				A24E20641D5B454F00985409 /* Assets.xcassets */,
+				A24E206F1D5B456B00985409 /* LaunchScreen.storyboard */,
+				A24E20691D5B454F00985409 /* Info.plist */,
+				A299FF281D6187D600EE74C1 /* todolist */,
+			);
+			path = oishi;
+			sourceTree = "<group>";
+		};
+		A24E20711D5B457200985409 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A2738ED11D6385D50075EE63 /* createalarm */,
+				A272BC761D6BC6CD00D06576 /* createfriend */,
+				A272BC6A1D6B624B00D06576 /* custom */,
+				A272BC501D675CBB00D06576 /* editalarm */,
+				A272BC751D6BC6B600D06576 /* friendlist */,
+				A217B75E1D6666FD00021BFA /* menu */,
+				A2508A361D5C79E100DFD781 /* mylist */,
+				A272BC911D6BF01500D06576 /* tutorial */,
+				A272BC6B1D6B9D0500D06576 /* dummy */,
+			);
+			name = controllers;
+			sourceTree = "<group>";
+		};
+		A24E20721D5B457700985409 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				A217B75D1D665CBC00021BFA /* main */,
+				A299FF2A1D618A6100EE74C1 /* Alarm.swift */,
+				A22BDE061D670969004FA6CB /* Action.swift */,
+				A272BC651D6B2A0F00D06576 /* Actor.swift */,
+			);
+			name = models;
+			sourceTree = "<group>";
+		};
+		A2508A321D5C745300DFD781 /* tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				A2508A2D1D5C45FF00DFD781 /* OishiTabBarView.swift */,
+				A2508A2F1D5C460D00DFD781 /* OishiTabBarView.xib */,
+			);
+			name = tabbar;
+			sourceTree = "<group>";
+		};
+		A2508A331D5C745C00DFD781 /* oishitableviewcontroller */ = {
+			isa = PBXGroup;
+			children = (
+				A2508A341D5C747C00DFD781 /* OishiTableViewController.swift */,
+			);
+			name = oishitableviewcontroller;
+			sourceTree = "<group>";
+		};
+		A2508A361D5C79E100DFD781 /* mylist */ = {
+			isa = PBXGroup;
+			children = (
+				A2508A471D5CC87B00DFD781 /* cell */,
+				A2508A3F1D5C83C300DFD781 /* MyListTableViewController.swift */,
+				A2508A401D5C83C300DFD781 /* MyListTableViewController.xib */,
+			);
+			name = mylist;
+			sourceTree = "<group>";
+		};
+		A2508A371D5C79EB00DFD781 /* manager */ = {
+			isa = PBXGroup;
+			children = (
+				A2508A4D1D5E69E600DFD781 /* alarm */,
+				A2508A381D5C79F500DFD781 /* viewcontroller */,
+			);
+			name = manager;
+			sourceTree = "<group>";
+		};
+		A2508A381D5C79F500DFD781 /* viewcontroller */ = {
+			isa = PBXGroup;
+			children = (
+				A2508A391D5C7A1700DFD781 /* ViewControllerManager.swift */,
+			);
+			name = viewcontroller;
+			sourceTree = "<group>";
+		};
+		A2508A3B1D5C7D3700DFD781 /* navigationbar */ = {
+			isa = PBXGroup;
+			children = (
+				A2508A451D5C88B200DFD781 /* OishiNavigationBar.swift */,
+			);
+			name = navigationbar;
+			sourceTree = "<group>";
+		};
+		A2508A3E1D5C802D00DFD781 /* packages */ = {
+			isa = PBXGroup;
+			children = (
+				A272BC4B1D67595400D06576 /* BWSwipeRevealCell */,
+				A217B73F1D65161000021BFA /* iCarousel */,
+				A22BDE0D1D673A8D004FA6CB /* THLabel */,
+				A217B7401D65162D00021BFA /* oishi-Bridging-Header.h */,
+			);
+			name = packages;
+			sourceTree = "<group>";
+		};
+		A2508A471D5CC87B00DFD781 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				A22BDE081D670D34004FA6CB /* MyListTableViewCell.swift */,
+				A22BDE091D670D34004FA6CB /* MyListTableViewCell.xib */,
+			);
+			name = cell;
+			sourceTree = "<group>";
+		};
+		A2508A4A1D5CCAC200DFD781 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				A2508A481D5CCABD00DFD781 /* SectionHeaderView.swift */,
+			);
+			name = cell;
+			sourceTree = "<group>";
+		};
+		A2508A4D1D5E69E600DFD781 /* alarm */ = {
+			isa = PBXGroup;
+			children = (
+				A299FF381D61B13E00EE74C1 /* AlarmManager.swift */,
+				A2508A4E1D5E69F800DFD781 /* OtificationAlarmManager.swift */,
+			);
+			name = alarm;
+			sourceTree = "<group>";
+		};
+		A261D1881D63A15C00DEECF1 /* timepicker */ = {
+			isa = PBXGroup;
+			children = (
+				A261D1891D63A17800DEECF1 /* OtificationTimePickerView.swift */,
+			);
+			name = timepicker;
+			sourceTree = "<group>";
+		};
+		A261D18F1D64791000DEECF1 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				A217B72F1D64E79C00021BFA /* actors */,
+				A217B72B1D64BECE00021BFA /* actions */,
+				A261D1951D647E5500DEECF1 /* TimePickerTableViewCell.swift */,
+				A261D1961D647E5500DEECF1 /* TimePickerTableViewCell.xib */,
+			);
+			name = cell;
+			sourceTree = "<group>";
+		};
+		A26ECD281D666F49004EA733 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				A26ECD291D666F59004EA733 /* MenuTableViewCell.swift */,
+				A26ECD2A1D666F59004EA733 /* MenuTableViewCell.xib */,
+			);
+			name = cell;
+			sourceTree = "<group>";
+		};
+		A272BC4B1D67595400D06576 /* BWSwipeRevealCell */ = {
+			isa = PBXGroup;
+			children = (
+				A272BC4C1D67596D00D06576 /* BWSwipeCell.swift */,
+				A272BC4D1D67596D00D06576 /* BWSwipeRevealCell.swift */,
+			);
+			name = BWSwipeRevealCell;
+			sourceTree = "<group>";
+		};
+		A272BC501D675CBB00D06576 /* editalarm */ = {
+			isa = PBXGroup;
+			children = (
+				A272BC551D67626600D06576 /* cell */,
+				A272BC511D675CD900D06576 /* EditAlarmTableViewController.swift */,
+				A272BC521D675CD900D06576 /* EditAlarmTableViewController.xib */,
+			);
+			name = editalarm;
+			sourceTree = "<group>";
+		};
+		A272BC551D67626600D06576 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				A272BC561D67627900D06576 /* RepeatAlarmTableViewCell.swift */,
+				A272BC571D67627900D06576 /* RepeatAlarmTableViewCell.xib */,
+				A272BC5A1D679CFF00D06576 /* EditAlarmTableViewCell.swift */,
+				A272BC5B1D679CFF00D06576 /* EditAlarmTableViewCell.xib */,
+			);
+			name = cell;
+			sourceTree = "<group>";
+		};
+		A272BC5E1D6AEC2000D06576 /* frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A272BC5F1D6AEC3B00D06576 /* FBSDKCoreKit.framework */,
+				A272BC601D6AEC3B00D06576 /* FBSDKLoginKit.framework */,
+				A272BC611D6AEC3B00D06576 /* FBSDKShareKit.framework */,
+			);
+			name = frameworks;
+			sourceTree = "<group>";
+		};
+		A272BC671D6B3DA500D06576 /* services */ = {
+			isa = PBXGroup;
+			children = (
+				A272BC681D6B464700D06576 /* OtificationHTTPService.swift */,
+			);
+			name = services;
+			sourceTree = "<group>";
+		};
+		A272BC6A1D6B624B00D06576 /* custom */ = {
+			isa = PBXGroup;
+			children = (
+				A272BC6E1D6BAF1500D06576 /* CustomAlarmViewController.swift */,
+				A272BC6F1D6BAF1500D06576 /* CustomAlarmViewController.xib */,
+			);
+			name = custom;
+			sourceTree = "<group>";
+		};
+		A272BC6B1D6B9D0500D06576 /* dummy */ = {
+			isa = PBXGroup;
+			children = (
+				A272BC6C1D6B9D1900D06576 /* DummyViewController.swift */,
+			);
+			name = dummy;
+			sourceTree = "<group>";
+		};
+		A272BC721D6BAF6700D06576 /* oishiviewcontroller */ = {
+			isa = PBXGroup;
+			children = (
+				A272BC731D6BAF7E00D06576 /* OishiViewController.swift */,
+			);
+			name = oishiviewcontroller;
+			sourceTree = "<group>";
+		};
+		A272BC751D6BC6B600D06576 /* friendlist */ = {
+			isa = PBXGroup;
+			children = (
+				A272BC7B1D6BC7F800D06576 /* cell */,
+				A272BC7D1D6BC82800D06576 /* FriendListTableViewController.swift */,
+				A272BC7E1D6BC82800D06576 /* FriendListTableViewController.xib */,
+			);
+			name = friendlist;
+			sourceTree = "<group>";
+		};
+		A272BC761D6BC6CD00D06576 /* createfriend */ = {
+			isa = PBXGroup;
+			children = (
+				A272BC851D6BD43000D06576 /* cell */,
+				A272BC811D6BC88700D06576 /* CreateFriendTableViewController.swift */,
+				A272BC821D6BC88700D06576 /* CreateFriendTableViewController.xib */,
+			);
+			name = createfriend;
+			sourceTree = "<group>";
+		};
+		A272BC7B1D6BC7F800D06576 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = cell;
+			sourceTree = "<group>";
+		};
+		A272BC851D6BD43000D06576 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				A272BC8C1D6BEC7D00D06576 /* actions */,
+				A272BC861D6BD45F00D06576 /* FriendActorsPickerTableViewCell.swift */,
+				A272BC871D6BD45F00D06576 /* FriendActorsPickerTableViewCell.xib */,
+			);
+			name = cell;
+			sourceTree = "<group>";
+		};
+		A272BC8C1D6BEC7D00D06576 /* actions */ = {
+			isa = PBXGroup;
+			children = (
+				A272BC8D1D6BECAD00D06576 /* FriendActionsTableViewCell.swift */,
+				A272BC8E1D6BECAD00D06576 /* FriendActionsTableViewCell.xib */,
+			);
+			name = actions;
+			sourceTree = "<group>";
+		};
+		A272BC911D6BF01500D06576 /* tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				A272BC9E1D6BF10C00D06576 /* cell */,
+				A272BC9A1D6BF06600D06576 /* TutorialViewController.swift */,
+				A272BC9B1D6BF06600D06576 /* TutorialViewController.xib */,
+			);
+			name = tutorial;
+			sourceTree = "<group>";
+		};
+		A272BC9E1D6BF10C00D06576 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				A272BC9F1D6BF11E00D06576 /* TutorialCollectionViewCell.swift */,
+				A272BCA01D6BF11E00D06576 /* TutorialCollectionViewCell.xib */,
+			);
+			name = cell;
+			sourceTree = "<group>";
+		};
+		A2738ED11D6385D50075EE63 /* createalarm */ = {
+			isa = PBXGroup;
+			children = (
+				A261D18F1D64791000DEECF1 /* cell */,
+				A261D1991D64803B00DEECF1 /* CreateAlarmTableViewController.swift */,
+				A261D19A1D64803B00DEECF1 /* CreateAlarmTableViewController.xib */,
+			);
+			name = createalarm;
+			sourceTree = "<group>";
+		};
+		A299FF2E1D61B09700EE74C1 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				A299FF2F1D61B0A900EE74C1 /* fonts */,
+			);
+			name = resources;
+			sourceTree = "<group>";
+		};
+		A299FF2F1D61B0A900EE74C1 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				A217B7491D65BC7200021BFA /* helvethaicamon x */,
+				A217B7481D65BC6B00021BFA /* helvethaica x */,
+			);
+			name = fonts;
+			sourceTree = "<group>";
+		};
+		F678B39A1D627F975F580CBC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3120A0005AD0263608AFCE2A /* Pods_oishi.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A24E20591D5B454F00985409 /* oishi */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A24E206C1D5B454F00985409 /* Build configuration list for PBXNativeTarget "oishi" */;
+			buildPhases = (
+				5662690F87E6008B96CFBF1C /* [CP] Check Pods Manifest.lock */,
+				A24E20561D5B454F00985409 /* Sources */,
+				A24E20571D5B454F00985409 /* Frameworks */,
+				A24E20581D5B454F00985409 /* Resources */,
+				0FBE735FDAA3FDD8CB8DFACC /* [CP] Embed Pods Frameworks */,
+				94B3C93352E6C1E4DE97DE5D /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = oishi;
+			productName = oishi;
+			productReference = A24E205A1D5B454F00985409 /* oishi.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A24E20521D5B454F00985409 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = com.rollingneko;
+				TargetAttributes = {
+					A24E20591D5B454F00985409 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+				};
+			};
+			buildConfigurationList = A24E20551D5B454F00985409 /* Build configuration list for PBXProject "oishi" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A24E20511D5B454F00985409;
+			productRefGroup = A24E205B1D5B454F00985409 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A24E20591D5B454F00985409 /* oishi */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A24E20581D5B454F00985409 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A217B7531D65BC9800021BFA /* DB Helvethaica X Med It.ttf in Resources */,
+				A217B7521D65BC9800021BFA /* DB Helvethaica X It.ttf in Resources */,
+				A24E20651D5B454F00985409 /* Assets.xcassets in Resources */,
+				A26ECD361D666FAD004EA733 /* DB HelvethaicaMon X Med It.ttf in Resources */,
+				A217B7551D65BC9800021BFA /* DB Helvethaica X.ttf in Resources */,
+				A26ECD341D666FAD004EA733 /* DB HelvethaicaMon X Bd.ttf in Resources */,
+				A217B7501D65BC9800021BFA /* DB Helvethaica X Bd It.ttf in Resources */,
+				A261D1981D647E5500DEECF1 /* TimePickerTableViewCell.xib in Resources */,
+				A26ECD351D666FAD004EA733 /* DB HelvethaicaMon X It.ttf in Resources */,
+				A217B7621D66671E00021BFA /* MenuTableViewController.xib in Resources */,
+				A217B7511D65BC9800021BFA /* DB Helvethaica X Bd.ttf in Resources */,
+				A26ECD371D666FAD004EA733 /* DB HelvethaicaMon X Med.ttf in Resources */,
+				A272BCA21D6BF11E00D06576 /* TutorialCollectionViewCell.xib in Resources */,
+				A26ECD381D666FAD004EA733 /* DB HelvethaicaMon X.ttf in Resources */,
+				A217B7541D65BC9800021BFA /* DB Helvethaica X Med.ttf in Resources */,
+				A272BC591D67627900D06576 /* RepeatAlarmTableViewCell.xib in Resources */,
+				A24E20701D5B456B00985409 /* LaunchScreen.storyboard in Resources */,
+				A2508A301D5C460D00DFD781 /* OishiTabBarView.xib in Resources */,
+				A272BC711D6BAF1500D06576 /* CustomAlarmViewController.xib in Resources */,
+				A299FF291D6187D700EE74C1 /* todolist in Resources */,
+				A22BDE0B1D670D34004FA6CB /* MyListTableViewCell.xib in Resources */,
+				A217B7371D64EC2900021BFA /* ActorsPickerTableViewCell.xib in Resources */,
+				A26ECD2C1D666F59004EA733 /* MenuTableViewCell.xib in Resources */,
+				A26ECD331D666FAD004EA733 /* DB HelvethaicaMon X Bd It.ttf in Resources */,
+				A217B7261D64BBBD00021BFA /* ActionsTableViewCell.xib in Resources */,
+				A272BC9D1D6BF06600D06576 /* TutorialViewController.xib in Resources */,
+				A272BC801D6BC82800D06576 /* FriendListTableViewController.xib in Resources */,
+				A261D19C1D64803B00DEECF1 /* CreateAlarmTableViewController.xib in Resources */,
+				A272BC541D675CD900D06576 /* EditAlarmTableViewController.xib in Resources */,
+				A272BC901D6BECAD00D06576 /* FriendActionsTableViewCell.xib in Resources */,
+				A272BC5D1D679CFF00D06576 /* EditAlarmTableViewCell.xib in Resources */,
+				A272BC891D6BD45F00D06576 /* FriendActorsPickerTableViewCell.xib in Resources */,
+				A2508A421D5C83C300DFD781 /* MyListTableViewController.xib in Resources */,
+				A272BC841D6BC88700D06576 /* CreateFriendTableViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0FBE735FDAA3FDD8CB8DFACC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-oishi/Pods-oishi-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5662690F87E6008B96CFBF1C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		94B3C93352E6C1E4DE97DE5D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-oishi/Pods-oishi-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A24E20561D5B454F00985409 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A2508A3A1D5C7A1700DFD781 /* ViewControllerManager.swift in Sources */,
+				A2508A351D5C747C00DFD781 /* OishiTableViewController.swift in Sources */,
+				A2508A461D5C88B200DFD781 /* OishiNavigationBar.swift in Sources */,
+				A2508A411D5C83C300DFD781 /* MyListTableViewController.swift in Sources */,
+				A272BC8F1D6BECAD00D06576 /* FriendActionsTableViewCell.swift in Sources */,
+				A22BDE101D673AA6004FA6CB /* THLabel.m in Sources */,
+				A272BC5C1D679CFF00D06576 /* EditAlarmTableViewCell.swift in Sources */,
+				A272BC8B1D6BEB6300D06576 /* ActionView.swift in Sources */,
+				A272BC701D6BAF1500D06576 /* CustomAlarmViewController.swift in Sources */,
+				A2508A4F1D5E69F800DFD781 /* OtificationAlarmManager.swift in Sources */,
+				A272BC691D6B464700D06576 /* OtificationHTTPService.swift in Sources */,
+				A261D19B1D64803B00DEECF1 /* CreateAlarmTableViewController.swift in Sources */,
+				A2508A491D5CCABD00DFD781 /* SectionHeaderView.swift in Sources */,
+				A272BC7F1D6BC82800D06576 /* FriendListTableViewController.swift in Sources */,
+				A272BC881D6BD45F00D06576 /* FriendActorsPickerTableViewCell.swift in Sources */,
+				1FB87CEF1D64632D0097AC74 /* SnoozeButton.swift in Sources */,
+				A272BC4E1D67596D00D06576 /* BWSwipeCell.swift in Sources */,
+				A272BC531D675CD900D06576 /* EditAlarmTableViewController.swift in Sources */,
+				A272BC741D6BAF7E00D06576 /* OishiViewController.swift in Sources */,
+				1FB87CED1D64631E0097AC74 /* ToggleButton.swift in Sources */,
+				A2508A4C1D5E5C2A00DFD781 /* Otification.swift in Sources */,
+				A272BC661D6B2A0F00D06576 /* Actor.swift in Sources */,
+				A217B7641D66679500021BFA /* OtificationColor.swift in Sources */,
+				A272BC831D6BC88700D06576 /* CreateFriendTableViewController.swift in Sources */,
+				A217B7251D64BBBD00021BFA /* ActionsTableViewCell.swift in Sources */,
+				A261D1971D647E5500DEECF1 /* TimePickerTableViewCell.swift in Sources */,
+				A26ECD2B1D666F59004EA733 /* MenuTableViewCell.swift in Sources */,
+				A22BDE0A1D670D34004FA6CB /* MyListTableViewCell.swift in Sources */,
+				A272BC4F1D67596D00D06576 /* BWSwipeRevealCell.swift in Sources */,
+				A217B7581D65D3CE00021BFA /* Otification+UIButton.swift in Sources */,
+				A299FF2B1D618A6100EE74C1 /* Alarm.swift in Sources */,
+				A217B7361D64EC2900021BFA /* ActorsPickerTableViewCell.swift in Sources */,
+				A217B7431D65162D00021BFA /* iCarousel.m in Sources */,
+				A272BCA11D6BF11E00D06576 /* TutorialCollectionViewCell.swift in Sources */,
+				A272BC581D67627900D06576 /* RepeatAlarmTableViewCell.swift in Sources */,
+				A217B7611D66671E00021BFA /* MenuTableViewController.swift in Sources */,
+				A272BC6D1D6B9D1900D06576 /* DummyViewController.swift in Sources */,
+				A217B75C1D65F28E00021BFA /* Otification+UIImage.swift in Sources */,
+				A261D18A1D63A17800DEECF1 /* OtificationTimePickerView.swift in Sources */,
+				A2508A2E1D5C45FF00DFD781 /* OishiTabBarView.swift in Sources */,
+				A217B72E1D64C90A00021BFA /* CenterCollectionViewFlowLayout.swift in Sources */,
+				A22BDE071D670969004FA6CB /* Action.swift in Sources */,
+				A299FF391D61B13E00EE74C1 /* AlarmManager.swift in Sources */,
+				A272BC9C1D6BF06600D06576 /* TutorialViewController.swift in Sources */,
+				A24E205E1D5B454F00985409 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A24E206A1D5B454F00985409 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A24E206B1D5B454F00985409 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A24E206D1D5B454F00985409 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 02A830E2694510FC9206FF21 /* Pods-oishi.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/oishi",
+				);
+				INFOPLIST_FILE = oishi/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.adapter.oishi;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "oishi/oishi-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A24E206E1D5B454F00985409 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AAF1991C4397D71880A69B8A /* Pods-oishi.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/oishi",
+				);
+				INFOPLIST_FILE = oishi/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.adapter.oishi;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "oishi/oishi-Bridging-Header.h";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A24E20551D5B454F00985409 /* Build configuration list for PBXProject "oishi" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A24E206A1D5B454F00985409 /* Debug */,
+				A24E206B1D5B454F00985409 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A24E206C1D5B454F00985409 /* Build configuration list for PBXNativeTarget "oishi" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A24E206D1D5B454F00985409 /* Debug */,
+				A24E206E1D5B454F00985409 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A24E20521D5B454F00985409 /* Project object */;
+}
