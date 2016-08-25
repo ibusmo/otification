@@ -272,6 +272,7 @@ class CustomAlarmViewController: OishiViewController, AVAudioRecorderDelegate {
     }
     
     func exceedAudioRecordTime() {
+        self.counter = 0
         self.timer.invalidate()
         self.recorder.stop()
     }
@@ -296,6 +297,7 @@ class CustomAlarmViewController: OishiViewController, AVAudioRecorderDelegate {
         self.snapButton.layer.removeAllAnimations()
         self.recordingIndicator.layer.removeAllAnimations()
         self.timer.invalidate()
+        self.counter = 0
         self.camera?.view.removeFromSuperview()
     }
     
@@ -330,6 +332,7 @@ class CustomAlarmViewController: OishiViewController, AVAudioRecorderDelegate {
             self.snapButton.backgroundColor = UIColor.redColor().colorWithAlphaComponent(1.0)
             
             self.timer.invalidate()
+            self.counter = 0
             self.camera?.view.removeFromSuperview()
             self.camera?.stop()
         }
@@ -347,6 +350,7 @@ class CustomAlarmViewController: OishiViewController, AVAudioRecorderDelegate {
         }
         if (self.counter >= 7) {
             self.timer.invalidate()
+            self.counter = 0
             self.camera?.stop()
             self.camera?.view.removeFromSuperview()
         }

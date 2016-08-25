@@ -45,6 +45,10 @@ class AlarmManager {
             fireDate[5] = Int(next[5])!
         }
         
+        if (fireDate[4] > 2016) {
+            fireDate[4] = fireDate[4] - 543
+        }
+        
         let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
         let componentsForFireDate = NSDateComponents()
         componentsForFireDate.weekday = fireDate[5]
