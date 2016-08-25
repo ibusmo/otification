@@ -35,7 +35,7 @@ class SnoozeButton: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func initComponent() {
+    func initComponent() {
         self.bar = UIImageView(frame: CGRectMake(0.0, 0.0, self.frame.width, self.frame.height))
         self.addSubview(self.bar!)
         self.bar?.backgroundColor = UIColor.clearColor()

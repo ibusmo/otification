@@ -95,6 +95,19 @@ class ViewControllerManager {
         self.appDelegate.window?.makeKeyAndVisible()
     }
     
+    // MARK: - videoalarm
+    
+    func getVideoAlarm(uid: String) -> VideoAlarmViewController {
+        let videoAlarm = VideoAlarmViewController(nibName: "VideoAlarmViewController", bundle: nil)
+        videoAlarm.videoFileName = uid
+        return videoAlarm
+    }
+    
+    func presentVideoAlarm(uid: String) {
+        self.appDelegate.window?.rootViewController = self.getVideoAlarm(uid)
+        self.appDelegate.window?.makeKeyAndVisible()
+    }
+    
     // MARK: - tutorial
     
     func getTutorial() -> TutorialViewController {

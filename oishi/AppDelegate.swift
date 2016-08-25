@@ -41,8 +41,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window = UIWindow(frame: CGRectMake(0.0, 0.0, UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height))
         }
         
-        ViewControllerManager.sharedInstance.presentMyList()
-        
         AlarmManager.sharedInstance.getAlarmListToObjects()
         AlarmManager.sharedInstance.removeAllAlarm()
         
@@ -58,11 +56,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          */
         
         if let options = launchOptions {
-            if let _ = options[UIApplicationLaunchOptionsLocalNotificationKey] as? UILocalNotification {
-                // if let userInfo = notification.userInfo {
-                    // let customField1 = userInfo["CustomField1"] as! String
-                // }
+            if let notification = options[UIApplicationLaunchOptionsLocalNotificationKey] as? UILocalNotification {
+                if let userInfo = notification.userInfo {
+                    let uid = userInfo["uid"] as! String
+                    ViewControllerManager.sharedInstance.presentVideoAlarm(uid)
+                }
             }
+        } else {
+            ViewControllerManager.sharedInstance.presentMyList()
         }
         
         return true
@@ -103,8 +104,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
         if let userInfo = notification.userInfo {
-//            let customField1 = userInfo["CustomField1"] as! String
-//            print("didReceiveLocalNotification: \(customField1)")
+            let uid = userInfo["uid"] as! String
+            ViewControllerManager.sharedInstance.presentVideoAlarm(uid)
+            print("didReceiveLocalNotification: \(uid)")
         }
     }
 

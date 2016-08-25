@@ -86,6 +86,8 @@
 		A272BC9D1D6BF06600D06576 /* TutorialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A272BC9B1D6BF06600D06576 /* TutorialViewController.xib */; };
 		A272BCA11D6BF11E00D06576 /* TutorialCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A272BC9F1D6BF11E00D06576 /* TutorialCollectionViewCell.swift */; };
 		A272BCA21D6BF11E00D06576 /* TutorialCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A272BCA01D6BF11E00D06576 /* TutorialCollectionViewCell.xib */; };
+		A272BCA61D6EF68100D06576 /* VideoAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A272BCA41D6EF68100D06576 /* VideoAlarmViewController.swift */; };
+		A272BCA71D6EF68100D06576 /* VideoAlarmViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A272BCA51D6EF68100D06576 /* VideoAlarmViewController.xib */; };
 		A299FF291D6187D700EE74C1 /* todolist in Resources */ = {isa = PBXBuildFile; fileRef = A299FF281D6187D600EE74C1 /* todolist */; };
 		A299FF2B1D618A6100EE74C1 /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = A299FF2A1D618A6100EE74C1 /* Alarm.swift */; };
 		A299FF391D61B13E00EE74C1 /* AlarmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A299FF381D61B13E00EE74C1 /* AlarmManager.swift */; };
@@ -179,6 +181,8 @@
 		A272BC9B1D6BF06600D06576 /* TutorialViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialViewController.xib; sourceTree = "<group>"; };
 		A272BC9F1D6BF11E00D06576 /* TutorialCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialCollectionViewCell.swift; sourceTree = "<group>"; };
 		A272BCA01D6BF11E00D06576 /* TutorialCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialCollectionViewCell.xib; sourceTree = "<group>"; };
+		A272BCA41D6EF68100D06576 /* VideoAlarmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoAlarmViewController.swift; sourceTree = "<group>"; };
+		A272BCA51D6EF68100D06576 /* VideoAlarmViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoAlarmViewController.xib; sourceTree = "<group>"; };
 		A299FF281D6187D600EE74C1 /* todolist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = todolist; sourceTree = "<group>"; };
 		A299FF2A1D618A6100EE74C1 /* Alarm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		A299FF381D61B13E00EE74C1 /* AlarmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmManager.swift; sourceTree = "<group>"; };
@@ -390,9 +394,10 @@
 		A24E20711D5B457200985409 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A272BCA31D6EF62700D06576 /* notificationvdo */,
 				A2738ED11D6385D50075EE63 /* createalarm */,
 				A272BC761D6BC6CD00D06576 /* createfriend */,
-				A272BC6A1D6B624B00D06576 /* custom */,
+				A272BC6A1D6B624B00D06576 /* customalarm */,
 				A272BC501D675CBB00D06576 /* editalarm */,
 				A272BC751D6BC6B600D06576 /* friendlist */,
 				A217B75E1D6666FD00021BFA /* menu */,
@@ -579,13 +584,13 @@
 			name = services;
 			sourceTree = "<group>";
 		};
-		A272BC6A1D6B624B00D06576 /* custom */ = {
+		A272BC6A1D6B624B00D06576 /* customalarm */ = {
 			isa = PBXGroup;
 			children = (
 				A272BC6E1D6BAF1500D06576 /* CustomAlarmViewController.swift */,
 				A272BC6F1D6BAF1500D06576 /* CustomAlarmViewController.xib */,
 			);
-			name = custom;
+			name = customalarm;
 			sourceTree = "<group>";
 		};
 		A272BC6B1D6B9D0500D06576 /* dummy */ = {
@@ -667,6 +672,15 @@
 				A272BCA01D6BF11E00D06576 /* TutorialCollectionViewCell.xib */,
 			);
 			name = cell;
+			sourceTree = "<group>";
+		};
+		A272BCA31D6EF62700D06576 /* notificationvdo */ = {
+			isa = PBXGroup;
+			children = (
+				A272BCA41D6EF68100D06576 /* VideoAlarmViewController.swift */,
+				A272BCA51D6EF68100D06576 /* VideoAlarmViewController.xib */,
+			);
+			name = notificationvdo;
 			sourceTree = "<group>";
 		};
 		A2738ED11D6385D50075EE63 /* createalarm */ = {
@@ -766,6 +780,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A217B7531D65BC9800021BFA /* DB Helvethaica X Med It.ttf in Resources */,
+				A272BCA71D6EF68100D06576 /* VideoAlarmViewController.xib in Resources */,
 				A217B7521D65BC9800021BFA /* DB Helvethaica X It.ttf in Resources */,
 				A24E20651D5B454F00985409 /* Assets.xcassets in Resources */,
 				A26ECD361D666FAD004EA733 /* DB HelvethaicaMon X Med It.ttf in Resources */,
@@ -883,6 +898,7 @@
 				A272BC831D6BC88700D06576 /* CreateFriendTableViewController.swift in Sources */,
 				A217B7251D64BBBD00021BFA /* ActionsTableViewCell.swift in Sources */,
 				A261D1971D647E5500DEECF1 /* TimePickerTableViewCell.swift in Sources */,
+				A272BCA61D6EF68100D06576 /* VideoAlarmViewController.swift in Sources */,
 				A26ECD2B1D666F59004EA733 /* MenuTableViewCell.swift in Sources */,
 				A22BDE0A1D670D34004FA6CB /* MyListTableViewCell.swift in Sources */,
 				A272BC4F1D67596D00D06576 /* BWSwipeRevealCell.swift in Sources */,
