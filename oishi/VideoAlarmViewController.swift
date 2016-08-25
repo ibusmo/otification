@@ -16,6 +16,7 @@ class VideoAlarmViewController: UIViewController, SnoozeButtonDelegate {
     
     var snoozeButton = SnoozeButton()
     
+    var uid: String?
     var videoFileName: String?
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
@@ -31,7 +32,7 @@ class VideoAlarmViewController: UIViewController, SnoozeButtonDelegate {
 
         // Do any additional setup after loading the view.
         if let fileName = self.videoFileName {
-            let filePath = self.getVideoFilePath("tempVideo", fileExtension: "mov")
+            let filePath = self.getVideoFilePath(fileName)
             print("filePath: \(filePath)")
             self.avPlayer = AVPlayer(URL: NSURL.fileURLWithPath(filePath!))
             self.avPlayer.actionAtItemEnd = .None
@@ -86,8 +87,10 @@ class VideoAlarmViewController: UIViewController, SnoozeButtonDelegate {
     
     func snoozeDidDrag(snooze: SnoozeButton) {
         if (snooze.state == .Stop) {
+            // TODO: - cancel
             self.stopVideo()
             ViewControllerManager.sharedInstance.presentMyList()
+            AlarmManager.sharedInstance.unsetAlarm(self.uid!)
         } else if (snooze.state == .Snooze) {
             // TODO: - set new localnotification with the same noti
             self.stopVideo()
@@ -99,7 +102,7 @@ class VideoAlarmViewController: UIViewController, SnoozeButtonDelegate {
     
     // MARK: - videofilepath
     
-    func getVideoFilePath(fileName: String, fileExtension: String) -> String? {
+    func getVideoFilePath(fileName: String) -> String? {
         let paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
         let documentsDirectory: AnyObject = paths[0]
         var dataPath = documentsDirectory.stringByAppendingPathComponent("video")
@@ -113,7 +116,7 @@ class VideoAlarmViewController: UIViewController, SnoozeButtonDelegate {
                 print(error.localizedDescription);
             }
         } else {
-            dataPath = dataPath + "/\(fileName).\(fileExtension)"
+            dataPath = dataPath + "/\(fileName)"
             print("dataPath: \(dataPath)")
             if (fileManager.fileExistsAtPath(dataPath)) {
                 return dataPath

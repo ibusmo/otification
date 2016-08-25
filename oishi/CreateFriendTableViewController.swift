@@ -128,7 +128,7 @@ class CreateFriendTableViewController: OishiTableViewController, ActionsTableVie
     
     // MARK: - actorstableviewcelldelegate
     
-    func didPickActor(actor: Actor) {
+    func didPickActor(actor: Actor, active: Bool) {
         self.actorNameLabel.text = actor.actorName
     }
     

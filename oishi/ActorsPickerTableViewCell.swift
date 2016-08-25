@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ActorsPickerTableViewCellDelegate {
-    func didPickActor(actor: Actor)
+    func didPickActor(actor: Actor, active: Bool)
 }
 
 class ActorsPickerTableViewCell: UITableViewCell, iCarouselDataSource, iCarouselDelegate {
@@ -19,6 +19,8 @@ class ActorsPickerTableViewCell: UITableViewCell, iCarouselDataSource, iCarousel
     
     var leftButton: UIButton = UIButton()
     var rightButton: UIButton = UIButton()
+    
+    var active = [Bool](count: 6, repeatedValue: true)
     
     var delegate: ActorsPickerTableViewCellDelegate?
     
@@ -81,6 +83,12 @@ class ActorsPickerTableViewCell: UITableViewCell, iCarouselDataSource, iCarousel
             actorImageView = view as! UIImageView
         }
         
+        if (self.active[index]) {
+            actorImageView.alpha = 1.0
+        } else {
+            actorImageView.alpha = 0.5
+        }
+        
         actorImageView.image = UIImage(named: "actor_0\(index + 1)")
         
         return actorImageView
@@ -102,7 +110,7 @@ class ActorsPickerTableViewCell: UITableViewCell, iCarouselDataSource, iCarousel
     
     func carouselCurrentItemIndexDidChange(carousel: iCarousel) {
         // TODO: - show name
-        self.delegate?.didPickActor(Otification.actors[carousel.currentItemIndex])
+        self.delegate?.didPickActor(Otification.actors[carousel.currentItemIndex], active: self.active[carousel.currentItemIndex])
     }
     
     // MARK: - leftbutton & rightbutton

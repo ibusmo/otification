@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class MyListTableViewController: OishiTableViewController {
+class MyListTableViewController: OishiTableViewController, ToggleButtonDelegate {
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -82,6 +82,9 @@ class MyListTableViewController: OishiTableViewController {
         let alarm = AlarmManager.sharedInstance.alarms[indexPath.row]
         cell.initMyList(indexPath.row, isFriendList: false)
         
+        cell.toggleButton.delegate = self
+        cell.toggleButton.tag = indexPath.row
+        
         if let title = alarm.title {
             cell.setActionTitle(title)
         }
@@ -107,7 +110,7 @@ class MyListTableViewController: OishiTableViewController {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        ViewControllerManager.sharedInstance.presentEditAlarm()
+        ViewControllerManager.sharedInstance.presentEditAlarm(AlarmManager.sharedInstance.alarms[indexPath.row])
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -121,8 +124,23 @@ class MyListTableViewController: OishiTableViewController {
         return Otification.calculatedHeightFromRatio(339.0)
     }
     
+    // MARK: -
+    
     func createAlarm() {
         ViewControllerManager.sharedInstance.presentCreateAlarm()
+    }
+    
+    // MARK: - togglebuttondelegate
+    
+    func toggleButtonDidTap(toggleButton: ToggleButton) {
+        let index = toggleButton.tag
+        let alarm = AlarmManager.sharedInstance.alarms[index]
+        if (toggleButton.state) {
+            AlarmManager.sharedInstance.setAlarm(alarm.uid!)
+        } else {
+            AlarmManager.sharedInstance.unsetAlarm(alarm.uid!)
+        }
+        self.tableView.reloadData()
     }
 
     // MARK: - oishinavigationbardelegate

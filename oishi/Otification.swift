@@ -40,11 +40,11 @@ class Otification {
     static let DBHELVETHAICAMON_X_BOLD_ITALIC: String = "DBHelvethaicaMonX-BdIt"
     
     static let selfAlarmActions: [Action] = [
-        Action(action: "action_00", actionName: "ตื่นนอน", imageName: "normal_00", activeImageName: "active_00"),
-        Action(action: "action_01", actionName: "ออกกำลังกาย", imageName: "normal_01", activeImageName: "active_01"),
-        Action(action: "action_02", actionName: "อ่านหนังสือ", imageName: "normal_02", activeImageName: "active_02"),
-        Action(action: "action_03", actionName: "ฝันดี", imageName: "normal_03", activeImageName: "active_03"),
-        Action(action: "action_04", actionName: "นัดนู่นนี่นั่น", imageName: "normal_04", activeImageName: "active_04")
+        Action(action: "1", actionName: "ตื่นนอน", imageName: "normal_00", activeImageName: "active_00"),
+        Action(action: "2", actionName: "ออกกำลังกาย", imageName: "normal_01", activeImageName: "active_01"),
+        Action(action: "3", actionName: "อ่านหนังสือ", imageName: "normal_02", activeImageName: "active_02"),
+        Action(action: "4", actionName: "ฝันดี", imageName: "normal_03", activeImageName: "active_03"),
+        Action(action: "5", actionName: "นัดนู่นนี่นั่น", imageName: "normal_04", activeImageName: "active_04")
     ]
    
     static let friendAlarmActions: [Action] = [
@@ -59,12 +59,12 @@ class Otification {
     ]
     
     static let actors: [Actor] = [
-        Actor(name: "actor_00", actorName: "พุฒ พุฒิชัย", imageName: "actor_00"),
-        Actor(name: "actor_01", actorName: "ต่อ ธนภพ", imageName: "actor_01"),
-        Actor(name: "actor_02", actorName: "ออฟ จุมพล", imageName: "actor_02"),
-        Actor(name: "actor_03", actorName: "กั้ง วรกร", imageName: "actor_03"),
-        Actor(name: "actor_04", actorName: "มาร์ช จุฑาวุฒิ", imageName: "actor_04"),
-        Actor(name: "actor_05", actorName: "มุก วรนิษฐ์", imageName: "actor_05")
+        Actor(name: "1", actorName: "พุฒ พุฒิชัย", imageName: "actor_00"),
+        Actor(name: "2", actorName: "ต่อ ธนภพ", imageName: "actor_01"),
+        Actor(name: "3", actorName: "มาร์ช จุฑาวุฒิ", imageName: "actor_02"),
+        Actor(name: "4", actorName: "กั้ง วรกร", imageName: "actor_03"),
+        Actor(name: "5", actorName: "มุก วรนิษฐ์", imageName: "actor_04"),
+        Actor(name: "6", actorName: "ออฟ จุมพล", imageName: "actor_05")
     ]
     
     private init() {}

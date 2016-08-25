@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableViewCellDelegate, ActionsTableViewCellDelegate, ActorsPickerTableViewCellDelegate {
+class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableViewCellDelegate, ActionsTableViewCellDelegate, ActorsPickerTableViewCellDelegate, DownloadViewControllerDelegate {
     
     let frontImageView = UIImageView()
     
@@ -23,6 +23,10 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
     var minute: Int?
     var action: Action = Otification.selfAlarmActions[0]
     var actor: Actor = Otification.actors[0]
+    var selectedActorActive: Bool = true
+    
+    var dictionary = Dictionary<String, [ActionInfo]>()
+    var selectedActionInfo = [ActionInfo]()
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -35,6 +39,8 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.getPlaylist()
+        
         self.tableView.bounces = false
         
         self.tableView.registerNib(UINib(nibName: "TimePickerTableViewCell", bundle: nil), forCellReuseIdentifier: "timePickerCell")
@@ -118,7 +124,15 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("actorsCell", forIndexPath: indexPath) as! ActorsPickerTableViewCell
+            var active = [Bool](count: 6, repeatedValue: false)
+            for (index, actionInfo) in self.selectedActionInfo.enumerate() {
+                if let act = actionInfo.active where act == "1" {
+                    active[index] = true
+                }
+            }
+            cell.active = active
             cell.delegate = self
+            cell.carousel.reloadData()
             return cell
         }
     }
@@ -147,23 +161,61 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
     
     func didSelectAction(action: Action) {
         self.action = action
+        if let actionInfos = self.dictionary[self.action.action!] {
+            self.selectedActionInfo = actionInfos
+            self.tableView.reloadData()
+        }
     }
     
     // MARK: - actorspickertableviewcelldelegate
     
-    func didPickActor(actor: Actor) {
+    func didPickActor(actor: Actor, active: Bool) {
         self.actorNameLabel.text = actor.actorName
         self.actor = actor
+        self.selectedActorActive = active
     }
     
     // MARK: - savebuttondidtap
     
     func saveNewAlarm() {
-        print("saveNewAlarm: -")
-        if let h = self.hour, m = self.minute {
-            AlarmManager.sharedInstance.prepareNewAlarm(self.action.actionName!, hour: h, minute: m)
-            AlarmManager.sharedInstance.saveAlarm()
-            ViewControllerManager.sharedInstance.presentMyList()
+        if let h = self.hour, m = self.minute where self.selectedActorActive {
+            // TODO: download vdo & sound first
+            
+            for (_, actionInfo) in self.selectedActionInfo.enumerate() {
+                if let actor = actionInfo.actor where actor == self.actor.name {
+                    let videoUrlString = actionInfo.videoUrlString
+                    let vSplitedString = videoUrlString!.characters.split{$0 == "/"}.map(String.init)
+                    let videoFileName = vSplitedString[vSplitedString.count - 1]
+                    
+                    let audioUrlString = actionInfo.audioUrlString
+                    let aSplitedString = audioUrlString!.characters.split{$0 == "/"}.map(String.init)
+                    let audioFileName = aSplitedString[aSplitedString.count - 1]
+                    
+                    print("vidoeFileName: \(videoFileName)")
+                    print("audioFileName: \(audioFileName)")
+                    
+                    if (!(self.isFileDownloaded(self.getVideoFilePath(videoFileName)) && self.isFileDownloaded(self.getSoundFilePath(audioFileName)))) {
+                        let download = DownloadViewController(nibName: "DownloadViewController", bundle: nil)
+                        download.modalPresentationStyle = .OverCurrentContext
+                        
+                        download.videoUrlString = videoUrlString
+                        download.audioUrlString = audioUrlString
+                        download.delegate = self
+                        
+                        self.definesPresentationContext = true
+                        self.presentViewController(download, animated: true, completion: nil)
+                    } else {
+                        AlarmManager.sharedInstance.prepareNewAlarm(self.action.actionName!, hour: h, minute: m)
+                        AlarmManager.sharedInstance.unsaveAlarm?.soundFileName = audioFileName
+                        AlarmManager.sharedInstance.unsaveAlarm?.vdoFileName = videoFileName
+                        print("saveAlarmSuccess: \(AlarmManager.sharedInstance.saveAlarm())")
+                        ViewControllerManager.sharedInstance.presentMyList()
+                    }
+                }
+            }
+            
+        } else {
+            print("failSaveNewAlarm")
         }
     }
     
@@ -174,6 +226,22 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
             AlarmManager.sharedInstance.prepareNewAlarm(self.action.actionName!, hour: h, minute: m)
             ViewControllerManager.sharedInstance.presentCustomAlarm()
         }
+    }
+    
+    // MARK: - downloadviewcontrollerdelegate
+    
+    func finishedDownloadResources() {
+        if let h = self.hour, m = self.minute where self.selectedActorActive {
+            AlarmManager.sharedInstance.prepareNewAlarm(self.action.actionName!, hour: h, minute: m)
+            print("saveAlarmSuccess: \(AlarmManager.sharedInstance.saveAlarm())")
+            ViewControllerManager.sharedInstance.presentMyList()
+        }
+    }
+    
+    func failedDownloadResources() {
+    }
+    
+    func didCancelDownloadResources() {
     }
     
     // MARK: - oishinavigationbardelegate
@@ -189,6 +257,65 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
     
     override func rightButtonDidTap() {
         ViewControllerManager.sharedInstance.presentCreateFriend()
+    }
+    
+    // MARK: - api
+    
+    func getPlaylist() {
+        let _ = OtificationHTTPService.sharedInstance.getPlaylist(Callback() { (response, success, errorString, error) in
+            if let dictionary = response where success {
+                self.dictionary = dictionary
+                if let actionInfos = self.dictionary["1"] {
+                    self.selectedActionInfo = actionInfos
+                    self.tableView.reloadData()
+                }
+            }
+        })
+    }
+    
+    // MARK: - files
+    
+    func getVideoFilePath(fileName: String) -> String {
+        let libraryPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+        let soundsPath = libraryPath + "/video"
+        let filePath: String = soundsPath + "/\(fileName)"
+        
+        let fileManager = NSFileManager.defaultManager()
+        do {
+            if (!fileManager.fileExistsAtPath(soundsPath)) {
+                try fileManager.createDirectoryAtPath(soundsPath, withIntermediateDirectories: false, attributes: nil)
+            }
+        } catch let error1 as NSError {
+            print("error" + error1.description)
+        }
+        
+        return filePath
+    }
+    
+    func getSoundFilePath(fileName: String) -> String {
+        let libraryPath = NSSearchPathForDirectoriesInDomains(.LibraryDirectory, .UserDomainMask, true)[0]
+        let soundsPath = libraryPath + "/Sounds"
+        let filePath: String = soundsPath + "/\(fileName)"
+        
+        let fileManager = NSFileManager.defaultManager()
+        do {
+            if (!fileManager.fileExistsAtPath(soundsPath)) {
+                try fileManager.createDirectoryAtPath(soundsPath, withIntermediateDirectories: false, attributes: nil)
+            }
+        } catch let error1 as NSError {
+            print("error" + error1.description)
+        }
+        
+        return filePath
+    }
+    
+    func isFileDownloaded(path: String) -> Bool {
+        let fileManager = NSFileManager.defaultManager()
+        if (fileManager.fileExistsAtPath(path)) {
+            return true
+        } else {
+            return false
+        }
     }
 
 }

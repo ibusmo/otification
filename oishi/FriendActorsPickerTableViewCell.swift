@@ -15,6 +15,8 @@ class FriendActorsPickerTableViewCell: UITableViewCell, iCarouselDataSource, iCa
     var leftButton: UIButton = UIButton()
     var rightButton: UIButton = UIButton()
     
+    var active = [Bool](count: 6, repeatedValue: true)
+    
     var delegate: ActorsPickerTableViewCellDelegate?
     
     override func awakeFromNib() {
@@ -99,7 +101,7 @@ class FriendActorsPickerTableViewCell: UITableViewCell, iCarouselDataSource, iCa
     
     func carouselCurrentItemIndexDidChange(carousel: iCarousel) {
         // TODO: - show name
-        self.delegate?.didPickActor(Otification.actors[carousel.currentItemIndex])
+        self.delegate?.didPickActor(Otification.actors[carousel.currentItemIndex], active: self.active[carousel.currentItemIndex])
     }
     
     // MARK: - leftbutton & rightbutton

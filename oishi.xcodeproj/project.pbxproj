@@ -88,6 +88,12 @@
 		A272BCA21D6BF11E00D06576 /* TutorialCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A272BCA01D6BF11E00D06576 /* TutorialCollectionViewCell.xib */; };
 		A272BCA61D6EF68100D06576 /* VideoAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A272BCA41D6EF68100D06576 /* VideoAlarmViewController.swift */; };
 		A272BCA71D6EF68100D06576 /* VideoAlarmViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A272BCA51D6EF68100D06576 /* VideoAlarmViewController.xib */; };
+		A272BCAB1D6F466100D06576 /* Callback.swift in Sources */ = {isa = PBXBuildFile; fileRef = A272BCAA1D6F466100D06576 /* Callback.swift */; };
+		A272BCAD1D6F4BA600D06576 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = A272BCAC1D6F4BA600D06576 /* Category.swift */; };
+		A272BCAF1D6F4C2600D06576 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = A272BCAE1D6F4C2600D06576 /* List.swift */; };
+		A272BCB11D6F805200D06576 /* ActionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A272BCB01D6F805200D06576 /* ActionInfo.swift */; };
+		A272BCBA1D6F9DCC00D06576 /* DownloadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A272BCB81D6F9DCC00D06576 /* DownloadViewController.swift */; };
+		A272BCBB1D6F9DCC00D06576 /* DownloadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A272BCB91D6F9DCC00D06576 /* DownloadViewController.xib */; };
 		A299FF291D6187D700EE74C1 /* todolist in Resources */ = {isa = PBXBuildFile; fileRef = A299FF281D6187D600EE74C1 /* todolist */; };
 		A299FF2B1D618A6100EE74C1 /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = A299FF2A1D618A6100EE74C1 /* Alarm.swift */; };
 		A299FF391D61B13E00EE74C1 /* AlarmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A299FF381D61B13E00EE74C1 /* AlarmManager.swift */; };
@@ -183,6 +189,12 @@
 		A272BCA01D6BF11E00D06576 /* TutorialCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialCollectionViewCell.xib; sourceTree = "<group>"; };
 		A272BCA41D6EF68100D06576 /* VideoAlarmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoAlarmViewController.swift; sourceTree = "<group>"; };
 		A272BCA51D6EF68100D06576 /* VideoAlarmViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoAlarmViewController.xib; sourceTree = "<group>"; };
+		A272BCAA1D6F466100D06576 /* Callback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Callback.swift; sourceTree = "<group>"; };
+		A272BCAC1D6F4BA600D06576 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		A272BCAE1D6F4C2600D06576 /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
+		A272BCB01D6F805200D06576 /* ActionInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionInfo.swift; sourceTree = "<group>"; };
+		A272BCB81D6F9DCC00D06576 /* DownloadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadViewController.swift; sourceTree = "<group>"; };
+		A272BCB91D6F9DCC00D06576 /* DownloadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DownloadViewController.xib; sourceTree = "<group>"; };
 		A299FF281D6187D600EE74C1 /* todolist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = todolist; sourceTree = "<group>"; };
 		A299FF2A1D618A6100EE74C1 /* Alarm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		A299FF381D61B13E00EE74C1 /* AlarmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmManager.swift; sourceTree = "<group>"; };
@@ -394,6 +406,7 @@
 		A24E20711D5B457200985409 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A272BCB31D6F994200D06576 /* download */,
 				A272BCA31D6EF62700D06576 /* notificationvdo */,
 				A2738ED11D6385D50075EE63 /* createalarm */,
 				A272BC761D6BC6CD00D06576 /* createfriend */,
@@ -411,6 +424,8 @@
 		A24E20721D5B457700985409 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				A272BCA91D6F463300D06576 /* callback */,
+				A272BCA81D6F43FF00D06576 /* api */,
 				A217B75D1D665CBC00021BFA /* main */,
 				A299FF2A1D618A6100EE74C1 /* Alarm.swift */,
 				A22BDE061D670969004FA6CB /* Action.swift */,
@@ -683,6 +698,33 @@
 			name = notificationvdo;
 			sourceTree = "<group>";
 		};
+		A272BCA81D6F43FF00D06576 /* api */ = {
+			isa = PBXGroup;
+			children = (
+				A272BCAC1D6F4BA600D06576 /* Category.swift */,
+				A272BCAE1D6F4C2600D06576 /* List.swift */,
+				A272BCB01D6F805200D06576 /* ActionInfo.swift */,
+			);
+			name = api;
+			sourceTree = "<group>";
+		};
+		A272BCA91D6F463300D06576 /* callback */ = {
+			isa = PBXGroup;
+			children = (
+				A272BCAA1D6F466100D06576 /* Callback.swift */,
+			);
+			name = callback;
+			sourceTree = "<group>";
+		};
+		A272BCB31D6F994200D06576 /* download */ = {
+			isa = PBXGroup;
+			children = (
+				A272BCB81D6F9DCC00D06576 /* DownloadViewController.swift */,
+				A272BCB91D6F9DCC00D06576 /* DownloadViewController.xib */,
+			);
+			name = download;
+			sourceTree = "<group>";
+		};
 		A2738ED11D6385D50075EE63 /* createalarm */ = {
 			isa = PBXGroup;
 			children = (
@@ -805,6 +847,7 @@
 				A26ECD2C1D666F59004EA733 /* MenuTableViewCell.xib in Resources */,
 				A26ECD331D666FAD004EA733 /* DB HelvethaicaMon X Bd It.ttf in Resources */,
 				A217B7261D64BBBD00021BFA /* ActionsTableViewCell.xib in Resources */,
+				A272BCBB1D6F9DCC00D06576 /* DownloadViewController.xib in Resources */,
 				A272BC9D1D6BF06600D06576 /* TutorialViewController.xib in Resources */,
 				A272BC801D6BC82800D06576 /* FriendListTableViewController.xib in Resources */,
 				A261D19C1D64803B00DEECF1 /* CreateAlarmTableViewController.xib in Resources */,
@@ -891,9 +934,13 @@
 				A272BC4E1D67596D00D06576 /* BWSwipeCell.swift in Sources */,
 				A272BC531D675CD900D06576 /* EditAlarmTableViewController.swift in Sources */,
 				A272BC741D6BAF7E00D06576 /* OishiViewController.swift in Sources */,
+				A272BCBA1D6F9DCC00D06576 /* DownloadViewController.swift in Sources */,
 				1FB87CED1D64631E0097AC74 /* ToggleButton.swift in Sources */,
+				A272BCAB1D6F466100D06576 /* Callback.swift in Sources */,
 				A2508A4C1D5E5C2A00DFD781 /* Otification.swift in Sources */,
 				A272BC661D6B2A0F00D06576 /* Actor.swift in Sources */,
+				A272BCAF1D6F4C2600D06576 /* List.swift in Sources */,
+				A272BCAD1D6F4BA600D06576 /* Category.swift in Sources */,
 				A217B7641D66679500021BFA /* OtificationColor.swift in Sources */,
 				A272BC831D6BC88700D06576 /* CreateFriendTableViewController.swift in Sources */,
 				A217B7251D64BBBD00021BFA /* ActionsTableViewCell.swift in Sources */,
@@ -906,6 +953,7 @@
 				A299FF2B1D618A6100EE74C1 /* Alarm.swift in Sources */,
 				A217B7361D64EC2900021BFA /* ActorsPickerTableViewCell.swift in Sources */,
 				A217B7431D65162D00021BFA /* iCarousel.m in Sources */,
+				A272BCB11D6F805200D06576 /* ActionInfo.swift in Sources */,
 				A272BCA11D6BF11E00D06576 /* TutorialCollectionViewCell.swift in Sources */,
 				A272BC581D67627900D06576 /* RepeatAlarmTableViewCell.swift in Sources */,
 				A217B7611D66671E00021BFA /* MenuTableViewController.swift in Sources */,

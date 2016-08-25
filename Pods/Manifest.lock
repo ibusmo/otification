@@ -4,6 +4,7 @@ PODS:
   - LLSimpleCamera (5.0.0)
   - PickerView (0.2.2)
   - SwiftHEXColors (1.0.4)
+  - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
   - Alamofire (~> 3.4)
@@ -11,6 +12,7 @@ DEPENDENCIES:
   - LLSimpleCamera
   - PickerView
   - SwiftHEXColors
+  - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
@@ -18,7 +20,8 @@ SPEC CHECKSUMS:
   LLSimpleCamera: 7175ccb81be71c83d79933089322eb662b1f0327
   PickerView: d6952d565ec80c9fcdbd7dff853723e4df0b2490
   SwiftHEXColors: b0ecc7bd83a1aa2e1956f9ba51f55ebb2bcf86ef
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: 611646c536bc31c7a5082c30442c3745adc509dd
+PODFILE CHECKSUM: eb3851f9ab75794b64e1ed15a92434f745da082d
 
 COCOAPODS: 1.0.1

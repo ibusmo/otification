@@ -22,6 +22,7 @@ class Alarm: NSObject, NSCoding {
     var vibrate: Bool?
     
     var soundFileName: String?
+    var vdoFileName: String?
     
     var photoUrl: String?
     var sentToFriend: Bool?

@@ -80,6 +80,47 @@ class AlarmManager {
     
     // MARK: - nslocalnotification
     
+    // set an existing alarm to on
+    func setAlarm(uid: String) {
+        
+        // todo: - check an existing alarm in notification
+        self.alarms[self.findAlarm(uid)].on = true
+        let alarm = self.alarms[self.findAlarm(uid)]
+        
+        print("setAlarm w/ uid: \(uid)")
+        
+        // create a corresponding local notification
+        let notification = UILocalNotification()
+        notification.alertBody = "ได้เวลา \"\(alarm.title!)\" จ่ะ :3" // text that will be displayed in the notification
+        notification.alertAction = "open" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
+        notification.repeatInterval = NSCalendarUnit.Hour
+        
+        notification.fireDate = alarm.date // todo item due date (when notification will be fired)
+        
+        // TODO: if alarm have an soundfilepath use it instead of uid
+        var userInfo = Dictionary<String, AnyObject>()
+        userInfo["uid"] = alarm.uid!
+        userInfo["title"] = alarm.title!
+        
+        // TODO: if alarm have an soundfilepath use it instead of uid
+        if let soundFileName = alarm.soundFileName {
+            notification.soundName = soundFileName
+            userInfo["custom"] = false
+        } else {
+            notification.soundName = alarm.uid! + ".caf"
+            userInfo["custom"] = true
+        }
+        
+        if let videoFileName = alarm.vdoFileName {
+            userInfo["video"] = videoFileName
+        }
+        
+        notification.userInfo = userInfo
+        
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        
+    }
+    
     func setAlarm(alarm: Alarm) {
         
         // todo: - check an existing alarm in notification
@@ -91,11 +132,47 @@ class AlarmManager {
         notification.repeatInterval = NSCalendarUnit.Hour
         
         notification.fireDate = alarm.date // todo item due date (when notification will be fired)
-        notification.soundName = alarm.uid! + ".caf"
-        notification.userInfo = ["uid": alarm.uid!, "title": alarm.title!] // assign a unique identifier to the notification so that we can retrieve it later
+        
+        var userInfo = Dictionary<String, AnyObject>()
+        userInfo["uid"] = alarm.uid!
+        userInfo["title"] = alarm.title!
+        
+        // TODO: if alarm have an soundfilepath use it instead of uid
+        if let soundFileName = alarm.soundFileName {
+            notification.soundName = soundFileName
+            userInfo["custom"] = false
+        } else {
+            notification.soundName = alarm.uid! + ".caf"
+            userInfo["custom"] = true
+        }
+        
+        if let videoFileName = alarm.vdoFileName {
+            userInfo["video"] = videoFileName
+        }
+        
+        notification.userInfo = userInfo
+        // notification.userInfo = ["uid": alarm.uid!, "title": alarm.title!, "custom": false] // assign a unique identifier to the notification so that we can retrieve it later
         
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
         
+    }
+    
+    func unsetAlarm(uid: String) {
+        let index = self.findAlarm(uid)
+        self.alarms[index].on = false
+        
+        let app:UIApplication = UIApplication.sharedApplication()
+        for oneEvent in app.scheduledLocalNotifications! {
+            let notification = oneEvent as UILocalNotification
+            let userInfo = notification.userInfo! as! [String:AnyObject]
+            let uidFromUserInfo = userInfo["uid"]! as! String
+            if uidFromUserInfo == uid {
+                print("unsetAlarm w/ uid: \(uid)")
+                NSNotificationCenter.defaultCenter().postNotificationName("alarmUpdate", object: nil)
+                app.cancelLocalNotification(notification)
+                break;
+            }
+        }
     }
     
     func cancelAlarm(alarm: Alarm) {

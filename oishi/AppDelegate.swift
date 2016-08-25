@@ -55,16 +55,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
          */
         
-        if let options = launchOptions {
-            if let notification = options[UIApplicationLaunchOptionsLocalNotificationKey] as? UILocalNotification {
-                if let userInfo = notification.userInfo {
-                    let uid = userInfo["uid"] as! String
-                    ViewControllerManager.sharedInstance.presentVideoAlarm(uid)
-                }
-            }
-        } else {
-            ViewControllerManager.sharedInstance.presentMyList()
-        }
+        ViewControllerManager.sharedInstance.presentMyList()
+        
+//        if let options = launchOptions {
+//            if let notification = options[UIApplicationLaunchOptionsLocalNotificationKey] as? UILocalNotification {
+//                if let userInfo = notification.userInfo {
+//                    let uid = userInfo["uid"] as! String
+//                }
+//            }
+//        } else {
+//            ViewControllerManager.sharedInstance.presentMyList()
+//        }
         
         return true
     }
@@ -104,9 +105,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
         if let userInfo = notification.userInfo {
-            let uid = userInfo["uid"] as! String
-            ViewControllerManager.sharedInstance.presentVideoAlarm(uid)
-            print("didReceiveLocalNotification: \(uid)")
+            let custom = userInfo["custom"] as! Bool
+            if (custom) {
+                let uid = userInfo["uid"] as! String
+                ViewControllerManager.sharedInstance.presentVideoAlarm(uid, uid: uid)
+            } else {
+                let uid = userInfo["uid"] as! String
+                let fileName = userInfo["video"] as! String
+                ViewControllerManager.sharedInstance.presentVideoAlarm(fileName, uid: uid)
+            }
         }
     }
 
