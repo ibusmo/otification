@@ -13,7 +13,66 @@ class AlarmManager {
     
     static let sharedInstance = AlarmManager()
     
+    var unsaveAlarm: Alarm?
+    
+    var list: [String] = [String]()
+    var alarms: [Alarm] = [Alarm]()
+    
     private init() {}
+    
+    func prepareNewAlarm(title: String, hour: Int, minute: Int) {
+        
+        let uid = NSUUID().UUIDString
+        self.unsaveAlarm = Alarm(uid: uid)
+        self.unsaveAlarm?.title = title
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "HH mm dd MM yyyy ee"
+        let nowDate = NSDate()
+        let now = dateFormatter.stringFromDate(nowDate).characters.split{$0 == " "}.map(String.init)
+        
+        var fireDate: [Int] = [hour, minute, Int(now[2])!, Int(now[3])!, Int(now[4])!, Int(now[5])!]
+        
+        if (hour < Int(now[0]) || (hour == Int(now[0]) && minute <= Int(now[1]))) {
+            let dayComponent = NSDateComponents()
+            dayComponent.day = 1
+            let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
+            let nextDate = calendar?.dateByAddingComponents(dayComponent, toDate: NSDate(), options: NSCalendarOptions.MatchFirst)
+            let next = dateFormatter.stringFromDate(nextDate!).characters.split{$0 == " "}.map(String.init)
+            fireDate[2] = Int(next[2])!
+            fireDate[3] = Int(next[3])!
+            fireDate[4] = Int(next[4])!
+            fireDate[5] = Int(next[5])!
+        }
+        
+        let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
+        let componentsForFireDate = NSDateComponents()
+        componentsForFireDate.weekday = fireDate[5]
+        componentsForFireDate.year = fireDate[4]
+        componentsForFireDate.month = fireDate[3]
+        componentsForFireDate.day = fireDate[2]
+        componentsForFireDate.hour = fireDate[0]
+        componentsForFireDate.minute = fireDate[1]
+        componentsForFireDate.second = 0
+        
+        let notificationDate = calendar?.dateFromComponents(componentsForFireDate)
+        let result = dateFormatter.stringFromDate(notificationDate!).characters.split{$0 == " "}.map(String.init)
+        
+        self.unsaveAlarm?.date = notificationDate
+        
+        self.unsaveAlarm?.repeats = [false, false, false, false, false, false, false]
+        
+        self.unsaveAlarm?.sound = true
+        self.unsaveAlarm?.vibrate = true
+        
+        self.unsaveAlarm?.on = true
+        
+        print("result notificationDate: \(result)")
+    }
+    
+    func setSoundFileNameForUnsaveAlarm() {
+        self.unsaveAlarm?.soundFileName = (self.unsaveAlarm?.uid)! + ".caf"
+    }
     
     // MARK: - nslocalnotification
     
@@ -23,11 +82,12 @@ class AlarmManager {
         
         // create a corresponding local notification
         let notification = UILocalNotification()
-        notification.alertBody = "Alarm \"\(alarm.title!)\"" // text that will be displayed in the notification
+        notification.alertBody = "ได้เวลา \"\(alarm.title!)\" จ่ะ :3" // text that will be displayed in the notification
         notification.alertAction = "open" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
+        notification.repeatInterval = NSCalendarUnit.Hour
         
         notification.fireDate = alarm.date // todo item due date (when notification will be fired)
-        notification.soundName = UILocalNotificationDefaultSoundName // play default sound
+        notification.soundName = alarm.uid! + ".caf"
         notification.userInfo = ["uid": alarm.uid!, "title": alarm.title!] // assign a unique identifier to the notification so that we can retrieve it later
         
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
@@ -60,7 +120,26 @@ class AlarmManager {
             defaults.setObject(list, forKey: "alarm_list")
         }
         
+        self.list = list
+        
         return list
+    }
+    
+    func saveAlarmList() {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.removeObjectForKey("alarm_list")
+        defaults.setObject(list, forKey: "alarm_list")
+    }
+    
+    func getAlarmListToObjects() {
+        let list = self.getAlarmList()
+        for uid in list {
+            let result = self.getAlarm(uid)
+            if let _ = result.index, alarm = result.alarm {
+                self.alarms.append(alarm)
+            }
+        }
+        print("number of alarm: \(self.alarms.count)")
     }
     
     func getAlarm(uid: String) -> (index: Int?, alarm: Alarm?) {
@@ -83,6 +162,32 @@ class AlarmManager {
         
     }
     
+    func saveAlarm() -> Bool {
+        let alarm = self.unsaveAlarm!
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        var list: [String] = self.getAlarmList()
+        
+        if let uid = alarm.uid {
+            // desc: - append new alarm list uid, set new alarmlist forkey "alarm_list"
+            list.append(uid)
+            defaults.removeObjectForKey("alarm_list")
+            defaults.setObject(list, forKey: "alarm_list")
+            
+            // desc: - save alarm object to userdefaults mapped by alarm.uid
+            defaults.setObject(NSKeyedArchiver.archivedDataWithRootObject(alarm), forKey: alarm.uid!)
+            self.alarms.append(alarm)
+            self.setAlarm(alarm)
+            
+            // todo: - notify observers
+            self.unsaveAlarm = nil
+            
+            return true
+        } else {
+            return false
+        }
+    }
+    
     func saveAlarm(alarm: Alarm) -> Bool {
         let defaults = NSUserDefaults.standardUserDefaults()
         
@@ -96,6 +201,8 @@ class AlarmManager {
             
             // desc: - save alarm object to userdefaults mapped by alarm.uid
             defaults.setObject(NSKeyedArchiver.archivedDataWithRootObject(alarm), forKey: alarm.uid!)
+            self.alarms.append(alarm)
+            self.setAlarm(alarm)
             
             // todo: - notify observers
             
@@ -118,10 +225,31 @@ class AlarmManager {
         
         // desc: - remove alarm object from userdefaults
         defaults.removeObjectForKey(uid)
+        let index = self.findAlarm(uid)
+        if (index >= 0) {
+            self.alarms.removeAtIndex(index)
+        }
         
         // todo: - notify observers
         
         return true
+    }
+    
+    func findAlarm(uid: String) -> Int {
+        for (index, alarm) in self.alarms.enumerate() {
+            if let id = alarm.uid where id == uid {
+                return index
+            }
+        }
+        return -1
+    }
+    
+    // MARK: - test
+    
+    func removeAllAlarm() {
+        for uid in self.list {
+            self.deleteAlarm(uid)
+        }
     }
     
 }

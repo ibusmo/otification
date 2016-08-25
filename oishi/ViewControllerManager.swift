@@ -77,6 +77,13 @@ class ViewControllerManager {
         self.appDelegate.window?.makeKeyAndVisible()
     }
     
+    func presentEditAlarm(alarm: Alarm) {
+        let editAlarm = self.getEditAlarm()
+        editAlarm.alarm = alarm
+        self.appDelegate.window?.rootViewController = editAlarm
+        self.appDelegate.window?.makeKeyAndVisible()
+    }
+    
     // MARK: - customalarmviewcontroller
     
     func getCustomAlarm() -> CustomAlarmViewController {

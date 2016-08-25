@@ -111,16 +111,25 @@ class MyListTableViewCell: UITableViewCell {
         self.actionNameLabel.frame = frame
     }
     
-    func setTime() {
-        self.timeLabel.text = "19:00"
+    func setTime(date: NSDate) {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "HH':'mm"
+        self.timeLabel.text = dateFormatter.stringFromDate(date)
         self.timeLabel.sizeToFit()
         var frame = self.timeLabel.frame
         frame.size.width += 10.0
         self.timeLabel.frame = frame
     }
     
-    func setRepeat() {
-        self.repeatLabel.text = "Mo Tu We Fr"
+    func setRepeat(repeats: [Bool]) {
+        let dayInWeek: [String] = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]
+        var repeatText = ""
+        for (index, r) in repeats.enumerate() {
+            if (r) {
+                repeatText += dayInWeek[index] + " "
+            }
+        }
+        self.repeatLabel.text = repeatText
         self.repeatLabel.sizeToFit()
         var frame = self.repeatLabel.frame
         frame.size.width += 10.0

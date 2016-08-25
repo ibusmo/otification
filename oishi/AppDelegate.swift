@@ -43,6 +43,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         ViewControllerManager.sharedInstance.presentMyList()
         
+        AlarmManager.sharedInstance.getAlarmListToObjects()
+        AlarmManager.sharedInstance.removeAllAlarm()
+        
+        UIApplication.sharedApplication().cancelAllLocalNotifications()
+        
         /*
         for familyName in UIFont.familyNames() as [String] {
             print("\(familyName)\n")
@@ -98,8 +103,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
         if let userInfo = notification.userInfo {
-            let customField1 = userInfo["CustomField1"] as! String
-            print("didReceiveLocalNotification: \(customField1)")
+//            let customField1 = userInfo["CustomField1"] as! String
+//            print("didReceiveLocalNotification: \(customField1)")
         }
     }
 

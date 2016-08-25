@@ -38,7 +38,7 @@ class CreateFriendTableViewController: OishiTableViewController, ActionsTableVie
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         
         self.showBottomBarView = true
-        self.tabBar.setBottomBarView("เตือนตัวเอง", rightButtonTitle: "เตือนเพื่อน", leftButtonSelected: false)
+        self.tabBar.setBottomBarView("เตือนตัวเอง", rightButtonTitle: "ส่งให้เพื่อน", leftButtonSelected: false)
         
         self.backgroundImageView.frame = CGRectMake(0.0, 0.0, self.screenSize.width, self.screenSize.height)
         self.backgroundImageView.image = UIImage(named: "createfriend_bg")

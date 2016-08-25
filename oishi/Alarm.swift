@@ -21,12 +21,16 @@ class Alarm: NSObject, NSCoding {
     var sound: Bool?
     var vibrate: Bool?
     
-    var soundFilePath: String?
+    var soundFileName: String?
     
     var photoUrl: String?
     var sentToFriend: Bool?
     
     override init() {}
+    
+    init(uid: String?) {
+        self.uid = uid
+    }
     
     init(uid: String?, title: String?, date: NSDate?, photoUrl: String?) {
         self.uid = uid
@@ -42,7 +46,7 @@ class Alarm: NSObject, NSCoding {
         self.sentToFriend = true
     }
     
-    init(uid: String?, title: String?, date: NSDate?, repeats: [Bool]?, on: Bool?, snooze: Bool?, sound: Bool?, vibrate: Bool?, soundFilePath: String?, photoUrl: String?, sentToFriend: Bool?) {
+    init(uid: String?, title: String?, date: NSDate?, repeats: [Bool]?, on: Bool?, snooze: Bool?, sound: Bool?, vibrate: Bool?, soundFileName: String?, photoUrl: String?, sentToFriend: Bool?) {
         self.uid = uid
         self.title = title
         self.date = date
@@ -51,7 +55,7 @@ class Alarm: NSObject, NSCoding {
         self.snooze = snooze
         self.sound = sound
         self.vibrate = vibrate
-        self.soundFilePath = soundFilePath
+        self.soundFileName = soundFileName
         self.photoUrl = photoUrl
         self.sentToFriend = sentToFriend
     }
@@ -78,6 +82,7 @@ class Alarm: NSObject, NSCoding {
         self.snooze = aDecoder.decodeObjectForKey("snooze") as? Bool
         self.sound = aDecoder.decodeObjectForKey("sound") as? Bool
         self.vibrate = aDecoder.decodeObjectForKey("vibrate") as? Bool
+        self.soundFileName = aDecoder.decodeObjectForKey("soundFileName") as? String
         self.photoUrl = aDecoder.decodeObjectForKey("photoUrl") as? String
         self.sentToFriend = aDecoder.decodeObjectForKey("sentToFriend") as? Bool
     }
@@ -123,6 +128,12 @@ class Alarm: NSObject, NSCoding {
             aCoder.encodeObject(sound, forKey: "sound")
         } else {
             aCoder.encodeObject(nil, forKey: "sound")
+        }
+        
+        if let soundFileName = self.soundFileName {
+            aCoder.encodeObject(soundFileName, forKey: "soundFileName")
+        } else {
+            aCoder.encodeObject(nil, forKey: "soundFileName")
         }
         
         if let vibrate = self.vibrate {

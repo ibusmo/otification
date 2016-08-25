@@ -56,8 +56,9 @@ class EditAlarmTableViewController: OishiTableViewController, EditAlarmTableView
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if (indexPath.row == 0) {
             let cell = tableView.dequeueReusableCellWithIdentifier("repeatCell", forIndexPath: indexPath) as! RepeatAlarmTableViewCell
-            let repeats: [Bool] = [true, true, false, true, false, false, true]
-            cell.initRepeatAlarm(repeats)
+            if let repeats = self.alarm!.repeats {
+                cell.initRepeatAlarm(repeats)
+            }
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("editAlarmCell", forIndexPath: indexPath) as! EditAlarmTableViewCell

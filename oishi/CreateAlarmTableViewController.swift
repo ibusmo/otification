@@ -160,23 +160,20 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
     
     func saveNewAlarm() {
         print("saveNewAlarm: -")
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "HH mm"
-        let now = dateFormatter.stringFromDate(NSDate()).characters.split{$0 == " "}.map(String.init)
         if let h = self.hour, m = self.minute {
-            if (h < Int(now[0]) || (h == Int(now[0]) && m <= Int(now[1]))) {
-                print("next day")
-            }
-            print("time: \(h):\(m)")
-            print("action: \(self.action.actionName)")
-            print("actor: \(self.actor.actorName)")
+            AlarmManager.sharedInstance.prepareNewAlarm(self.action.actionName!, hour: h, minute: m)
+            AlarmManager.sharedInstance.saveAlarm()
+            ViewControllerManager.sharedInstance.presentMyList()
         }
     }
     
     // MARK: - custombuttondidtap
     
     func customAlarm() {
-        ViewControllerManager.sharedInstance.presentCustomAlarm()
+        if let h = self.hour, m = self.minute {
+            AlarmManager.sharedInstance.prepareNewAlarm(self.action.actionName!, hour: h, minute: m)
+            ViewControllerManager.sharedInstance.presentCustomAlarm()
+        }
     }
     
     // MARK: - oishinavigationbardelegate

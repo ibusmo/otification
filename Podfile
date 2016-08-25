@@ -10,5 +10,6 @@ target 'oishi' do
   pod 'Kingfisher', '~> 2.4'
   pod 'SwiftHEXColors'
   pod "PickerView"
+  pod 'LLSimpleCamera'
 
 end

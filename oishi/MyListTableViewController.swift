@@ -38,13 +38,16 @@ class MyListTableViewController: OishiTableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.tableView.reloadData()
+        
         /*
         let list = Otification.getAlarmList()
         print("list size: \(list.uids.count)")
          */
         
+        /*
         let uid = NSUUID().UUIDString
-        let alarm = Alarm(uid: uid, title: "title_1", date: NSDate(), repeats: [true, true, false], on: true, snooze: false, sound: false, vibrate: true, soundFilePath: nil, photoUrl: nil, sentToFriend: false)
+        let alarm = Alarm(uid: uid, title: "title_1", date: NSDate(), repeats: [true, true, false], on: true, snooze: false, sound: false, vibrate: true, soundFileName: nil, photoUrl: nil, sentToFriend: false)
         
         Otification.saveAlarm(alarm)
         let result = Otification.getAlarm(uid)
@@ -57,6 +60,7 @@ class MyListTableViewController: OishiTableViewController {
             }
         }
         Otification.deleteAlarm(alarm.uid!)
+         */
         
     }
 
@@ -70,15 +74,31 @@ class MyListTableViewController: OishiTableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return AlarmManager.sharedInstance.alarms.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("myListCell", forIndexPath: indexPath) as! MyListTableViewCell
+        let alarm = AlarmManager.sharedInstance.alarms[indexPath.row]
         cell.initMyList(indexPath.row, isFriendList: false)
-        cell.setActionTitle("อ่านหนังสือ")
-        cell.setTime()
-        cell.setRepeat()
+        
+        if let title = alarm.title {
+            cell.setActionTitle(title)
+        }
+        if let date = alarm.date {
+            cell.setTime(date)
+        }
+        if let repeats = alarm.repeats {
+            cell.setRepeat(repeats)
+        }
+        
+        if let on = alarm.on {
+            cell.toggleButton.state = on
+        } else {
+            
+            cell.toggleButton.state = false
+        }
+        
         return cell
     }
     

@@ -4,3 +4,4 @@
 
 #import "iCarousel.h"
 #import "THLabel.h"
+#import "LLSimpleCamera/LLSimpleCamera.h"
