@@ -10,6 +10,7 @@ import UIKit
 
 protocol ActorsPickerTableViewCellDelegate {
     func didPickActor(actor: Actor, active: Bool)
+    func didSelectActor(actor: Actor, active: Bool)
 }
 
 class ActorsPickerTableViewCell: UITableViewCell, iCarouselDataSource, iCarouselDelegate {
@@ -111,6 +112,11 @@ class ActorsPickerTableViewCell: UITableViewCell, iCarouselDataSource, iCarousel
     func carouselCurrentItemIndexDidChange(carousel: iCarousel) {
         // TODO: - show name
         self.delegate?.didPickActor(Otification.actors[carousel.currentItemIndex], active: self.active[carousel.currentItemIndex])
+    }
+    
+    func carousel(carousel: iCarousel, didSelectItemAtIndex index: Int) {
+        print("didSelectItemAtIndex: \(index)")
+        self.delegate?.didSelectActor(Otification.actors[index], active: self.active[index])
     }
     
     // MARK: - leftbutton & rightbutton

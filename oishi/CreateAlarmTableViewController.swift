@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MediaPlayer
 
 class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableViewCellDelegate, ActionsTableViewCellDelegate, ActorsPickerTableViewCellDelegate, DownloadViewControllerDelegate {
     
@@ -27,6 +28,8 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
     
     var dictionary = Dictionary<String, [ActionInfo]>()
     var selectedActionInfo = [ActionInfo]()
+    
+    var moviePlayer = MPMoviePlayerController()
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -173,6 +176,21 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
         self.actorNameLabel.text = actor.actorName
         self.actor = actor
         self.selectedActorActive = active
+    }
+    
+    func didSelectActor(actor: Actor, active: Bool) {
+        if (active) {
+            for (_, actionInfo) in self.selectedActionInfo.enumerate() {
+                if let act = actionInfo.actor where act == actor.name {
+                    let videoUrlString = actionInfo.videoUrlString
+                    self.moviePlayer = MPMoviePlayerController(contentURL: NSURL(string: videoUrlString!))
+                    self.moviePlayer.view.frame = CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight)
+                    self.view.addSubview(self.moviePlayer.view)
+                    self.moviePlayer.fullscreen = true
+                    self.moviePlayer.controlStyle = MPMovieControlStyle.Embedded
+                }
+            }
+        }
     }
     
     // MARK: - savebuttondidtap

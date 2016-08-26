@@ -132,6 +132,9 @@ class CreateFriendTableViewController: OishiTableViewController, ActionsTableVie
         self.actorNameLabel.text = actor.actorName
     }
     
+    func didSelectActor(actor: Actor, active: Bool) {
+    }
+    
     // MARK: - oishitabbardelegate
     
     override func leftButtonDidTap() {
