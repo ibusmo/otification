@@ -49,8 +49,6 @@ class ActionInfo {
         let type = json["type"].string
         let no = json["no"].string
         
-        print("active")
-        
         let name = json["name"].string
         let notiTitle = json["noti_title"].string
         let notiMessage = json["noti_message"].string

@@ -30,7 +30,8 @@ class DownloadViewController: UIViewController {
     
     var fileURLs = [String]()
     var fileDestinations = [NSURL]()
-    var totalBytes: Int64 = 0
+    var basePercent: Int = 0
+    var baseProgress: CGFloat = 0.0
     
     var videoDownloaded: Bool = false
     var audioDownloaded: Bool = false
@@ -89,7 +90,7 @@ class DownloadViewController: UIViewController {
         self.view.addSubview(self.backgroundImageView)
         self.backgroundImageView.addSubview(self.percentageLabel)
         self.backgroundImageView.addSubview(self.progressBar)
-        self.backgroundImageView.addSubview(self.progressLabel)
+        // self.backgroundImageView.addSubview(self.progressLabel)
         
         self.initDownload()
     }
@@ -212,12 +213,15 @@ class DownloadViewController: UIViewController {
                     // This closure is NOT called on the main queue for performance
                     // reasons. To update your ui, dispatch to the main queue.
                     dispatch_async(dispatch_get_main_queue()) {
-                        print("Total bytes read on main queue: \((Float(totalBytesRead) / Float(totalBytesExpectedToRead)) * 100.0) : \(totalBytesRead) \(totalBytesExpectedToRead)")
-                        let percent = Int(floor(((Float(totalBytesRead) / Float(totalBytesExpectedToRead)) * 100.0)))
+                        // print("Total bytes read on main queue: \((Float(totalBytesRead) / Float(totalBytesExpectedToRead)) * 100.0) : \(totalBytesRead) \(totalBytesExpectedToRead)")
+                        var percent = (Int(floor(((Float(totalBytesRead) / Float(totalBytesExpectedToRead)) * 100.0)))) / 2
+                        percent = self.basePercent + percent
                         if (percent != 100) {
                             self.percentageLabel.text = "\(percent)%"
                         }
-                        self.progressBar.setProgress(CGFloat(totalBytesRead) / CGFloat(totalBytesExpectedToRead), animated: true)
+                        let progress = ((CGFloat(totalBytesRead) / CGFloat(totalBytesExpectedToRead)) / 2.0) + self.baseProgress
+                        print("progress \(progress)")
+                        self.progressBar.setProgress(progress, animated: false)
                     }
                 }
                 .response { request, response, _, error in
@@ -227,7 +231,8 @@ class DownloadViewController: UIViewController {
                         print("Downloaded file successfully")
                         if (self.fileURLs.count > 0) {
                             self.downloadFile()
-                            self.progressLabel.text = "2/2"
+                            self.basePercent = 50
+                            self.baseProgress = 0.5
                         } else {
                             self.delegate?.finishedDownloadResources()
                         }
