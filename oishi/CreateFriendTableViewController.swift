@@ -17,6 +17,13 @@ class CreateFriendTableViewController: OishiTableViewController, ActionsTableVie
     var facebookButton = UIButton()
     var lineButton = UIButton()
     
+    var action: Action = Otification.friendAlarmActions[0]
+    var actor: Actor = Otification.actors[0]   
+    var selectedActorActive: Bool = true
+
+    var dictionary = Dictionary<String, [ActionInfo]>()
+    var selectedActionInfo = [ActionInfo]()
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }

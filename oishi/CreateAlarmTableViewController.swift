@@ -60,6 +60,23 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
         self.backgroundImageView.contentMode = UIViewContentMode.ScaleAspectFill
         
         self.initCreateAlarmViews()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CreateAlarmTableViewController.moviePlayerExitFullScreen), name: MPMoviePlayerDidExitFullscreenNotification, object: nil)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    func moviePlayerExitFullScreen() {
+        print("check")
+        self.moviePlayer.stop()
+        self.moviePlayer.view.removeFromSuperview()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: MPMoviePlayerWillExitFullscreenNotification, object: nil)
     }
     
     override func didReceiveMemoryWarning() {
