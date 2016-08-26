@@ -48,14 +48,14 @@ class Otification {
     ]
    
     static let friendAlarmActions: [Action] = [
-        Action(action: "f_action_00", actionName: "HBD", imageName: "f_normal_00", activeImageName: "f_active_00"),
-        Action(action: "f_action_01", actionName: "คิดถึง", imageName: "f_normal_01", activeImageName: "f_active_01"),
-        Action(action: "f_action_02", actionName: "ฝันดี", imageName: "f_normal_02", activeImageName: "f_active_02"),
-        Action(action: "f_action_03", actionName: "ให้กำลังใจ", imageName: "f_normal_03", activeImageName: "f_active_03"),
-        Action(action: "f_action_04", actionName: "ชวนเที่ยว", imageName: "f_normal_04", activeImageName: "f_active_04"),
-        Action(action: "f_action_05", actionName: "ง้อ", imageName: "f_normal_05", activeImageName: "f_active_05"),
-        Action(action: "f_action_06", actionName: "ขอบคุณ", imageName: "f_normal_06", activeImageName: "f_active_06"),
-        Action(action: "f_action_07", actionName: "Take Care", imageName: "f_normal_07", activeImageName: "f_active_07")
+        Action(action: "1", actionName: "HBD", imageName: "f_normal_00", activeImageName: "f_active_00"),
+        Action(action: "2", actionName: "คิดถึง", imageName: "f_normal_01", activeImageName: "f_active_01"),
+        Action(action: "3", actionName: "ฝันดี", imageName: "f_normal_02", activeImageName: "f_active_02"),
+        Action(action: "4", actionName: "ให้กำลังใจ", imageName: "f_normal_03", activeImageName: "f_active_03"),
+        Action(action: "5", actionName: "ชวนเที่ยว", imageName: "f_normal_04", activeImageName: "f_active_04"),
+        Action(action: "6", actionName: "ง้อ", imageName: "f_normal_05", activeImageName: "f_active_05"),
+        Action(action: "7", actionName: "ขอบคุณ", imageName: "f_normal_06", activeImageName: "f_active_06"),
+        Action(action: "8", actionName: "Take Care", imageName: "f_normal_07", activeImageName: "f_active_07")
     ]
     
     static let actors: [Actor] = [

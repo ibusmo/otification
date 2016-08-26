@@ -60,19 +60,12 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
         self.backgroundImageView.contentMode = UIViewContentMode.ScaleAspectFill
         
         self.initCreateAlarmViews()
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CreateAlarmTableViewController.moviePlayerExitFullScreen), name: MPMoviePlayerPlaybackDidFinishNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CreateAlarmTableViewController.moviePlayerExitFullScreen), name: MPMoviePlayerDidExitFullscreenNotification, object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-    }
-    
-    func moviePlayerExitFullScreen() {
-        print("check")
-        self.moviePlayer.stop()
-        self.moviePlayer.view.removeFromSuperview()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CreateAlarmTableViewController.moviePlayerExitFullScreen), name: MPMoviePlayerPlaybackDidFinishNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CreateAlarmTableViewController.moviePlayerExitFullScreen), name: MPMoviePlayerDidExitFullscreenNotification, object: nil)
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -307,6 +300,13 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
     
     override func rightButtonDidTap() {
         ViewControllerManager.sharedInstance.presentCreateFriend()
+    }
+    
+    // MARK: - mpmovieplayer
+    
+    func moviePlayerExitFullScreen() {
+        self.moviePlayer.stop()
+        self.moviePlayer.view.removeFromSuperview()
     }
     
     // MARK: - api

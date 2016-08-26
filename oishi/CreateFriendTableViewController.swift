@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MediaPlayer
 
 class CreateFriendTableViewController: OishiTableViewController, ActionsTableViewCellDelegate, ActorsPickerTableViewCellDelegate {
 
@@ -20,9 +21,13 @@ class CreateFriendTableViewController: OishiTableViewController, ActionsTableVie
     var action: Action = Otification.friendAlarmActions[0]
     var actor: Actor = Otification.actors[0]   
     var selectedActorActive: Bool = true
+    
+    var selectedActors = [String]()
 
     var dictionary = Dictionary<String, [ActionInfo]>()
     var selectedActionInfo = [ActionInfo]()
+    
+    var moviePlayer = MPMoviePlayerController()
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -52,6 +57,14 @@ class CreateFriendTableViewController: OishiTableViewController, ActionsTableVie
         self.backgroundImageView.contentMode = UIViewContentMode.ScaleAspectFill
         
         self.initCreateFriendView()
+        
+        self.getPlaylistFriend()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CreateAlarmTableViewController.moviePlayerExitFullScreen), name: MPMoviePlayerPlaybackDidFinishNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CreateAlarmTableViewController.moviePlayerExitFullScreen), name: MPMoviePlayerDidExitFullscreenNotification, object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -105,7 +118,17 @@ class CreateFriendTableViewController: OishiTableViewController, ActionsTableVie
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("friendActorsCell", forIndexPath: indexPath) as! FriendActorsPickerTableViewCell
+            var active = [Bool](count: 6, repeatedValue: false)
+            for (index, actionInfo) in self.selectedActionInfo.enumerate() {
+                if let act = actionInfo.active where act == "1" {
+                    active[index] = true
+                }
+            }
+            cell.active = active
             cell.delegate = self
+            cell.setActors(self.selectedActors)
+            cell.carousel.reloadData()
+            cell.carousel.scrollToItemAtIndex(0, animated: false)
             return cell
         }
     }
@@ -131,15 +154,69 @@ class CreateFriendTableViewController: OishiTableViewController, ActionsTableVie
     // MARK: - actionstableviewcelldelegate
     
     func didSelectAction(action: Action) {
+        self.action = action
+        if let actionInfos = self.dictionary[self.action.action!] {
+            self.selectedActors.removeAll(keepCapacity: false)
+            for actionInfo in actionInfos {
+                self.selectedActors.append(actionInfo.actor!)
+            }
+            self.selectedActionInfo = actionInfos
+            
+            let actor = Otification.actors[Int(self.selectedActors[0])! - 1]
+            self.actorNameLabel.text = actor.actorName
+            self.actor = actor
+            
+            self.tableView.reloadData()
+        }
     }
     
     // MARK: - actorstableviewcelldelegate
     
     func didPickActor(actor: Actor, active: Bool) {
         self.actorNameLabel.text = actor.actorName
+        self.actor = actor
+        self.selectedActorActive = active
     }
     
     func didSelectActor(actor: Actor, active: Bool) {
+        if (active) {
+            for (_, actionInfo) in self.selectedActionInfo.enumerate() {
+                if let act = actionInfo.actor where act == actor.name {
+                    let videoUrlString = actionInfo.videoUrlString
+                    self.moviePlayer = MPMoviePlayerController(contentURL: NSURL(string: videoUrlString!))
+                    self.moviePlayer.view.frame = CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight)
+                    self.view.addSubview(self.moviePlayer.view)
+                    self.moviePlayer.fullscreen = true
+                    self.moviePlayer.controlStyle = MPMovieControlStyle.Embedded
+                }
+            }
+        }
+    }
+    
+    // MARK: - api
+    
+    func getPlaylistFriend() {
+        let _ = OtificationHTTPService.sharedInstance.getPlaylistFriend(Callback() { (response, success, errorString, error) in
+            if let dictionary = response where success {
+                self.dictionary = dictionary
+                print("dictionary.count: \(self.dictionary.count)")
+                if let actionInfos = self.dictionary["1"] {
+                    print("actionInfos at 1 size: \(actionInfos.count)")
+                    for actionInfo in actionInfos {
+                        self.selectedActors.append(actionInfo.actor!)
+                    }
+                    self.selectedActionInfo = actionInfos
+                    self.tableView.reloadData()
+                }
+            }
+        })
+    }
+    
+    // MARK: - mpmovieplayer
+    
+    func moviePlayerExitFullScreen() {
+        self.moviePlayer.stop()
+        self.moviePlayer.view.removeFromSuperview()
     }
     
     // MARK: - oishitabbardelegate

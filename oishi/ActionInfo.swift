@@ -25,6 +25,13 @@ class ActionInfo {
     var videoUrlString: String?
     var audioUrlString: String?
     
+    // playlistfriend
+    
+    var galleryImageUrlString: String?
+    var shareTitle: String?
+    var shareDesription: String?
+    var shareImageUrlString: String?
+    
     init(id: String?, active: String?, version: String?, actor: String?, type: String?, no: String?, name: String?, notiTitle: String?, notiMessage: String?, videoUrlString: String?, audioUrlString: String?) {
         self.id = id
         self.active = active
@@ -39,6 +46,23 @@ class ActionInfo {
         
         self.videoUrlString = videoUrlString
         self.audioUrlString = audioUrlString
+    }
+    
+    init(id: String?, active: String?, version: String?, actor: String?, type: String?, no: String?, name: String?, videoUrlString: String?, galleryImageUrlString: String?, shareTitle: String?, shareDescription: String?, shareImageUrlString: String?) {
+        self.id = id
+        self.active = active
+        self.version = version
+        self.actor = actor
+        self.type = type
+        self.no = no
+        
+        self.name = name
+        
+        self.videoUrlString = videoUrlString
+        self.galleryImageUrlString = galleryImageUrlString
+        self.shareTitle = shareTitle
+        self.shareDesription = shareDescription
+        self.shareImageUrlString = shareImageUrlString
     }
     
     class func getActionInfo(json: JSON) -> ActionInfo {
@@ -57,6 +81,25 @@ class ActionInfo {
         let audioUrlString = json["audio_ios"].string
         
         return ActionInfo(id: id, active: active, version: version, actor: actor, type: type, no: no, name: name, notiTitle: notiTitle, notiMessage: notiMessage, videoUrlString: videoUrlString, audioUrlString: audioUrlString)
+    }
+    
+    class func getFriendActionInfo(json: JSON) -> ActionInfo {
+        let id = json["id"].string
+        let active = json["active"].string
+        let version = json["version"].string
+        let actor = json["actor"].string
+        let type = json["type"].string
+        let no = json["no"].string
+        
+        let name = json["name"].string
+        
+        let videoUrlString = json["video"].string
+        let galleryImageUrlString = json["gallery_image"].string
+        let shareTitle = json["share_title"].string
+        let shareDescription = json["share_description"].string
+        let shareImageUrlString = json["share_image"].string
+        
+        return ActionInfo(id: id, active: active, version: version, actor: actor, type: type, no: no, name: name, videoUrlString: videoUrlString, galleryImageUrlString: galleryImageUrlString, shareTitle: shareTitle, shareDescription: shareDescription, shareImageUrlString: shareImageUrlString)
     }
     
 }

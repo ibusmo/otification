@@ -17,6 +17,8 @@ class FriendActorsPickerTableViewCell: UITableViewCell, iCarouselDataSource, iCa
     
     var active = [Bool](count: 6, repeatedValue: true)
     
+    var actors = [Actor]()
+    
     var delegate: ActorsPickerTableViewCellDelegate?
     
     override func awakeFromNib() {
@@ -31,12 +33,12 @@ class FriendActorsPickerTableViewCell: UITableViewCell, iCarouselDataSource, iCa
         self.carousel.delegate = self
         
         self.carousel.backgroundColor = UIColor.clearColor()
-        self.carousel.type = .Rotary
+        self.carousel.type = .Linear
         
         let buttonSize = CGSizeMake(Otification.calculatedWidthFromRatio(60.0), Otification.calculatedHeightFromRatio(100.0))
         
-        self.leftButton.setFrameAndImageWithShadow(CGRectMake(Otification.calculatedWidthFromRatio(32.0), Otification.calculatedHeightFromRatio(200.0), buttonSize.width, buttonSize.height), image: UIImage(named: "left_button"))
-        self.rightButton.setFrameAndImageWithShadow(CGRectMake(Otification.rWidth - (Otification.calculatedWidthFromRatio(32.0) + buttonSize.width), (self.frame.size.height - buttonSize.height) / 2.0, buttonSize.width, buttonSize.height), image: UIImage(named: "right_button"))
+        self.leftButton.setFrameAndImageWithShadow(CGRectMake(Otification.calculatedWidthFromRatio(32.0), Otification.calculatedHeightFromRatio(300.0), buttonSize.width, buttonSize.height), image: UIImage(named: "left_button"))
+        self.rightButton.setFrameAndImageWithShadow(CGRectMake(Otification.rWidth - (Otification.calculatedWidthFromRatio(32.0) + buttonSize.width), Otification.calculatedHeightFromRatio(300.0), buttonSize.width, buttonSize.height), image: UIImage(named: "right_button"))
         
         self.leftButton.addTarget(self, action: #selector(ActorsPickerTableViewCell.leftButtonDidTap), forControlEvents: UIControlEvents.TouchUpInside)
         self.rightButton.addTarget(self, action: #selector(ActorsPickerTableViewCell.rightButtonDidTap), forControlEvents: UIControlEvents.TouchUpInside)
@@ -51,15 +53,24 @@ class FriendActorsPickerTableViewCell: UITableViewCell, iCarouselDataSource, iCa
         // Configure the view for the selected state
     }
     
+    func setActors(ids: [String]) {
+        self.actors.removeAll(keepCapacity: false)
+        for id in ids {
+            self.actors.append(Otification.actors[Int(id)! - 1])
+        }
+        self.carousel.reloadData()
+    }
+    
     // MARK: - icarousel
     
     func numberOfItemsInCarousel(carousel: iCarousel) -> Int {
-        return Otification.actors.count
+        return self.actors.count
     }
     
     func carousel(carousel: iCarousel, viewForItemAtIndex index: Int, reusingView view: UIView?) -> UIView {
         var bgView: UIView
         var actorImageView: UIImageView
+        let actor = self.actors[index]
         
         if (view == nil) {
             // let size = CGSizeMake(Otification.calculatedWidthFromRatio(632.0), Otification.calculatedHeightFromRatio(587.0))
@@ -78,7 +89,13 @@ class FriendActorsPickerTableViewCell: UITableViewCell, iCarouselDataSource, iCa
             actorImageView = view as! UIImageView
         }
         
-        actorImageView.image = UIImage(named: "full_actor_0\(index + 1)")
+        if (self.active[index]) {
+            actorImageView.alpha = 1.0
+        } else {
+            actorImageView.alpha = 0.5
+        }
+        
+        actorImageView.image = UIImage(named: "full_actor_0\(actor.name!)")
         
         return actorImageView
     }
@@ -87,21 +104,23 @@ class FriendActorsPickerTableViewCell: UITableViewCell, iCarouselDataSource, iCa
         if (option == .Spacing) {
             return value * 0.85
         }
-        /*
-        if (option == .Angle) {
-            if (value < 0) {
-                return value * 1.75
-            } else {
-                return value * 1.25
-            }
+        if (option == .Wrap) {
+            return 1.0
         }
-        */
+        if (option == .VisibleItems) {
+            return 1.0
+        }
         return value
     }
     
     func carouselCurrentItemIndexDidChange(carousel: iCarousel) {
         // TODO: - show name
-        self.delegate?.didPickActor(Otification.actors[carousel.currentItemIndex], active: self.active[carousel.currentItemIndex])
+        self.delegate?.didPickActor(self.actors[carousel.currentItemIndex], active: self.active[carousel.currentItemIndex])
+    }
+    
+    func carousel(carousel: iCarousel, didSelectItemAtIndex index: Int) {
+        print("didSelectItemAtIndex: \(index)")
+        self.delegate?.didSelectActor(self.actors[index], active: self.active[index])
     }
     
     // MARK: - leftbutton & rightbutton
