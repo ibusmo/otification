@@ -312,7 +312,8 @@ class CustomAlarmViewController: OishiViewController, AVAudioRecorderDelegate {
                 }, completion: { finished in
             })
             // TODO: - start recording
-            self.videoUrl = self.getVideoBaseURL()?.URLByAppendingPathComponent("tempVideo").URLByAppendingPathExtension("mov")
+            let uid = AlarmManager.sharedInstance.unsaveAlarm?.uid!
+            self.videoUrl = self.getVideoBaseURL()?.URLByAppendingPathComponent(uid!).URLByAppendingPathExtension("mov")
             self.camera?.startRecordingWithOutputUrl(self.videoUrl!, didRecord: { (camera: LLSimpleCamera!, outputFileUrl: NSURL!, error: NSError!) in
                 if (error == nil) {
                     print("video recorded at \(outputFileUrl.absoluteString)")

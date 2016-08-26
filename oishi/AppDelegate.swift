@@ -108,7 +108,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let custom = userInfo["custom"] as! Bool
             if (custom) {
                 let uid = userInfo["uid"] as! String
-                ViewControllerManager.sharedInstance.presentVideoAlarm(uid, uid: uid)
+                ViewControllerManager.sharedInstance.presentVideoAlarm(uid + ".mov", uid: uid)
             } else {
                 let uid = userInfo["uid"] as! String
                 let fileName = userInfo["video"] as! String
