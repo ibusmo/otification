@@ -22,6 +22,7 @@ class DownloadViewController: UIViewController {
     var percentageLabel = UILabel()
     
     var progressBar = UIView()
+    var progressLabel = UILabel()
     
     var videoUrlString: String?
     var audioUrlString: String?

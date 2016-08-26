@@ -268,9 +268,23 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
     
     func finishedDownloadResources() {
         if let h = self.hour, m = self.minute where self.selectedActorActive {
-            AlarmManager.sharedInstance.prepareNewAlarm(self.action.actionName!, hour: h, minute: m)
-            print("saveAlarmSuccess: \(AlarmManager.sharedInstance.saveAlarm())")
-            ViewControllerManager.sharedInstance.presentMyList()
+            for (_, actionInfo) in self.selectedActionInfo.enumerate() {
+                if let actor = actionInfo.actor where actor == self.actor.name {
+                    let videoUrlString = actionInfo.videoUrlString
+                    let vSplitedString = videoUrlString!.characters.split{$0 == "/"}.map(String.init)
+                    let videoFileName = vSplitedString[vSplitedString.count - 1]
+                    
+                    let audioUrlString = actionInfo.audioUrlString
+                    let aSplitedString = audioUrlString!.characters.split{$0 == "/"}.map(String.init)
+                    let audioFileName = aSplitedString[aSplitedString.count - 1]
+                    
+                    AlarmManager.sharedInstance.prepareNewAlarm(self.action.actionName!, hour: h, minute: m)
+                    AlarmManager.sharedInstance.unsaveAlarm?.soundFileName = audioFileName
+                    AlarmManager.sharedInstance.unsaveAlarm?.vdoFileName = videoFileName
+                    print("saveAlarmSuccess: \(AlarmManager.sharedInstance.saveAlarm())")
+                    ViewControllerManager.sharedInstance.presentMyList()
+                }
+            }
         }
     }
     
