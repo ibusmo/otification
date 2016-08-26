@@ -21,7 +21,8 @@ class DownloadViewController: UIViewController {
     
     var percentageLabel = UILabel()
     
-    var progressBar = UIView()
+    var progressBar = M13ProgressViewBorderedBar()
+    var progress = UIProgressView()
     var progressLabel = UILabel()
     
     var videoUrlString: String?
@@ -66,13 +67,29 @@ class DownloadViewController: UIViewController {
         self.progressBar.frame = CGRectMake(Otification.calculatedWidthFromRatio(95.0), Otification.calculatedHeightFromRatio(1138.0), progressBarSize.width, progressBarSize.height)
         self.progressBar.layer.cornerRadius = progressBarSize.height / 2.0
         self.progressBar.clipsToBounds = true
-        self.progressBar.backgroundColor = UIColor.clearColor()
         self.progressBar.layer.borderColor = UIColor.whiteColor().CGColor
         self.progressBar.layer.borderWidth = Otification.calculatedWidthFromRatio(8.0)
+        self.progressBar.primaryColor = UIColor.redColor()
+        self.progressBar.backgroundColor = UIColor.blackColor()
+        
+        self.progress.frame = CGRectMake(Otification.calculatedWidthFromRatio(95.0), Otification.calculatedHeightFromRatio(1138.0), progressBarSize.width, progressBarSize.height)
+        self.progress.progressTintColor = UIColor.redColor()
+        self.progress.backgroundColor = UIColor.blackColor()
+        self.progress.progress = 0.0
+        //self.progress.layer.borderColor = UIColor.whiteColor().CGColor
+        //self.progress.layer.borderWidth = Otification.calculatedWidthFromRatio(8.0)
+        
+        let progressLabelSize = CGSizeMake(Otification.calculatedWidthFromRatio(1242.0), Otification.calculatedHeightFromRatio(85.0))
+        self.progressLabel.frame = CGRectMake(0.0, Otification.calculatedHeightFromRatio(1250.0), progressLabelSize.width, progressLabelSize.height)
+        self.progressLabel.font = UIFont(name: Otification.DBHELVETHAICA_X_MEDIUM, size: Otification.calculatedHeightFromRatio(85.0))
+        self.progressLabel.textAlignment = .Center
+        self.progressLabel.textColor = UIColor.whiteColor()
+        self.progressLabel.text = "1/2"
         
         self.view.addSubview(self.backgroundImageView)
         self.backgroundImageView.addSubview(self.percentageLabel)
         self.backgroundImageView.addSubview(self.progressBar)
+        self.backgroundImageView.addSubview(self.progressLabel)
         
         self.initDownload()
     }
@@ -192,12 +209,15 @@ class DownloadViewController: UIViewController {
                     return path!
             })
                 .progress { bytesRead, totalBytesRead, totalBytesExpectedToRead in
-                    print(totalBytesRead)
-                    
                     // This closure is NOT called on the main queue for performance
                     // reasons. To update your ui, dispatch to the main queue.
                     dispatch_async(dispatch_get_main_queue()) {
-                        print("Total bytes read on main queue: \(totalBytesRead)")
+                        print("Total bytes read on main queue: \((Float(totalBytesRead) / Float(totalBytesExpectedToRead)) * 100.0) : \(totalBytesRead) \(totalBytesExpectedToRead)")
+                        let percent = Int(floor(((Float(totalBytesRead) / Float(totalBytesExpectedToRead)) * 100.0)))
+                        if (percent != 100) {
+                            self.percentageLabel.text = "\(percent)%"
+                        }
+                        self.progressBar.setProgress(CGFloat(totalBytesRead) / CGFloat(totalBytesExpectedToRead), animated: true)
                     }
                 }
                 .response { request, response, _, error in
@@ -207,6 +227,7 @@ class DownloadViewController: UIViewController {
                         print("Downloaded file successfully")
                         if (self.fileURLs.count > 0) {
                             self.downloadFile()
+                            self.progressLabel.text = "2/2"
                         } else {
                             self.delegate?.finishedDownloadResources()
                         }
