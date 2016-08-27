@@ -32,6 +32,8 @@ class MyListTableViewController: OishiTableViewController, ToggleButtonDelegate 
         
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         
+        self.view.backgroundColor = UIColor.clearColor()
+        
         self.showBottomBarView = true
     }
     

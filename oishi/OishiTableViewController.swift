@@ -32,6 +32,8 @@ class OishiTableViewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.view.backgroundColor = UIColor.clearColor()
+        
         self.navBar.delegate = self
         self.tabBar.delegate = self
         

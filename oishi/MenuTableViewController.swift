@@ -28,6 +28,7 @@ class MenuTableViewController: OishiTableViewController {
         // Do any additional setup after loading the view.
         self.tableView.bounces = false
         self.tableView.backgroundColor = UIColor(hexString: "162915")?.colorWithAlphaComponent(0.95)
+        self.view.clipsToBounds = true
         
         self.tableView.registerNib(UINib(nibName: "MenuTableViewCell", bundle: nil), forCellReuseIdentifier: "menuCell")
         
@@ -82,6 +83,8 @@ class MenuTableViewController: OishiTableViewController {
             ViewControllerManager.sharedInstance.presentMyList()
         } else if (indexPath.row == 2) {
             ViewControllerManager.sharedInstance.presentTutorial()
+        } else if (indexPath.row == 3) {
+            ViewControllerManager.sharedInstance.presentGallery()
         }
     }
     

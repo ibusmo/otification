@@ -40,7 +40,10 @@ class ViewControllerManager {
     }
     
     func presentMyList() {
-        self.appDelegate.window?.rootViewController = self.getMyList()
+        let transition = CATransition()
+        transition.type = kCATransitionFade
+        self.appDelegate.window?.setRootViewController(self.getMyList(), transition: transition)
+        // self.appDelegate.window?.rootViewController = self.getMyList()
         self.appDelegate.window?.makeKeyAndVisible()
     }
     
@@ -106,6 +109,17 @@ class ViewControllerManager {
     
     func presentVideoAlarm(fileName: String, uid: String) {
         self.appDelegate.window?.rootViewController = self.getVideoAlarm(fileName, uid: uid)
+        self.appDelegate.window?.makeKeyAndVisible()
+    }
+    
+    // MARK: - gallery
+    
+    func getGallery() -> GalleryTableViewController {
+        return GalleryTableViewController(nibName: "GalleryTableViewController", bundle: nil)
+    }
+    
+    func presentGallery() {
+        self.appDelegate.window?.rootViewController = self.getGallery()
         self.appDelegate.window?.makeKeyAndVisible()
     }
     

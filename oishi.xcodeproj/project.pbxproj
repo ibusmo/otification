@@ -26,12 +26,20 @@
 		A217B7611D66671E00021BFA /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A217B75F1D66671E00021BFA /* MenuTableViewController.swift */; };
 		A217B7621D66671E00021BFA /* MenuTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A217B7601D66671E00021BFA /* MenuTableViewController.xib */; };
 		A217B7641D66679500021BFA /* OtificationColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A217B7631D66679500021BFA /* OtificationColor.swift */; };
+		A21B05B81D717D7800F294B3 /* Otification+UIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21B05B71D717D7800F294B3 /* Otification+UIWindow.swift */; };
 		A22BDE071D670969004FA6CB /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22BDE061D670969004FA6CB /* Action.swift */; };
 		A22BDE0A1D670D34004FA6CB /* MyListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22BDE081D670D34004FA6CB /* MyListTableViewCell.swift */; };
 		A22BDE0B1D670D34004FA6CB /* MyListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A22BDE091D670D34004FA6CB /* MyListTableViewCell.xib */; };
 		A22BDE101D673AA6004FA6CB /* THLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A22BDE0F1D673AA6004FA6CB /* THLabel.m */; };
 		A23CBDE51D708994004ED38E /* M13ProgressViewBorderedBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A23CBDE41D708994004ED38E /* M13ProgressViewBorderedBar.m */; };
 		A23CBDE81D708A1B004ED38E /* M13ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A23CBDE71D708A1B004ED38E /* M13ProgressView.m */; };
+		A23CBDEE1D713650004ED38E /* GalleryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23CBDEC1D713650004ED38E /* GalleryTableViewController.swift */; };
+		A23CBDEF1D713650004ED38E /* GalleryTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A23CBDED1D713650004ED38E /* GalleryTableViewController.xib */; };
+		A23CBDF41D715ADB004ED38E /* GalleryActorsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23CBDF21D715ADB004ED38E /* GalleryActorsTableViewCell.swift */; };
+		A23CBDF51D715ADB004ED38E /* GalleryActorsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A23CBDF31D715ADB004ED38E /* GalleryActorsTableViewCell.xib */; };
+		A23CBDF81D717080004ED38E /* VideoPreviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23CBDF61D717080004ED38E /* VideoPreviewTableViewCell.swift */; };
+		A23CBDF91D717080004ED38E /* VideoPreviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A23CBDF71D717080004ED38E /* VideoPreviewTableViewCell.xib */; };
+		A23CBDFC1D71721A004ED38E /* VideoPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23CBDFB1D71721A004ED38E /* VideoPreviewView.swift */; };
 		A24E205E1D5B454F00985409 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24E205D1D5B454F00985409 /* AppDelegate.swift */; };
 		A24E20651D5B454F00985409 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A24E20641D5B454F00985409 /* Assets.xcassets */; };
 		A24E20701D5B456B00985409 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A24E206F1D5B456B00985409 /* LaunchScreen.storyboard */; };
@@ -126,6 +134,7 @@
 		A217B75F1D66671E00021BFA /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		A217B7601D66671E00021BFA /* MenuTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuTableViewController.xib; sourceTree = "<group>"; };
 		A217B7631D66679500021BFA /* OtificationColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtificationColor.swift; sourceTree = "<group>"; };
+		A21B05B71D717D7800F294B3 /* Otification+UIWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Otification+UIWindow.swift"; sourceTree = "<group>"; };
 		A22BDE061D670969004FA6CB /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		A22BDE081D670D34004FA6CB /* MyListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyListTableViewCell.swift; sourceTree = "<group>"; };
 		A22BDE091D670D34004FA6CB /* MyListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyListTableViewCell.xib; sourceTree = "<group>"; };
@@ -135,6 +144,13 @@
 		A23CBDE41D708994004ED38E /* M13ProgressViewBorderedBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M13ProgressViewBorderedBar.m; sourceTree = "<group>"; };
 		A23CBDE61D708A1B004ED38E /* M13ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M13ProgressView.h; sourceTree = "<group>"; };
 		A23CBDE71D708A1B004ED38E /* M13ProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M13ProgressView.m; sourceTree = "<group>"; };
+		A23CBDEC1D713650004ED38E /* GalleryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryTableViewController.swift; sourceTree = "<group>"; };
+		A23CBDED1D713650004ED38E /* GalleryTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GalleryTableViewController.xib; sourceTree = "<group>"; };
+		A23CBDF21D715ADB004ED38E /* GalleryActorsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryActorsTableViewCell.swift; sourceTree = "<group>"; };
+		A23CBDF31D715ADB004ED38E /* GalleryActorsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GalleryActorsTableViewCell.xib; sourceTree = "<group>"; };
+		A23CBDF61D717080004ED38E /* VideoPreviewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPreviewTableViewCell.swift; sourceTree = "<group>"; };
+		A23CBDF71D717080004ED38E /* VideoPreviewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoPreviewTableViewCell.xib; sourceTree = "<group>"; };
+		A23CBDFB1D71721A004ED38E /* VideoPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPreviewView.swift; sourceTree = "<group>"; };
 		A24E205A1D5B454F00985409 /* oishi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = oishi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A24E205D1D5B454F00985409 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A24E20641D5B454F00985409 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -312,6 +328,7 @@
 		A217B7591D65F25C00021BFA /* extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A21B05B61D717D6800F294B3 /* uiwindow */,
 				A217B75A1D65F26B00021BFA /* uiimage */,
 				A217B7561D65D3B600021BFA /* uibutton */,
 			);
@@ -337,11 +354,19 @@
 		A217B75E1D6666FD00021BFA /* menu */ = {
 			isa = PBXGroup;
 			children = (
-				A26ECD281D666F49004EA733 /* cell */,
+				A26ECD281D666F49004EA733 /* cells */,
 				A217B75F1D66671E00021BFA /* MenuTableViewController.swift */,
 				A217B7601D66671E00021BFA /* MenuTableViewController.xib */,
 			);
 			name = menu;
+			sourceTree = "<group>";
+		};
+		A21B05B61D717D6800F294B3 /* uiwindow */ = {
+			isa = PBXGroup;
+			children = (
+				A21B05B71D717D7800F294B3 /* Otification+UIWindow.swift */,
+			);
+			name = uiwindow;
 			sourceTree = "<group>";
 		};
 		A22BDE0D1D673A8D004FA6CB /* THLabel */ = {
@@ -378,6 +403,44 @@
 				A23CBDE41D708994004ED38E /* M13ProgressViewBorderedBar.m */,
 			);
 			name = M13;
+			sourceTree = "<group>";
+		};
+		A23CBDEB1D713566004ED38E /* gallery */ = {
+			isa = PBXGroup;
+			children = (
+				A23CBDF01D715959004ED38E /* cells */,
+				A23CBDEC1D713650004ED38E /* GalleryTableViewController.swift */,
+				A23CBDED1D713650004ED38E /* GalleryTableViewController.xib */,
+			);
+			name = gallery;
+			sourceTree = "<group>";
+		};
+		A23CBDF01D715959004ED38E /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				A23CBDFA1D717201004ED38E /* video */,
+				A23CBDF11D71595F004ED38E /* actors */,
+			);
+			name = cells;
+			sourceTree = "<group>";
+		};
+		A23CBDF11D71595F004ED38E /* actors */ = {
+			isa = PBXGroup;
+			children = (
+				A23CBDF21D715ADB004ED38E /* GalleryActorsTableViewCell.swift */,
+				A23CBDF31D715ADB004ED38E /* GalleryActorsTableViewCell.xib */,
+			);
+			name = actors;
+			sourceTree = "<group>";
+		};
+		A23CBDFA1D717201004ED38E /* video */ = {
+			isa = PBXGroup;
+			children = (
+				A23CBDF61D717080004ED38E /* VideoPreviewTableViewCell.swift */,
+				A23CBDF71D717080004ED38E /* VideoPreviewTableViewCell.xib */,
+				A23CBDFB1D71721A004ED38E /* VideoPreviewView.swift */,
+			);
+			name = video;
 			sourceTree = "<group>";
 		};
 		A24E20511D5B454F00985409 = {
@@ -423,6 +486,7 @@
 		A24E20711D5B457200985409 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A23CBDEB1D713566004ED38E /* gallery */,
 				A272BCB31D6F994200D06576 /* download */,
 				A272BCA31D6EF62700D06576 /* notificationvdo */,
 				A2738ED11D6385D50075EE63 /* createalarm */,
@@ -471,7 +535,7 @@
 		A2508A361D5C79E100DFD781 /* mylist */ = {
 			isa = PBXGroup;
 			children = (
-				A2508A471D5CC87B00DFD781 /* cell */,
+				A2508A471D5CC87B00DFD781 /* cells */,
 				A2508A3F1D5C83C300DFD781 /* MyListTableViewController.swift */,
 				A2508A401D5C83C300DFD781 /* MyListTableViewController.xib */,
 			);
@@ -515,13 +579,13 @@
 			name = packages;
 			sourceTree = "<group>";
 		};
-		A2508A471D5CC87B00DFD781 /* cell */ = {
+		A2508A471D5CC87B00DFD781 /* cells */ = {
 			isa = PBXGroup;
 			children = (
 				A22BDE081D670D34004FA6CB /* MyListTableViewCell.swift */,
 				A22BDE091D670D34004FA6CB /* MyListTableViewCell.xib */,
 			);
-			name = cell;
+			name = cells;
 			sourceTree = "<group>";
 		};
 		A2508A4A1D5CCAC200DFD781 /* cell */ = {
@@ -560,13 +624,13 @@
 			name = cell;
 			sourceTree = "<group>";
 		};
-		A26ECD281D666F49004EA733 /* cell */ = {
+		A26ECD281D666F49004EA733 /* cells */ = {
 			isa = PBXGroup;
 			children = (
 				A26ECD291D666F59004EA733 /* MenuTableViewCell.swift */,
 				A26ECD2A1D666F59004EA733 /* MenuTableViewCell.xib */,
 			);
-			name = cell;
+			name = cells;
 			sourceTree = "<group>";
 		};
 		A272BC4B1D67595400D06576 /* BWSwipeRevealCell */ = {
@@ -855,6 +919,7 @@
 				A272BCA21D6BF11E00D06576 /* TutorialCollectionViewCell.xib in Resources */,
 				A26ECD381D666FAD004EA733 /* DB HelvethaicaMon X.ttf in Resources */,
 				A217B7541D65BC9800021BFA /* DB Helvethaica X Med.ttf in Resources */,
+				A23CBDF51D715ADB004ED38E /* GalleryActorsTableViewCell.xib in Resources */,
 				A272BC591D67627900D06576 /* RepeatAlarmTableViewCell.xib in Resources */,
 				A24E20701D5B456B00985409 /* LaunchScreen.storyboard in Resources */,
 				A2508A301D5C460D00DFD781 /* OishiTabBarView.xib in Resources */,
@@ -866,6 +931,7 @@
 				A26ECD331D666FAD004EA733 /* DB HelvethaicaMon X Bd It.ttf in Resources */,
 				A217B7261D64BBBD00021BFA /* ActionsTableViewCell.xib in Resources */,
 				A272BCBB1D6F9DCC00D06576 /* DownloadViewController.xib in Resources */,
+				A23CBDEF1D713650004ED38E /* GalleryTableViewController.xib in Resources */,
 				A272BC9D1D6BF06600D06576 /* TutorialViewController.xib in Resources */,
 				A272BC801D6BC82800D06576 /* FriendListTableViewController.xib in Resources */,
 				A261D19C1D64803B00DEECF1 /* CreateAlarmTableViewController.xib in Resources */,
@@ -875,6 +941,7 @@
 				A272BC891D6BD45F00D06576 /* FriendActorsPickerTableViewCell.xib in Resources */,
 				A2508A421D5C83C300DFD781 /* MyListTableViewController.xib in Resources */,
 				A272BC841D6BC88700D06576 /* CreateFriendTableViewController.xib in Resources */,
+				A23CBDF91D717080004ED38E /* VideoPreviewTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -938,7 +1005,9 @@
 				A2508A461D5C88B200DFD781 /* OishiNavigationBar.swift in Sources */,
 				A2508A411D5C83C300DFD781 /* MyListTableViewController.swift in Sources */,
 				A272BC8F1D6BECAD00D06576 /* FriendActionsTableViewCell.swift in Sources */,
+				A21B05B81D717D7800F294B3 /* Otification+UIWindow.swift in Sources */,
 				A23CBDE81D708A1B004ED38E /* M13ProgressView.m in Sources */,
+				A23CBDFC1D71721A004ED38E /* VideoPreviewView.swift in Sources */,
 				A22BDE101D673AA6004FA6CB /* THLabel.m in Sources */,
 				A272BC5C1D679CFF00D06576 /* EditAlarmTableViewCell.swift in Sources */,
 				A272BC8B1D6BEB6300D06576 /* ActionView.swift in Sources */,
@@ -947,16 +1016,19 @@
 				A272BC691D6B464700D06576 /* OtificationHTTPService.swift in Sources */,
 				A261D19B1D64803B00DEECF1 /* CreateAlarmTableViewController.swift in Sources */,
 				A2508A491D5CCABD00DFD781 /* SectionHeaderView.swift in Sources */,
+				A23CBDF81D717080004ED38E /* VideoPreviewTableViewCell.swift in Sources */,
 				A272BC7F1D6BC82800D06576 /* FriendListTableViewController.swift in Sources */,
 				A272BC881D6BD45F00D06576 /* FriendActorsPickerTableViewCell.swift in Sources */,
 				1FB87CEF1D64632D0097AC74 /* SnoozeButton.swift in Sources */,
 				A272BC4E1D67596D00D06576 /* BWSwipeCell.swift in Sources */,
+				A23CBDF41D715ADB004ED38E /* GalleryActorsTableViewCell.swift in Sources */,
 				A272BC531D675CD900D06576 /* EditAlarmTableViewController.swift in Sources */,
 				A272BC741D6BAF7E00D06576 /* OishiViewController.swift in Sources */,
 				A272BCBA1D6F9DCC00D06576 /* DownloadViewController.swift in Sources */,
 				1FB87CED1D64631E0097AC74 /* ToggleButton.swift in Sources */,
 				A272BCAB1D6F466100D06576 /* Callback.swift in Sources */,
 				A2508A4C1D5E5C2A00DFD781 /* Otification.swift in Sources */,
+				A23CBDEE1D713650004ED38E /* GalleryTableViewController.swift in Sources */,
 				A272BC661D6B2A0F00D06576 /* Actor.swift in Sources */,
 				A272BCAF1D6F4C2600D06576 /* List.swift in Sources */,
 				A272BCAD1D6F4BA600D06576 /* Category.swift in Sources */,

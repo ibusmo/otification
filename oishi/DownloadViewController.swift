@@ -51,6 +51,7 @@ class DownloadViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor(hexString: "162915")?.colorWithAlphaComponent(0.95)
+        self.view.clipsToBounds = true
         
         self.backgroundImageView.frame = CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight)
         self.backgroundImageView.contentMode = UIViewContentMode.ScaleAspectFill
