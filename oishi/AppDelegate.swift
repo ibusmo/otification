@@ -24,9 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
         
         if ((UIScreen.mainScreen().bounds.size.height / UIScreen.mainScreen().bounds.size.width) < 1.5) {
-            self.window = UIWindow(frame: CGRectMake(115.0, 32.0, 538.0, 960.0))
+            self.window = UIWindow(frame: CGRectMake(114.0, 32.0, 540.0, 960.0))
             
-            let bg = UIImageView(frame: CGRectMake(-115.0, -32.0, UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height))
+            let bg = UIImageView(frame: CGRectMake(-114.0, -32.0, UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height))
             bg.image = UIImage(named: "ipad_bg")
             bg.backgroundColor = UIColor.blackColor()
             

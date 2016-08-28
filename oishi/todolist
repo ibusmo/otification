@@ -34,3 +34,10 @@ components: -
 * toggle button
 
 * alarmslider
+
+// appsflyer
+
+[AppsFlyerTracker sharedTracker].appsFlyerDevKey = @"HGETasn6yh8FhMC2LQgEWP";
+[AppsFlyerTracker sharedTracker].appleAppID = @"965172855";
+[Parse setApplicationId:@"hcQPULoCz11pZmdmxDP5ZiDciS3ZmP5nXdcxjQzG"
+clientKey:@"ZkIBK8C8AY0UAv6DbPtNupqfYbUoajEHh7maLRsN"];

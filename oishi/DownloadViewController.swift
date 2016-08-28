@@ -37,17 +37,21 @@ class DownloadViewController: UIViewController {
     var audioDownloaded: Bool = false
     
     var delegate: DownloadViewControllerDelegate?
-
+    
+    /*
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
-    
+ 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+     */
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view.frame = CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight)
 
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor(hexString: "162915")?.colorWithAlphaComponent(0.95)
@@ -63,7 +67,7 @@ class DownloadViewController: UIViewController {
         self.percentageLabel.textAlignment = .Center
         self.percentageLabel.textColor = UIColor.whiteColor()
         
-        self.percentageLabel.text = "99%"
+        self.percentageLabel.text = "0%"
         
         let progressBarSize = CGSizeMake(Otification.calculatedWidthFromRatio(1052.0), Otification.calculatedHeightFromRatio(85.0))
         self.progressBar.frame = CGRectMake(Otification.calculatedWidthFromRatio(95.0), Otification.calculatedHeightFromRatio(1138.0), progressBarSize.width, progressBarSize.height)
@@ -94,6 +98,16 @@ class DownloadViewController: UIViewController {
         // self.backgroundImageView.addSubview(self.progressLabel)
         
         self.initDownload()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.view.frame = CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight)
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        // self.view.frame = CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight)
     }
 
     override func didReceiveMemoryWarning() {
@@ -196,7 +210,7 @@ class DownloadViewController: UIViewController {
         }
         
         if (!(self.videoDownloaded && self.audioDownloaded)) {
-            self.downloadFile()
+            // self.downloadFile()
         } else {
             self.delegate?.finishedDownloadResources()
         }

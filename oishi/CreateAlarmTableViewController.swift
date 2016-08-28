@@ -228,12 +228,13 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
                     print("audioFileName: \(audioFileName)")
                     
                     if (!(self.isFileDownloaded(self.getVideoFilePath(videoFileName)) && self.isFileDownloaded(self.getSoundFilePath(audioFileName)))) {
-                        let download = DownloadViewController(nibName: "DownloadViewController", bundle: nil)
+                        // let download = DownloadViewController(nibName: "DownloadViewController", bundle: nil)
+                        let download = DownloadViewController()
                         download.modalPresentationStyle = .OverCurrentContext
                         
                         download.videoUrlString = videoUrlString
                         download.audioUrlString = audioUrlString
-                        download.delegate = self
+                        // download.delegate = self
                         
                         self.definesPresentationContext = true
                         self.presentViewController(download, animated: true, completion: nil)
