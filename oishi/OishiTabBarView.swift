@@ -50,8 +50,8 @@ class OishiTabBarView: UIView {
         self.leftButton.frame = CGRectMake(0.0, 0.0, size.width / 2.0, size.height)
         self.rightButton.frame = CGRectMake(size.width / 2.0, 0.0, size.width / 2.0, size.height)
         
-        self.leftButton.titleLabel?.font = UIFont(name: Otification.DBHELVETHAICA_X_BOLD, size: 22.0)
-        self.rightButton.titleLabel?.font = UIFont(name: Otification.DBHELVETHAICA_X_BOLD, size: 22.0)
+        self.leftButton.titleLabel?.font = UIFont(name: Otification.DBHELVETHAICA_X_BOLD, size: Otification.calculatedHeightFromRatio(85.0))
+        self.rightButton.titleLabel?.font = UIFont(name: Otification.DBHELVETHAICA_X_BOLD, size: Otification.calculatedHeightFromRatio(85.0))
         
         self.leftButton.addTarget(self, action: #selector(OishiTabBarView.leftButtonDidTap), forControlEvents: UIControlEvents.TouchUpInside)
         self.rightButton.addTarget(self, action: #selector(OishiTabBarView.rightButtonDidTap), forControlEvents: UIControlEvents.TouchUpInside)

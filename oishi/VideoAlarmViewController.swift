@@ -95,6 +95,8 @@ class VideoAlarmViewController: UIViewController, SnoozeButtonDelegate {
             // TODO: - set new localnotification with the same noti
             self.stopVideo()
             ViewControllerManager.sharedInstance.presentMyList()
+            AlarmManager.sharedInstance.unsetAlarm(self.uid!)
+            AlarmManager.sharedInstance.setSnoozeAlarm(self.uid!)
         } else {
             // do nothing for .normal state
         }

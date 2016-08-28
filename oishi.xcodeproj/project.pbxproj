@@ -59,6 +59,7 @@
 		A261CF6E1D7361F6000843EF /* SWTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A261CF661D7361F6000843EF /* SWTableViewCell.m */; };
 		A261CF6F1D7361F6000843EF /* SWUtilityButtonTapGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = A261CF681D7361F6000843EF /* SWUtilityButtonTapGestureRecognizer.m */; };
 		A261CF701D7361F6000843EF /* SWUtilityButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = A261CF6A1D7361F6000843EF /* SWUtilityButtonView.m */; };
+		A261CF731D736CE9000843EF /* silent.caf in Resources */ = {isa = PBXBuildFile; fileRef = A261CF721D736CE9000843EF /* silent.caf */; };
 		A261D18A1D63A17800DEECF1 /* OtificationTimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A261D1891D63A17800DEECF1 /* OtificationTimePickerView.swift */; };
 		A261D1971D647E5500DEECF1 /* TimePickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A261D1951D647E5500DEECF1 /* TimePickerTableViewCell.swift */; };
 		A261D1981D647E5500DEECF1 /* TimePickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A261D1961D647E5500DEECF1 /* TimePickerTableViewCell.xib */; };
@@ -183,6 +184,7 @@
 		A261CF681D7361F6000843EF /* SWUtilityButtonTapGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUtilityButtonTapGestureRecognizer.m; sourceTree = "<group>"; };
 		A261CF691D7361F6000843EF /* SWUtilityButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUtilityButtonView.h; sourceTree = "<group>"; };
 		A261CF6A1D7361F6000843EF /* SWUtilityButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUtilityButtonView.m; sourceTree = "<group>"; };
+		A261CF721D736CE9000843EF /* silent.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = silent.caf; sourceTree = "<group>"; };
 		A261D1891D63A17800DEECF1 /* OtificationTimePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtificationTimePickerView.swift; sourceTree = "<group>"; };
 		A261D1951D647E5500DEECF1 /* TimePickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePickerTableViewCell.swift; sourceTree = "<group>"; };
 		A261D1961D647E5500DEECF1 /* TimePickerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimePickerTableViewCell.xib; sourceTree = "<group>"; };
@@ -641,6 +643,14 @@
 			name = SWTableViewCell;
 			sourceTree = "<group>";
 		};
+		A261CF711D736CDB000843EF /* sound */ = {
+			isa = PBXGroup;
+			children = (
+				A261CF721D736CE9000843EF /* silent.caf */,
+			);
+			name = sound;
+			sourceTree = "<group>";
+		};
 		A261D1881D63A15C00DEECF1 /* timepicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -855,6 +865,7 @@
 		A299FF2E1D61B09700EE74C1 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				A261CF711D736CDB000843EF /* sound */,
 				A299FF2F1D61B0A900EE74C1 /* fonts */,
 			);
 			name = resources;
@@ -950,6 +961,7 @@
 				A26ECD351D666FAD004EA733 /* DB HelvethaicaMon X It.ttf in Resources */,
 				A217B7621D66671E00021BFA /* MenuTableViewController.xib in Resources */,
 				A217B7511D65BC9800021BFA /* DB Helvethaica X Bd.ttf in Resources */,
+				A261CF731D736CE9000843EF /* silent.caf in Resources */,
 				A26ECD371D666FAD004EA733 /* DB HelvethaicaMon X Med.ttf in Resources */,
 				A272BCA21D6BF11E00D06576 /* TutorialCollectionViewCell.xib in Resources */,
 				A26ECD381D666FAD004EA733 /* DB HelvethaicaMon X.ttf in Resources */,

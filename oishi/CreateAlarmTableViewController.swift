@@ -242,7 +242,7 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
                         download.delegate = self
                         
                         self.definesPresentationContext = true
-                        self.presentViewController(download, animated: true, completion: nil)
+                        self.presentViewController(download, animated: false, completion: nil)
                     } else {
                         AlarmManager.sharedInstance.prepareNewAlarm(self.action.actionName!, hour: h, minute: m)
                         AlarmManager.sharedInstance.unsaveAlarm?.custom = false

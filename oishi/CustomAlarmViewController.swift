@@ -172,7 +172,7 @@ class CustomAlarmViewController: OishiViewController, AVAudioRecorderDelegate {
         let swapImageSize = CGSizeMake(Otification.calculatedWidthFromRatio(131.0), Otification.calculatedHeightFromRatio(100.0))
         let swapImageView = UIImageView(frame: CGRectMake(Otification.rWidth - swapImageSize.width - Otification.calculatedWidthFromRatio(44.0), Otification.calculatedWidthFromRatio(54.0), swapImageSize.width, swapImageSize.height))
         swapImageView.image = UIImage(named: "camera_switch")
-        self.swapCameraButton.frame = CGRectMake(Otification.rWidth - Otification.calculatedHeightFromRatio(44.0), 0.0, Otification.calculatedHeightFromRatio(208.0), Otification.calculatedHeightFromRatio(208.0))
+        self.swapCameraButton.frame = CGRectMake(Otification.rWidth - Otification.calculatedWidthFromRatio(208.0), 0.0, Otification.calculatedHeightFromRatio(208.0), Otification.calculatedHeightFromRatio(208.0))
         self.swapCameraButton.addTarget(self, action: #selector(CustomAlarmViewController.swapCamera), forControlEvents: UIControlEvents.TouchUpInside)
         
         self.recordingIndicator.frame = CGRectMake(self.timeLabel.frame.origin.x - Otification.calculatedWidthFromRatio(100.0), (Otification.calculatedHeightFromRatio(208.0) - Otification.calculatedHeightFromRatio(50.0)) / 2.0, Otification.calculatedHeightFromRatio(50.0), Otification.calculatedHeightFromRatio(50.0))

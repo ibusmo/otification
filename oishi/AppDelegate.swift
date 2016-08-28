@@ -37,7 +37,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         AlarmManager.sharedInstance.getAlarmListToObjects()
-        AlarmManager.sharedInstance.removeAllAlarm()
         
         UIApplication.sharedApplication().cancelAllLocalNotifications()
         

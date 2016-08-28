@@ -52,6 +52,7 @@ class DownloadViewController: UIViewController {
         super.viewDidLoad()
         
         self.view.frame = CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight)
+        self.view.clipsToBounds = true
 
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor(hexString: "162915")?.colorWithAlphaComponent(0.95)
@@ -106,6 +107,7 @@ class DownloadViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        self.view.frame = CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight)
     }
 
     override func didReceiveMemoryWarning() {

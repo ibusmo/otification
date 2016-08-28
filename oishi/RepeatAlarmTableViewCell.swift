@@ -8,12 +8,20 @@
 
 import UIKit
 
+protocol RepeatAlarmTableViewCellDelegate {
+    func toggleButtonAtIndex(index: Int, state: Bool)
+}
+
 class RepeatAlarmTableViewCell: UITableViewCell, ToggleButtonDelegate {
     
     var repeatTitleLabel: THLabel = THLabel()
     var buttons: [ToggleButton] = [ToggleButton]()
     var labels: [UILabel] = [UILabel]()
-    var buttonTitles: [String] = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]
+    
+    var buttonTitles: [String] = ["อา", "จ", "อ", "พ", "พฤ", "ศ", "ส"]
+    var repeats = [Bool](count: 7, repeatedValue: false)
+    
+    var delegate: RepeatAlarmTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,6 +38,7 @@ class RepeatAlarmTableViewCell: UITableViewCell, ToggleButtonDelegate {
     }
     
     func initRepeatAlarm(repeats: [Bool]) {
+        self.repeats = repeats
         self.repeatTitleLabel.frame = CGRectMake(Otification.calculatedWidthFromRatio(64.0), Otification.calculatedHeightFromRatio(60.0), Otification.calculatedWidthFromRatio(400.0), 0.0)
         self.repeatTitleLabel.font = UIFont(name: Otification.DBHELVETHAICA_X_BOLD, size: Otification.calculatedHeightFromRatio(76.0))
         self.repeatTitleLabel.textColor = UIColor.blackColor()
@@ -78,11 +87,16 @@ class RepeatAlarmTableViewCell: UITableViewCell, ToggleButtonDelegate {
     }
     
     func toggleButtonDidTap(toggleButton: ToggleButton) {
-        let label = self.labels[toggleButton.tag]
+        let index = toggleButton.tag
+        let label = self.labels[index]
         if (toggleButton.state) {
             label.textColor = UIColor.whiteColor()
+            self.repeats[index] = true
+            self.delegate?.toggleButtonAtIndex(index, state: true)
         } else {
             label.textColor = UIColor(hexString: "b2f64b")
+            self.repeats[toggleButton.tag] = false
+            self.delegate?.toggleButtonAtIndex(index, state: false)
         }
     }
     

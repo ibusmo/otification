@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditAlarmTableViewController: OishiTableViewController, EditAlarmTableViewCellDelegate {
+class EditAlarmTableViewController: OishiTableViewController, RepeatAlarmTableViewCellDelegate, EditAlarmTableViewCellDelegate {
     
     var alarm: Alarm?
 
@@ -56,6 +56,7 @@ class EditAlarmTableViewController: OishiTableViewController, EditAlarmTableView
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if (indexPath.row == 0) {
             let cell = tableView.dequeueReusableCellWithIdentifier("repeatCell", forIndexPath: indexPath) as! RepeatAlarmTableViewCell
+            cell.delegate = self
             if let repeats = self.alarm!.repeats {
                 cell.initRepeatAlarm(repeats)
             }
@@ -90,6 +91,15 @@ class EditAlarmTableViewController: OishiTableViewController, EditAlarmTableView
         return Otification.calculatedHeightFromRatio(339.0)
     }
     
+    // MARK: - repeat
+    
+    func toggleButtonAtIndex(index: Int, state: Bool) {
+        print("repeat day button did toggle at \(index) w/ stat \(state)")
+        if let alarm = self.alarm {
+            alarm.repeats![index] = state
+        }
+    }
+    
     // MARK: - settings button
     
     func sound(on: Bool) {
@@ -115,6 +125,12 @@ class EditAlarmTableViewController: OishiTableViewController, EditAlarmTableView
     override func leftButtonDidTap() {
         print("check this")
         ViewControllerManager.sharedInstance.presentMyList()
+    }
+    
+    override func rightButtonDidTap() {
+        if let alarm = self.alarm {
+            
+        }
     }
 
     /*

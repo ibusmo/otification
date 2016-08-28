@@ -347,6 +347,8 @@ class AlarmManager {
         return true
     }
     
+    // MARK: - uitilities
+    
     func findAlarm(uid: String) -> Int {
         for (index, alarm) in self.alarms.enumerate() {
             if let id = alarm.uid where id == uid {
@@ -354,6 +356,55 @@ class AlarmManager {
             }
         }
         return -1
+    }
+    
+    func setSnoozeAlarm(uid: String) {
+        let alarm = AlarmManager.sharedInstance.alarms[self.findAlarm(uid)]
+        
+        let notification = UILocalNotification()
+        
+        // default
+        if #available(iOS 8.2, *) {
+            notification.alertTitle = "Otification"
+            if let title = alarm.notiTitle {
+                notification.alertTitle = title
+            }
+        } else {
+            // Fallback on earlier versions
+        }
+        
+        notification.alertBody = "It's time to O!" // text that will be displayed in the notification
+        notification.alertAction = "turn off" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
+
+        if let message = alarm.notiMessage {
+            notification.alertBody = message
+        }
+        
+        // TODO: check firedate day is not previous today
+        notification.fireDate = NSDate(timeIntervalSinceNow: 10)
+        
+        var userInfo = Dictionary<String, AnyObject>()
+        userInfo["uid"] = alarm.uid!
+        print("alarmManager setAlarm w/ uid: \(alarm.uid!)")
+        userInfo["title"] = alarm.title!
+        
+        // TODO: if alarm have an soundfilepath use it instead of uid
+        if let soundFileName = alarm.soundFileName {
+            notification.soundName = soundFileName
+            userInfo["custom"] = false
+        } else {
+            notification.soundName = alarm.uid! + ".caf"
+            userInfo["custom"] = true
+        }
+        
+        if let videoFileName = alarm.vdoFileName {
+            userInfo["video"] = videoFileName
+        }
+        
+        notification.userInfo = userInfo
+        // notification.userInfo = ["uid": alarm.uid!, "title": alarm.title!, "custom": false] // assign a unique identifier to the notification so that we can retrieve it later
+        
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
     
     // MARK: - test

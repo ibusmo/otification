@@ -92,6 +92,10 @@ class Alarm: NSObject, NSCoding {
         self.soundFileName = aDecoder.decodeObjectForKey("soundFileName") as? String
         self.photoUrl = aDecoder.decodeObjectForKey("photoUrl") as? String
         self.sentToFriend = aDecoder.decodeObjectForKey("sentToFriend") as? Bool
+        self.notiTitle = aDecoder.decodeObjectForKey("notiTitle") as? String
+        self.notiMessage = aDecoder.decodeObjectForKey("notiMessage") as? String
+        self.actorNo = aDecoder.decodeObjectForKey("actorNo") as? String
+        self.custom = aDecoder.decodeObjectForKey("custom") as? Bool
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
@@ -153,6 +157,30 @@ class Alarm: NSObject, NSCoding {
             aCoder.encodeObject(sentToFriend, forKey: "sentToFriend")
         } else {
             aCoder.encodeObject(nil, forKey: "sentToFriend")
+        }
+        
+        if let notiTitle = self.notiTitle {
+            aCoder.encodeObject(notiTitle, forKey: "notiTitle")
+        } else {
+            aCoder.encodeObject(nil, forKey: "notiTitle")
+        }
+        
+        if let notiMessage = self.notiMessage {
+            aCoder.encodeObject(notiMessage, forKey: "notiMessage")
+        } else {
+            aCoder.encodeObject(nil, forKey: "notiMessage")
+        }
+        
+        if let actorNo = self.actorNo {
+            aCoder.encodeObject(actorNo, forKey: "actorNo")
+        } else {
+            aCoder.encodeObject(nil, forKey: "actorNo")
+        }
+        
+        if let custom = self.custom {
+            aCoder.encodeObject(custom, forKey: "custom")
+        } else {
+            aCoder.encodeObject(nil, forKey: "custom")
         }
     }
     
