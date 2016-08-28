@@ -24,11 +24,13 @@ class MenuTableViewController: OishiTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         self.tableView.bounces = false
         self.tableView.backgroundColor = UIColor(hexString: "162915")?.colorWithAlphaComponent(0.95)
+        
         self.view.clipsToBounds = true
+        self.tableView.clipsToBounds = true
         
         self.tableView.registerNib(UINib(nibName: "MenuTableViewCell", bundle: nil), forCellReuseIdentifier: "menuCell")
         
@@ -46,6 +48,11 @@ class MenuTableViewController: OishiTableViewController {
         
         // self.view.addSubview(bottomGreenTeaImageView)
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.view.frame = CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -53,7 +60,7 @@ class MenuTableViewController: OishiTableViewController {
     }
     
     override func menuDidTap() {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismissViewControllerAnimated(false, completion: nil)
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -74,7 +81,7 @@ class MenuTableViewController: OishiTableViewController {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismissViewControllerAnimated(false, completion: nil)
         if (indexPath.row == 0) {
             if !(self.presentingViewController is CreateAlarmTableViewController) {
                 ViewControllerManager.sharedInstance.presentCreateAlarm()

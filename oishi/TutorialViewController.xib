@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TutorialViewController" customModule="oishi" customModuleProvider="target">
             <connections>
-                <outlet property="collectionView" destination="vwW-Bk-P5z" id="UVd-xe-6mQ"/>
+                <outlet property="collectionView" destination="vwW-Bk-P5z" id="ZYz-qc-ihc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -26,14 +26,14 @@
                     </collectionViewFlowLayout>
                 </collectionView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="vwW-Bk-P5z" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="6nP-vC-Fk4"/>
                 <constraint firstAttribute="trailing" secondItem="vwW-Bk-P5z" secondAttribute="trailing" id="Cp3-j4-2Rc"/>
                 <constraint firstAttribute="bottom" secondItem="vwW-Bk-P5z" secondAttribute="bottom" id="TOW-c8-FKM"/>
                 <constraint firstItem="vwW-Bk-P5z" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="YuR-tf-PTI"/>
             </constraints>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
 </document>

@@ -18,6 +18,9 @@ class CustomAlarmViewController: OishiViewController, AVAudioRecorderDelegate {
     var soundRecordTitle = UIImageView()
     var soundRecordButton = UIButton()
     var soundPlaybackButton = UIButton()
+    var soundRecordIndicator = UIImageView()
+    var yellowSoundRecordIndicator = UIImageView()
+    var isRecordingAudio: Int = 0
     
     var vdoRecordTitle = UIImageView()
     var vdoRecordButton = UIButton()
@@ -101,9 +104,17 @@ class CustomAlarmViewController: OishiViewController, AVAudioRecorderDelegate {
         self.soundRecordButton.frame = CGRectMake(Otification.calculatedWidthFromRatio(356.0), Otification.calculatedHeightFromRatio(208.0 + 240.0), soundButtonSize.width, soundButtonSize.height)
         self.soundRecordButton.setImage(UIImage(named: "sound_record_button"), forState: UIControlState.Normal)
         
-        self.soundRecordButton.addTarget(self, action: #selector(CustomAlarmViewController.prepareAudioRecording), forControlEvents: UIControlEvents.TouchDown)
+        let soundIndicatorSize = CGSizeMake(Otification.calculatedWidthFromRatio(276.0), Otification.calculatedHeightFromRatio(335.0))
+        self.soundRecordIndicator.frame = CGRectMake(Otification.calculatedWidthFromRatio(240.0), Otification.calculatedHeightFromRatio(208.0 + 100.0), soundIndicatorSize.width, soundIndicatorSize.height)
+        self.soundRecordIndicator.image = UIImage(named: "record_gray")
+        self.soundRecordIndicator.backgroundColor = UIColor.clearColor()
+        
+        self.yellowSoundRecordIndicator.frame = CGRectMake(Otification.calculatedWidthFromRatio(240.0), Otification.calculatedHeightFromRatio(208.0 + 100.0), soundIndicatorSize.width, soundIndicatorSize.height)
+        self.yellowSoundRecordIndicator.image = UIImage(named: "record_yellow")
+        self.yellowSoundRecordIndicator.backgroundColor = UIColor.clearColor()
+        
+        self.soundRecordButton.addTarget(self, action: #selector(CustomAlarmViewController.prepareAudioRecording), forControlEvents: UIControlEvents.TouchUpInside)
         self.soundRecordButton.addTarget(self, action: #selector(CustomAlarmViewController.stopAudioRecording), forControlEvents: UIControlEvents.TouchUpInside)
-        self.soundRecordButton.addTarget(self, action: #selector(CustomAlarmViewController.stopAudioRecording), forControlEvents: UIControlEvents.TouchDragExit)
         
         self.soundPlaybackButton.frame = CGRectMake(Otification.calculatedWidthFromRatio(650.0), Otification.calculatedHeightFromRatio(208.0 + 240.0), soundButtonSize.width, soundButtonSize.height)
         self.soundPlaybackButton.setImage(UIImage(named: "sound_playback_button"), forState: UIControlState.Normal)
@@ -112,6 +123,8 @@ class CustomAlarmViewController: OishiViewController, AVAudioRecorderDelegate {
         self.view.addSubview(self.soundRecordTitle)
         self.view.addSubview(self.soundRecordButton)
         self.view.addSubview(self.soundPlaybackButton)
+        self.view.addSubview(self.yellowSoundRecordIndicator)
+        self.view.addSubview(self.soundRecordIndicator)
         
         let vdoTitleSize = CGSizeMake(Otification.calculatedWidthFromRatio(318.0), Otification.calculatedHeightFromRatio(95.0))
         self.vdoRecordTitle.frame = CGRectMake((Otification.rWidth - vdoTitleSize.width) / 2.0, Otification.calculatedHeightFromRatio(208.0 + 616.0), vdoTitleSize.width, vdoTitleSize.height)
@@ -196,38 +209,53 @@ class CustomAlarmViewController: OishiViewController, AVAudioRecorderDelegate {
     override func rightButtonDidTap() {
         if (self.recordedSound && self.recordedVideo) {
             // TODO: - save alarm
-            AlarmManager.sharedInstance.saveAlarm()
-            ViewControllerManager.sharedInstance.presentMyList()
+            AlarmManager.sharedInstance.unsaveAlarm?.custom = true
+            if (AlarmManager.sharedInstance.saveAlarm()) {
+                ViewControllerManager.sharedInstance.presentMyList()
+            } else {
+                // TODO: - sth error
+            }
         } else {
-            // TODO: - alert user
+            // TODO: - alert user -> should record both media
         }
     }
     
     // MARK: - audio
     
     func prepareAudioRecording() {
-        print("start recording ...")
+        print("prepareAudioRecording")
         
-        let session = AVAudioSession.sharedInstance()
-        do {
-            try session.setCategory(AVAudioSessionCategoryPlayAndRecord)
-            try session.setActive(true)
-            session.requestRecordPermission() { [unowned self] (allowed: Bool) -> Void in
-                dispatch_async(dispatch_get_main_queue()) {
-                    if allowed {
-                        self.startAudioRecording()
-                    } else {
-                        // failed to record!
+        if (self.isRecordingAudio == 0 || self.isRecordingAudio == 3) {
+            self.isRecordingAudio = 1
+            self.updateSoundRecordingIndicator()
+            let session = AVAudioSession.sharedInstance()
+            do {
+                try session.setCategory(AVAudioSessionCategoryPlayAndRecord)
+                try session.setActive(true)
+                session.requestRecordPermission() { [unowned self] (allowed: Bool) -> Void in
+                    dispatch_async(dispatch_get_main_queue()) {
+                        if allowed {
+                            self.startAudioRecording()
+                        } else {
+                            // failed to record!
+                            self.isRecordingAudio = 0
+                            self.updateSoundRecordingIndicator()
+                        }
                     }
                 }
+            } catch {
+                // failed to record!
+                self.isRecordingAudio = 0
+                self.updateSoundRecordingIndicator()
             }
-        } catch {
-            // failed to record!
         }
     }
     
     func startAudioRecording() {
         let filePath = self.getSoundFilePath()
+        
+        self.isRecordingAudio = 2
+        self.updateSoundRecordingIndicator()
         
         let settings = [
             AVFormatIDKey: Int(kAudioFormatAppleIMA4),
@@ -241,6 +269,7 @@ class CustomAlarmViewController: OishiViewController, AVAudioRecorderDelegate {
             self.recorder.delegate = self
             self.recorder.prepareToRecord()
             self.recorder.record()
+            print("startAudioRecording")
             self.timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: #selector(CustomAlarmViewController.exceedAudioRecordTime), userInfo: nil, repeats: false)
         } catch {
             print(error)
@@ -248,14 +277,19 @@ class CustomAlarmViewController: OishiViewController, AVAudioRecorderDelegate {
     }
     
     func stopAudioRecording() {
-        print("stop recording!")
-        self.recorder.stop()
+        print("stopAudioRecording")
+        if (self.isRecordingAudio == 2) {
+            self.recorder.stop()
+            self.isRecordingAudio = 0
+        }
     }
     
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder, successfully flag: Bool) {
         if (flag) {
             print("audioRecorderDidFinishRecording")
             self.recordedSound = true
+            self.isRecordingAudio = 3
+            self.updateSoundRecordingIndicator()
         } else {
             
         }
@@ -456,8 +490,6 @@ class CustomAlarmViewController: OishiViewController, AVAudioRecorderDelegate {
         }
         
         return NSURL(string: "file://" + dataPath)
-        
-        
     }
     
     // copy sound file to /Library/Sounds directory, it will be auto detect and played when a push notification arrive
@@ -515,13 +547,44 @@ class CustomAlarmViewController: OishiViewController, AVAudioRecorderDelegate {
         }
     }
     
+    // MARK: - soundrecordingindicator
+    
+    func updateSoundRecordingIndicator() {
+        self.soundRecordIndicator.layer.removeAllAnimations()
+        switch (self.isRecordingAudio) {
+            case 0:
+                self.soundRecordIndicator.image = UIImage(named: "record_gray")
+            break
+            case 1:
+                self.soundRecordIndicator.image = UIImage(named: "record_yellow")
+            break
+            case 2:
+                self.soundRecordIndicator.image = UIImage(named: "record_red")
+                UIView.animateWithDuration(0.5, delay: 0.0, options: [UIViewAnimationOptions.Autoreverse, UIViewAnimationOptions.Repeat], animations: {
+                        self.soundRecordIndicator.alpha = 0.0
+                        self.soundRecordIndicator.alpha = 1.0
+                    }, completion: { finished in
+                        self.soundRecordIndicator.alpha = 1.0
+                })
+            break
+            case 3:
+                UIView.animateWithDuration(0.5, delay: 0.0, options: [UIViewAnimationOptions.TransitionCrossDissolve], animations: {
+                        self.soundRecordIndicator.image = UIImage(named: "record_green")
+                    }, completion: { finished in
+                })
+            break
+            default:
+            break
+        }
+    }
+    
     // MARK: - oishinavigationbardelegate
     
     override func menuDidTap() {
         let menu = MenuTableViewController(nibName: "MenuTableViewController", bundle: nil)
         menu.modalPresentationStyle = .OverCurrentContext
         self.definesPresentationContext = true
-        self.presentViewController(menu, animated: true, completion: nil)
+        self.presentViewController(menu, animated: false, completion: nil)
     }
 
 }

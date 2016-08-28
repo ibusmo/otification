@@ -90,6 +90,19 @@ class MyListTableViewController: OishiTableViewController, ToggleButtonDelegate 
             cell.userImageView.image = UIImage(named: "actorc_\(no)")
         }
         
+        if let _ = alarm.custom {
+            let url = self.getVideoPathString()?.URLByAppendingPathComponent(alarm.uid!).URLByAppendingPathExtension("mov")
+            print("getFuckingVideoURL")
+            print(url?.absoluteString)
+            let asset = AVAsset(URL: url!)
+            let imageGenerator = AVAssetImageGenerator(asset: asset)
+            let time = CMTimeMake(1, 1)
+            let imageRef = try! imageGenerator.copyCGImageAtTime(time, actualTime: nil)
+            let thumbnail = UIImage(CGImage: imageRef,  scale: 1.0, orientation: UIImageOrientation.Right)
+            cell.userImageView.image = thumbnail
+            cell.userImageView.contentMode = .ScaleAspectFill
+        }
+        
         if let on = alarm.on {
             cell.toggleButton.state = on
         } else {
@@ -145,7 +158,33 @@ class MyListTableViewController: OishiTableViewController, ToggleButtonDelegate 
         let menu = MenuTableViewController(nibName: "MenuTableViewController", bundle: nil)
         menu.modalPresentationStyle = .OverCurrentContext
         self.definesPresentationContext = true
-        self.presentViewController(menu, animated: true, completion: nil)
+        self.presentViewController(menu, animated: false, completion: nil)
     }
 
+    // MARK: - duplicate
+    
+    func getVideoPathString() -> NSURL? {
+        let paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
+        let documentsDirectory: AnyObject = paths[0]
+        let dataPath = documentsDirectory.stringByAppendingPathComponent("video")
+        
+        let fileManager = NSFileManager()
+        if (!fileManager.fileExistsAtPath(dataPath)) {
+            do {
+                try NSFileManager.defaultManager().createDirectoryAtPath(dataPath, withIntermediateDirectories: false, attributes: nil)
+                print("check")
+            } catch let error as NSError {
+                print(error.localizedDescription);
+            }
+        } else {
+            print("video path \(dataPath)/tempVideo.mov")
+            if (fileManager.fileExistsAtPath(dataPath + "/tempVideo.mov")) {
+                print("tempVideo.mov exist")
+            } else {
+                print("tempVideo.mov not exist")
+            }
+        }
+        
+        return NSURL(string: "file://" + dataPath)
+    }
 }

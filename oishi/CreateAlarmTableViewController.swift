@@ -29,6 +29,8 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
     var dictionary = Dictionary<String, [ActionInfo]>()
     var selectedActionInfo = [ActionInfo]()
     
+    var isLoadingDataFromAPI = false
+    
     var moviePlayer = MPMoviePlayerController()
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
@@ -64,6 +66,9 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        if (!self.isLoadingDataFromAPI) {
+            self.getPlaylist()
+        }
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CreateAlarmTableViewController.moviePlayerExitFullScreen), name: MPMoviePlayerPlaybackDidFinishNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CreateAlarmTableViewController.moviePlayerExitFullScreen), name: MPMoviePlayerDidExitFullscreenNotification, object: nil)
     }
@@ -246,8 +251,11 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
                         AlarmManager.sharedInstance.unsaveAlarm?.notiMessage = notiMessage
                         AlarmManager.sharedInstance.unsaveAlarm?.soundFileName = audioFileName
                         AlarmManager.sharedInstance.unsaveAlarm?.vdoFileName = videoFileName
-                        print("saveAlarmSuccess: \(AlarmManager.sharedInstance.saveAlarm())")
-                        ViewControllerManager.sharedInstance.presentMyList()
+                        if (AlarmManager.sharedInstance.saveAlarm()) {
+                            ViewControllerManager.sharedInstance.presentMyList()
+                        } else {
+                            // TODO: - exceed maximum alarm (8)
+                        }
                     }
                 }
             }
@@ -309,7 +317,7 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
         let menu = MenuTableViewController(nibName: "MenuTableViewController", bundle: nil)
         menu.modalPresentationStyle = .OverCurrentContext
         self.definesPresentationContext = true
-        self.presentViewController(menu, animated: true, completion: nil)
+        self.presentViewController(menu, animated: false, completion: nil)
     }
     
     // MARK: - oishitabbardelegate
@@ -328,14 +336,17 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
     // MARK: - api
     
     func getPlaylist() {
+        self.isLoadingDataFromAPI = true
         let _ = OtificationHTTPService.sharedInstance.getPlaylist(Callback() { (response, success, errorString, error) in
             if let dictionary = response where success {
+                self.dictionary.removeAll(keepCapacity: false)
                 self.dictionary = dictionary
                 if let actionInfos = self.dictionary["1"] {
                     self.selectedActionInfo = actionInfos
                     self.tableView.reloadData()
                 }
             }
+            self.isLoadingDataFromAPI = false
         })
     }
     

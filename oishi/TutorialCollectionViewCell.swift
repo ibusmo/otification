@@ -10,11 +10,16 @@ import UIKit
 
 class TutorialCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var tutorialImageView: UIImageView!
+    var tutorialImageView = UIImageView()
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+    
+    func initTutorialCell() {
+        self.tutorialImageView.frame = CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight)
+        self.contentView.addSubview(self.tutorialImageView)
     }
 
 }

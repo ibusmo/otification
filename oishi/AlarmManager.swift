@@ -280,7 +280,7 @@ class AlarmManager {
         
         var list: [String] = self.getAlarmList()
         
-        if let uid = alarm.uid {
+        if let uid = alarm.uid where list.count < 8 {
             // desc: - append new alarm list uid, set new alarmlist forkey "alarm_list"
             list.append(uid)
             defaults.removeObjectForKey("alarm_list")
@@ -305,7 +305,7 @@ class AlarmManager {
         
         var list: [String] = self.getAlarmList()
         
-        if let uid = alarm.uid {
+        if let uid = alarm.uid where list.count < 8 {
             // desc: - append new alarm list uid, set new alarmlist forkey "alarm_list"
             list.append(uid)
             defaults.removeObjectForKey("alarm_list")

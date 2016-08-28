@@ -107,7 +107,7 @@ class EditAlarmTableViewController: OishiTableViewController, EditAlarmTableView
         let menu = MenuTableViewController(nibName: "MenuTableViewController", bundle: nil)
         menu.modalPresentationStyle = .OverCurrentContext
         self.definesPresentationContext = true
-        self.presentViewController(menu, animated: true, completion: nil)
+        self.presentViewController(menu, animated: false, completion: nil)
     }
     
     // MARK: - tabbar

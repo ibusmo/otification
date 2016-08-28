@@ -115,7 +115,9 @@ class FriendActorsPickerTableViewCell: UITableViewCell, iCarouselDataSource, iCa
     
     func carouselCurrentItemIndexDidChange(carousel: iCarousel) {
         // TODO: - show name
-        self.delegate?.didPickActor(self.actors[carousel.currentItemIndex], active: self.active[carousel.currentItemIndex])
+        if (self.actors.count > 0) {
+            self.delegate?.didPickActor(self.actors[carousel.currentItemIndex], active: self.active[carousel.currentItemIndex])
+        }
     }
     
     func carousel(carousel: iCarousel, didSelectItemAtIndex index: Int) {

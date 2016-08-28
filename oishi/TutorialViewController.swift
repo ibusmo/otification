@@ -25,10 +25,18 @@ class TutorialViewController: UIViewController, UICollectionViewDataSource, UICo
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.view.clipsToBounds = true
+        self.view.backgroundColor = UIColor.redColor().colorWithAlphaComponent(0.5)
+        
+        self.collectionView.frame = CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight)
+        self.collectionView.backgroundColor = UIColor.blueColor().colorWithAlphaComponent(0.5)
+        
         // Do any additional setup after loading the view.
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
+        
+        self.collectionView.clipsToBounds = true
         
         self.collectionView.registerNib(UINib(nibName: "TutorialCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "tutorialCell")
         
@@ -38,7 +46,13 @@ class TutorialViewController: UIViewController, UICollectionViewDataSource, UICo
         
         self.view.addSubview(self.closeButton)
     }
-
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.view.frame = CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight)
+        self.collectionView.frame = CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -54,6 +68,7 @@ class TutorialViewController: UIViewController, UICollectionViewDataSource, UICo
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("tutorialCell", forIndexPath: indexPath) as! TutorialCollectionViewCell
+        cell.initTutorialCell()
         cell.tutorialImageView.image = UIImage(named: "tutorial_\(indexPath.row + 1)")
         return cell
     }
