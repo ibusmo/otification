@@ -35,8 +35,6 @@
 		A23CBDE81D708A1B004ED38E /* M13ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A23CBDE71D708A1B004ED38E /* M13ProgressView.m */; };
 		A23CBDEE1D713650004ED38E /* GalleryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23CBDEC1D713650004ED38E /* GalleryTableViewController.swift */; };
 		A23CBDEF1D713650004ED38E /* GalleryTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A23CBDED1D713650004ED38E /* GalleryTableViewController.xib */; };
-		A23CBDF41D715ADB004ED38E /* GalleryActorsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23CBDF21D715ADB004ED38E /* GalleryActorsTableViewCell.swift */; };
-		A23CBDF51D715ADB004ED38E /* GalleryActorsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A23CBDF31D715ADB004ED38E /* GalleryActorsTableViewCell.xib */; };
 		A23CBDF81D717080004ED38E /* VideoPreviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23CBDF61D717080004ED38E /* VideoPreviewTableViewCell.swift */; };
 		A23CBDF91D717080004ED38E /* VideoPreviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A23CBDF71D717080004ED38E /* VideoPreviewTableViewCell.xib */; };
 		A23CBDFC1D71721A004ED38E /* VideoPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23CBDFB1D71721A004ED38E /* VideoPreviewView.swift */; };
@@ -53,6 +51,8 @@
 		A2508A491D5CCABD00DFD781 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2508A481D5CCABD00DFD781 /* SectionHeaderView.swift */; };
 		A2508A4C1D5E5C2A00DFD781 /* Otification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2508A4B1D5E5C2A00DFD781 /* Otification.swift */; };
 		A2508A4F1D5E69F800DFD781 /* OtificationAlarmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2508A4E1D5E69F800DFD781 /* OtificationAlarmManager.swift */; };
+		A261CF5B1D72DB51000843EF /* GalleryActorsPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A261CF5A1D72DB51000843EF /* GalleryActorsPickerView.swift */; };
+		A261CF5D1D72E561000843EF /* GalleryActorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A261CF5C1D72E561000843EF /* GalleryActorView.swift */; };
 		A261D18A1D63A17800DEECF1 /* OtificationTimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A261D1891D63A17800DEECF1 /* OtificationTimePickerView.swift */; };
 		A261D1971D647E5500DEECF1 /* TimePickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A261D1951D647E5500DEECF1 /* TimePickerTableViewCell.swift */; };
 		A261D1981D647E5500DEECF1 /* TimePickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A261D1961D647E5500DEECF1 /* TimePickerTableViewCell.xib */; };
@@ -147,8 +147,6 @@
 		A23CBDE71D708A1B004ED38E /* M13ProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M13ProgressView.m; sourceTree = "<group>"; };
 		A23CBDEC1D713650004ED38E /* GalleryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryTableViewController.swift; sourceTree = "<group>"; };
 		A23CBDED1D713650004ED38E /* GalleryTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GalleryTableViewController.xib; sourceTree = "<group>"; };
-		A23CBDF21D715ADB004ED38E /* GalleryActorsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryActorsTableViewCell.swift; sourceTree = "<group>"; };
-		A23CBDF31D715ADB004ED38E /* GalleryActorsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GalleryActorsTableViewCell.xib; sourceTree = "<group>"; };
 		A23CBDF61D717080004ED38E /* VideoPreviewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPreviewTableViewCell.swift; sourceTree = "<group>"; };
 		A23CBDF71D717080004ED38E /* VideoPreviewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoPreviewTableViewCell.xib; sourceTree = "<group>"; };
 		A23CBDFB1D71721A004ED38E /* VideoPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPreviewView.swift; sourceTree = "<group>"; };
@@ -167,6 +165,8 @@
 		A2508A481D5CCABD00DFD781 /* SectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		A2508A4B1D5E5C2A00DFD781 /* Otification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Otification.swift; sourceTree = "<group>"; };
 		A2508A4E1D5E69F800DFD781 /* OtificationAlarmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtificationAlarmManager.swift; sourceTree = "<group>"; };
+		A261CF5A1D72DB51000843EF /* GalleryActorsPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryActorsPickerView.swift; sourceTree = "<group>"; };
+		A261CF5C1D72E561000843EF /* GalleryActorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryActorView.swift; sourceTree = "<group>"; };
 		A261D1891D63A17800DEECF1 /* OtificationTimePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtificationTimePickerView.swift; sourceTree = "<group>"; };
 		A261D1951D647E5500DEECF1 /* TimePickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePickerTableViewCell.swift; sourceTree = "<group>"; };
 		A261D1961D647E5500DEECF1 /* TimePickerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimePickerTableViewCell.xib; sourceTree = "<group>"; };
@@ -430,8 +430,8 @@
 		A23CBDF11D71595F004ED38E /* actors */ = {
 			isa = PBXGroup;
 			children = (
-				A23CBDF21D715ADB004ED38E /* GalleryActorsTableViewCell.swift */,
-				A23CBDF31D715ADB004ED38E /* GalleryActorsTableViewCell.xib */,
+				A261CF5A1D72DB51000843EF /* GalleryActorsPickerView.swift */,
+				A261CF5C1D72E561000843EF /* GalleryActorView.swift */,
 			);
 			name = actors;
 			sourceTree = "<group>";
@@ -930,7 +930,6 @@
 				A272BCA21D6BF11E00D06576 /* TutorialCollectionViewCell.xib in Resources */,
 				A26ECD381D666FAD004EA733 /* DB HelvethaicaMon X.ttf in Resources */,
 				A217B7541D65BC9800021BFA /* DB Helvethaica X Med.ttf in Resources */,
-				A23CBDF51D715ADB004ED38E /* GalleryActorsTableViewCell.xib in Resources */,
 				A272BC591D67627900D06576 /* RepeatAlarmTableViewCell.xib in Resources */,
 				A24E20701D5B456B00985409 /* LaunchScreen.storyboard in Resources */,
 				A2508A301D5C460D00DFD781 /* OishiTabBarView.xib in Resources */,
@@ -1033,7 +1032,6 @@
 				A272BC881D6BD45F00D06576 /* FriendActorsPickerTableViewCell.swift in Sources */,
 				1FB87CEF1D64632D0097AC74 /* SnoozeButton.swift in Sources */,
 				A272BC4E1D67596D00D06576 /* BWSwipeCell.swift in Sources */,
-				A23CBDF41D715ADB004ED38E /* GalleryActorsTableViewCell.swift in Sources */,
 				A272BC531D675CD900D06576 /* EditAlarmTableViewController.swift in Sources */,
 				A272BC741D6BAF7E00D06576 /* OishiViewController.swift in Sources */,
 				A272BCBA1D6F9DCC00D06576 /* DownloadViewController.swift in Sources */,
@@ -1057,6 +1055,7 @@
 				A217B7361D64EC2900021BFA /* ActorsPickerTableViewCell.swift in Sources */,
 				A217B7431D65162D00021BFA /* iCarousel.m in Sources */,
 				A272BCB11D6F805200D06576 /* ActionInfo.swift in Sources */,
+				A261CF5D1D72E561000843EF /* GalleryActorView.swift in Sources */,
 				A272BCA11D6BF11E00D06576 /* TutorialCollectionViewCell.swift in Sources */,
 				A272BC581D67627900D06576 /* RepeatAlarmTableViewCell.swift in Sources */,
 				A217B7611D66671E00021BFA /* MenuTableViewController.swift in Sources */,
@@ -1064,6 +1063,7 @@
 				A217B75C1D65F28E00021BFA /* Otification+UIImage.swift in Sources */,
 				A261D18A1D63A17800DEECF1 /* OtificationTimePickerView.swift in Sources */,
 				A2508A2E1D5C45FF00DFD781 /* OishiTabBarView.swift in Sources */,
+				A261CF5B1D72DB51000843EF /* GalleryActorsPickerView.swift in Sources */,
 				A217B72E1D64C90A00021BFA /* CenterCollectionViewFlowLayout.swift in Sources */,
 				A22BDE071D670969004FA6CB /* Action.swift in Sources */,
 				A23CBDE51D708994004ED38E /* M13ProgressViewBorderedBar.m in Sources */,

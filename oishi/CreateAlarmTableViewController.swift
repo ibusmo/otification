@@ -71,6 +71,7 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: MPMoviePlayerWillExitFullscreenNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: MPMoviePlayerPlaybackDidFinishNotification, object: nil)
     }
     
     override func didReceiveMemoryWarning() {

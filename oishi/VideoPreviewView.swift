@@ -12,8 +12,7 @@ class VideoPreviewView: UIView {
     
     // vdoframe 116, 0, 501, 393
     var videoFrameImageView = UIImageView()
-    var videoPreviewImageView = UIImageView()
-    var videoPreviewMasking = UIImageView()
+    var videoPlaybackButton = UIButton()
     
     var nameBackgroundImageView = UIImageView()
     var nameLabel = UILabel()
@@ -27,12 +26,10 @@ class VideoPreviewView: UIView {
         let videoFrameSize = CGSizeMake(Otification.calculatedWidthFromRatio(501.0), Otification.calculatedWidthFromRatio(393.0))
         self.videoFrameImageView.frame = CGRectMake(Otification.calculatedWidthFromRatio(116.0), 0.0, videoFrameSize.width, videoFrameSize.height)
         self.videoFrameImageView.image = UIImage(named: "gallery_vdo_frame")
+        self.videoFrameImageView.backgroundColor = UIColor.clearColor()
         
-        let videoPreviewSize = CGSizeMake(Otification.calculatedWidthFromRatio(443.0), Otification.calculatedWidthFromRatio(330.0))
-        self.videoFrameImageView.frame = CGRectMake(Otification.calculatedWidthFromRatio(116.0), 0.0, videoPreviewSize.width, videoPreviewSize.height)
-        
-        self.videoPreviewMasking.frame = CGRectMake(Otification.calculatedWidthFromRatio(116.0), 0.0, videoPreviewSize.width, videoPreviewSize.height)
-        self.videoPreviewMasking.image = UIImage(named: "gallery_vdo_masking")
+        self.videoPlaybackButton.frame = CGRectMake(Otification.calculatedWidthFromRatio(116.0), 0.0, videoFrameSize.width, videoFrameSize.height)
+        self.videoPlaybackButton.backgroundColor = UIColor.clearColor()
         
         let nameLabelBackgroundSize = CGSizeMake(Otification.calculatedWidthFromRatio(470.0), Otification.calculatedWidthFromRatio(134.0))
         self.nameBackgroundImageView.frame = CGRectMake(Otification.calculatedWidthFromRatio(113.0), Otification.calculatedWidthFromRatio(310.0), nameLabelBackgroundSize.width, nameLabelBackgroundSize.height)
@@ -50,12 +47,12 @@ class VideoPreviewView: UIView {
         self.lineButton.frame = CGRectMake(Otification.calculatedWidthFromRatio(350.0), Otification.calculatedHeightFromRatio(415.0), buttonSize.width, buttonSize.height)
         self.lineButton.setImage(UIImage(named: "gallery_line_button"), forState: UIControlState.Normal)
         
-        self.addSubview(self.videoPreviewImageView)
         self.addSubview(self.videoFrameImageView)
         self.addSubview(self.nameBackgroundImageView)
         self.addSubview(self.nameLabel)
         self.addSubview(self.fbButton)
         self.addSubview(self.lineButton)
+        self.addSubview(self.videoPlaybackButton)
     }
     
     init(frame: CGRect, x: CGFloat) {
@@ -63,7 +60,11 @@ class VideoPreviewView: UIView {
         
         let videoFrameSize = CGSizeMake(Otification.calculatedWidthFromRatio(501.0), Otification.calculatedWidthFromRatio(393.0))
         self.videoFrameImageView.frame = CGRectMake(Otification.calculatedWidthFromRatio(x), 0.0, videoFrameSize.width, videoFrameSize.height)
-        self.videoFrameImageView.image = UIImage(named: "gallery_vdo_frame")
+        self.videoFrameImageView.image = UIImage(named: "gallery_vdo_placeholder")
+        self.videoFrameImageView.backgroundColor = UIColor.clearColor()
+        
+        self.videoPlaybackButton.frame = CGRectMake(Otification.calculatedWidthFromRatio(x), 0.0, videoFrameSize.width, videoFrameSize.height)
+        self.videoPlaybackButton.backgroundColor = UIColor.clearColor()
         
         let nameLabelBackgroundSize = CGSizeMake(Otification.calculatedWidthFromRatio(470.0), Otification.calculatedWidthFromRatio(134.0))
         self.nameBackgroundImageView.frame = CGRectMake(Otification.calculatedWidthFromRatio(x - 3.0), Otification.calculatedWidthFromRatio(310.0), nameLabelBackgroundSize.width, nameLabelBackgroundSize.height)
@@ -86,6 +87,7 @@ class VideoPreviewView: UIView {
         self.addSubview(self.nameLabel)
         self.addSubview(self.fbButton)
         self.addSubview(self.lineButton)
+        self.addSubview(self.videoPlaybackButton)
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -131,6 +131,7 @@ class MyListTableViewController: OishiTableViewController, ToggleButtonDelegate 
         let index = toggleButton.tag
         let alarm = AlarmManager.sharedInstance.alarms[index]
         if (toggleButton.state) {
+            // TODO: check date & time
             AlarmManager.sharedInstance.setAlarm(alarm.uid!)
         } else {
             AlarmManager.sharedInstance.unsetAlarm(alarm.uid!)

@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import MediaPlayer
 
-class GalleryTableViewController: OishiTableViewController {
+class GalleryTableViewController: OishiTableViewController, ActorsPickerTableViewCellDelegate, VideoPreviewTableViewCellDelegate {
+    
+    var actorsPickerView = GalleryActorsPickerView(frame: CGRectZero)
+    let actorNameLabel = UILabel()
     
     var action: Action = Otification.selfAlarmActions[0]
     var actor: Actor = Otification.actors[0]
@@ -16,6 +20,8 @@ class GalleryTableViewController: OishiTableViewController {
     
     var dictionary = Dictionary<String, [ActionInfo]>()
     var selectedActionInfo = [ActionInfo]()
+    
+    var moviePlayer = MPMoviePlayerController()
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -29,18 +35,29 @@ class GalleryTableViewController: OishiTableViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.tableView.registerNib(UINib(nibName: "GalleryActorsTableViewCell", bundle: nil), forCellReuseIdentifier: "galleryActorsCell")
-        self.tableView.registerNib(UINib(nibName: "VideoPreviewTableViewCell", bundle: nil), forCellReuseIdentifier: "videoPreviewCell")
-        
-        self.tableView.bounces = false
-        
         self.backgroundImageView.frame = CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight)
         self.backgroundImageView.image = UIImage(named: "gallery_bg")
         self.backgroundImageView.contentMode = UIViewContentMode.ScaleAspectFill
         
+        self.tableView.registerNib(UINib(nibName: "VideoPreviewTableViewCell", bundle: nil), forCellReuseIdentifier: "videoPreviewCell")
+        self.tableView.bounces = false
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         
         self.showBottomBarView = false
+        
+        self.view.addSubview(self.actorsPickerView)
+        
+        self.actorsPickerView.delegate = self
+        
+        let bubbleSize = CGSizeMake(Otification.calculatedWidthFromRatio(607.0), Otification.calculatedHeightFromRatio(286.0))
+        self.actorNameLabel.frame = CGRectMake(((Otification.rWidth - bubbleSize.width) / 2.0) - Otification.calculatedWidthFromRatio(20.0), Otification.calculatedHeightFromRatio(800.0), bubbleSize.width, bubbleSize.height)
+        self.actorNameLabel.font = UIFont(name: Otification.DBHELVETHAICA_X_BOLD, size: Otification.calculatedHeightFromRatio(80.0))
+        self.actorNameLabel.textColor = UIColor.blackColor()
+        self.actorNameLabel.textAlignment = .Center
+        
+        self.actorNameLabel.text = "พุฒ พุฒิชัย"
+        
+        self.view.addSubview(self.actorNameLabel)
         
         self.getPlaylistGallery()
     }
@@ -48,7 +65,15 @@ class GalleryTableViewController: OishiTableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         // y = 1122
-        self.tableView.frame = CGRectMake(0.0, Otification.calculatedHeightFromRatio(1080.0), self.tableView.frame.size.width, Otification.rHeight - Otification.calculatedHeightFromRatio(1080.0))
+        self.tableView.frame = CGRectMake(0.0, Otification.calculatedHeightFromRatio(1060.0), self.tableView.frame.size.width, Otification.rHeight - Otification.calculatedHeightFromRatio(1080.0))
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CreateAlarmTableViewController.moviePlayerExitFullScreen), name: MPMoviePlayerPlaybackDidFinishNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CreateAlarmTableViewController.moviePlayerExitFullScreen), name: MPMoviePlayerDidExitFullscreenNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: MPMoviePlayerWillExitFullscreenNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: MPMoviePlayerPlaybackDidFinishNotification, object: nil)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -75,7 +100,13 @@ class GalleryTableViewController: OishiTableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("videoPreviewCell", forIndexPath: indexPath) as! VideoPreviewTableViewCell
+        
         cell.initVideoPreviewCell()
+        cell.index = indexPath.row
+        cell.delegate = self
+        
+        cell.leftVideoPreviewView.removeFromSuperview()
+        cell.rightVideoPreviewView.removeFromSuperview()
         
         let leftActionInfo = self.selectedActionInfo[indexPath.row * 2]
         cell.initLeftVideoPreview(leftActionInfo)
@@ -91,6 +122,22 @@ class GalleryTableViewController: OishiTableViewController {
         return Otification.calculatedHeightFromRatio(560.0)
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+    }
+    
+    // MARK: - videopreviewtableviewcelldelegate
+    
+    func didSelectVideoPreviewAtIndex(index: Int) {
+        let actionInfo = self.selectedActionInfo[index]
+        let videoUrlString = actionInfo.videoUrlString
+        self.moviePlayer = MPMoviePlayerController(contentURL: NSURL(string: videoUrlString!))
+        self.moviePlayer.view.frame = CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight)
+        self.view.addSubview(self.moviePlayer.view)
+        self.moviePlayer.fullscreen = true
+        self.moviePlayer.controlStyle = MPMovieControlStyle.Embedded
+    }
+    
     // MARK: - api
     
     func getPlaylistGallery() {
@@ -104,6 +151,43 @@ class GalleryTableViewController: OishiTableViewController {
                 }
             }
         })   
+    }
+    
+    // MARK: - actorspickertableviewcelldelegate
+    
+    func didPickActor(actor: Actor, active: Bool) {
+        self.actorNameLabel.text = actor.actorName
+        self.actor = actor
+        self.selectedActorActive = active
+        
+        if let actionInfos = self.dictionary[self.actor.name!] {
+            self.selectedActionInfo = actionInfos
+            self.tableView.reloadData()
+        }
+    }
+    
+    func didSelectActor(actor: Actor, active: Bool) {
+        /*
+        if (active) {
+            for (_, actionInfo) in self.selectedActionInfo.enumerate() {
+                if let act = actionInfo.actor where act == actor.name {
+                    let videoUrlString = actionInfo.videoUrlString
+                    self.moviePlayer = MPMoviePlayerController(contentURL: NSURL(string: videoUrlString!))
+                    self.moviePlayer.view.frame = CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight)
+                    self.view.addSubview(self.moviePlayer.view)
+                    self.moviePlayer.fullscreen = true
+                    self.moviePlayer.controlStyle = MPMovieControlStyle.Embedded
+                }
+            }
+        }
+         */
+    }
+    
+    // MARK: - mpmovieplayer
+    
+    func moviePlayerExitFullScreen() {
+        self.moviePlayer.stop()
+        self.moviePlayer.view.removeFromSuperview()
     }
     
     // MARK: - oishinavigationbardelegate

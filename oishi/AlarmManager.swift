@@ -52,9 +52,9 @@ class AlarmManager {
         let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
         let componentsForFireDate = NSDateComponents()
         componentsForFireDate.weekday = fireDate[5]
-        componentsForFireDate.year = fireDate[4]
-        componentsForFireDate.month = fireDate[3]
-        componentsForFireDate.day = fireDate[2]
+//        componentsForFireDate.year = fireDate[4]
+//        componentsForFireDate.month = fireDate[3]
+//        componentsForFireDate.day = fireDate[2]
         componentsForFireDate.hour = fireDate[0]
         componentsForFireDate.minute = fireDate[1]
         componentsForFireDate.second = 0
@@ -108,6 +108,7 @@ class AlarmManager {
             notification.alertBody = message
         }
         
+        // TODO: check firedate day is not previous today
         notification.fireDate = alarm.date // todo item due date (when notification will be fired)
         
         // TODO: if alarm have an soundfilepath use it instead of uid
@@ -157,10 +158,12 @@ class AlarmManager {
             notification.alertBody = message
         }
         
+        print("fireDate: \(alarm.date)")
         notification.fireDate = alarm.date // todo item due date (when notification will be fired)
         
         var userInfo = Dictionary<String, AnyObject>()
         userInfo["uid"] = alarm.uid!
+        print("alarmManager setAlarm w/ uid: \(alarm.uid!)")
         userInfo["title"] = alarm.title!
         
         // TODO: if alarm have an soundfilepath use it instead of uid
@@ -186,6 +189,8 @@ class AlarmManager {
     func unsetAlarm(uid: String) {
         let index = self.findAlarm(uid)
         self.alarms[index].on = false
+        
+        print("unsetAlarm from : \(uid) \(self.alarms[index].uid!)")
         
         let app:UIApplication = UIApplication.sharedApplication()
         for oneEvent in app.scheduledLocalNotifications! {
@@ -357,6 +362,46 @@ class AlarmManager {
         for uid in self.list {
             self.deleteAlarm(uid)
         }
+    }
+    
+    // MARK: - getfiredate
+    
+    func getFireDate(setDate: NSDate) -> NSDate {
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "HH mm dd MM yyyy ee"
+        let nowDate = NSDate()
+        let now = dateFormatter.stringFromDate(nowDate).characters.split{$0 == " "}.map(String.init)
+        
+        var fireDate: [Int] = [hour, minute, Int(now[2])!, Int(now[3])!, Int(now[4])!, Int(now[5])!]
+        
+        if (hour < Int(now[0]) || (hour == Int(now[0]) && minute <= Int(now[1]))) {
+            let dayComponent = NSDateComponents()
+            dayComponent.day = 1
+            let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
+            let nextDate = calendar?.dateByAddingComponents(dayComponent, toDate: NSDate(), options: NSCalendarOptions.MatchFirst)
+            let next = dateFormatter.stringFromDate(nextDate!).characters.split{$0 == " "}.map(String.init)
+            fireDate[2] = Int(next[2])!
+            fireDate[3] = Int(next[3])!
+            fireDate[4] = Int(next[4])!
+            fireDate[5] = Int(next[5])!
+        }
+        
+        if (fireDate[4] > 2016) {
+            fireDate[4] = fireDate[4] - 543
+        }
+        
+        let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
+        let componentsForFireDate = NSDateComponents()
+        componentsForFireDate.weekday = fireDate[5]
+//        componentsForFireDate.year = fireDate[4]
+//        componentsForFireDate.month = fireDate[3]
+//        componentsForFireDate.day = fireDate[2]
+        componentsForFireDate.hour = fireDate[0]
+        componentsForFireDate.minute = fireDate[1]
+        componentsForFireDate.second = 0
+        
+        return NSDate()
     }
     
 }

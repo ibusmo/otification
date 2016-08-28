@@ -57,7 +57,6 @@ class SnoozeButton: UIView {
     private var offsetBounds: CGFloat = 5.0
     var blockSlide: Bool = false
     @objc private func handleLongPress(longPress: UILongPressGestureRecognizer) {
-        print("handleLongPress: ")
         if !blockSlide {
             switch longPress.state {
             case .Began:
@@ -89,7 +88,6 @@ class SnoozeButton: UIView {
                 } else {
                     self.button?.center.x = point.x
                 }
-                print("point: \(point.x) \(point.y)")
                 
             default:
                 break
