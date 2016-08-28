@@ -514,5 +514,14 @@ class CustomAlarmViewController: OishiViewController, AVAudioRecorderDelegate {
             print(error.debugDescription)
         }
     }
+    
+    // MARK: - oishinavigationbardelegate
+    
+    override func menuDidTap() {
+        let menu = MenuTableViewController(nibName: "MenuTableViewController", bundle: nil)
+        menu.modalPresentationStyle = .OverCurrentContext
+        self.definesPresentationContext = true
+        self.presentViewController(menu, animated: true, completion: nil)
+    }
 
 }

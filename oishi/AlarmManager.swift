@@ -52,9 +52,9 @@ class AlarmManager {
         let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
         let componentsForFireDate = NSDateComponents()
         componentsForFireDate.weekday = fireDate[5]
-//        componentsForFireDate.year = fireDate[4]
-//        componentsForFireDate.month = fireDate[3]
-//        componentsForFireDate.day = fireDate[2]
+        componentsForFireDate.year = fireDate[4]
+        componentsForFireDate.month = fireDate[3]
+        componentsForFireDate.day = fireDate[2]
         componentsForFireDate.hour = fireDate[0]
         componentsForFireDate.minute = fireDate[1]
         componentsForFireDate.second = 0
@@ -109,7 +109,7 @@ class AlarmManager {
         }
         
         // TODO: check firedate day is not previous today
-        notification.fireDate = alarm.date // todo item due date (when notification will be fired)
+        notification.fireDate = self.getFireDate(alarm.date!)
         
         // TODO: if alarm have an soundfilepath use it instead of uid
         var userInfo = Dictionary<String, AnyObject>()
@@ -158,8 +158,8 @@ class AlarmManager {
             notification.alertBody = message
         }
         
-        print("fireDate: \(alarm.date)")
-        notification.fireDate = alarm.date // todo item due date (when notification will be fired)
+        // TODO: check firedate day is not previous today
+        notification.fireDate = self.getFireDate(alarm.date!)
         
         var userInfo = Dictionary<String, AnyObject>()
         userInfo["uid"] = alarm.uid!
@@ -370,12 +370,21 @@ class AlarmManager {
         
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "HH mm dd MM yyyy ee"
+        
         let nowDate = NSDate()
-        let now = dateFormatter.stringFromDate(nowDate).characters.split{$0 == " "}.map(String.init)
+        let nowDateString = dateFormatter.stringFromDate(nowDate).characters.split{$0 == " "}.map(String.init)
         
-        var fireDate: [Int] = [hour, minute, Int(now[2])!, Int(now[3])!, Int(now[4])!, Int(now[5])!]
+        var setDateString = dateFormatter.stringFromDate(setDate).characters.split{$0 == " "}.map(String.init)
         
-        if (hour < Int(now[0]) || (hour == Int(now[0]) && minute <= Int(now[1]))) {
+        let setHour = Int(setDateString[0])!
+        let setMinute = Int(setDateString[1])!
+        
+        let nowHour = Int(nowDateString[0])!
+        let nowMinute = Int(nowDateString[1])!
+        
+        var fireDate: [Int] = [setHour, setMinute, Int(nowDateString[2])!, Int(nowDateString[3])!, Int(nowDateString[4])!, Int(nowDateString[5])!]
+        
+        if (setHour < nowHour || (setHour == nowHour && setMinute <= nowMinute)) {
             let dayComponent = NSDateComponents()
             dayComponent.day = 1
             let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
@@ -394,14 +403,16 @@ class AlarmManager {
         let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
         let componentsForFireDate = NSDateComponents()
         componentsForFireDate.weekday = fireDate[5]
-//        componentsForFireDate.year = fireDate[4]
-//        componentsForFireDate.month = fireDate[3]
-//        componentsForFireDate.day = fireDate[2]
+        componentsForFireDate.year = fireDate[4]
+        componentsForFireDate.month = fireDate[3]
+        componentsForFireDate.day = fireDate[2]
         componentsForFireDate.hour = fireDate[0]
         componentsForFireDate.minute = fireDate[1]
         componentsForFireDate.second = 0
         
-        return NSDate()
+        print("setNewAlarm w/ date from: \(setDate) to \((calendar?.dateFromComponents(componentsForFireDate))!)")
+        
+        return (calendar?.dateFromComponents(componentsForFireDate))!
     }
     
 }
