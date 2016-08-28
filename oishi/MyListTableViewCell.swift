@@ -25,10 +25,14 @@ class MyListTableViewCell: UITableViewCell {
         
         self.selectionStyle = .None
         
+        self.backgroundColor = UIColor.clearColor()
+        self.contentView.backgroundColor = UIColor.clearColor()
+        
         self.userImageView.layer.shadowColor = UIColor.blackColor().CGColor
         self.userImageView.layer.shadowOffset = CGSizeMake(2.0, 2.0)
         self.userImageView.layer.shadowRadius = 2.0
         self.userImageView.layer.shadowOpacity = 0.3
+        self.userImageView.contentMode = .ScaleAspectFit
         
         self.actionNameLabel.frame = CGRectMake(Otification.calculatedWidthFromRatio(358.0), Otification.calculatedHeightFromRatio(38.0), Otification.calculatedWidthFromRatio(462.0), 0.0)
         self.actionNameLabel.font = UIFont(name: Otification.DBHELVETHAICA_X_BOLD, size: Otification.calculatedHeightFromRatio(60.0))

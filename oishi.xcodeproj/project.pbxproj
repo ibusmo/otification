@@ -104,6 +104,7 @@
 		A272BCB11D6F805200D06576 /* ActionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A272BCB01D6F805200D06576 /* ActionInfo.swift */; };
 		A272BCBA1D6F9DCC00D06576 /* DownloadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A272BCB81D6F9DCC00D06576 /* DownloadViewController.swift */; };
 		A272BCBB1D6F9DCC00D06576 /* DownloadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A272BCB91D6F9DCC00D06576 /* DownloadViewController.xib */; };
+		A28A044C1D727381005197AC /* Otification+UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28A044B1D727381005197AC /* Otification+UIImageView.swift */; };
 		A299FF291D6187D700EE74C1 /* todolist in Resources */ = {isa = PBXBuildFile; fileRef = A299FF281D6187D600EE74C1 /* todolist */; };
 		A299FF2B1D618A6100EE74C1 /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = A299FF2A1D618A6100EE74C1 /* Alarm.swift */; };
 		A299FF391D61B13E00EE74C1 /* AlarmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A299FF381D61B13E00EE74C1 /* AlarmManager.swift */; };
@@ -217,6 +218,7 @@
 		A272BCB01D6F805200D06576 /* ActionInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionInfo.swift; sourceTree = "<group>"; };
 		A272BCB81D6F9DCC00D06576 /* DownloadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadViewController.swift; sourceTree = "<group>"; };
 		A272BCB91D6F9DCC00D06576 /* DownloadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DownloadViewController.xib; sourceTree = "<group>"; };
+		A28A044B1D727381005197AC /* Otification+UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Otification+UIImageView.swift"; sourceTree = "<group>"; };
 		A299FF281D6187D600EE74C1 /* todolist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = todolist; sourceTree = "<group>"; };
 		A299FF2A1D618A6100EE74C1 /* Alarm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		A299FF381D61B13E00EE74C1 /* AlarmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmManager.swift; sourceTree = "<group>"; };
@@ -328,6 +330,7 @@
 		A217B7591D65F25C00021BFA /* extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A28A044A1D727371005197AC /* uiimageview */,
 				A21B05B61D717D6800F294B3 /* uiwindow */,
 				A217B75A1D65F26B00021BFA /* uiimage */,
 				A217B7561D65D3B600021BFA /* uibutton */,
@@ -817,6 +820,14 @@
 			name = createalarm;
 			sourceTree = "<group>";
 		};
+		A28A044A1D727371005197AC /* uiimageview */ = {
+			isa = PBXGroup;
+			children = (
+				A28A044B1D727381005197AC /* Otification+UIImageView.swift */,
+			);
+			name = uiimageview;
+			sourceTree = "<group>";
+		};
 		A299FF2E1D61B09700EE74C1 /* resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -1001,6 +1012,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2508A3A1D5C7A1700DFD781 /* ViewControllerManager.swift in Sources */,
+				A28A044C1D727381005197AC /* Otification+UIImageView.swift in Sources */,
 				A2508A351D5C747C00DFD781 /* OishiTableViewController.swift in Sources */,
 				A2508A461D5C88B200DFD781 /* OishiNavigationBar.swift in Sources */,
 				A2508A411D5C83C300DFD781 /* MyListTableViewController.swift in Sources */,

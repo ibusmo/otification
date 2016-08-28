@@ -17,7 +17,7 @@
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kNl-Lh-kaT" customClass="iCarousel">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="kNl-Lh-kaT" secondAttribute="height" multiplier="40:11" id="VUU-GF-KW6"/>
                             <constraint firstAttribute="width" secondItem="kNl-Lh-kaT" secondAttribute="height" multiplier="40:11" id="hoE-Zs-Rh4"/>
@@ -42,7 +42,7 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="carousel" destination="kNl-Lh-kaT" id="qTu-PJ-xI8"/>
             </connections>

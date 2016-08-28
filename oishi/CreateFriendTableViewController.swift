@@ -224,5 +224,14 @@ class CreateFriendTableViewController: OishiTableViewController, ActionsTableVie
     override func leftButtonDidTap() {
         ViewControllerManager.sharedInstance.presentCreateAlarm()
     }
+    
+    // MARK: - oishinavigationbardelegate
+    
+    override func menuDidTap() {
+        let menu = MenuTableViewController(nibName: "MenuTableViewController", bundle: nil)
+        menu.modalPresentationStyle = .OverCurrentContext
+        self.definesPresentationContext = true
+        self.presentViewController(menu, animated: true, completion: nil)
+    }
 
 }

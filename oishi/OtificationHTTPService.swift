@@ -64,12 +64,13 @@ class OtificationHTTPService {
             if let data: AnyObject = response.result.value {
                 let json = JSON(data)
                 var dict = Dictionary<String, [ActionInfo]>()
-                for (_, group): (String, JSON) in json["playlist"]["actor"] {
+                for (_, actor): (String, JSON) in json["playlist"]["actor"] {
+                    print(actor["name"].string)
                     var actionInfos = [ActionInfo]()
-                    for (_, list): (String, JSON) in group["list"] {
+                    for (_, list): (String, JSON) in actor["list"] {
                         actionInfos.append(ActionInfo.getFriendActionInfo(list))
                     }
-                    dict[group["no"].string!] = actionInfos
+                    dict[actor["no"].string!] = actionInfos
                 }
                 cb.callback(dict, true, nil, nil)
             } else {

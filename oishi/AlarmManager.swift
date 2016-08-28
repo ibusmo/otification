@@ -91,9 +91,22 @@ class AlarmManager {
         
         // create a corresponding local notification
         let notification = UILocalNotification()
-        notification.alertBody = "ได้เวลา \"\(alarm.title!)\" จ่ะ :3" // text that will be displayed in the notification
-        notification.alertAction = "open" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
-        notification.repeatInterval = NSCalendarUnit.Hour
+        
+        // default
+        if #available(iOS 8.2, *) {
+            notification.alertTitle = "Otification"
+            if let title = alarm.notiTitle {
+                notification.alertTitle = title
+            }
+        } else {
+            // Fallback on earlier versions
+        }
+        notification.alertBody = "It's time to O!" // text that will be displayed in the notification
+        notification.alertAction = "turn off" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
+
+        if let message = alarm.notiMessage {
+            notification.alertBody = message
+        }
         
         notification.fireDate = alarm.date // todo item due date (when notification will be fired)
         
@@ -127,9 +140,22 @@ class AlarmManager {
         
         // create a corresponding local notification
         let notification = UILocalNotification()
-        notification.alertBody = "ได้เวลา \"\(alarm.title!)\" จ่ะ :3" // text that will be displayed in the notification
-        notification.alertAction = "open" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
-        notification.repeatInterval = NSCalendarUnit.Hour
+        
+        // default
+        if #available(iOS 8.2, *) {
+            notification.alertTitle = "Otification"
+            if let title = alarm.notiTitle {
+                notification.alertTitle = title
+            }
+        } else {
+            // Fallback on earlier versions
+        }
+        notification.alertBody = "It's time to O!" // text that will be displayed in the notification
+        notification.alertAction = "turn off" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
+
+        if let message = alarm.notiMessage {
+            notification.alertBody = message
+        }
         
         notification.fireDate = alarm.date // todo item due date (when notification will be fired)
         

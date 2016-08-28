@@ -79,7 +79,7 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
     }
     
     func initCreateAlarmViews() {
-        self.frontImageView.frame = CGRectMake(0.0, Otification.rHeight - Otification.calculatedHeightFromRatio(692.0), Otification.rWidth, Otification.calculatedHeightFromRatio(692.0))
+        self.frontImageView.frame = CGRectMake(0.0, Otification.rHeight - Otification.calculatedHeightFromRatio(692.0), Otification.rWidth, Otification.calculatedHeightFromRatio(683.0))
         self.frontImageView.image = UIImage(named: "createalarm_front_bg")
         self.frontImageView.layer.zPosition = 750
         self.frontImageView.userInteractionEnabled = true
@@ -220,6 +220,9 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
                     let aSplitedString = audioUrlString!.characters.split{$0 == "/"}.map(String.init)
                     let audioFileName = aSplitedString[aSplitedString.count - 1]
                     
+                    let notiTitle = actionInfo.notiTitle
+                    let notiMessage = actionInfo.notiMessage
+                    
                     print("vidoeFileName: \(videoFileName)")
                     print("audioFileName: \(audioFileName)")
                     
@@ -235,6 +238,10 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
                         self.presentViewController(download, animated: true, completion: nil)
                     } else {
                         AlarmManager.sharedInstance.prepareNewAlarm(self.action.actionName!, hour: h, minute: m)
+                        AlarmManager.sharedInstance.unsaveAlarm?.custom = false
+                        AlarmManager.sharedInstance.unsaveAlarm?.actorNo = self.actor.name
+                        AlarmManager.sharedInstance.unsaveAlarm?.notiTitle = notiTitle
+                        AlarmManager.sharedInstance.unsaveAlarm?.notiMessage = notiMessage
                         AlarmManager.sharedInstance.unsaveAlarm?.soundFileName = audioFileName
                         AlarmManager.sharedInstance.unsaveAlarm?.vdoFileName = videoFileName
                         print("saveAlarmSuccess: \(AlarmManager.sharedInstance.saveAlarm())")
@@ -271,7 +278,14 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
                     let aSplitedString = audioUrlString!.characters.split{$0 == "/"}.map(String.init)
                     let audioFileName = aSplitedString[aSplitedString.count - 1]
                     
+                    let notiTitle = actionInfo.notiTitle
+                    let notiMessage = actionInfo.notiMessage
+                    
                     AlarmManager.sharedInstance.prepareNewAlarm(self.action.actionName!, hour: h, minute: m)
+                    AlarmManager.sharedInstance.unsaveAlarm?.custom = false
+                    AlarmManager.sharedInstance.unsaveAlarm?.actorNo = self.actor.name
+                    AlarmManager.sharedInstance.unsaveAlarm?.notiTitle = notiTitle
+                    AlarmManager.sharedInstance.unsaveAlarm?.notiMessage = notiMessage
                     AlarmManager.sharedInstance.unsaveAlarm?.soundFileName = audioFileName
                     AlarmManager.sharedInstance.unsaveAlarm?.vdoFileName = videoFileName
                     print("saveAlarmSuccess: \(AlarmManager.sharedInstance.saveAlarm())")

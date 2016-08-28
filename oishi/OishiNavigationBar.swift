@@ -40,9 +40,9 @@ class OishiNavigationBar: UIView {
         self.logoImageView.contentMode = UIViewContentMode.ScaleAspectFit
         self.logoImageView.image = UIImage(named: "oishi_logo")
         
-        self.greenTeaLeafImageView.frame = CGRectMake(0.0, 0.0, Otification.calculatedWidthFromRatio(234.0), Otification.calculatedHeightFromRatio(376.0))
+        self.greenTeaLeafImageView.frame = CGRectMake(0.0, 0.0, Otification.calculatedWidthFromRatio(253.0), Otification.calculatedHeightFromRatio(402.0))
         self.greenTeaLeafImageView.contentMode = UIViewContentMode.ScaleAspectFit
-        self.greenTeaLeafImageView.image = UIImage(named: "greentea_leaf")
+        self.greenTeaLeafImageView.image = UIImage(named: "new_green_tea")
         
         let menuImageViewSize = CGSizeMake(Otification.calculatedWidthFromRatio(108.0), Otification.calculatedHeightFromRatio(92.0))
         self.menuImageView.frame = CGRectMake(screenSize.width - Otification.calculatedWidthFromRatio(168.0), (Otification.calculatedHeightFromRatio(208.0) - Otification.calculatedHeightFromRatio(92.0)) / 2.0, menuImageViewSize.width, menuImageViewSize.height)

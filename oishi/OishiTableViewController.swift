@@ -37,7 +37,7 @@ class OishiTableViewController: UIViewController, UITableViewDelegate, UITableVi
         self.navBar.delegate = self
         self.tabBar.delegate = self
         
-        self.tableView.frame = CGRectMake(0.0, Otification.navigationBarHeight, self.screenSize.width, self.screenSize.height)
+        self.tableView.frame = CGRectMake(0.0, Otification.navigationBarHeight, Otification.rWidth, Otification.rHeight)
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         self.tableView.backgroundColor = UIColor.clearColor()
         
@@ -46,6 +46,8 @@ class OishiTableViewController: UIViewController, UITableViewDelegate, UITableVi
         
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         
+        self.tableView.showsVerticalScrollIndicator = false
+        
         self.view.addSubview(self.backgroundImageView)
         self.view.addSubview(self.tableView)
         
@@ -53,21 +55,25 @@ class OishiTableViewController: UIViewController, UITableViewDelegate, UITableVi
         self.view.bringSubviewToFront(self.navBar)
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         
         // MARK: - custom inset for navigation bar and bottom bar
         if (self.showBottomBarView) {
-            self.tableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, 50.0, 0.0)
+            self.tableView.frame = CGRectMake(0.0, Otification.navigationBarHeight, Otification.rWidth, Otification.rHeight - Otification.calculatedHeightFromRatio(368.0))
             self.view.addSubview(self.tabBar)
             self.view.bringSubviewToFront(self.tabBar)
         } else {
             self.tableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
         }
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
     }
 
     override func didReceiveMemoryWarning() {

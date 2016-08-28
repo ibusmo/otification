@@ -27,6 +27,12 @@ class Alarm: NSObject, NSCoding {
     var photoUrl: String?
     var sentToFriend: Bool?
     
+    var notiTitle: String?
+    var notiMessage: String?
+    
+    var actorNo: String?
+    var custom: Bool?
+    
     override init() {}
     
     init(uid: String?) {

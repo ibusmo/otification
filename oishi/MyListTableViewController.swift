@@ -18,11 +18,20 @@ class MyListTableViewController: OishiTableViewController, ToggleButtonDelegate 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        let frame = CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight)
+        self.view = UIView(frame: frame)
+        self.tableView = UITableView(frame: frame, style: .Plain)
+    }
         
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.tableView.bounces = false
+        
+        self.tableView.backgroundColor = UIColor.clearColor()
         
         self.tableView.registerNib(UINib(nibName: "MyListTableViewCell", bundle: nil), forCellReuseIdentifier: "myListCell")
         
@@ -39,31 +48,11 @@ class MyListTableViewController: OishiTableViewController, ToggleButtonDelegate 
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
         self.tableView.reloadData()
-        
-        /*
-        let list = Otification.getAlarmList()
-        print("list size: \(list.uids.count)")
-         */
-        
-        /*
-        let uid = NSUUID().UUIDString
-        let alarm = Alarm(uid: uid, title: "title_1", date: NSDate(), repeats: [true, true, false], on: true, snooze: false, sound: false, vibrate: true, soundFileName: nil, photoUrl: nil, sentToFriend: false)
-        
-        Otification.saveAlarm(alarm)
-        let result = Otification.getAlarm(uid)
-        if let index = result.index, alarm = result.alarm {
-            print("getAlarm: @ index: \(index), alarm: \(alarm.uid) \(alarm.title) \(alarm.date?.description) \(alarm.on) \(alarm.snooze) \(alarm.sound) \(alarm.vibrate) \(alarm.photoUrl) \(alarm.sentToFriend)")
-            if let rs = alarm.repeats {
-                for (index, r) in rs.enumerate() {
-                    print("repeated at: \(index) with \(r)")
-                }
-            }
-        }
-        Otification.deleteAlarm(alarm.uid!)
-         */
-        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        // self.tableView.frame = CGRectMake(0.0, 0.0, Otification.dWidth, Otification.dHeight)
     }
 
     override func didReceiveMemoryWarning() {
@@ -95,6 +84,10 @@ class MyListTableViewController: OishiTableViewController, ToggleButtonDelegate 
         }
         if let repeats = alarm.repeats {
             cell.setRepeat(repeats)
+        }
+        
+        if let no = alarm.actorNo {
+            cell.userImageView.image = UIImage(named: "actorc_\(no)")
         }
         
         if let on = alarm.on {

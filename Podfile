@@ -12,5 +12,6 @@ target 'oishi' do
   pod 'SwiftHEXColors'
   pod "PickerView"
   pod 'LLSimpleCamera'
+  pod 'SwiftKeychainWrapper'
 
 end

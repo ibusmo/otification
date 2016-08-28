@@ -35,6 +35,7 @@ class ActionsTableViewCell: UITableViewCell, iCarouselDataSource, iCarouselDeleg
         self.carousel.dataSource = self
         self.carousel.delegate = self
         
+        self.carousel.backgroundColor = UIColor.redColor().colorWithAlphaComponent(0.5)
         self.carousel.backgroundColor = UIColor.clearColor()
         self.carousel.type = .Linear
     }
@@ -47,7 +48,7 @@ class ActionsTableViewCell: UITableViewCell, iCarouselDataSource, iCarouselDeleg
     
     func initSelectedImageView() {
         let size = CGSizeMake(Otification.calculatedWidthFromRatio(269.0), Otification.calculatedHeightFromRatio(282.0))
-        self.selectedImageView.frame = CGRectMake((Otification.rWidth - size.width) / 2.0, self.carousel.frame.origin.y, size.width, size.height)
+        self.selectedImageView.frame = CGRectMake((Otification.rWidth - size.width) / 2.0, self.frame.size.height - self.carousel.frame.size.height, size.width, size.height)
         self.selectedImageView.image = UIImage(named: "selected_action")
         
         self.contentView.addSubview(self.selectedImageView)

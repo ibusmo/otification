@@ -9,6 +9,7 @@
 import UIKit
 import AudioToolbox
 import AVFoundation
+import SwiftKeychainWrapper
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -25,19 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if ((UIScreen.mainScreen().bounds.size.height / UIScreen.mainScreen().bounds.size.width) < 1.5) {
             self.window = UIWindow(frame: CGRectMake(115.0, 32.0, 538.0, 960.0))
             
-            print("screenSize: \(UIScreen.mainScreen().bounds.size)")
-            
             let bg = UIImageView(frame: CGRectMake(-115.0, -32.0, UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height))
             bg.image = UIImage(named: "ipad_bg")
             bg.backgroundColor = UIColor.blackColor()
-            
-            /*
-            let dummy = DummyViewController()
-            dummy.view.frame = CGRectMake(0.0, 0.0, 540, 960.0)
-            dummy.view.backgroundColor = UIColor.redColor()
-            self.window?.rootViewController = dummy
-            self.window?.makeKeyAndVisible()
-             */
             
             self.window?.addSubview(bg)
             self.window?.sendSubviewToBack(bg)
@@ -50,26 +41,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UIApplication.sharedApplication().cancelAllLocalNotifications()
         
-        /*
-        for familyName in UIFont.familyNames() as [String] {
-            print("\(familyName)\n")
-            for fontName in UIFont.fontNamesForFamilyName(familyName) as [String] {
-                print("\tFont: \(fontName)\n")
-            }
+        if let _ = KeychainWrapper.defaultKeychainWrapper().stringForKey("first_launch") {
+            ViewControllerManager.sharedInstance.presentMyList()
+        } else {
+            KeychainWrapper.defaultKeychainWrapper().setString("true", forKey: "first_launch")
+            // TODO: - present with tutorial
+            ViewControllerManager.sharedInstance.presentTutorial()
         }
-         */
-        
-        ViewControllerManager.sharedInstance.presentMyList()
-        
-//        if let options = launchOptions {
-//            if let notification = options[UIApplicationLaunchOptionsLocalNotificationKey] as? UILocalNotification {
-//                if let userInfo = notification.userInfo {
-//                    let uid = userInfo["uid"] as! String
-//                }
-//            }
-//        } else {
-//            ViewControllerManager.sharedInstance.presentMyList()
-//        }
         
         return true
     }

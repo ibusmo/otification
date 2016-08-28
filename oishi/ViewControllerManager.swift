@@ -40,10 +40,7 @@ class ViewControllerManager {
     }
     
     func presentMyList() {
-        let transition = CATransition()
-        transition.type = kCATransitionFade
-        self.appDelegate.window?.setRootViewController(self.getMyList(), transition: transition)
-        // self.appDelegate.window?.rootViewController = self.getMyList()
+        self.appDelegate.window?.rootViewController = self.getMyList()
         self.appDelegate.window?.makeKeyAndVisible()
     }
     

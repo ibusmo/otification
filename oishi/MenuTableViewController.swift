@@ -44,7 +44,7 @@ class MenuTableViewController: OishiTableViewController {
         self.bottomGreenTeaImageView.image = UIImage(named: "menu_greentea")
         self.bottomGreenTeaImageView.layer.zPosition = 1000
         
-        self.view.addSubview(bottomGreenTeaImageView)
+        // self.view.addSubview(bottomGreenTeaImageView)
     }
 
     override func didReceiveMemoryWarning() {

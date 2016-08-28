@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftKeychainWrapper
 
 class TutorialViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
@@ -53,7 +54,7 @@ class TutorialViewController: UIViewController, UICollectionViewDataSource, UICo
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("tutorialCell", forIndexPath: indexPath) as! TutorialCollectionViewCell
-        cell.tutorialImageView.image = UIImage(named: "tutorial_0\(indexPath.row + 1)")
+        cell.tutorialImageView.image = UIImage(named: "tutorial_\(indexPath.row + 1)")
         return cell
     }
     
@@ -64,7 +65,13 @@ class TutorialViewController: UIViewController, UICollectionViewDataSource, UICo
     // MARK: - closbutton
     
     func closeDidTap() {
-        ViewControllerManager.sharedInstance.presentMyList()
+        if let _ = KeychainWrapper.defaultKeychainWrapper().stringForKey("first_tutorial") {
+            ViewControllerManager.sharedInstance.presentMyList()
+        } else {
+            KeychainWrapper.defaultKeychainWrapper().setString("true", forKey: "first_tutorial")
+            // TODO: - present with create
+            ViewControllerManager.sharedInstance.presentCreateAlarm()
+        }   
     }
 
     /*
