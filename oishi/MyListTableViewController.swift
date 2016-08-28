@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class MyListTableViewController: OishiTableViewController, ToggleButtonDelegate {
+class MyListTableViewController: OishiTableViewController, ToggleButtonDelegate, SWTableViewCellDelegate {
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -70,11 +70,18 @@ class MyListTableViewController: OishiTableViewController, ToggleButtonDelegate 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("myListCell", forIndexPath: indexPath) as! MyListTableViewCell
+            
         let alarm = AlarmManager.sharedInstance.alarms[indexPath.row]
         cell.initMyList(indexPath.row, isFriendList: false)
+        cell.delegate = self
+        cell.tag = indexPath.row
         
         cell.toggleButton.delegate = self
         cell.toggleButton.tag = indexPath.row
+        
+        cell.setLeftUtilityButtons(self.leftbuttons() as [AnyObject], withButtonWidth: Otification.calculatedWidthFromRatio(318.0))
+        
+        // TODO: - swipe to delete from right
         
         if let title = alarm.title {
             cell.setActionTitle(title)
@@ -90,7 +97,7 @@ class MyListTableViewController: OishiTableViewController, ToggleButtonDelegate 
             cell.userImageView.image = UIImage(named: "actorc_\(no)")
         }
         
-        if let _ = alarm.custom {
+        if let custom = alarm.custom where custom == true {
             let url = self.getVideoPathString()?.URLByAppendingPathComponent(alarm.uid!).URLByAppendingPathExtension("mov")
             print("getFuckingVideoURL")
             print(url?.absoluteString)
@@ -159,6 +166,24 @@ class MyListTableViewController: OishiTableViewController, ToggleButtonDelegate 
         menu.modalPresentationStyle = .OverCurrentContext
         self.definesPresentationContext = true
         self.presentViewController(menu, animated: false, completion: nil)
+    }
+    
+    // MARK: - SWTableViewCell
+    
+    func leftbuttons() -> NSArray {
+        let leftButtons = NSMutableArray()
+        leftButtons.sw_addUtilityButtonWithColor(UIColor.redColor(), icon: UIImage(named: "delete_button"))
+        return leftButtons
+    }
+    
+    func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerLeftUtilityButtonWithIndex index: Int) {
+        if (index == 0) {
+            // TODO: - delete alarm
+            let alarm = AlarmManager.sharedInstance.alarms[cell.tag]
+            AlarmManager.sharedInstance.unsetAlarm(alarm.uid!)
+            AlarmManager.sharedInstance.deleteAlarm(alarm.uid!)
+            self.tableView.reloadData()
+        }
     }
 
     // MARK: - duplicate

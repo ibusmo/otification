@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyListTableViewCell: UITableViewCell {
+class MyListTableViewCell: SWTableViewCell {
     
     var userImageView: UIImageView = UIImageView()
     var toggleButton: ToggleButton = ToggleButton(frame: CGRectMake(Otification.calculatedWidthFromRatio(880.0), (((339.0 / 2208.0) * Otification.rHeight) - (Otification.calculatedHeightFromRatio(210.0))) / 2.0, Otification.calculatedHeightFromRatio(318.0), Otification.calculatedHeightFromRatio(183.0)))

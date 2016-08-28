@@ -53,6 +53,12 @@
 		A2508A4F1D5E69F800DFD781 /* OtificationAlarmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2508A4E1D5E69F800DFD781 /* OtificationAlarmManager.swift */; };
 		A261CF5B1D72DB51000843EF /* GalleryActorsPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A261CF5A1D72DB51000843EF /* GalleryActorsPickerView.swift */; };
 		A261CF5D1D72E561000843EF /* GalleryActorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A261CF5C1D72E561000843EF /* GalleryActorView.swift */; };
+		A261CF6B1D7361F6000843EF /* NSMutableArray+SWUtilityButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = A261CF601D7361F6000843EF /* NSMutableArray+SWUtilityButtons.m */; };
+		A261CF6C1D7361F6000843EF /* SWCellScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = A261CF621D7361F6000843EF /* SWCellScrollView.m */; };
+		A261CF6D1D7361F6000843EF /* SWLongPressGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = A261CF641D7361F6000843EF /* SWLongPressGestureRecognizer.m */; };
+		A261CF6E1D7361F6000843EF /* SWTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A261CF661D7361F6000843EF /* SWTableViewCell.m */; };
+		A261CF6F1D7361F6000843EF /* SWUtilityButtonTapGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = A261CF681D7361F6000843EF /* SWUtilityButtonTapGestureRecognizer.m */; };
+		A261CF701D7361F6000843EF /* SWUtilityButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = A261CF6A1D7361F6000843EF /* SWUtilityButtonView.m */; };
 		A261D18A1D63A17800DEECF1 /* OtificationTimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A261D1891D63A17800DEECF1 /* OtificationTimePickerView.swift */; };
 		A261D1971D647E5500DEECF1 /* TimePickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A261D1951D647E5500DEECF1 /* TimePickerTableViewCell.swift */; };
 		A261D1981D647E5500DEECF1 /* TimePickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A261D1961D647E5500DEECF1 /* TimePickerTableViewCell.xib */; };
@@ -66,8 +72,6 @@
 		A26ECD361D666FAD004EA733 /* DB HelvethaicaMon X Med It.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A26ECD301D666FAD004EA733 /* DB HelvethaicaMon X Med It.ttf */; };
 		A26ECD371D666FAD004EA733 /* DB HelvethaicaMon X Med.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A26ECD311D666FAD004EA733 /* DB HelvethaicaMon X Med.ttf */; };
 		A26ECD381D666FAD004EA733 /* DB HelvethaicaMon X.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A26ECD321D666FAD004EA733 /* DB HelvethaicaMon X.ttf */; };
-		A272BC4E1D67596D00D06576 /* BWSwipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A272BC4C1D67596D00D06576 /* BWSwipeCell.swift */; };
-		A272BC4F1D67596D00D06576 /* BWSwipeRevealCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A272BC4D1D67596D00D06576 /* BWSwipeRevealCell.swift */; };
 		A272BC531D675CD900D06576 /* EditAlarmTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A272BC511D675CD900D06576 /* EditAlarmTableViewController.swift */; };
 		A272BC541D675CD900D06576 /* EditAlarmTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A272BC521D675CD900D06576 /* EditAlarmTableViewController.xib */; };
 		A272BC581D67627900D06576 /* RepeatAlarmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A272BC561D67627900D06576 /* RepeatAlarmTableViewCell.swift */; };
@@ -167,6 +171,18 @@
 		A2508A4E1D5E69F800DFD781 /* OtificationAlarmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtificationAlarmManager.swift; sourceTree = "<group>"; };
 		A261CF5A1D72DB51000843EF /* GalleryActorsPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryActorsPickerView.swift; sourceTree = "<group>"; };
 		A261CF5C1D72E561000843EF /* GalleryActorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryActorView.swift; sourceTree = "<group>"; };
+		A261CF5F1D7361F6000843EF /* NSMutableArray+SWUtilityButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+SWUtilityButtons.h"; sourceTree = "<group>"; };
+		A261CF601D7361F6000843EF /* NSMutableArray+SWUtilityButtons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+SWUtilityButtons.m"; sourceTree = "<group>"; };
+		A261CF611D7361F6000843EF /* SWCellScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWCellScrollView.h; sourceTree = "<group>"; };
+		A261CF621D7361F6000843EF /* SWCellScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWCellScrollView.m; sourceTree = "<group>"; };
+		A261CF631D7361F6000843EF /* SWLongPressGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWLongPressGestureRecognizer.h; sourceTree = "<group>"; };
+		A261CF641D7361F6000843EF /* SWLongPressGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWLongPressGestureRecognizer.m; sourceTree = "<group>"; };
+		A261CF651D7361F6000843EF /* SWTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWTableViewCell.h; sourceTree = "<group>"; };
+		A261CF661D7361F6000843EF /* SWTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWTableViewCell.m; sourceTree = "<group>"; };
+		A261CF671D7361F6000843EF /* SWUtilityButtonTapGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUtilityButtonTapGestureRecognizer.h; sourceTree = "<group>"; };
+		A261CF681D7361F6000843EF /* SWUtilityButtonTapGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUtilityButtonTapGestureRecognizer.m; sourceTree = "<group>"; };
+		A261CF691D7361F6000843EF /* SWUtilityButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUtilityButtonView.h; sourceTree = "<group>"; };
+		A261CF6A1D7361F6000843EF /* SWUtilityButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUtilityButtonView.m; sourceTree = "<group>"; };
 		A261D1891D63A17800DEECF1 /* OtificationTimePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtificationTimePickerView.swift; sourceTree = "<group>"; };
 		A261D1951D647E5500DEECF1 /* TimePickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePickerTableViewCell.swift; sourceTree = "<group>"; };
 		A261D1961D647E5500DEECF1 /* TimePickerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimePickerTableViewCell.xib; sourceTree = "<group>"; };
@@ -180,8 +196,6 @@
 		A26ECD301D666FAD004EA733 /* DB HelvethaicaMon X Med It.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DB HelvethaicaMon X Med It.ttf"; sourceTree = "<group>"; };
 		A26ECD311D666FAD004EA733 /* DB HelvethaicaMon X Med.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DB HelvethaicaMon X Med.ttf"; sourceTree = "<group>"; };
 		A26ECD321D666FAD004EA733 /* DB HelvethaicaMon X.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DB HelvethaicaMon X.ttf"; sourceTree = "<group>"; };
-		A272BC4C1D67596D00D06576 /* BWSwipeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BWSwipeCell.swift; sourceTree = "<group>"; };
-		A272BC4D1D67596D00D06576 /* BWSwipeRevealCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BWSwipeRevealCell.swift; sourceTree = "<group>"; };
 		A272BC511D675CD900D06576 /* EditAlarmTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditAlarmTableViewController.swift; sourceTree = "<group>"; };
 		A272BC521D675CD900D06576 /* EditAlarmTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditAlarmTableViewController.xib; sourceTree = "<group>"; };
 		A272BC561D67627900D06576 /* RepeatAlarmTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatAlarmTableViewCell.swift; sourceTree = "<group>"; };
@@ -573,8 +587,8 @@
 		A2508A3E1D5C802D00DFD781 /* packages */ = {
 			isa = PBXGroup;
 			children = (
+				A261CF5E1D7361EB000843EF /* SWTableViewCell */,
 				A23CBDE21D708986004ED38E /* M13 */,
-				A272BC4B1D67595400D06576 /* BWSwipeRevealCell */,
 				A217B73F1D65161000021BFA /* iCarousel */,
 				A22BDE0D1D673A8D004FA6CB /* THLabel */,
 				A217B7401D65162D00021BFA /* oishi-Bridging-Header.h */,
@@ -608,6 +622,25 @@
 			name = alarm;
 			sourceTree = "<group>";
 		};
+		A261CF5E1D7361EB000843EF /* SWTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				A261CF5F1D7361F6000843EF /* NSMutableArray+SWUtilityButtons.h */,
+				A261CF601D7361F6000843EF /* NSMutableArray+SWUtilityButtons.m */,
+				A261CF611D7361F6000843EF /* SWCellScrollView.h */,
+				A261CF621D7361F6000843EF /* SWCellScrollView.m */,
+				A261CF631D7361F6000843EF /* SWLongPressGestureRecognizer.h */,
+				A261CF641D7361F6000843EF /* SWLongPressGestureRecognizer.m */,
+				A261CF651D7361F6000843EF /* SWTableViewCell.h */,
+				A261CF661D7361F6000843EF /* SWTableViewCell.m */,
+				A261CF671D7361F6000843EF /* SWUtilityButtonTapGestureRecognizer.h */,
+				A261CF681D7361F6000843EF /* SWUtilityButtonTapGestureRecognizer.m */,
+				A261CF691D7361F6000843EF /* SWUtilityButtonView.h */,
+				A261CF6A1D7361F6000843EF /* SWUtilityButtonView.m */,
+			);
+			name = SWTableViewCell;
+			sourceTree = "<group>";
+		};
 		A261D1881D63A15C00DEECF1 /* timepicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -634,15 +667,6 @@
 				A26ECD2A1D666F59004EA733 /* MenuTableViewCell.xib */,
 			);
 			name = cells;
-			sourceTree = "<group>";
-		};
-		A272BC4B1D67595400D06576 /* BWSwipeRevealCell */ = {
-			isa = PBXGroup;
-			children = (
-				A272BC4C1D67596D00D06576 /* BWSwipeCell.swift */,
-				A272BC4D1D67596D00D06576 /* BWSwipeRevealCell.swift */,
-			);
-			name = BWSwipeRevealCell;
 			sourceTree = "<group>";
 		};
 		A272BC501D675CBB00D06576 /* editalarm */ = {
@@ -1010,8 +1034,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A261CF6D1D7361F6000843EF /* SWLongPressGestureRecognizer.m in Sources */,
 				A2508A3A1D5C7A1700DFD781 /* ViewControllerManager.swift in Sources */,
 				A28A044C1D727381005197AC /* Otification+UIImageView.swift in Sources */,
+				A261CF6B1D7361F6000843EF /* NSMutableArray+SWUtilityButtons.m in Sources */,
 				A2508A351D5C747C00DFD781 /* OishiTableViewController.swift in Sources */,
 				A2508A461D5C88B200DFD781 /* OishiNavigationBar.swift in Sources */,
 				A2508A411D5C83C300DFD781 /* MyListTableViewController.swift in Sources */,
@@ -1025,13 +1051,13 @@
 				A272BC701D6BAF1500D06576 /* CustomAlarmViewController.swift in Sources */,
 				A2508A4F1D5E69F800DFD781 /* OtificationAlarmManager.swift in Sources */,
 				A272BC691D6B464700D06576 /* OtificationHTTPService.swift in Sources */,
+				A261CF6E1D7361F6000843EF /* SWTableViewCell.m in Sources */,
 				A261D19B1D64803B00DEECF1 /* CreateAlarmTableViewController.swift in Sources */,
 				A2508A491D5CCABD00DFD781 /* SectionHeaderView.swift in Sources */,
 				A23CBDF81D717080004ED38E /* VideoPreviewTableViewCell.swift in Sources */,
 				A272BC7F1D6BC82800D06576 /* FriendListTableViewController.swift in Sources */,
 				A272BC881D6BD45F00D06576 /* FriendActorsPickerTableViewCell.swift in Sources */,
 				1FB87CEF1D64632D0097AC74 /* SnoozeButton.swift in Sources */,
-				A272BC4E1D67596D00D06576 /* BWSwipeCell.swift in Sources */,
 				A272BC531D675CD900D06576 /* EditAlarmTableViewController.swift in Sources */,
 				A272BC741D6BAF7E00D06576 /* OishiViewController.swift in Sources */,
 				A272BCBA1D6F9DCC00D06576 /* DownloadViewController.swift in Sources */,
@@ -1045,13 +1071,14 @@
 				A217B7641D66679500021BFA /* OtificationColor.swift in Sources */,
 				A272BC831D6BC88700D06576 /* CreateFriendTableViewController.swift in Sources */,
 				A217B7251D64BBBD00021BFA /* ActionsTableViewCell.swift in Sources */,
+				A261CF701D7361F6000843EF /* SWUtilityButtonView.m in Sources */,
 				A261D1971D647E5500DEECF1 /* TimePickerTableViewCell.swift in Sources */,
 				A272BCA61D6EF68100D06576 /* VideoAlarmViewController.swift in Sources */,
 				A26ECD2B1D666F59004EA733 /* MenuTableViewCell.swift in Sources */,
 				A22BDE0A1D670D34004FA6CB /* MyListTableViewCell.swift in Sources */,
-				A272BC4F1D67596D00D06576 /* BWSwipeRevealCell.swift in Sources */,
 				A217B7581D65D3CE00021BFA /* Otification+UIButton.swift in Sources */,
 				A299FF2B1D618A6100EE74C1 /* Alarm.swift in Sources */,
+				A261CF6F1D7361F6000843EF /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
 				A217B7361D64EC2900021BFA /* ActorsPickerTableViewCell.swift in Sources */,
 				A217B7431D65162D00021BFA /* iCarousel.m in Sources */,
 				A272BCB11D6F805200D06576 /* ActionInfo.swift in Sources */,
@@ -1068,6 +1095,7 @@
 				A22BDE071D670969004FA6CB /* Action.swift in Sources */,
 				A23CBDE51D708994004ED38E /* M13ProgressViewBorderedBar.m in Sources */,
 				A299FF391D61B13E00EE74C1 /* AlarmManager.swift in Sources */,
+				A261CF6C1D7361F6000843EF /* SWCellScrollView.m in Sources */,
 				A272BC9C1D6BF06600D06576 /* TutorialViewController.swift in Sources */,
 				A24E205E1D5B454F00985409 /* AppDelegate.swift in Sources */,
 			);
