@@ -234,7 +234,7 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
                         
                         download.videoUrlString = videoUrlString
                         download.audioUrlString = audioUrlString
-                        // download.delegate = self
+                        download.delegate = self
                         
                         self.definesPresentationContext = true
                         self.presentViewController(download, animated: true, completion: nil)

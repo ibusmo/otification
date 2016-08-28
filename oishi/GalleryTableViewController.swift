@@ -35,6 +35,9 @@ class GalleryTableViewController: OishiTableViewController, ActorsPickerTableVie
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.tableView.backgroundColor = UIColor.clearColor()
+        self.view.backgroundColor = UIColor.clearColor()
+        
         self.backgroundImageView.frame = CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight)
         self.backgroundImageView.image = UIImage(named: "gallery_bg")
         self.backgroundImageView.contentMode = UIViewContentMode.ScaleAspectFill

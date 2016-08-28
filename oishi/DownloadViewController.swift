@@ -101,13 +101,11 @@ class DownloadViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.view.frame = CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight)
         super.viewWillAppear(animated)
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        // self.view.frame = CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight)
     }
 
     override func didReceiveMemoryWarning() {
@@ -210,7 +208,7 @@ class DownloadViewController: UIViewController {
         }
         
         if (!(self.videoDownloaded && self.audioDownloaded)) {
-            // self.downloadFile()
+            self.downloadFile()
         } else {
             self.delegate?.finishedDownloadResources()
         }

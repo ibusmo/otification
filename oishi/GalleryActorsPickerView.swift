@@ -25,6 +25,7 @@ class GalleryActorsPickerView: UIView, iCarouselDataSource, iCarouselDelegate {
         
         self.carousel.dataSource = self
         self.carousel.delegate = self
+        self.carousel.clipsToBounds = true
         
         let size = CGSizeMake(Otification.calculatedWidthFromRatio(345.0), Otification.calculatedHeightFromRatio(360.0))
         self.selectedImageView.frame = CGRectMake((Otification.rWidth - size.width) / 2.0,  Otification.calculatedHeightFromRatio(8.0), size.width, size.height)
