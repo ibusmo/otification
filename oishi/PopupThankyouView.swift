@@ -8,8 +8,10 @@
 
 import UIKit
 
-protocol PopupThankyouViewDelegate {
+@objc protocol PopupThankyouViewDelegate {
     func popupDidRemoveFromSuperview()
+    optional func popupFBShareDidTap()
+    optional func popupLineShareDidTap()
 }
 
 class PopupThankyouView: UIView {
@@ -17,6 +19,9 @@ class PopupThankyouView: UIView {
     var backgroundImageView = UIImageView()
     var popupImageView = UIImageView()
     var closeButton = UIButton()
+    
+    var fbButton = UIButton()
+    var lineButton = UIButton()
     
     var isOnlyThankyou: Bool = true
     
@@ -57,7 +62,22 @@ class PopupThankyouView: UIView {
         if (self.isOnlyThankyou) {
             self.popupImageView.image = UIImage(named: "popup_only_thx")
         } else {
-            self.popupImageView.image = UIImage(named: "popup_thx")
+            self.popupImageView.image = UIImage(named: "popup_thankyou")
+            
+            let buttonSize = CGSizeMake(Otification.calculatedWidthFromRatio(162.0), Otification.calculatedHeightFromRatio(162.0))
+        
+            self.fbButton.frame = CGRectMake(Otification.calculatedWidthFromRatio(452.0), Otification.calculatedHeightFromRatio(1295.0), buttonSize.width, buttonSize.height)
+            self.fbButton.backgroundColor = UIColor.clearColor()
+            self.fbButton.addTarget(self, action: #selector(PopupThankyouView.fbDidTap), forControlEvents: UIControlEvents.TouchUpInside)
+            self.fbButton.layer.zPosition = 1000
+            
+            self.lineButton.frame = CGRectMake(Otification.calculatedWidthFromRatio(642.0), Otification.calculatedHeightFromRatio(1295.0), buttonSize.width, buttonSize.height)
+            self.lineButton.backgroundColor = UIColor.clearColor()
+            self.lineButton.addTarget(self, action: #selector(PopupThankyouView.lineDidTap), forControlEvents: UIControlEvents.TouchUpInside)
+            self.lineButton.layer.zPosition = 1000
+            
+            self.addSubview(self.fbButton)
+            self.addSubview(self.lineButton)
         }
     }
     
@@ -65,5 +85,15 @@ class PopupThankyouView: UIView {
         self.removeFromSuperview()
         self.delegate?.popupDidRemoveFromSuperview()
     }
-
+    
+    func fbDidTap() {
+        print("fbDidTap")
+        self.delegate?.popupFBShareDidTap!()
+    }
+    
+    func lineDidTap() {
+        print("lineDidTap")
+        self.delegate?.popupLineShareDidTap!()
+    }
+    
 }

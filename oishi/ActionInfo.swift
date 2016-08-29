@@ -81,7 +81,19 @@ class ActionInfo {
         let videoUrlString = json["video"].string
         let audioUrlString = json["audio_ios"].string
         
-        return ActionInfo(id: id, active: active, version: version, actor: actor, type: type, no: no, name: name, notiTitle: notiTitle, notiMessage: notiMessage, videoUrlString: videoUrlString, audioUrlString: audioUrlString)
+        let shareTitle = json["share_title"].string
+        let shareDescription = json["share_description"].string
+        let shareImageUrlString = json["share_image"].string
+        let shareUrl = json["share_url"].string
+        
+        let actionInfo = ActionInfo(id: id, active: active, version: version, actor: actor, type: type, no: no, name: name, notiTitle: notiTitle, notiMessage: notiMessage, videoUrlString: videoUrlString, audioUrlString: audioUrlString)
+        
+        actionInfo.shareTitle = shareTitle
+        actionInfo.shareDesription = shareDescription
+        actionInfo.shareImageUrlString = shareImageUrlString
+        actionInfo.shareUrl = shareUrl
+        
+        return actionInfo
     }
     
     class func getFriendActionInfo(json: JSON) -> ActionInfo {

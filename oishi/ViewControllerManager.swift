@@ -47,7 +47,11 @@ class ViewControllerManager {
     func presentMyList(isPresentMyList: Bool) {
         let mylist = self.getMyList()
         mylist.isPresentMyList = isPresentMyList
-        mylist.tabBar.rightButtonDidTap()
+        if (isPresentMyList) {
+            mylist.tabBar.leftButtonDidTap()
+        } else {
+            mylist.tabBar.rightButtonDidTap()
+        }
         self.appDelegate.window?.rootViewController = mylist
         self.appDelegate.window?.makeKeyAndVisible()
     }
