@@ -126,7 +126,7 @@ class MyListTableViewCell: SWTableViewCell {
     }
     
     func setRepeat(repeats: [Bool]) {
-        let dayInWeek: [String] = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]
+        let dayInWeek: [String] = ["อา", "จ", "อ", "พ", "พฤ", "ศ", "ส"]
         var repeatText = ""
         for (index, r) in repeats.enumerate() {
             if (r) {
