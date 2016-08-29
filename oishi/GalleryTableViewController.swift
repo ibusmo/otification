@@ -12,7 +12,7 @@ import FBSDKLoginKit
 import FBSDKShareKit
 import SwiftyJSON
 
-class GalleryTableViewController: OishiTableViewController, ActorsPickerTableViewCellDelegate, VideoPreviewTableViewCellDelegate, FBSDKSharingDelegate, PopupThankyouViewDelegate {
+class GalleryTableViewController: OishiTableViewController, ActorsPickerTableViewCellDelegate, VideoPreviewTableViewCellDelegate, FBSDKSharingDelegate {
     
     var popupView: PopupView?
     
