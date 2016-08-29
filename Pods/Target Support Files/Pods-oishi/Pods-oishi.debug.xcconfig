@@ -1,9 +1,11 @@
 EMBEDDED_CONTENT_CONTAINS_SWIFT = YES
 FRAMEWORK_SEARCH_PATHS = $(inherited) "$PODS_CONFIGURATION_BUILD_DIR/Alamofire" "$PODS_CONFIGURATION_BUILD_DIR/Kingfisher" "$PODS_CONFIGURATION_BUILD_DIR/LLSimpleCamera" "$PODS_CONFIGURATION_BUILD_DIR/PickerView" "$PODS_CONFIGURATION_BUILD_DIR/SwiftHEXColors" "$PODS_CONFIGURATION_BUILD_DIR/SwiftKeychainWrapper" "$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AppsFlyer-SDK"
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-OTHER_CFLAGS = $(inherited) -iquote "$PODS_CONFIGURATION_BUILD_DIR/Alamofire/Alamofire.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/Kingfisher/Kingfisher.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/LLSimpleCamera/LLSimpleCamera.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/PickerView/PickerView.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/SwiftHEXColors/SwiftHEXColors.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/SwiftKeychainWrapper/SwiftKeychainWrapper.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON/SwiftyJSON.framework/Headers"
-OTHER_LDFLAGS = $(inherited) -framework "Alamofire" -framework "Kingfisher" -framework "LLSimpleCamera" -framework "PickerView" -framework "SwiftHEXColors" -framework "SwiftKeychainWrapper" -framework "SwiftyJSON"
+LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/AppsFlyer-SDK"
+OTHER_CFLAGS = $(inherited) -iquote "$PODS_CONFIGURATION_BUILD_DIR/Alamofire/Alamofire.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/Kingfisher/Kingfisher.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/LLSimpleCamera/LLSimpleCamera.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/PickerView/PickerView.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/SwiftHEXColors/SwiftHEXColors.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/SwiftKeychainWrapper/SwiftKeychainWrapper.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON/SwiftyJSON.framework/Headers" -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/AppsFlyer-SDK"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"AppsFlyerLib" -framework "AdSupport" -framework "Alamofire" -framework "Kingfisher" -framework "LLSimpleCamera" -framework "PickerView" -framework "Security" -framework "SwiftHEXColors" -framework "SwiftKeychainWrapper" -framework "SwiftyJSON" -framework "iAd"
 OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS"
 PODS_BUILD_DIR = $BUILD_DIR
 PODS_CONFIGURATION_BUILD_DIR = $PODS_BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)

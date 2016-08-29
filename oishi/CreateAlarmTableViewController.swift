@@ -24,6 +24,7 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
     let customButton = UIButton()
     
     var popup: PopupThankyouView?
+    var popupView: PopupView?
     var download: DownloadViewController?
     
     var hour: Int?
@@ -242,15 +243,19 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
                     
                     if (!(self.isFileDownloaded(self.getVideoFilePath(videoFileName)) && self.isFileDownloaded(self.getSoundFilePath(audioFileName)))) {
                         // let download = DownloadViewController(nibName: "DownloadViewController", bundle: nil)
-                        self.download = DownloadViewController()
-                        self.download!.modalPresentationStyle = .OverCurrentContext
-                        
-                        self.download!.videoUrlString = videoUrlString
-                        self.download!.audioUrlString = audioUrlString
-                        self.download!.delegate = self
-                        
-                        self.definesPresentationContext = true
-                        self.presentViewController(self.download!, animated: false, completion: nil)
+                        if (AlarmManager.sharedInstance.alarms.count < 7) {
+                            self.download = DownloadViewController()
+                            self.download!.modalPresentationStyle = .OverCurrentContext
+                            
+                            self.download!.videoUrlString = videoUrlString
+                            self.download!.audioUrlString = audioUrlString
+                            self.download!.delegate = self
+                            
+                            self.definesPresentationContext = true
+                            self.presentViewController(self.download!, animated: false, completion: nil)
+                        } else {
+                            
+                        }
                     } else {
                         AlarmManager.sharedInstance.prepareNewAlarm(self.action.actionName!, hour: h, minute: m)
                         AlarmManager.sharedInstance.unsaveAlarm?.custom = false
@@ -268,6 +273,9 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
                             self.view.addSubview(popup!)
                         } else {
                             // TODO: - exceed maximum alarm (8)
+                            self.popupView = PopupView(frame: CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight))
+                            self.popupView?.initPopupView("สามารถสร้างการตั้งปลุกได้สูงสุด\n 8 ครั้ง")
+                            self.view.addSubview(self.popupView!)
                         }
                     }
                 }
@@ -338,6 +346,7 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
     // MARK: - oishinavigationbardelegate
     
     override func menuDidTap() {
+        self.popup?.removeFromSuperview()
         let menu = MenuTableViewController(nibName: "MenuTableViewController", bundle: nil)
         menu.modalPresentationStyle = .OverCurrentContext
         self.definesPresentationContext = true

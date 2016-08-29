@@ -13,5 +13,6 @@ target 'oishi' do
   pod "PickerView"
   pod 'LLSimpleCamera'
   pod 'SwiftKeychainWrapper'
+  pod 'AppsFlyer-SDK'
 
 end

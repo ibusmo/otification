@@ -12,7 +12,9 @@ import FBSDKLoginKit
 import FBSDKShareKit
 import SwiftyJSON
 
-class GalleryTableViewController: OishiTableViewController, ActorsPickerTableViewCellDelegate, VideoPreviewTableViewCellDelegate, FBSDKSharingDelegate {
+class GalleryTableViewController: OishiTableViewController, ActorsPickerTableViewCellDelegate, VideoPreviewTableViewCellDelegate, FBSDKSharingDelegate, PopupThankyouViewDelegate {
+    
+    var popupView: PopupView?
     
     var actorsPickerView = GalleryActorsPickerView(frame: CGRectZero)
     let actorNameLabel = UILabel()
@@ -353,5 +355,22 @@ class GalleryTableViewController: OishiTableViewController, ActorsPickerTableVie
         popup?.initPopupView()
         self.view.addSubview(popup!)
     }
+    
+    /*
+    func popupDidRemoveFromSuperview() {
+        if (Reachability.isConnectedToNetwork()) {
+            self.getPlaylistGallery()
+        } else {
+            // TODO: - popup
+            UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+                }, completion: { finished in
+                self.popupView = PopupView(frame: CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight))
+                self.popupView?.initPopupView("กรุณาตรวจสอบสัญญาณอินเทอร์เน็ต")
+                self.popupView?.delegate = self
+                self.view.addSubview(self.popupView!)
+            })
+        }
+    }
+     */
 
 }

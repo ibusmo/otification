@@ -16,6 +16,8 @@ class PopupView: UIView {
     
     var messageLabel = THLabel()
     
+    var delegate: PopupThankyouViewDelegate?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -31,6 +33,7 @@ class PopupView: UIView {
         self.popupImageView.frame = frame
         self.popupImageView.layer.zPosition = 903
         self.popupImageView.backgroundColor = UIColor.clearColor()
+        self.popupImageView.image = UIImage(named: "popup_all")
         
         let closeButtonSize = CGSizeMake(Otification.calculatedWidthFromRatio(188.0), Otification.calculatedWidthFromRatio(188.0))
         self.closeButton.frame = CGRectMake(Otification.rWidth - closeButtonSize.width - Otification.calculatedWidthFromRatio(25.0), Otification.calculatedHeightFromRatio(550.0), closeButtonSize.width, closeButtonSize.height)
@@ -48,13 +51,22 @@ class PopupView: UIView {
     }
     
     func initPopupView(message: String) {
-        self.messageLabel.frame = CGRectMake(Otification.calculatedWidthFromRatio(211.0), Otification.calculatedHeightFromRatio(890.0), Otification.calculatedWidthFromRatio(820.0), Otification.calculatedHeightFromRatio(612.0))
+        self.messageLabel.frame = CGRectMake(Otification.calculatedWidthFromRatio(186.0), Otification.calculatedHeightFromRatio(890.0), Otification.calculatedWidthFromRatio(870.0), Otification.calculatedHeightFromRatio(612.0))
         self.messageLabel.font = UIFont(name: Otification.DBHELVETHAICA_X_BOLD, size: Otification.calculatedHeightFromRatio(120.0))
         self.messageLabel.textAlignment = .Center
+        self.messageLabel.textColor = UIColor.blackColor()
+        self.messageLabel.numberOfLines = 0
+        self.messageLabel.lineBreakMode = .ByWordWrapping
+        self.messageLabel.layer.zPosition = 1000
+        
+        self.messageLabel.text = message
+        
+        self.addSubview(self.messageLabel)
     }
     
     func closeButtonDidTap() {
         self.removeFromSuperview()
+        self.delegate?.popupDidRemoveFromSuperview()
     }
 
 }

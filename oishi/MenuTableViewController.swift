@@ -65,6 +65,7 @@ class MenuTableViewController: OishiTableViewController, MenuTableViewCellDelega
     }
     
     override func menuDidTap() {
+        self.popup?.removeFromSuperview()
         self.dismissViewControllerAnimated(false, completion: nil)
     }
 

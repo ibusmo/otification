@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (3.4.1)
+  - AppsFlyer-SDK (4.5.3)
   - Kingfisher (2.4.3)
   - LLSimpleCamera (5.0.0)
   - PickerView (0.2.2)
@@ -9,6 +10,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 3.4)
+  - AppsFlyer-SDK
   - Kingfisher (~> 2.4)
   - LLSimpleCamera
   - PickerView
@@ -18,6 +20,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
+  AppsFlyer-SDK: 39e1d4015cafc95ce6a2afbe47773e404d1e00f3
   Kingfisher: 322a9c1c5b03212c1e741d6bece72d387b01a77a
   LLSimpleCamera: 7175ccb81be71c83d79933089322eb662b1f0327
   PickerView: d6952d565ec80c9fcdbd7dff853723e4df0b2490
@@ -25,6 +28,6 @@ SPEC CHECKSUMS:
   SwiftKeychainWrapper: 3575838215fa36c816899c301a7afe370bd94814
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: 53b38fab81011616747484ecac5bfc766e2074be
+PODFILE CHECKSUM: 7ebc32ae44ca1ba9734e54620fe97dbda4ae31cf
 
 COCOAPODS: 1.0.1

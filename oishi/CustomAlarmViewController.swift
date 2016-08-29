@@ -56,6 +56,7 @@ class CustomAlarmViewController: OishiViewController, AVAudioRecorderDelegate {
     
     var timer = NSTimer()
     var counter: Int = 0
+    var popupView: PopupView?
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -216,9 +217,15 @@ class CustomAlarmViewController: OishiViewController, AVAudioRecorderDelegate {
                 ViewControllerManager.sharedInstance.presentMyList()
             } else {
                 // TODO: - sth error
+                self.popupView = PopupView(frame: CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight))
+                self.popupView?.initPopupView("สามารถสร้างการตั้งปลุกได้สูงสุด\n 8 ครั้ง")
+                self.view.addSubview(self.popupView!)
             }
         } else {
             // TODO: - alert user -> should record both media
+            self.popupView = PopupView(frame: CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight))
+            self.popupView?.initPopupView("กรุณาอัดเสียง และสร้างวีดีโอ")
+            self.view.addSubview(self.popupView!)
         }
     }
     

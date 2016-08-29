@@ -9,7 +9,9 @@
 import UIKit
 import SystemConfiguration
 
-class IndexViewController: UIViewController {
+class IndexViewController: UIViewController, PopupThankyouViewDelegate {
+    
+    var popupView: PopupView?
     
     var backgroundImageView = UIImageView()
     var button = UIButton()
@@ -49,6 +51,10 @@ class IndexViewController: UIViewController {
             self.getDataInfo()
         } else {
             // TODO: - popup
+            self.popupView = PopupView(frame: CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight))
+            self.popupView?.initPopupView("กรุณาตรวจสอบสัญญาณอินเทอร์เน็ต")
+            self.popupView?.delegate = self
+            self.view.addSubview(self.popupView!)
         }
         
     }
@@ -79,6 +85,10 @@ class IndexViewController: UIViewController {
                 self.getDataInfo()
             } else {
                 // TODO: - popup
+                self.popupView = PopupView(frame: CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight))
+                self.popupView?.initPopupView("กรุณาตรวจสอบสัญญาณอินเทอร์เน็ต")
+                self.popupView?.delegate = self
+                self.view.addSubview(self.popupView!)
             }
         }
     }
@@ -90,6 +100,10 @@ class IndexViewController: UIViewController {
                 self.isLoadedData = true
             }
         })
+    }
+    
+    func popupDidRemoveFromSuperview() {
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: #selector(IndexViewController.skipIndex), userInfo: nil, repeats: false)
     }
 
     /*
