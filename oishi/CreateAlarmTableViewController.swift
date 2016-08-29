@@ -24,6 +24,7 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
     let customButton = UIButton()
     
     var popup: PopupThankyouView?
+    var download: DownloadViewController?
     
     var hour: Int?
     var minute: Int?
@@ -241,15 +242,15 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
                     
                     if (!(self.isFileDownloaded(self.getVideoFilePath(videoFileName)) && self.isFileDownloaded(self.getSoundFilePath(audioFileName)))) {
                         // let download = DownloadViewController(nibName: "DownloadViewController", bundle: nil)
-                        let download = DownloadViewController()
-                        download.modalPresentationStyle = .OverCurrentContext
+                        self.download = DownloadViewController()
+                        self.download!.modalPresentationStyle = .OverCurrentContext
                         
-                        download.videoUrlString = videoUrlString
-                        download.audioUrlString = audioUrlString
-                        download.delegate = self
+                        self.download!.videoUrlString = videoUrlString
+                        self.download!.audioUrlString = audioUrlString
+                        self.download!.delegate = self
                         
                         self.definesPresentationContext = true
-                        self.presentViewController(download, animated: false, completion: nil)
+                        self.presentViewController(self.download!, animated: false, completion: nil)
                     } else {
                         AlarmManager.sharedInstance.prepareNewAlarm(self.action.actionName!, hour: h, minute: m)
                         AlarmManager.sharedInstance.unsaveAlarm?.custom = false
@@ -295,6 +296,9 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
         if let h = self.hour, m = self.minute where self.selectedActorActive {
             for (_, actionInfo) in self.selectedActionInfo.enumerate() {
                 if let actor = actionInfo.actor where actor == self.actor.name {
+                    
+                    self.download?.dismissViewControllerAnimated(false, completion: nil)
+                    
                     let videoUrlString = actionInfo.videoUrlString
                     let vSplitedString = videoUrlString!.characters.split{$0 == "/"}.map(String.init)
                     let videoFileName = vSplitedString[vSplitedString.count - 1]
@@ -314,7 +318,12 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
                     AlarmManager.sharedInstance.unsaveAlarm?.soundFileName = audioFileName
                     AlarmManager.sharedInstance.unsaveAlarm?.vdoFileName = videoFileName
                     print("saveAlarmSuccess: \(AlarmManager.sharedInstance.saveAlarm())")
-                    ViewControllerManager.sharedInstance.presentMyList()
+                    
+                    self.popup = PopupThankyouView(frame: CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight))
+                    popup?.isOnlyThankyou = false
+                    popup?.initPopupView()
+                    popup?.delegate = self
+                    self.view.addSubview(popup!)
                 }
             }
         }

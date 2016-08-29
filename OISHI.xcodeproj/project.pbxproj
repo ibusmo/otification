@@ -40,9 +40,8 @@
 		A23219B61D74CA5300BED06B /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23219B51D74CA5300BED06B /* DataManager.swift */; };
 		A23219B81D74CF9F00BED06B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A23219B71D74CF9F00BED06B /* SystemConfiguration.framework */; };
 		A23219BA1D74D00700BED06B /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23219B91D74D00700BED06B /* Reachability.swift */; };
-		A23219BE1D74DA3B00BED06B /* PopupThankyouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23219BC1D74DA3B00BED06B /* PopupThankyouViewController.swift */; };
-		A23219BF1D74DA3B00BED06B /* PopupThankyouViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A23219BD1D74DA3B00BED06B /* PopupThankyouViewController.xib */; };
 		A23219C11D74DB7D00BED06B /* PopupThankyouView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23219C01D74DB7D00BED06B /* PopupThankyouView.swift */; };
+		A23219C31D74F4E600BED06B /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23219C21D74F4E600BED06B /* PopupView.swift */; };
 		A23CBDE51D708994004ED38E /* M13ProgressViewBorderedBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A23CBDE41D708994004ED38E /* M13ProgressViewBorderedBar.m */; };
 		A23CBDE81D708A1B004ED38E /* M13ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A23CBDE71D708A1B004ED38E /* M13ProgressView.m */; };
 		A23CBDEE1D713650004ED38E /* GalleryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23CBDEC1D713650004ED38E /* GalleryTableViewController.swift */; };
@@ -166,9 +165,8 @@
 		A23219B51D74CA5300BED06B /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		A23219B71D74CF9F00BED06B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A23219B91D74D00700BED06B /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
-		A23219BC1D74DA3B00BED06B /* PopupThankyouViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupThankyouViewController.swift; sourceTree = "<group>"; };
-		A23219BD1D74DA3B00BED06B /* PopupThankyouViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopupThankyouViewController.xib; sourceTree = "<group>"; };
 		A23219C01D74DB7D00BED06B /* PopupThankyouView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupThankyouView.swift; sourceTree = "<group>"; };
+		A23219C21D74F4E600BED06B /* PopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		A23CBDE31D708994004ED38E /* M13ProgressViewBorderedBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M13ProgressViewBorderedBar.h; sourceTree = "<group>"; };
 		A23CBDE41D708994004ED38E /* M13ProgressViewBorderedBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M13ProgressViewBorderedBar.m; sourceTree = "<group>"; };
 		A23CBDE61D708A1B004ED38E /* M13ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M13ProgressView.h; sourceTree = "<group>"; };
@@ -466,9 +464,8 @@
 		A23219BB1D74DA2600BED06B /* popup */ = {
 			isa = PBXGroup;
 			children = (
-				A23219BC1D74DA3B00BED06B /* PopupThankyouViewController.swift */,
-				A23219BD1D74DA3B00BED06B /* PopupThankyouViewController.xib */,
 				A23219C01D74DB7D00BED06B /* PopupThankyouView.swift */,
+				A23219C21D74F4E600BED06B /* PopupView.swift */,
 			);
 			name = popup;
 			sourceTree = "<group>";
@@ -1056,7 +1053,6 @@
 				A272BC891D6BD45F00D06576 /* FriendActorsPickerTableViewCell.xib in Resources */,
 				A2508A421D5C83C300DFD781 /* MyListTableViewController.xib in Resources */,
 				A272BC841D6BC88700D06576 /* CreateFriendTableViewController.xib in Resources */,
-				A23219BF1D74DA3B00BED06B /* PopupThankyouViewController.xib in Resources */,
 				A23CBDF91D717080004ED38E /* VideoPreviewTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1158,7 +1154,6 @@
 				A261CF701D7361F6000843EF /* SWUtilityButtonView.m in Sources */,
 				A261D1971D647E5500DEECF1 /* TimePickerTableViewCell.swift in Sources */,
 				A272BCA61D6EF68100D06576 /* VideoAlarmViewController.swift in Sources */,
-				A23219BE1D74DA3B00BED06B /* PopupThankyouViewController.swift in Sources */,
 				A26ECD2B1D666F59004EA733 /* MenuTableViewCell.swift in Sources */,
 				A22BDE0A1D670D34004FA6CB /* MyListTableViewCell.swift in Sources */,
 				A217B7581D65D3CE00021BFA /* Otification+UIButton.swift in Sources */,
@@ -1180,6 +1175,7 @@
 				A2508A2E1D5C45FF00DFD781 /* OishiTabBarView.swift in Sources */,
 				A261CF5B1D72DB51000843EF /* GalleryActorsPickerView.swift in Sources */,
 				A217B72E1D64C90A00021BFA /* CenterCollectionViewFlowLayout.swift in Sources */,
+				A23219C31D74F4E600BED06B /* PopupView.swift in Sources */,
 				A22BDE071D670969004FA6CB /* Action.swift in Sources */,
 				A23CBDE51D708994004ED38E /* M13ProgressViewBorderedBar.m in Sources */,
 				A299FF391D61B13E00EE74C1 /* AlarmManager.swift in Sources */,
