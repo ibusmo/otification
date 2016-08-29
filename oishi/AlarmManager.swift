@@ -89,120 +89,247 @@ class AlarmManager {
         
         print("setAlarm w/ uid: \(uid)")
         
-        // create a corresponding local notification
-        let notification = UILocalNotification()
+        var counter: Int = 0
         
-        // default
-        if #available(iOS 8.2, *) {
-            notification.alertTitle = "Otification"
-            if let title = alarm.notiTitle {
-                notification.alertTitle = title
-            }
-        } else {
-            // Fallback on earlier versions
-        }
-        notification.alertBody = "It's time to O!" // text that will be displayed in the notification
-        notification.alertAction = "turn off" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
+        for (index, r) in alarm.repeats!.enumerate() {
+            if (!r) {
+                counter += 1
+            } else {
+                let notification = UILocalNotification()
+                
+                // default
+                if #available(iOS 8.2, *) {
+                    notification.alertTitle = "Otification"
+                    if let title = alarm.notiTitle {
+                        notification.alertTitle = title
+                    }
+                } else {
+                    // Fallback on earlier versions
+                }
+                
+                notification.alertBody = "It's time to O!" // text that will be displayed in the notification
+                notification.alertAction = "turn off" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
 
-        if let message = alarm.notiMessage {
-            notification.alertBody = message
+                if let message = alarm.notiMessage {
+                    notification.alertBody = message
+                }
+                
+                // TODO: check firedate day is not previous today
+                notification.fireDate = self.getFireDate(alarm.date!, weekday: index + 1)
+                notification.repeatInterval = .Weekday
+                
+                // TODO: if alarm have an soundfilepath use it instead of uid
+                var userInfo = Dictionary<String, AnyObject>()
+                userInfo["uid"] = alarm.uid!
+                userInfo["title"] = alarm.title!
+                
+                // TODO: if alarm have an soundfilepath use it instead of uid
+                if let soundFileName = alarm.soundFileName {
+                    notification.soundName = soundFileName
+                    userInfo["custom"] = false
+                } else {
+                    notification.soundName = alarm.uid! + ".caf"
+                    userInfo["custom"] = true
+                }
+            
+                if let on = alarm.sound where !on {
+                    notification.soundName = "silent.caf"
+                }
+                
+                notification.userInfo = userInfo
+                
+                UIApplication.sharedApplication().scheduleLocalNotification(notification)
+            }
         }
         
-        // TODO: check firedate day is not previous today
-        notification.fireDate = self.getFireDate(alarm.date!)
-        
-        // TODO: if alarm have an soundfilepath use it instead of uid
-        var userInfo = Dictionary<String, AnyObject>()
-        userInfo["uid"] = alarm.uid!
-        userInfo["title"] = alarm.title!
-        
-        // TODO: if alarm have an soundfilepath use it instead of uid
-        if let soundFileName = alarm.soundFileName {
-            notification.soundName = soundFileName
-            userInfo["custom"] = false
-        } else {
-            notification.soundName = alarm.uid! + ".caf"
-            userInfo["custom"] = true
+        if (counter == 7) {
+            let notification = UILocalNotification()
+                
+                // default
+                if #available(iOS 8.2, *) {
+                    notification.alertTitle = "Otification"
+                    if let title = alarm.notiTitle {
+                        notification.alertTitle = title
+                    }
+                } else {
+                    // Fallback on earlier versions
+                }
+                notification.alertBody = "It's time to O!" // text that will be displayed in the notification
+                notification.alertAction = "turn off" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
+
+                if let message = alarm.notiMessage {
+                    notification.alertBody = message
+                }
+                
+                // TODO: check firedate day is not previous today
+                notification.fireDate = self.getFireDate(alarm.date!)
+                
+                // TODO: if alarm have an soundfilepath use it instead of uid
+                var userInfo = Dictionary<String, AnyObject>()
+                userInfo["uid"] = alarm.uid!
+                userInfo["title"] = alarm.title!
+                
+                // TODO: if alarm have an soundfilepath use it instead of uid
+            
+                if let soundFileName = alarm.soundFileName {
+                    notification.soundName = soundFileName
+                    userInfo["custom"] = false
+                } else {
+                    notification.soundName = alarm.uid! + ".caf"
+                    userInfo["custom"] = true
+                }
+            
+                if let on = alarm.sound where !on {
+                    notification.soundName = "silent.caf"
+                }
+            
+                if let videoFileName = alarm.vdoFileName {
+                    userInfo["video"] = videoFileName
+                }
+                
+                notification.userInfo = userInfo
+                
+                UIApplication.sharedApplication().scheduleLocalNotification(notification)
         }
-        
-        if let videoFileName = alarm.vdoFileName {
-            userInfo["video"] = videoFileName
-        }
-        
-        notification.userInfo = userInfo
-        
-        UIApplication.sharedApplication().scheduleLocalNotification(notification)
         
     }
     
     func setAlarm(alarm: Alarm) {
+        var counter: Int = 0
         
-        // todo: - check an existing alarm in notification
-        
-        // create a corresponding local notification
-        let notification = UILocalNotification()
-        
-        // default
-        if #available(iOS 8.2, *) {
-            notification.alertTitle = "Otification"
-            if let title = alarm.notiTitle {
-                notification.alertTitle = title
-            }
-        } else {
-            // Fallback on earlier versions
-        }
-        notification.alertBody = "It's time to O!" // text that will be displayed in the notification
-        notification.alertAction = "turn off" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
+        for (index, r) in alarm.repeats!.enumerate() {
+            if (!r) {
+                counter += 1
+            } else {
+                let notification = UILocalNotification()
+                
+                // default
+                if #available(iOS 8.2, *) {
+                    notification.alertTitle = "Otification"
+                    if let title = alarm.notiTitle {
+                        notification.alertTitle = title
+                    }
+                } else {
+                    // Fallback on earlier versions
+                }
+                notification.alertBody = "It's time to O!" // text that will be displayed in the notification
+                notification.alertAction = "turn off" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
 
-        if let message = alarm.notiMessage {
-            notification.alertBody = message
+                if let message = alarm.notiMessage {
+                    notification.alertBody = message
+                }
+                
+                // TODO: check firedate day is not previous today
+                notification.fireDate = self.getFireDate(alarm.date!, weekday: index + 1)
+                
+                // TODO: if alarm have an soundfilepath use it instead of uid
+                var userInfo = Dictionary<String, AnyObject>()
+                userInfo["uid"] = alarm.uid!
+                userInfo["title"] = alarm.title!
+                
+                // TODO: if alarm have an soundfilepath use it instead of uid
+                
+                print("alarm.sound \(alarm.sound)")
+                
+                if let soundFileName = alarm.soundFileName {
+                    notification.soundName = soundFileName
+                    userInfo["custom"] = false
+                } else {
+                    notification.soundName = alarm.uid! + ".caf"
+                    userInfo["custom"] = true
+                }
+            
+                if let on = alarm.sound where !on {
+                    notification.soundName = "silent.caf"
+                }
+                
+                if let videoFileName = alarm.vdoFileName {
+                    userInfo["video"] = videoFileName
+                }
+                
+                notification.userInfo = userInfo
+                
+                UIApplication.sharedApplication().scheduleLocalNotification(notification)
+            }
         }
         
-        // TODO: check firedate day is not previous today
-        notification.fireDate = self.getFireDate(alarm.date!)
-        
-        var userInfo = Dictionary<String, AnyObject>()
-        userInfo["uid"] = alarm.uid!
-        print("alarmManager setAlarm w/ uid: \(alarm.uid!)")
-        userInfo["title"] = alarm.title!
-        
-        // TODO: if alarm have an soundfilepath use it instead of uid
-        if let soundFileName = alarm.soundFileName {
-            notification.soundName = soundFileName
-            userInfo["custom"] = false
-        } else {
-            notification.soundName = alarm.uid! + ".caf"
-            userInfo["custom"] = true
+        if (counter == 7) {
+            let notification = UILocalNotification()
+                
+                // default
+                if #available(iOS 8.2, *) {
+                    notification.alertTitle = "Otification"
+                    if let title = alarm.notiTitle {
+                        notification.alertTitle = title
+                    }
+                } else {
+                    // Fallback on earlier versions
+                }
+                notification.alertBody = "It's time to O!" // text that will be displayed in the notification
+                notification.alertAction = "turn off" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
+
+                if let message = alarm.notiMessage {
+                    notification.alertBody = message
+                }
+                
+                // TODO: check firedate day is not previous today
+                notification.fireDate = self.getFireDate(alarm.date!)
+                
+                // TODO: if alarm have an soundfilepath use it instead of uid
+                var userInfo = Dictionary<String, AnyObject>()
+                userInfo["uid"] = alarm.uid!
+                userInfo["title"] = alarm.title!
+                
+                // TODO: if alarm have an soundfilepath use it instead of uid
+            
+                print("alarm.sound \(alarm.sound)")
+            
+                if let soundFileName = alarm.soundFileName {
+                    notification.soundName = soundFileName
+                    userInfo["custom"] = false
+                } else {
+                    notification.soundName = alarm.uid! + ".caf"
+                    userInfo["custom"] = true
+                }
+            
+                if let on = alarm.sound where !on {
+                    notification.soundName = "silent.caf"
+                }
+            
+                if let videoFileName = alarm.vdoFileName {
+                    userInfo["video"] = videoFileName
+                }
+                
+                notification.userInfo = userInfo
+                
+                UIApplication.sharedApplication().scheduleLocalNotification(notification)
         }
-        
-        if let videoFileName = alarm.vdoFileName {
-            userInfo["video"] = videoFileName
-        }
-        
-        notification.userInfo = userInfo
-        // notification.userInfo = ["uid": alarm.uid!, "title": alarm.title!, "custom": false] // assign a unique identifier to the notification so that we can retrieve it later
-        
-        UIApplication.sharedApplication().scheduleLocalNotification(notification)
-        
     }
     
     func unsetAlarm(uid: String) {
-        let index = self.findAlarm(uid)
-        self.alarms[index].on = false
-        
-        print("unsetAlarm from : \(uid) \(self.alarms[index].uid!)")
-        
         let app:UIApplication = UIApplication.sharedApplication()
-        for oneEvent in app.scheduledLocalNotifications! {
+        for (index, oneEvent) in app.scheduledLocalNotifications!.enumerate() {
             let notification = oneEvent as UILocalNotification
             let userInfo = notification.userInfo! as! [String:AnyObject]
             let uidFromUserInfo = userInfo["uid"]! as! String
             if uidFromUserInfo == uid {
-                print("unsetAlarm w/ uid: \(uid)")
-                NSNotificationCenter.defaultCenter().postNotificationName("alarmUpdate", object: nil)
+                print("unsetAlarm w/ uid: \(uid) at index: \(index)")
                 app.cancelLocalNotification(notification)
-                break;
             }
+        }
+    }
+    
+    func unsetAlarm(uid: String, cb: Callback<Bool>) {
+        let app:UIApplication = UIApplication.sharedApplication()
+        for (index, oneEvent) in app.scheduledLocalNotifications!.enumerate() {
+            let notification = oneEvent as UILocalNotification
+            let userInfo = notification.userInfo! as! [String:AnyObject]
+            let uidFromUserInfo = userInfo["uid"]! as! String
+            if uidFromUserInfo == uid {
+                print("unsetAlarm w/ uid: \(uid) at index: \(index)")
+                app.cancelLocalNotification(notification)
+            }
+            cb.callback(true, true, nil, nil)
         }
     }
     
@@ -304,23 +431,36 @@ class AlarmManager {
         let defaults = NSUserDefaults.standardUserDefaults()
         
         var list: [String] = self.getAlarmList()
+        let alarmIndex = self.findAlarm(alarm.uid!)
         
-        if let uid = alarm.uid where list.count < 8 {
-            // desc: - append new alarm list uid, set new alarmlist forkey "alarm_list"
-            list.append(uid)
-            defaults.removeObjectForKey("alarm_list")
-            defaults.setObject(list, forKey: "alarm_list")
-            
-            // desc: - save alarm object to userdefaults mapped by alarm.uid
-            defaults.setObject(NSKeyedArchiver.archivedDataWithRootObject(alarm), forKey: alarm.uid!)
-            self.alarms.append(alarm)
-            self.setAlarm(alarm)
-            
-            // todo: - notify observers
-            
-            return true
+        if (alarmIndex == -1) {
+            if let uid = alarm.uid where list.count < 8 {
+                // desc: - append new alarm list uid, set new alarmlist forkey "alarm_list"
+                list.append(uid)
+                defaults.removeObjectForKey("alarm_list")
+                defaults.setObject(list, forKey: "alarm_list")
+                
+                // desc: - save alarm object to userdefaults mapped by alarm.uid
+                defaults.setObject(NSKeyedArchiver.archivedDataWithRootObject(alarm), forKey: alarm.uid!)
+                self.alarms.append(alarm)
+                self.setAlarm(alarm)
+                
+                // todo: - notify observers
+                
+                return true
+            } else {
+                return false
+            }
         } else {
-            return false
+            // save edited alarm
+            if let uid = alarm.uid {
+                defaults.removeObjectForKey(uid)
+                defaults.setObject(NSKeyedArchiver.archivedDataWithRootObject(alarm), forKey: alarm.uid!)
+                self.alarms[alarmIndex] = alarm
+                return true
+            } else {
+                return false
+            }
         }
     }
     
@@ -462,6 +602,67 @@ class AlarmManager {
         componentsForFireDate.second = 0
         
         print("setNewAlarm w/ date from: \(setDate) to \((calendar?.dateFromComponents(componentsForFireDate))!)")
+        
+        return (calendar?.dateFromComponents(componentsForFireDate))!
+    }
+    
+    func getFireDate(setDate: NSDate, weekday: Int) -> NSDate {
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "HH mm dd MM yyyy ee"
+        
+        let nowDate = NSDate()
+        let nowDateString = dateFormatter.stringFromDate(nowDate).characters.split{$0 == " "}.map(String.init)
+        
+        var setDateString = dateFormatter.stringFromDate(setDate).characters.split{$0 == " "}.map(String.init)
+        
+        let setHour = Int(setDateString[0])!
+        let setMinute = Int(setDateString[1])!
+        
+        let nowHour = Int(nowDateString[0])!
+        let nowMinute = Int(nowDateString[1])!
+        let nowWeekday = Int(nowDateString[5])!
+        
+        var fireDate: [Int] = [setHour, setMinute, Int(nowDateString[2])!, Int(nowDateString[3])!, Int(nowDateString[4])!, Int(nowDateString[5])!]
+        
+        let dayComponent = NSDateComponents()
+        
+        print("weekday: \(weekday), nowWeekday: \(nowWeekday)")
+        
+        if (weekday < nowWeekday) {
+            dayComponent.day = (7 - nowWeekday) + weekday
+        } else if (weekday > nowWeekday) {
+            dayComponent.day = weekday - nowWeekday
+        } else {
+            if (setHour < nowHour || (setHour == nowHour && setMinute <= nowMinute)) {
+                dayComponent.day = 7
+            } else {
+                return self.getFireDate(setDate)
+            }
+        }
+        
+        let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
+        let nextDate = calendar?.dateByAddingComponents(dayComponent, toDate: NSDate(), options: NSCalendarOptions.MatchFirst)
+        let next = dateFormatter.stringFromDate(nextDate!).characters.split{$0 == " "}.map(String.init)
+        fireDate[2] = Int(next[2])!
+        fireDate[3] = Int(next[3])!
+        fireDate[4] = Int(next[4])!
+        fireDate[5] = Int(next[5])!
+        
+        if (fireDate[4] > 2016) {
+            fireDate[4] = fireDate[4] - 543
+        }
+        
+        let componentsForFireDate = NSDateComponents()
+        componentsForFireDate.weekday = fireDate[5]
+        componentsForFireDate.year = fireDate[4]
+        componentsForFireDate.month = fireDate[3]
+        componentsForFireDate.day = fireDate[2]
+        componentsForFireDate.hour = fireDate[0]
+        componentsForFireDate.minute = fireDate[1]
+        componentsForFireDate.second = 0
+        
+        print("setNewAlarm w/ date \((calendar?.dateFromComponents(componentsForFireDate))!)")
         
         return (calendar?.dateFromComponents(componentsForFireDate))!
     }

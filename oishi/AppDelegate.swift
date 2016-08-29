@@ -40,13 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UIApplication.sharedApplication().cancelAllLocalNotifications()
         
-        if let _ = KeychainWrapper.defaultKeychainWrapper().stringForKey("first_launch") {
-            ViewControllerManager.sharedInstance.presentMyList()
-        } else {
-            KeychainWrapper.defaultKeychainWrapper().setString("true", forKey: "first_launch")
-            // TODO: - present with tutorial
-            ViewControllerManager.sharedInstance.presentTutorial()
-        }
+        ViewControllerManager.sharedInstance.presentIndex()
         
         return true
     }
@@ -87,14 +81,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
         if let userInfo = notification.userInfo {
             let custom = userInfo["custom"] as! Bool
+            let uid = userInfo["uid"] as! String
             if (custom) {
-                let uid = userInfo["uid"] as! String
                 ViewControllerManager.sharedInstance.presentVideoAlarm(uid + ".mov", uid: uid)
             } else {
-                let uid = userInfo["uid"] as! String
                 let fileName = userInfo["video"] as! String
                 ViewControllerManager.sharedInstance.presentVideoAlarm(fileName, uid: uid)
             }
+            UIApplication.sharedApplication().cancelLocalNotification(notification)
         }
     }
 

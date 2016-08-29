@@ -131,4 +131,15 @@ class ViewControllerManager {
         self.appDelegate.window?.makeKeyAndVisible()
     }
     
+    // MARK: - index
+    
+    func getIndex() -> IndexViewController {
+        return IndexViewController(nibName: "IndexViewController", bundle: nil)
+    }
+    
+    func presentIndex() {
+        self.appDelegate.window?.rootViewController = self.getIndex()
+        self.appDelegate.window?.makeKeyAndVisible()
+    }
+    
 }

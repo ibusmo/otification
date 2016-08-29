@@ -31,6 +31,8 @@
 		A22BDE0A1D670D34004FA6CB /* MyListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22BDE081D670D34004FA6CB /* MyListTableViewCell.swift */; };
 		A22BDE0B1D670D34004FA6CB /* MyListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A22BDE091D670D34004FA6CB /* MyListTableViewCell.xib */; };
 		A22BDE101D673AA6004FA6CB /* THLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A22BDE0F1D673AA6004FA6CB /* THLabel.m */; };
+		A23219A71D73F86500BED06B /* IndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23219A51D73F86500BED06B /* IndexViewController.swift */; };
+		A23219A81D73F86500BED06B /* IndexViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A23219A61D73F86500BED06B /* IndexViewController.xib */; };
 		A23CBDE51D708994004ED38E /* M13ProgressViewBorderedBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A23CBDE41D708994004ED38E /* M13ProgressViewBorderedBar.m */; };
 		A23CBDE81D708A1B004ED38E /* M13ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A23CBDE71D708A1B004ED38E /* M13ProgressView.m */; };
 		A23CBDEE1D713650004ED38E /* GalleryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23CBDEC1D713650004ED38E /* GalleryTableViewController.swift */; };
@@ -146,6 +148,8 @@
 		A22BDE091D670D34004FA6CB /* MyListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyListTableViewCell.xib; sourceTree = "<group>"; };
 		A22BDE0E1D673AA6004FA6CB /* THLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THLabel.h; sourceTree = "<group>"; };
 		A22BDE0F1D673AA6004FA6CB /* THLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THLabel.m; sourceTree = "<group>"; };
+		A23219A51D73F86500BED06B /* IndexViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexViewController.swift; sourceTree = "<group>"; };
+		A23219A61D73F86500BED06B /* IndexViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndexViewController.xib; sourceTree = "<group>"; };
 		A23CBDE31D708994004ED38E /* M13ProgressViewBorderedBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M13ProgressViewBorderedBar.h; sourceTree = "<group>"; };
 		A23CBDE41D708994004ED38E /* M13ProgressViewBorderedBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M13ProgressViewBorderedBar.m; sourceTree = "<group>"; };
 		A23CBDE61D708A1B004ED38E /* M13ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M13ProgressView.h; sourceTree = "<group>"; };
@@ -413,6 +417,15 @@
 			name = components;
 			sourceTree = "<group>";
 		};
+		A23219A41D73F85500BED06B /* index */ = {
+			isa = PBXGroup;
+			children = (
+				A23219A51D73F86500BED06B /* IndexViewController.swift */,
+				A23219A61D73F86500BED06B /* IndexViewController.xib */,
+			);
+			name = index;
+			sourceTree = "<group>";
+		};
 		A23CBDE21D708986004ED38E /* M13 */ = {
 			isa = PBXGroup;
 			children = (
@@ -505,6 +518,7 @@
 		A24E20711D5B457200985409 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A23219A41D73F85500BED06B /* index */,
 				A23CBDEB1D713566004ED38E /* gallery */,
 				A272BCB31D6F994200D06576 /* download */,
 				A272BCA31D6EF62700D06576 /* notificationvdo */,
@@ -964,6 +978,7 @@
 				A261CF731D736CE9000843EF /* silent.caf in Resources */,
 				A26ECD371D666FAD004EA733 /* DB HelvethaicaMon X Med.ttf in Resources */,
 				A272BCA21D6BF11E00D06576 /* TutorialCollectionViewCell.xib in Resources */,
+				A23219A81D73F86500BED06B /* IndexViewController.xib in Resources */,
 				A26ECD381D666FAD004EA733 /* DB HelvethaicaMon X.ttf in Resources */,
 				A217B7541D65BC9800021BFA /* DB Helvethaica X Med.ttf in Resources */,
 				A272BC591D67627900D06576 /* RepeatAlarmTableViewCell.xib in Resources */,
@@ -1090,6 +1105,7 @@
 				A22BDE0A1D670D34004FA6CB /* MyListTableViewCell.swift in Sources */,
 				A217B7581D65D3CE00021BFA /* Otification+UIButton.swift in Sources */,
 				A299FF2B1D618A6100EE74C1 /* Alarm.swift in Sources */,
+				A23219A71D73F86500BED06B /* IndexViewController.swift in Sources */,
 				A261CF6F1D7361F6000843EF /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
 				A217B7361D64EC2900021BFA /* ActorsPickerTableViewCell.swift in Sources */,
 				A217B7431D65162D00021BFA /* iCarousel.m in Sources */,

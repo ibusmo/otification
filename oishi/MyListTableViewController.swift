@@ -113,7 +113,6 @@ class MyListTableViewController: OishiTableViewController, ToggleButtonDelegate,
         if let on = alarm.on {
             cell.toggleButton.state = on
         } else {
-            
             cell.toggleButton.state = false
         }
         
@@ -152,10 +151,17 @@ class MyListTableViewController: OishiTableViewController, ToggleButtonDelegate,
         let alarm = AlarmManager.sharedInstance.alarms[index]
         if (toggleButton.state) {
             // TODO: check date & time
-            AlarmManager.sharedInstance.setAlarm(alarm.uid!)
+            AlarmManager.sharedInstance.unsetAlarm(alarm.uid!, cb: Callback() { (result, _, _, _) in
+                for (index, r) in alarm.repeats!.enumerate() {
+                    AlarmManager.sharedInstance.setAlarm(alarm.uid!)
+                }
+            })
+            alarm.on = true
         } else {
             AlarmManager.sharedInstance.unsetAlarm(alarm.uid!)
+            alarm.on = false
         }
+        AlarmManager.sharedInstance.saveAlarm(alarm)
         self.tableView.reloadData()
     }
 

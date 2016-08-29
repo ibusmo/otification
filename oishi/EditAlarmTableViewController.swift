@@ -103,6 +103,8 @@ class EditAlarmTableViewController: OishiTableViewController, RepeatAlarmTableVi
     // MARK: - settings button
     
     func sound(on: Bool) {
+        print("sound setting change: \(on)")
+        self.alarm?.sound = on
     }
     
     func vibrate(on: Bool) {
@@ -129,7 +131,15 @@ class EditAlarmTableViewController: OishiTableViewController, RepeatAlarmTableVi
     
     override func rightButtonDidTap() {
         if let alarm = self.alarm {
-            
+            if let on = alarm.on {
+                if (on) {
+                    AlarmManager.sharedInstance.unsetAlarm(alarm.uid!)
+                }
+                alarm.on = true
+                AlarmManager.sharedInstance.saveAlarm(alarm)
+                AlarmManager.sharedInstance.setAlarm(alarm)
+            }
+            ViewControllerManager.sharedInstance.presentMyList()
         }
     }
 

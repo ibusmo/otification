@@ -90,10 +90,12 @@ class EditAlarmTableViewCell: UITableViewCell, ToggleButtonDelegate {
         self.soundButton.frame = CGRectMake(Otification.calculatedWidthFromRatio(836.0), (Otification.calculatedHeightFromRatio(238.0) - buttonSize.height) / 2.0, buttonSize.width, buttonSize.height)
         self.soundButton.initComponent(UIImage(named: "sound_on")!, offImage: UIImage(named: "sound_off")!)
         self.soundButton.state = true
+        self.soundButton.delegate = self
         
         self.vibrateButton.frame = CGRectMake(Otification.calculatedWidthFromRatio(1024.0), (Otification.calculatedHeightFromRatio(238.0) - buttonSize.height) / 2.0, buttonSize.width, buttonSize.height)
         self.vibrateButton.initComponent(UIImage(named: "vibrate_on")!, offImage: UIImage(named: "vibrate_off")!)
         self.vibrateButton.state = true
+        self.vibrateButton.delegate = self
         
         self.contentView.addSubview(self.soundButton)
         self.contentView.addSubview(self.vibrateButton)
@@ -115,7 +117,7 @@ class EditAlarmTableViewCell: UITableViewCell, ToggleButtonDelegate {
         if (toggleButton.isEqual(self.soundButton)) {
             self.delegate?.sound(toggleButton.state)
         } else if (toggleButton.isEqual(self.vibrateButton)) {
-            self.delegate?.sound(toggleButton.state)
+            self.delegate?.vibrate(toggleButton.state)
         } else {
             self.delegate?.sound(toggleButton.state)
         }

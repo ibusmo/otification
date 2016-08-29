@@ -80,13 +80,13 @@ class TutorialViewController: UIViewController, UICollectionViewDataSource, UICo
     // MARK: - closbutton
     
     func closeDidTap() {
-        if let _ = KeychainWrapper.defaultKeychainWrapper().stringForKey("first_tutorial") {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let bool: Bool = defaults.boolForKey("first_tutorial") where bool {
             ViewControllerManager.sharedInstance.presentMyList()
         } else {
-            KeychainWrapper.defaultKeychainWrapper().setString("true", forKey: "first_tutorial")
-            // TODO: - present with create
+            defaults.setBool(true, forKey: "first_tutorial")
             ViewControllerManager.sharedInstance.presentCreateAlarm()
-        }   
+        }
     }
 
     /*
