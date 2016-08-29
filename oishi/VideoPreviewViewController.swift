@@ -28,6 +28,8 @@ class VideoPreviewViewController: UIViewController, DownloadViewControllerDelega
     
     var duration: Float64 = 0
     
+    var timer: AnyObject?
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
@@ -73,6 +75,9 @@ class VideoPreviewViewController: UIViewController, DownloadViewControllerDelega
         self.bottomBar.addSubview(self.playImageView)
         self.bottomBar.addSubview(self.playButton)
         self.bottomBar.addSubview(self.timeTrack)
+        
+        self.videoView.frame = CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight)
+        self.videoView.backgroundColor = UIColor.blackColor()
         
         self.view.addSubview(self.videoView)
         self.videoView.addSubview(self.closeButton)
@@ -131,13 +136,16 @@ class VideoPreviewViewController: UIViewController, DownloadViewControllerDelega
     
     func playVideo(videoFilePath: String) {
         self.avPlayerLayer.removeFromSuperlayer()
+        
         self.avPlayer = AVPlayer(URL: NSURL.fileURLWithPath(videoFilePath))
         self.avPlayer.actionAtItemEnd = .None
         self.avPlayerLayer = AVPlayerLayer(player: self.avPlayer)
-        self.videoView.frame = CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight)
         self.avPlayerLayer.frame = CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight)
         self.avPlayerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
-        self.videoView.layer.addSublayer(self.avPlayerLayer)
+        
+        dispatch_async(dispatch_get_main_queue(), {
+            self.videoView.layer.addSublayer(self.avPlayerLayer)
+        })
         
         let item = avPlayer.currentItem
         self.duration = CMTimeGetSeconds((item?.asset.duration)!)
@@ -145,8 +153,7 @@ class VideoPreviewViewController: UIViewController, DownloadViewControllerDelega
         print("duration: \(duration)")
         
         let interval = CMTimeMakeWithSeconds(0.1, 1000)
-        CMTimeShow(interval)
-        self.avPlayer.addPeriodicTimeObserverForInterval(interval, queue: nil, usingBlock: { time in
+        self.timer = self.avPlayer.addPeriodicTimeObserverForInterval(interval, queue: nil, usingBlock: { time in
             self.timeTrack.setProgress(CGFloat(CGFloat(time.seconds) / CGFloat(self.duration)), animated: true)
         })
         
@@ -156,7 +163,7 @@ class VideoPreviewViewController: UIViewController, DownloadViewControllerDelega
     func playerDidPlayToEnd() {
         self.dismissViewControllerAnimated(false, completion: nil)
         self.avPlayer.pause()
-        self.avPlayer.seekToTime(kCMTimeZero)
+        self.avPlayer.removeTimeObserver(self.timer!)
     }
     
     // MARK: - downloadvideocontrollerdelegate
@@ -178,6 +185,7 @@ class VideoPreviewViewController: UIViewController, DownloadViewControllerDelega
     
     func closeDidTap() {
         self.avPlayer.pause()
+        self.avPlayer.removeTimeObserver(self.timer!)
         self.dismissViewControllerAnimated(false, completion: nil)
     }
     

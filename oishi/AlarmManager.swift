@@ -521,7 +521,7 @@ class AlarmManager {
         }
         
         // TODO: check firedate day is not previous today
-        notification.fireDate = NSDate(timeIntervalSinceNow: 10)
+        notification.fireDate = NSDate(timeIntervalSinceNow: 600)
         
         var userInfo = Dictionary<String, AnyObject>()
         userInfo["uid"] = alarm.uid!

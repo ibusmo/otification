@@ -65,7 +65,17 @@ class EditAlarmTableViewController: OishiTableViewController, RepeatAlarmTableVi
             let cell = tableView.dequeueReusableCellWithIdentifier("editAlarmCell", forIndexPath: indexPath) as! EditAlarmTableViewCell
             cell.delegate = self
             if (indexPath.row == 1) {
-                cell.initSoundSettings("ระบบเสียง")
+                var sound: Bool = false
+                var vibrate: Bool = false
+                if let alarm = self.alarm {
+                    if let s = alarm.sound {
+                        sound = s
+                    }
+                    if let v = alarm.vibrate {
+                        vibrate = v
+                    }
+                }
+                cell.initSoundSettings("ระบบเสียง", sound: sound, vibrate: vibrate)
             } else {
                 cell.initRepeatSetting("เตือนทุก 10 นาที")
             }
@@ -108,6 +118,8 @@ class EditAlarmTableViewController: OishiTableViewController, RepeatAlarmTableVi
     }
     
     func vibrate(on: Bool) {
+        print("vibrate setting change: \(on)")
+        self.alarm?.vibrate = on
     }
     
     func snooze(on: Bool) {
@@ -135,6 +147,7 @@ class EditAlarmTableViewController: OishiTableViewController, RepeatAlarmTableVi
                     AlarmManager.sharedInstance.unsetAlarm(alarm.uid!)
                 }
                 alarm.on = true
+                print("vibrate: \(alarm.vibrate)")
                 AlarmManager.sharedInstance.saveAlarm(alarm)
                 AlarmManager.sharedInstance.setAlarm(alarm)
             }

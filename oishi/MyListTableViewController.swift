@@ -191,6 +191,10 @@ class MyListTableViewController: OishiTableViewController, ToggleButtonDelegate,
             self.tableView.reloadData()
         }
     }
+    
+    func swipeableTableViewCellShouldHideUtilityButtonsOnSwipe(cell: SWTableViewCell!) -> Bool {
+        return true
+    }
 
     // MARK: - duplicate
     

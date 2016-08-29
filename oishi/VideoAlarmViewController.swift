@@ -30,6 +30,9 @@ class VideoAlarmViewController: UIViewController, SnoozeButtonDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.view.backgroundColor = UIColor.clearColor()
+        self.videoView.backgroundColor = UIColor.clearColor()
+        
         // Do any additional setup after loading the view.
         if let fileName = self.videoFileName {
             let filePath = self.getVideoFilePath(fileName)

@@ -145,6 +145,7 @@ class CustomAlarmViewController: OishiViewController, AVAudioRecorderDelegate {
         let vdoPlayButtonSize = CGSizeMake(Otification.calculatedWidthFromRatio(225), Otification.calculatedHeightFromRatio(225.0))
         self.vdoPlayButton.frame = CGRectMake(Otification.calculatedWidthFromRatio(522.0), Otification.calculatedHeightFromRatio(208.0 + 956.0), vdoPlayButtonSize.width, vdoPlayButtonSize.height)
         self.vdoPlayButton.setImage(UIImage(named: "vdo_playback_button"), forState: UIControlState.Normal)
+        self.vdoPlayButton.addTarget(self, action: #selector(CustomAlarmViewController.playRecordedVideo), forControlEvents: UIControlEvents.TouchUpInside)
         
         self.view.addSubview(self.vdoRecordTitle)
         self.view.addSubview(self.vdoRecordButton)
@@ -404,6 +405,14 @@ class CustomAlarmViewController: OishiViewController, AVAudioRecorderDelegate {
             self.vdoFrameImageView.image = UIImage(named: "vdo_frame_2")
             
             self.view.addSubview(self.vdoPlayButton)
+        }
+    }
+    
+    func playRecordedVideo() {
+        if let url = self.videoUrl {
+            let videoPreview = VideoPreviewViewController(nibName: "VideoPreviewViewController", bundle: nil)
+            videoPreview.videoUrlString = url.absoluteString
+            self.presentViewController(videoPreview, animated: false, completion: nil)
         }
     }
     

@@ -214,7 +214,6 @@ class DownloadViewController: UIViewController {
                             self.percentageLabel.text = "\(percent)%"
                         }
                         let progress = ((CGFloat(totalBytesRead) / CGFloat(totalBytesExpectedToRead)) / 2.0) + self.baseProgress
-                        print("progress \(progress)")
                         self.progressBar.setProgress(progress, animated: false)
                     }
                 }
@@ -274,7 +273,6 @@ class DownloadViewController: UIViewController {
                             self.percentageLabel.text = "\(percent)%"
                         }
                         let progress = ((CGFloat(totalBytesRead) / CGFloat(totalBytesExpectedToRead))) + self.baseProgress
-                        print("progress \(progress)")
                         self.progressBar.setProgress(progress, animated: false)
                     }
                 }

@@ -36,6 +36,7 @@
 		A23219AC1D73FD5B00BED06B /* VideoPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23219AA1D73FD5B00BED06B /* VideoPreviewViewController.swift */; };
 		A23219AD1D73FD5B00BED06B /* VideoPreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A23219AB1D73FD5B00BED06B /* VideoPreviewViewController.xib */; };
 		A23219AF1D743DAB00BED06B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A23219AE1D743DAB00BED06B /* LaunchScreen.storyboard */; };
+		A23219B11D745DC500BED06B /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A23219B01D745DC400BED06B /* Bolts.framework */; };
 		A23CBDE51D708994004ED38E /* M13ProgressViewBorderedBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A23CBDE41D708994004ED38E /* M13ProgressViewBorderedBar.m */; };
 		A23CBDE81D708A1B004ED38E /* M13ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A23CBDE71D708A1B004ED38E /* M13ProgressView.m */; };
 		A23CBDEE1D713650004ED38E /* GalleryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23CBDEC1D713650004ED38E /* GalleryTableViewController.swift */; };
@@ -155,6 +156,7 @@
 		A23219AA1D73FD5B00BED06B /* VideoPreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPreviewViewController.swift; sourceTree = "<group>"; };
 		A23219AB1D73FD5B00BED06B /* VideoPreviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoPreviewViewController.xib; sourceTree = "<group>"; };
 		A23219AE1D743DAB00BED06B /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A23219B01D745DC400BED06B /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		A23CBDE31D708994004ED38E /* M13ProgressViewBorderedBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M13ProgressViewBorderedBar.h; sourceTree = "<group>"; };
 		A23CBDE41D708994004ED38E /* M13ProgressViewBorderedBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M13ProgressViewBorderedBar.m; sourceTree = "<group>"; };
 		A23CBDE61D708A1B004ED38E /* M13ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M13ProgressView.h; sourceTree = "<group>"; };
@@ -254,6 +256,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A23219B11D745DC500BED06B /* Bolts.framework in Frameworks */,
 				A272BC641D6AEC3B00D06576 /* FBSDKShareKit.framework in Frameworks */,
 				E50BED52C328C370D430755A /* Pods_oishi.framework in Frameworks */,
 				A272BC621D6AEC3B00D06576 /* FBSDKCoreKit.framework in Frameworks */,
@@ -730,6 +733,7 @@
 		A272BC5E1D6AEC2000D06576 /* frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A23219B01D745DC400BED06B /* Bolts.framework */,
 				A272BC5F1D6AEC3B00D06576 /* FBSDKCoreKit.framework */,
 				A272BC601D6AEC3B00D06576 /* FBSDKLoginKit.framework */,
 				A272BC611D6AEC3B00D06576 /* FBSDKShareKit.framework */,

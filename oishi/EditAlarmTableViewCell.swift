@@ -82,19 +82,19 @@ class EditAlarmTableViewCell: UITableViewCell, ToggleButtonDelegate {
         
     }
     
-    func initSoundSettings(title: String) {
+    func initSoundSettings(title: String, sound: Bool, vibrate: Bool) {
         self.initTitleLabel(title, isBottom: false)
         
         let buttonSize = CGSizeMake(Otification.calculatedWidthFromRatio(147.0), Otification.calculatedHeightFromRatio(147.0))
         
         self.soundButton.frame = CGRectMake(Otification.calculatedWidthFromRatio(836.0), (Otification.calculatedHeightFromRatio(238.0) - buttonSize.height) / 2.0, buttonSize.width, buttonSize.height)
         self.soundButton.initComponent(UIImage(named: "sound_on")!, offImage: UIImage(named: "sound_off")!)
-        self.soundButton.state = true
+        self.soundButton.state = sound
         self.soundButton.delegate = self
         
         self.vibrateButton.frame = CGRectMake(Otification.calculatedWidthFromRatio(1024.0), (Otification.calculatedHeightFromRatio(238.0) - buttonSize.height) / 2.0, buttonSize.width, buttonSize.height)
         self.vibrateButton.initComponent(UIImage(named: "vibrate_on")!, offImage: UIImage(named: "vibrate_off")!)
-        self.vibrateButton.state = true
+        self.vibrateButton.state = vibrate
         self.vibrateButton.delegate = self
         
         self.contentView.addSubview(self.soundButton)
