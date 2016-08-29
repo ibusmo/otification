@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol VideoPreviewViewDelegate {
+    func fbDidTap(index: Int)
+    func lineDidTap(index: Int)
+}
+
 class VideoPreviewView: UIView {
     
     // vdoframe 116, 0, 501, 393
@@ -19,6 +24,8 @@ class VideoPreviewView: UIView {
     
     var fbButton = UIButton()
     var lineButton = UIButton()
+    
+    var delegate: VideoPreviewViewDelegate?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,8 +51,11 @@ class VideoPreviewView: UIView {
         let buttonSize = CGSizeMake(Otification.calculatedWidthFromRatio(259.0), Otification.calculatedWidthFromRatio(111.0))
         self.fbButton.frame = CGRectMake(Otification.calculatedWidthFromRatio(98.0), Otification.calculatedHeightFromRatio(430.0), buttonSize.width, buttonSize.height)
         self.fbButton.setImage(UIImage(named: "gallery_fb_button"), forState: UIControlState.Normal)
+        self.fbButton.addTarget(self, action: #selector(VideoPreviewView.fbDidTap), forControlEvents: UIControlEvents.TouchUpInside)
+        
         self.lineButton.frame = CGRectMake(Otification.calculatedWidthFromRatio(350.0), Otification.calculatedHeightFromRatio(415.0), buttonSize.width, buttonSize.height)
         self.lineButton.setImage(UIImage(named: "gallery_line_button"), forState: UIControlState.Normal)
+        self.lineButton.addTarget(self, action: #selector(VideoPreviewView.lineDidTap), forControlEvents: UIControlEvents.TouchUpInside)
         
         self.addSubview(self.videoFrameImageView)
         self.addSubview(self.nameBackgroundImageView)
@@ -79,8 +89,11 @@ class VideoPreviewView: UIView {
         let buttonSize = CGSizeMake(Otification.calculatedWidthFromRatio(259.0), Otification.calculatedWidthFromRatio(111.0))
         self.fbButton.frame = CGRectMake(Otification.calculatedWidthFromRatio(x - 15.0), Otification.calculatedHeightFromRatio(430.0), buttonSize.width, buttonSize.height)
         self.fbButton.setImage(UIImage(named: "gallery_fb_button"), forState: UIControlState.Normal)
+        self.fbButton.addTarget(self, action: #selector(VideoPreviewView.fbDidTap), forControlEvents: UIControlEvents.TouchUpInside)
+        
         self.lineButton.frame = CGRectMake(Otification.calculatedWidthFromRatio(274.0), Otification.calculatedHeightFromRatio(415.0), buttonSize.width, buttonSize.height)
         self.lineButton.setImage(UIImage(named: "gallery_line_button"), forState: UIControlState.Normal)
+        self.lineButton.addTarget(self, action: #selector(VideoPreviewView.lineDidTap), forControlEvents: UIControlEvents.TouchUpInside)
         
         self.addSubview(self.videoFrameImageView)
         self.addSubview(self.nameBackgroundImageView)
@@ -92,6 +105,14 @@ class VideoPreviewView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func fbDidTap() {
+        self.delegate?.fbDidTap(self.tag)
+    }
+    
+    func lineDidTap() {
+        self.delegate?.lineDidTap(self.tag)
     }
 
 }

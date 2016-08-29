@@ -272,6 +272,9 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
     func customAlarm() {
         if let h = self.hour, m = self.minute {
             AlarmManager.sharedInstance.prepareNewAlarm(self.action.actionName!, hour: h, minute: m)
+            let notiInfo = self.getNotiTitleAndMessageForCustomAlarm()
+            AlarmManager.sharedInstance.unsaveAlarm?.notiTitle = notiInfo.0
+            AlarmManager.sharedInstance.unsaveAlarm?.notiMessage = notiInfo.1
             ViewControllerManager.sharedInstance.presentCustomAlarm()
         }
     }
@@ -399,6 +402,37 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
         } else {
             return false
         }
+    }
+    
+    func getNotiTitleAndMessageForCustomAlarm() -> (String, String) {
+        switch (self.selectedActionInfoNo) {
+            /*
+             ตื่น - ถึงเวลาตื่นแล้ว
+             ออกกำลังกาย - ถึงเวลาออกกำลังกายแล้ว
+             อ่านหนังสือ - ได้เวลาอ่านหนังสือแล้ว
+             ฝันดี - ได้เวลานอนแล้ว
+             นัด - ถึงเวลานัดแล้ว
+            */
+            case "1":
+                return ("ตื่นนอน", "ถึงเวลาตื่นแล้ว")
+            break
+            case "2":
+                return ("ออกกำลังกาย", "ถึงเวลาออกกำลังกายแล้ว")
+            break
+            case "3":
+                return ("อ่านหนังสือ", "ได้เวลาอ่านหนังสือแล้ว")
+            break
+            case "4":
+                return ("ฝันดี", "ได้เวลานอนแล้ว")
+            break
+            case "5":
+                return ("นัดนู่นนี่นั่น", "ถึงเวลานัดแล้ว")
+            break
+            default:
+                return ("Otification", "It's time to Otification")
+            break
+        }
+        return ("Otification", "It's time to Otification")
     }
 
 }

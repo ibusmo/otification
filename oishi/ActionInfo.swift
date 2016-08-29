@@ -26,11 +26,11 @@ class ActionInfo {
     var audioUrlString: String?
     
     // playlistfriend
-    
     var galleryImageUrlString: String?
     var shareTitle: String?
     var shareDesription: String?
     var shareImageUrlString: String?
+    var shareUrl: String?
     
     init(id: String?, active: String?, version: String?, actor: String?, type: String?, no: String?, name: String?, notiTitle: String?, notiMessage: String?, videoUrlString: String?, audioUrlString: String?) {
         self.id = id
@@ -48,7 +48,7 @@ class ActionInfo {
         self.audioUrlString = audioUrlString
     }
     
-    init(id: String?, active: String?, version: String?, actor: String?, type: String?, no: String?, name: String?, videoUrlString: String?, galleryImageUrlString: String?, shareTitle: String?, shareDescription: String?, shareImageUrlString: String?) {
+    init(id: String?, active: String?, version: String?, actor: String?, type: String?, no: String?, name: String?, videoUrlString: String?, galleryImageUrlString: String?, shareTitle: String?, shareDescription: String?, shareImageUrlString: String?, shareUrl: String?) {
         self.id = id
         self.active = active
         self.version = version
@@ -63,6 +63,7 @@ class ActionInfo {
         self.shareTitle = shareTitle
         self.shareDesription = shareDescription
         self.shareImageUrlString = shareImageUrlString
+        self.shareUrl = shareUrl
     }
     
     class func getActionInfo(json: JSON) -> ActionInfo {
@@ -98,8 +99,9 @@ class ActionInfo {
         let shareTitle = json["share_title"].string
         let shareDescription = json["share_description"].string
         let shareImageUrlString = json["share_image"].string
+        let shareUrl = json["share_url"].string
         
-        return ActionInfo(id: id, active: active, version: version, actor: actor, type: type, no: no, name: name, videoUrlString: videoUrlString, galleryImageUrlString: galleryImageUrlString, shareTitle: shareTitle, shareDescription: shareDescription, shareImageUrlString: shareImageUrlString)
+        return ActionInfo(id: id, active: active, version: version, actor: actor, type: type, no: no, name: name, videoUrlString: videoUrlString, galleryImageUrlString: galleryImageUrlString, shareTitle: shareTitle, shareDescription: shareDescription, shareImageUrlString: shareImageUrlString, shareUrl: shareUrl)
     }
     
 }

@@ -105,6 +105,14 @@ class MyListTableViewCell: SWTableViewCell {
             imageView.image = UIImage(named: "mylist_cell_bg_1")
             self.backgroundView = imageView
         }
+        
+        if (isFriendList) {
+            self.toggleButton.hidden = true
+            self.repeatLabel.hidden = true
+        } else {
+            self.toggleButton.hidden = false
+            self.repeatLabel.hidden = false
+        }
     }
     
     func setActionTitle(title: String) {

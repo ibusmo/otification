@@ -8,10 +8,14 @@
 
 import UIKit
 import MediaPlayer
+import FBSDKLoginKit
+import FBSDKShareKit
+import SwiftyJSON
 
-class CreateFriendTableViewController: OishiTableViewController, ActionsTableViewCellDelegate, ActorsPickerTableViewCellDelegate {
+class CreateFriendTableViewController: OishiTableViewController, ActionsTableViewCellDelegate, ActorsPickerTableViewCellDelegate, FBSDKSharingDelegate, PopupThankyouViewDelegate {
 
     let frontImageView = UIImageView()
+    var popup: PopupThankyouView?
     
     let actorNameLabel = UILabel()
     var sendToFriendImageView = UIImageView()
@@ -93,7 +97,10 @@ class CreateFriendTableViewController: OishiTableViewController, ActionsTableVie
         
         let shareButtonSize = CGSizeMake(Otification.calculatedWidthFromRatio(522.0), Otification.calculatedHeightFromRatio(185.0))
         self.facebookButton.setFrameAndImageWithShadow(CGRectMake(Otification.calculatedWidthFromRatio(86.0), Otification.calculatedHeightFromRatio(466.0), shareButtonSize.width, shareButtonSize.height), image: UIImage(named: "createfriend_fb_button"))
+        self.facebookButton.addTarget(self, action: #selector(CreateFriendTableViewController.shareToFacebook), forControlEvents: UIControlEvents.TouchUpInside)
+        
         self.lineButton.setFrameAndImageWithShadow(CGRectMake(Otification.calculatedWidthFromRatio(636.0), Otification.calculatedHeightFromRatio(466.0), shareButtonSize.width, shareButtonSize.height), image: UIImage(named: "createfriend_line_button"))
+        self.lineButton.addTarget(self, action: #selector(CreateFriendTableViewController.shareToLine), forControlEvents: UIControlEvents.TouchUpInside)
         
         self.view.addSubview(self.frontImageView)
         self.frontImageView.addSubview(self.actorNameLabel)
@@ -207,12 +214,10 @@ class CreateFriendTableViewController: OishiTableViewController, ActionsTableVie
         let _ = OtificationHTTPService.sharedInstance.getPlaylistFriend(Callback() { (response, success, errorString, error) in
             if let dictionary = response where success {
                 self.dictionary = dictionary
-                print("dictionary.count: \(self.dictionary.count)")
                 if (self.selectedActionInfo.count > 0) {
                     self.selectedActionInfoNo = self.selectedActionInfo[0].no!
                 }
                 if let actionInfos = self.dictionary[self.selectedActionInfoNo] {
-                    print("actionInfos at 1 size: \(actionInfos.count)")
                     for actionInfo in actionInfos {
                         self.selectedActors.append(actionInfo.actor!)
                     }
@@ -239,10 +244,185 @@ class CreateFriendTableViewController: OishiTableViewController, ActionsTableVie
     // MARK: - oishinavigationbardelegate
     
     override func menuDidTap() {
+        self.popup?.removeFromSuperview()
         let menu = MenuTableViewController(nibName: "MenuTableViewController", bundle: nil)
         menu.modalPresentationStyle = .OverCurrentContext
         self.definesPresentationContext = true
         self.presentViewController(menu, animated: false, completion: nil)
+    }
+    
+    // MARK: - share to facebook
+    
+    func shareToFacebook() {
+        if let _ = FBSDKAccessToken.currentAccessToken() {
+            let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "email,gender,link,first_name,last_name"], HTTPMethod: "GET")
+            let connection = FBSDKGraphRequestConnection()
+            connection.addRequest(request, completionHandler: { (conn, result, error) -> Void in
+                if (error != nil) {
+                    print("\(error.localizedDescription)")
+                } else {
+                    var json = JSON(result)
+                    
+                    // var params = Dictionary<String, AnyObject>()
+                    if let firstname = json["first_name"].string {
+                        DataManager.sharedInstance.setObjectForKey(firstname, key: "first_name")
+                    }
+                    
+                    if let lastname = json["last_name"].string {
+                        DataManager.sharedInstance.setObjectForKey(lastname, key: "last_name")
+                    }
+                    
+                    if let email = json["email"].string {
+                        DataManager.sharedInstance.setObjectForKey(email, key: "email")
+                    }
+                    
+                    if let gender = json["gender"].string {
+                        DataManager.sharedInstance.setObjectForKey(gender, key: "gender")
+                    }
+                    
+                    if let link = json["link"].string {
+                        DataManager.sharedInstance.setObjectForKey(link, key: "link")
+                    }
+                    
+                    self.shareFacebookResult()
+                }
+            })
+            
+            connection.start()
+        } else {
+            let loginManager = FBSDKLoginManager()
+            loginManager.logOut()
+            
+            loginManager.loginBehavior = FBSDKLoginBehavior.Browser
+            
+            loginManager.logInWithReadPermissions(["public_profile", "email", "user_about_me"], fromViewController: self, handler: {
+                (result: FBSDKLoginManagerLoginResult!, error: NSError?) -> Void in
+                if (error != nil) {
+                    // fb login error
+                } else if (result.isCancelled) {
+                    // fb login cancelled
+                } else if (result.declinedPermissions.contains("public_profile") || result.declinedPermissions.contains("email") || result.declinedPermissions.contains("user_about_me")) {
+                    // declined "public_profile", "email" or "user_about_me"
+                } else {
+                    // TODO: api to update facebookid-nontoken
+                    _ = FBSDKAccessToken.currentAccessToken().userID
+                    let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "email,gender,link,first_name,last_name"], HTTPMethod: "GET")
+                    let connection = FBSDKGraphRequestConnection()
+                    connection.addRequest(request, completionHandler: { (conn, result, error) -> Void in
+                        if (error != nil) {
+                            print("\(error.localizedDescription)")
+                        } else {
+                            var json = JSON(result)
+                            
+                            // var params = Dictionary<String, AnyObject>()
+                            
+                            if let firstname = json["first_name"].string {
+                                DataManager.sharedInstance.setObjectForKey(firstname, key: "first_name")
+                            }
+                            
+                            if let lastname = json["last_name"].string {
+                                DataManager.sharedInstance.setObjectForKey(lastname, key: "last_name")
+                            }
+                            
+                            if let email = json["email"].string {
+                                DataManager.sharedInstance.setObjectForKey(email, key: "email")
+                            }
+                            
+                            if let gender = json["gender"].string {
+                                DataManager.sharedInstance.setObjectForKey(gender, key: "gender")
+                            }
+                            
+                            if let link = json["link"].string {
+                                DataManager.sharedInstance.setObjectForKey(link, key: "link")
+                            }
+                            
+                            self.shareFacebookResult()
+                        }
+                    })
+                    connection.start()
+                }
+            })
+        }
+    }
+    
+    func shareFacebookResult() {
+        for (_, actionInfo) in self.selectedActionInfo.enumerate() {
+            if let act = actionInfo.actor where act == actor.name {
+                let contentImg = NSURL(string: actionInfo.shareImageUrlString!)
+                let contentURL = NSURL(string: actionInfo.shareUrl!)
+                let contentTitle = actionInfo.shareTitle!
+                let contentDescription = actionInfo.shareDesription!
+                
+                let photoContent: FBSDKShareLinkContent = FBSDKShareLinkContent()
+                
+                photoContent.contentURL = contentURL
+                photoContent.contentTitle = contentTitle
+                photoContent.contentDescription = contentDescription
+                photoContent.imageURL = contentImg
+                
+                let dialog = FBSDKShareDialog()
+                dialog.mode = FBSDKShareDialogMode.FeedBrowser
+                dialog.shareContent = photoContent
+                dialog.delegate = self
+                dialog.fromViewController = self
+                
+                dialog.show()
+            }
+        }
+    }
+    
+    func sharerDidCancel(sharer: FBSDKSharing!) {
+        print("didCancel")
+    }
+    
+    func sharer(sharer: FBSDKSharing!, didFailWithError error: NSError!) {
+        print("didFailWithError: \(error.localizedDescription)")
+    }
+    
+    func sharer(sharer: FBSDKSharing!, didCompleteWithResults results: [NSObject : AnyObject]!) {
+        print("didCompleteWithResults")
+        // save friend alarm
+        self.popup = PopupThankyouView(frame: CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight))
+        popup?.isOnlyThankyou = true
+        popup?.initPopupView()
+        popup?.delegate = self
+        self.view.addSubview(popup!)
+        
+        for (_, actionInfo) in self.selectedActionInfo.enumerate() {
+            if let act = actionInfo.actor where act == actor.name {
+                AlarmManager.sharedInstance.saveFriendAlarm(Otification.friendAlarmActions[Int(actionInfo.no!)! - 1].actionName!, actorNo: actionInfo.actor!)
+            }
+        }
+    }
+    
+    // MARK: - share to line
+    
+    func shareToLine() {
+        for (_, actionInfo) in self.selectedActionInfo.enumerate() {
+            if let act = actionInfo.actor where act == actor.name {
+                // save friend alarm
+                let shareUrl = actionInfo.shareUrl
+                let lineUrl = NSURL(string: "line://msg/text/\(shareUrl!)")
+                if (UIApplication.sharedApplication().canOpenURL(lineUrl!)) {
+                    UIApplication.sharedApplication().openURL(lineUrl!)
+                    self.popup = PopupThankyouView(frame: CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight))
+                    popup?.isOnlyThankyou = true
+                    popup?.initPopupView()
+                    popup?.delegate = self
+                    self.view.addSubview(popup!)
+                    
+                    AlarmManager.sharedInstance.saveFriendAlarm(Otification.friendAlarmActions[Int(actionInfo.no!)! - 1].actionName!, actorNo: actionInfo.actor!)
+                }
+            }
+        }
+    }
+    
+    // MARK: - save friend alarm
+    
+    // MARK: - popupthankyouviewdelegate
+    
+    func popupDidRemoveFromSuperview() {
+        ViewControllerManager.sharedInstance.presentMyList(false)
     }
 
 }

@@ -8,11 +8,15 @@
 
 import UIKit
 import MediaPlayer
+import FBSDKLoginKit
+import FBSDKShareKit
+import SwiftyJSON
 
-class GalleryTableViewController: OishiTableViewController, ActorsPickerTableViewCellDelegate, VideoPreviewTableViewCellDelegate {
+class GalleryTableViewController: OishiTableViewController, ActorsPickerTableViewCellDelegate, VideoPreviewTableViewCellDelegate, FBSDKSharingDelegate {
     
     var actorsPickerView = GalleryActorsPickerView(frame: CGRectZero)
     let actorNameLabel = UILabel()
+    var popup: PopupThankyouView?
     
     var action: Action = Otification.selfAlarmActions[0]
     var actor: Actor = Otification.actors[0]
@@ -137,13 +141,19 @@ class GalleryTableViewController: OishiTableViewController, ActorsPickerTableVie
         let videoPreview = VideoPreviewViewController(nibName: "VideoPreviewViewController", bundle: nil)
         videoPreview.videoUrlString = videoUrlString!
         self.presentViewController(videoPreview, animated: false, completion: nil)
-        /*
-        self.moviePlayer = MPMoviePlayerController(contentURL: NSURL(string: videoUrlString!))
-        self.moviePlayer.view.frame = CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight)
-        self.view.addSubview(self.moviePlayer.view)
-        self.moviePlayer.fullscreen = true
-        self.moviePlayer.controlStyle = MPMovieControlStyle.Embedded
-         */
+    }
+    
+    func didTapLINEAtIndex(index: Int) {
+        let actionInfo = self.selectedActionInfo[index]
+        let shareUrl = actionInfo.shareUrl
+        let lineUrl = NSURL(string: "line://msg/text/\(shareUrl!)")
+        if (UIApplication.sharedApplication().canOpenURL(lineUrl!)) {
+            UIApplication.sharedApplication().openURL(lineUrl!)
+            self.popup = PopupThankyouView(frame: CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight))
+            popup?.isOnlyThankyou = true
+            popup?.initPopupView()
+            self.view.addSubview(popup!)
+        }
     }
     
     // MARK: - api
@@ -206,15 +216,142 @@ class GalleryTableViewController: OishiTableViewController, ActorsPickerTableVie
         self.definesPresentationContext = true
         self.presentViewController(menu, animated: false, completion: nil)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    // MARK: - facebook
+    
+    func didTapFBAtIndex(index: Int) {
+        self.shareToFacebook(index)
     }
-    */
+    
+    func shareToFacebook(index: Int) {
+        if let _ = FBSDKAccessToken.currentAccessToken() {
+            let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "email,gender,link,first_name,last_name"], HTTPMethod: "GET")
+            let connection = FBSDKGraphRequestConnection()
+            connection.addRequest(request, completionHandler: { (conn, result, error) -> Void in
+                if (error != nil) {
+                    print("\(error.localizedDescription)")
+                } else {
+                    var json = JSON(result)
+                    
+                    // var params = Dictionary<String, AnyObject>()
+                    if let firstname = json["first_name"].string {
+                        DataManager.sharedInstance.setObjectForKey(firstname, key: "first_name")
+                    }
+                    
+                    if let lastname = json["last_name"].string {
+                        DataManager.sharedInstance.setObjectForKey(lastname, key: "last_name")
+                    }
+                    
+                    if let email = json["email"].string {
+                        DataManager.sharedInstance.setObjectForKey(email, key: "email")
+                    }
+                    
+                    if let gender = json["gender"].string {
+                        DataManager.sharedInstance.setObjectForKey(gender, key: "gender")
+                    }
+                    
+                    if let link = json["link"].string {
+                        DataManager.sharedInstance.setObjectForKey(link, key: "link")
+                    }
+                    
+                    self.shareFacebookResult(index)
+                }
+            })
+            
+            connection.start()
+        } else {
+            let loginManager = FBSDKLoginManager()
+            loginManager.logOut()
+            
+            loginManager.loginBehavior = FBSDKLoginBehavior.Browser
+            
+            loginManager.logInWithReadPermissions(["public_profile", "email", "user_about_me"], fromViewController: self, handler: {
+                (result: FBSDKLoginManagerLoginResult!, error: NSError?) -> Void in
+                if (error != nil) {
+                    // fb login error
+                } else if (result.isCancelled) {
+                    // fb login cancelled
+                } else if (result.declinedPermissions.contains("public_profile") || result.declinedPermissions.contains("email") || result.declinedPermissions.contains("user_about_me")) {
+                    // declined "public_profile", "email" or "user_about_me"
+                } else {
+                    // TODO: api to update facebookid-nontoken
+                    _ = FBSDKAccessToken.currentAccessToken().userID
+                    let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "email,gender,link,first_name,last_name"], HTTPMethod: "GET")
+                    let connection = FBSDKGraphRequestConnection()
+                    connection.addRequest(request, completionHandler: { (conn, result, error) -> Void in
+                        if (error != nil) {
+                            print("\(error.localizedDescription)")
+                        } else {
+                            var json = JSON(result)
+                            
+                            // var params = Dictionary<String, AnyObject>()
+                            
+                            if let firstname = json["first_name"].string {
+                                DataManager.sharedInstance.setObjectForKey(firstname, key: "first_name")
+                            }
+                            
+                            if let lastname = json["last_name"].string {
+                                DataManager.sharedInstance.setObjectForKey(lastname, key: "last_name")
+                            }
+                            
+                            if let email = json["email"].string {
+                                DataManager.sharedInstance.setObjectForKey(email, key: "email")
+                            }
+                            
+                            if let gender = json["gender"].string {
+                                DataManager.sharedInstance.setObjectForKey(gender, key: "gender")
+                            }
+                            
+                            if let link = json["link"].string {
+                                DataManager.sharedInstance.setObjectForKey(link, key: "link")
+                            }
+                            
+                            self.shareFacebookResult(index)
+                        }
+                    })
+                    connection.start()
+                }
+            })
+        }
+    }
+    
+    func shareFacebookResult(index: Int) {
+        let actionInfo = self.selectedActionInfo[index]
+        let contentImg = NSURL(string: actionInfo.shareImageUrlString!)
+        let contentURL = NSURL(string: actionInfo.shareUrl!)
+        let contentTitle = actionInfo.shareTitle!
+        let contentDescription = actionInfo.shareDesription!
+        
+        let photoContent: FBSDKShareLinkContent = FBSDKShareLinkContent()
+        
+        photoContent.contentURL = contentURL
+        photoContent.contentTitle = contentTitle
+        photoContent.contentDescription = contentDescription
+        photoContent.imageURL = contentImg
+        
+        let dialog = FBSDKShareDialog()
+        dialog.mode = FBSDKShareDialogMode.FeedBrowser
+        dialog.shareContent = photoContent
+        dialog.delegate = self
+        dialog.fromViewController = self
+        
+        dialog.show()
+    }
+    
+    func sharerDidCancel(sharer: FBSDKSharing!) {
+        print("didCancel")
+    }
+    
+    func sharer(sharer: FBSDKSharing!, didFailWithError error: NSError!) {
+        print("didFailWithError: \(error.localizedDescription)")
+    }
+    
+    func sharer(sharer: FBSDKSharing!, didCompleteWithResults results: [NSObject : AnyObject]!) {
+        print("didCompleteWithResults")
+        self.popup = PopupThankyouView(frame: CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight))
+        popup?.isOnlyThankyou = true
+        popup?.initPopupView()
+        self.view.addSubview(popup!)
+    }
 
 }

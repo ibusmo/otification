@@ -11,6 +11,8 @@ import AVFoundation
 
 class MyListTableViewController: OishiTableViewController, ToggleButtonDelegate, SWTableViewCellDelegate {
     
+    var isPresentMyList: Bool = true
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
@@ -65,55 +67,78 @@ class MyListTableViewController: OishiTableViewController, ToggleButtonDelegate,
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return AlarmManager.sharedInstance.alarms.count
+        if (self.isPresentMyList) {
+            return AlarmManager.sharedInstance.alarms.count
+        } else {
+            return AlarmManager.sharedInstance.friendAlarms.count
+        }
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("myListCell", forIndexPath: indexPath) as! MyListTableViewCell
+        
+        if (self.isPresentMyList) {
+            let alarm = AlarmManager.sharedInstance.alarms[indexPath.row]
+            cell.initMyList(indexPath.row, isFriendList: false)
+            cell.delegate = self
+            cell.tag = indexPath.row
             
-        let alarm = AlarmManager.sharedInstance.alarms[indexPath.row]
-        cell.initMyList(indexPath.row, isFriendList: false)
-        cell.delegate = self
-        cell.tag = indexPath.row
-        
-        cell.toggleButton.delegate = self
-        cell.toggleButton.tag = indexPath.row
-        
-        cell.setLeftUtilityButtons(self.leftbuttons() as [AnyObject], withButtonWidth: Otification.calculatedWidthFromRatio(318.0))
-        
-        // TODO: - swipe to delete from right
-        
-        if let title = alarm.title {
-            cell.setActionTitle(title)
-        }
-        if let date = alarm.date {
-            cell.setTime(date)
-        }
-        if let repeats = alarm.repeats {
-            cell.setRepeat(repeats)
-        }
-        
-        if let no = alarm.actorNo {
-            cell.userImageView.image = UIImage(named: "actorc_\(no)")
-        }
-        
-        if let custom = alarm.custom where custom == true {
-            let url = self.getVideoPathString()?.URLByAppendingPathComponent(alarm.uid!).URLByAppendingPathExtension("mov")
-            print("getFuckingVideoURL")
-            print(url?.absoluteString)
-            let asset = AVAsset(URL: url!)
-            let imageGenerator = AVAssetImageGenerator(asset: asset)
-            let time = CMTimeMake(1, 1)
-            let imageRef = try! imageGenerator.copyCGImageAtTime(time, actualTime: nil)
-            let thumbnail = UIImage(CGImage: imageRef,  scale: 1.0, orientation: UIImageOrientation.Right)
-            cell.userImageView.image = thumbnail
-            cell.userImageView.contentMode = .ScaleAspectFill
-        }
-        
-        if let on = alarm.on {
-            cell.toggleButton.state = on
+            cell.toggleButton.delegate = self
+            cell.toggleButton.tag = indexPath.row
+            
+            cell.setLeftUtilityButtons(self.leftbuttons() as [AnyObject], withButtonWidth: Otification.calculatedWidthFromRatio(318.0))
+            
+            // TODO: - swipe to delete from right
+            
+            if let title = alarm.title {
+                cell.setActionTitle(title)
+            }
+            if let date = alarm.date {
+                cell.setTime(date)
+            }
+            if let repeats = alarm.repeats {
+                cell.setRepeat(repeats)
+            }
+            
+            if let no = alarm.actorNo {
+                cell.userImageView.image = UIImage(named: "actorc_\(no)")
+            }
+            
+            if let custom = alarm.custom where custom == true {
+                let url = self.getVideoPathString()?.URLByAppendingPathComponent(alarm.uid!).URLByAppendingPathExtension("mov")
+                print("getFuckingVideoURL")
+                print(url?.absoluteString)
+                let asset = AVAsset(URL: url!)
+                let imageGenerator = AVAssetImageGenerator(asset: asset)
+                let time = CMTimeMake(1, 1)
+                let imageRef = try! imageGenerator.copyCGImageAtTime(time, actualTime: nil)
+                let thumbnail = UIImage(CGImage: imageRef,  scale: 1.0, orientation: UIImageOrientation.Right)
+                cell.userImageView.image = thumbnail
+                cell.userImageView.contentMode = .ScaleAspectFill
+            }
+            
+            if let on = alarm.on {
+                cell.toggleButton.state = on
+            } else {
+                cell.toggleButton.state = false
+            }
         } else {
-            cell.toggleButton.state = false
+            let alarm = AlarmManager.sharedInstance.friendAlarms[indexPath.row]
+            cell.initMyList(indexPath.row, isFriendList: true)
+            cell.delegate = self
+            cell.tag = indexPath.row
+            
+            cell.setLeftUtilityButtons(self.leftbuttons() as [AnyObject], withButtonWidth: Otification.calculatedWidthFromRatio(318.0))
+            
+            if let title = alarm.title {
+                cell.setActionTitle(title)
+            }
+            if let date = alarm.date {
+                cell.setTime(date)
+            }
+            if let no = alarm.actorNo {
+                cell.userImageView.image = UIImage(named: "actorc_\(no)")
+            }
         }
         
         return cell
@@ -124,7 +149,9 @@ class MyListTableViewController: OishiTableViewController, ToggleButtonDelegate,
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        ViewControllerManager.sharedInstance.presentEditAlarm(AlarmManager.sharedInstance.alarms[indexPath.row])
+        if (self.isPresentMyList) {
+            ViewControllerManager.sharedInstance.presentEditAlarm(AlarmManager.sharedInstance.alarms[indexPath.row])
+        }
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -152,7 +179,7 @@ class MyListTableViewController: OishiTableViewController, ToggleButtonDelegate,
         if (toggleButton.state) {
             // TODO: check date & time
             AlarmManager.sharedInstance.unsetAlarm(alarm.uid!, cb: Callback() { (result, _, _, _) in
-                for (index, r) in alarm.repeats!.enumerate() {
+                for (_, _) in alarm.repeats!.enumerate() {
                     AlarmManager.sharedInstance.setAlarm(alarm.uid!)
                 }
             })
@@ -185,15 +212,33 @@ class MyListTableViewController: OishiTableViewController, ToggleButtonDelegate,
     func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerLeftUtilityButtonWithIndex index: Int) {
         if (index == 0) {
             // TODO: - delete alarm
-            let alarm = AlarmManager.sharedInstance.alarms[cell.tag]
-            AlarmManager.sharedInstance.unsetAlarm(alarm.uid!)
-            AlarmManager.sharedInstance.deleteAlarm(alarm.uid!)
-            self.tableView.reloadData()
+            if (self.isPresentMyList) {
+                let alarm = AlarmManager.sharedInstance.alarms[cell.tag]
+                AlarmManager.sharedInstance.unsetAlarm(alarm.uid!)
+                AlarmManager.sharedInstance.deleteAlarm(alarm.uid!)
+                self.tableView.reloadData()
+            } else {
+                let alarm = AlarmManager.sharedInstance.friendAlarms[cell.tag]
+                AlarmManager.sharedInstance.deleteFriendAlarm(alarm.uid!)
+                self.tableView.reloadData()
+            }
         }
     }
     
     func swipeableTableViewCellShouldHideUtilityButtonsOnSwipe(cell: SWTableViewCell!) -> Bool {
         return true
+    }
+    
+    // MARK: - oishitabbar
+    
+    override func leftButtonDidTap() {
+        self.isPresentMyList = true
+        self.tableView.reloadData()
+    }
+    
+    override func rightButtonDidTap() {
+        self.isPresentMyList = false
+        self.tableView.reloadData()
     }
 
     // MARK: - duplicate

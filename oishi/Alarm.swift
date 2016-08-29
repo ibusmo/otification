@@ -39,11 +39,11 @@ class Alarm: NSObject, NSCoding {
         self.uid = uid
     }
     
-    init(uid: String?, title: String?, date: NSDate?, photoUrl: String?) {
+    init(uid: String?, title: String?, date: NSDate?, actorNo: String?) {
         self.uid = uid
         self.title = title
         self.date = date
-        self.photoUrl = photoUrl
+        self.actorNo = actorNo
         
         self.repeats = nil
         self.on = nil

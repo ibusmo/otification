@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SystemConfiguration
 
 class IndexViewController: UIViewController {
     
@@ -15,6 +16,7 @@ class IndexViewController: UIViewController {
     
     var timer = NSTimer()
     var counter: Int = 0
+    var isLoadedData: Bool = false
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -42,6 +44,13 @@ class IndexViewController: UIViewController {
         
         self.view.addSubview(self.backgroundImageView)
         self.view.addSubview(self.button)
+       
+        if (Reachability.isConnectedToNetwork()) {
+            self.getDataInfo()
+        } else {
+            // TODO: - popup
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,19 +60,36 @@ class IndexViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: #selector(IndexViewController.skipIndex), userInfo: nil, repeats: false)
     }
     
     func skipIndex() {
         // TODO: - goto tutorial or mylist
-        self.timer.invalidate()
-        let defaults = NSUserDefaults.standardUserDefaults()
-        if let bool: Bool = defaults.boolForKey("first_launch") where bool {
-            ViewControllerManager.sharedInstance.presentMyList()
+        if (self.isLoadedData) {
+            self.timer.invalidate()
+            let defaults = NSUserDefaults.standardUserDefaults()
+            if let bool: Bool = defaults.boolForKey("first_launch") where bool {
+                ViewControllerManager.sharedInstance.presentMyList()
+            } else {
+                defaults.setBool(true, forKey: "first_launch")
+                ViewControllerManager.sharedInstance.presentTutorial()
+            }
         } else {
-            defaults.setBool(true, forKey: "first_launch")
-            ViewControllerManager.sharedInstance.presentTutorial()
+            if (Reachability.isConnectedToNetwork()) {
+                self.timer.invalidate()
+                self.getDataInfo()
+            } else {
+                // TODO: - popup
+            }
         }
+    }
+    
+    func getDataInfo() {
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: #selector(IndexViewController.skipIndex), userInfo: nil, repeats: false)
+        OtificationHTTPService.sharedInstance.getDataInfo(Callback() { (result, success, errorString, error) in
+            if (success) {
+                self.isLoadedData = true
+            }
+        })
     }
 
     /*

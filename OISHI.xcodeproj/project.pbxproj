@@ -37,6 +37,12 @@
 		A23219AD1D73FD5B00BED06B /* VideoPreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A23219AB1D73FD5B00BED06B /* VideoPreviewViewController.xib */; };
 		A23219AF1D743DAB00BED06B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A23219AE1D743DAB00BED06B /* LaunchScreen.storyboard */; };
 		A23219B11D745DC500BED06B /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A23219B01D745DC400BED06B /* Bolts.framework */; };
+		A23219B61D74CA5300BED06B /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23219B51D74CA5300BED06B /* DataManager.swift */; };
+		A23219B81D74CF9F00BED06B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A23219B71D74CF9F00BED06B /* SystemConfiguration.framework */; };
+		A23219BA1D74D00700BED06B /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23219B91D74D00700BED06B /* Reachability.swift */; };
+		A23219BE1D74DA3B00BED06B /* PopupThankyouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23219BC1D74DA3B00BED06B /* PopupThankyouViewController.swift */; };
+		A23219BF1D74DA3B00BED06B /* PopupThankyouViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A23219BD1D74DA3B00BED06B /* PopupThankyouViewController.xib */; };
+		A23219C11D74DB7D00BED06B /* PopupThankyouView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23219C01D74DB7D00BED06B /* PopupThankyouView.swift */; };
 		A23CBDE51D708994004ED38E /* M13ProgressViewBorderedBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A23CBDE41D708994004ED38E /* M13ProgressViewBorderedBar.m */; };
 		A23CBDE81D708A1B004ED38E /* M13ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A23CBDE71D708A1B004ED38E /* M13ProgressView.m */; };
 		A23CBDEE1D713650004ED38E /* GalleryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23CBDEC1D713650004ED38E /* GalleryTableViewController.swift */; };
@@ -157,6 +163,12 @@
 		A23219AB1D73FD5B00BED06B /* VideoPreviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoPreviewViewController.xib; sourceTree = "<group>"; };
 		A23219AE1D743DAB00BED06B /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A23219B01D745DC400BED06B /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		A23219B51D74CA5300BED06B /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		A23219B71D74CF9F00BED06B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		A23219B91D74D00700BED06B /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		A23219BC1D74DA3B00BED06B /* PopupThankyouViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupThankyouViewController.swift; sourceTree = "<group>"; };
+		A23219BD1D74DA3B00BED06B /* PopupThankyouViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopupThankyouViewController.xib; sourceTree = "<group>"; };
+		A23219C01D74DB7D00BED06B /* PopupThankyouView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupThankyouView.swift; sourceTree = "<group>"; };
 		A23CBDE31D708994004ED38E /* M13ProgressViewBorderedBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M13ProgressViewBorderedBar.h; sourceTree = "<group>"; };
 		A23CBDE41D708994004ED38E /* M13ProgressViewBorderedBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M13ProgressViewBorderedBar.m; sourceTree = "<group>"; };
 		A23CBDE61D708A1B004ED38E /* M13ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M13ProgressView.h; sourceTree = "<group>"; };
@@ -166,7 +178,7 @@
 		A23CBDF61D717080004ED38E /* VideoPreviewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPreviewTableViewCell.swift; sourceTree = "<group>"; };
 		A23CBDF71D717080004ED38E /* VideoPreviewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoPreviewTableViewCell.xib; sourceTree = "<group>"; };
 		A23CBDFB1D71721A004ED38E /* VideoPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPreviewView.swift; sourceTree = "<group>"; };
-		A24E205A1D5B454F00985409 /* OISHI.temp_caseinsensitive_rename.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OISHI.temp_caseinsensitive_rename.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A24E205A1D5B454F00985409 /* OISHI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OISHI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A24E205D1D5B454F00985409 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A24E20641D5B454F00985409 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A24E20691D5B454F00985409 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -256,6 +268,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A23219B81D74CF9F00BED06B /* SystemConfiguration.framework in Frameworks */,
 				A23219B11D745DC500BED06B /* Bolts.framework in Frameworks */,
 				A272BC641D6AEC3B00D06576 /* FBSDKShareKit.framework in Frameworks */,
 				E50BED52C328C370D430755A /* Pods_oishi.framework in Frameworks */,
@@ -442,6 +455,24 @@
 			name = videopreview;
 			sourceTree = "<group>";
 		};
+		A23219B41D74CA4800BED06B /* data */ = {
+			isa = PBXGroup;
+			children = (
+				A23219B51D74CA5300BED06B /* DataManager.swift */,
+			);
+			name = data;
+			sourceTree = "<group>";
+		};
+		A23219BB1D74DA2600BED06B /* popup */ = {
+			isa = PBXGroup;
+			children = (
+				A23219BC1D74DA3B00BED06B /* PopupThankyouViewController.swift */,
+				A23219BD1D74DA3B00BED06B /* PopupThankyouViewController.xib */,
+				A23219C01D74DB7D00BED06B /* PopupThankyouView.swift */,
+			);
+			name = popup;
+			sourceTree = "<group>";
+		};
 		A23CBDE21D708986004ED38E /* M13 */ = {
 			isa = PBXGroup;
 			children = (
@@ -504,7 +535,7 @@
 		A24E205B1D5B454F00985409 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A24E205A1D5B454F00985409 /* OISHI.temp_caseinsensitive_rename.app */,
+				A24E205A1D5B454F00985409 /* OISHI.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -533,6 +564,7 @@
 		A24E20711D5B457200985409 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A23219BB1D74DA2600BED06B /* popup */,
 				A23219A91D73FD4A00BED06B /* videopreview */,
 				A23219A41D73F85500BED06B /* index */,
 				A23CBDEB1D713566004ED38E /* gallery */,
@@ -594,6 +626,7 @@
 		A2508A371D5C79EB00DFD781 /* manager */ = {
 			isa = PBXGroup;
 			children = (
+				A23219B41D74CA4800BED06B /* data */,
 				A2508A4D1D5E69E600DFD781 /* alarm */,
 				A2508A381D5C79F500DFD781 /* viewcontroller */,
 			);
@@ -745,6 +778,7 @@
 			isa = PBXGroup;
 			children = (
 				A272BC681D6B464700D06576 /* OtificationHTTPService.swift */,
+				A23219B91D74D00700BED06B /* Reachability.swift */,
 			);
 			name = services;
 			sourceTree = "<group>";
@@ -915,6 +949,7 @@
 		F678B39A1D627F975F580CBC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A23219B71D74CF9F00BED06B /* SystemConfiguration.framework */,
 				3120A0005AD0263608AFCE2A /* Pods_oishi.framework */,
 			);
 			name = Frameworks;
@@ -940,7 +975,7 @@
 			);
 			name = oishi;
 			productName = oishi;
-			productReference = A24E205A1D5B454F00985409 /* OISHI.temp_caseinsensitive_rename.app */;
+			productReference = A24E205A1D5B454F00985409 /* OISHI.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1021,6 +1056,7 @@
 				A272BC891D6BD45F00D06576 /* FriendActorsPickerTableViewCell.xib in Resources */,
 				A2508A421D5C83C300DFD781 /* MyListTableViewController.xib in Resources */,
 				A272BC841D6BC88700D06576 /* CreateFriendTableViewController.xib in Resources */,
+				A23219BF1D74DA3B00BED06B /* PopupThankyouViewController.xib in Resources */,
 				A23CBDF91D717080004ED38E /* VideoPreviewTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1086,6 +1122,7 @@
 				A261CF6B1D7361F6000843EF /* NSMutableArray+SWUtilityButtons.m in Sources */,
 				A2508A351D5C747C00DFD781 /* OishiTableViewController.swift in Sources */,
 				A2508A461D5C88B200DFD781 /* OishiNavigationBar.swift in Sources */,
+				A23219BA1D74D00700BED06B /* Reachability.swift in Sources */,
 				A2508A411D5C83C300DFD781 /* MyListTableViewController.swift in Sources */,
 				A272BC8F1D6BECAD00D06576 /* FriendActionsTableViewCell.swift in Sources */,
 				A21B05B81D717D7800F294B3 /* Otification+UIWindow.swift in Sources */,
@@ -1099,6 +1136,7 @@
 				A272BC691D6B464700D06576 /* OtificationHTTPService.swift in Sources */,
 				A261CF6E1D7361F6000843EF /* SWTableViewCell.m in Sources */,
 				A261D19B1D64803B00DEECF1 /* CreateAlarmTableViewController.swift in Sources */,
+				A23219C11D74DB7D00BED06B /* PopupThankyouView.swift in Sources */,
 				A2508A491D5CCABD00DFD781 /* SectionHeaderView.swift in Sources */,
 				A23CBDF81D717080004ED38E /* VideoPreviewTableViewCell.swift in Sources */,
 				A272BC7F1D6BC82800D06576 /* FriendListTableViewController.swift in Sources */,
@@ -1120,6 +1158,7 @@
 				A261CF701D7361F6000843EF /* SWUtilityButtonView.m in Sources */,
 				A261D1971D647E5500DEECF1 /* TimePickerTableViewCell.swift in Sources */,
 				A272BCA61D6EF68100D06576 /* VideoAlarmViewController.swift in Sources */,
+				A23219BE1D74DA3B00BED06B /* PopupThankyouViewController.swift in Sources */,
 				A26ECD2B1D666F59004EA733 /* MenuTableViewCell.swift in Sources */,
 				A22BDE0A1D670D34004FA6CB /* MyListTableViewCell.swift in Sources */,
 				A217B7581D65D3CE00021BFA /* Otification+UIButton.swift in Sources */,
@@ -1131,6 +1170,7 @@
 				A272BCB11D6F805200D06576 /* ActionInfo.swift in Sources */,
 				A261CF5D1D72E561000843EF /* GalleryActorView.swift in Sources */,
 				A272BCA11D6BF11E00D06576 /* TutorialCollectionViewCell.swift in Sources */,
+				A23219B61D74CA5300BED06B /* DataManager.swift in Sources */,
 				A272BC581D67627900D06576 /* RepeatAlarmTableViewCell.swift in Sources */,
 				A217B7611D66671E00021BFA /* MenuTableViewController.swift in Sources */,
 				A272BC6D1D6B9D1900D06576 /* DummyViewController.swift in Sources */,
@@ -1251,7 +1291,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.adapter.oishi;
-				PRODUCT_NAME = OISHI.temp_caseinsensitive_rename;
+				PRODUCT_NAME = OISHI;
 				SWIFT_OBJC_BRIDGING_HEADER = "oishi/oishi-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1272,7 +1312,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.adapter.oishi;
-				PRODUCT_NAME = OISHI.temp_caseinsensitive_rename;
+				PRODUCT_NAME = OISHI;
 				SWIFT_OBJC_BRIDGING_HEADER = "oishi/oishi-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -10,9 +10,11 @@ import UIKit
 
 protocol VideoPreviewTableViewCellDelegate {
     func didSelectVideoPreviewAtIndex(index: Int)
+    func didTapFBAtIndex(index: Int)
+    func didTapLINEAtIndex(index: Int)
 }
 
-class VideoPreviewTableViewCell: UITableViewCell {
+class VideoPreviewTableViewCell: UITableViewCell, VideoPreviewViewDelegate {
 
     // height: 559
     
@@ -48,9 +50,13 @@ class VideoPreviewTableViewCell: UITableViewCell {
         let videoPreviewSize = CGSizeMake(Otification.rWidth / 2.0, Otification.calculatedHeightFromRatio(560.0))
         self.leftVideoPreviewView = VideoPreviewView(frame: CGRectMake(0.0, Otification.calculatedHeightFromRatio(26.0), videoPreviewSize.width, videoPreviewSize.height))
         self.leftVideoPreviewView.backgroundColor = UIColor.clearColor()
+        self.leftVideoPreviewView.tag = 0
+        self.leftVideoPreviewView.delegate = self
         
         self.rightVideoPreviewView = VideoPreviewView(frame: CGRectMake(videoPreviewSize.width, 0.0, videoPreviewSize.width, videoPreviewSize.height), x: 38.0)
         self.rightVideoPreviewView.backgroundColor = UIColor.clearColor()
+        self.rightVideoPreviewView.tag = 1
+        self.rightVideoPreviewView.delegate = self
     }
     
     func initLeftVideoPreview(actionInfo: ActionInfo) {
@@ -88,6 +94,18 @@ class VideoPreviewTableViewCell: UITableViewCell {
             } else {
                 self.delegate?.didSelectVideoPreviewAtIndex((index * 2) + 1)
             }
+        }
+    }
+    
+    func fbDidTap(index: Int) {
+        if let ind = self.index {
+            self.delegate?.didTapFBAtIndex((ind * 2) + index)
+        }
+    }
+    
+    func lineDidTap(index: Int) {
+        if let ind = self.index {
+            self.delegate?.didTapLINEAtIndex((ind * 2) + index)
         }
     }
     

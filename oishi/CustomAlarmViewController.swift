@@ -212,6 +212,7 @@ class CustomAlarmViewController: OishiViewController, AVAudioRecorderDelegate {
             // TODO: - save alarm
             AlarmManager.sharedInstance.unsaveAlarm?.custom = true
             if (AlarmManager.sharedInstance.saveAlarm()) {
+                // show popup
                 ViewControllerManager.sharedInstance.presentMyList()
             } else {
                 // TODO: - sth error

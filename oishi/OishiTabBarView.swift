@@ -43,7 +43,7 @@ class OishiTabBarView: UIView {
         
         let line = UIView(frame: CGRectMake((Otification.rWidth - 2.0) / 2.0, 6.0, 2.0, Otification.tabBarHeight - 10.0))
         line.backgroundColor = UIColor(hexString: "4d514c")
-        line.layer.zPosition = 1000
+        line.layer.zPosition = 900
         
         self.addSubview(line)
         
@@ -56,7 +56,7 @@ class OishiTabBarView: UIView {
         self.leftButton.addTarget(self, action: #selector(OishiTabBarView.leftButtonDidTap), forControlEvents: UIControlEvents.TouchUpInside)
         self.rightButton.addTarget(self, action: #selector(OishiTabBarView.rightButtonDidTap), forControlEvents: UIControlEvents.TouchUpInside)
         
-        self.layer.zPosition = 1000
+        self.layer.zPosition = 900
         
         self.addSubview(self.leftButton)
         self.addSubview(self.rightButton)

@@ -44,6 +44,14 @@ class ViewControllerManager {
         self.appDelegate.window?.makeKeyAndVisible()
     }
     
+    func presentMyList(isPresentMyList: Bool) {
+        let mylist = self.getMyList()
+        mylist.isPresentMyList = isPresentMyList
+        mylist.tabBar.rightButtonDidTap()
+        self.appDelegate.window?.rootViewController = mylist
+        self.appDelegate.window?.makeKeyAndVisible()
+    }
+    
     // MARK: - createalarmtableviewcontroller
     
     func getCreateAlarm() -> CreateAlarmTableViewController {

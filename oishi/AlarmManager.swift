@@ -18,6 +18,9 @@ class AlarmManager {
     var list: [String] = [String]()
     var alarms: [Alarm] = [Alarm]()
     
+    var friendList: [String] = [String]()
+    var friendAlarms: [Alarm] = [Alarm]()
+    
     private init() {}
     
     func prepareNewAlarm(title: String, hour: Int, minute: Int) {
@@ -553,6 +556,9 @@ class AlarmManager {
         for uid in self.list {
             self.deleteAlarm(uid)
         }
+        for uid in self.friendList {
+            self.deleteFriendAlarm(uid)
+        }
     }
     
     // MARK: - getfiredate
@@ -665,6 +671,110 @@ class AlarmManager {
         print("setNewAlarm w/ date \((calendar?.dateFromComponents(componentsForFireDate))!)")
         
         return (calendar?.dateFromComponents(componentsForFireDate))!
+    }
+    
+    // ----------------------------------- FRIEND ZONE ---------------------------------- //
+    
+    func getFriendAlarmList() -> [String] {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        var list = [String]()
+        if let l: [AnyObject] = defaults.arrayForKey("friend_alarm_list") {
+            // desc: check an existing alarmlist
+            list = l as! [String]
+        } else {
+            // desc: - if there's no existing alarmlist, create a new one
+            defaults.setObject(list, forKey: "friend_alarm_list")
+        }
+        
+        self.list = list
+        return list
+    }
+    
+    func saveFriendAlarmList() {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.removeObjectForKey("friend_alarm_list")
+        defaults.setObject(list, forKey: "friend_alarm_list")
+    }
+    
+    func getFriendAlarmListToObjects() {
+        let list = self.getFriendAlarmList()
+        for uid in list {
+            let result = self.getFriendAlarm(uid)
+            if let _ = result.index, alarm = result.alarm {
+                self.friendAlarms.append(alarm)
+            }
+        }
+        print("number of alarm: \(self.alarms.count)")
+    }
+    
+    func getFriendAlarm(uid: String) -> (index: Int?, alarm: Alarm?) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        let list = self.getFriendAlarmList()
+        
+        if let index: Int = list.indexOf(uid) {
+            if let data = defaults.objectForKey(uid) as? NSData {
+                let unarc = NSKeyedUnarchiver(forReadingWithData: data)
+                unarc.setClass(Alarm.self, forClassName: "Blog")
+                let alarm = unarc.decodeObjectForKey("root") as! Alarm
+                return (index, alarm: alarm)
+            } else {
+                return (nil, nil)
+            }
+        } else {
+            return (nil, nil)
+        }
+        
+    }
+    
+    func saveFriendAlarm(actionName: String, actorNo: String) -> Bool {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        var list: [String] = self.getFriendAlarmList()
+        
+        let uid = NSUUID().UUIDString
+        let newAlarm = Alarm(uid: uid, title: actionName, date: NSDate(), actorNo: actorNo)
+        
+        list.append(uid)
+        defaults.removeObjectForKey("friend_alarm_list")
+        defaults.setObject(list, forKey: "friend_alarm_list")
+        
+        // desc: - save alarm object to userdefaults mapped by alarm.uid
+        defaults.setObject(NSKeyedArchiver.archivedDataWithRootObject(newAlarm), forKey: newAlarm.uid!)
+        self.friendAlarms.append(newAlarm)
+        
+        return true
+    }
+    
+    func deleteFriendAlarm(uid: String) -> Bool {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        // desc: - remove alarm.uid from alarm list
+        var list: [String] = self.getFriendAlarmList()
+        if let index = list.indexOf(uid) {
+            list.removeAtIndex(index)
+            defaults.removeObjectForKey("friend_alarm_list")
+            defaults.setObject(list, forKey: "friend_alarm_list")
+        }
+        
+        // desc: - remove alarm object from userdefaults
+        defaults.removeObjectForKey(uid)
+        let index = self.findFriendAlarm(uid)
+        if (index >= 0) {
+            self.friendAlarms.removeAtIndex(index)
+        }
+        
+        return true
+    }
+    
+    func findFriendAlarm(uid: String) -> Int {
+        for (index, alarm) in self.friendAlarms.enumerate() {
+            if let id = alarm.uid where id == uid {
+                return index
+            }
+        }
+        return -1
     }
     
 }

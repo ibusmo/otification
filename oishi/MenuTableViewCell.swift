@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol MenuTableViewCellDelegate {
+    func shareFBDidTap()
+    func shareLineDidTap()
+}
+
 class MenuTableViewCell: UITableViewCell {
     
     var topSeparator: UIView = UIView()
@@ -17,6 +22,8 @@ class MenuTableViewCell: UITableViewCell {
     
     var fbButton: UIButton = UIButton()
     var lineButton: UIButton = UIButton()
+    
+    var delegate: MenuTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -60,10 +67,21 @@ class MenuTableViewCell: UITableViewCell {
         let buttonSize = CGSizeMake(Otification.calculatedWidthFromRatio(162.0), Otification.calculatedHeightFromRatio(162.0))
         
         self.fbButton.setFrameAndImageWithShadow(CGRectMake(screenSize.width - Otification.calculatedWidthFromRatio(424.0), (self.frame.size.height - buttonSize.height) / 2.0, buttonSize.width, buttonSize.height), image: UIImage(named: "share_fb"))
+        self.fbButton.addTarget(self, action: #selector(MenuTableViewCell.fbDidTap), forControlEvents: UIControlEvents.TouchUpInside)
+        
         self.lineButton.setFrameAndImageWithShadow(CGRectMake(screenSize.width - Otification.calculatedWidthFromRatio(234.0), (self.frame.size.height - buttonSize.height) / 2.0, buttonSize.width, buttonSize.height), image: UIImage(named: "share_line"))
+        self.lineButton.addTarget(self, action: #selector(MenuTableViewCell.lineDidTap), forControlEvents: UIControlEvents.TouchUpInside)
         
         self.contentView.addSubview(self.fbButton)
         self.contentView.addSubview(self.lineButton)
+    }
+    
+    func fbDidTap() {
+        self.delegate?.shareFBDidTap()
+    }
+    
+    func lineDidTap() {
+        self.delegate?.shareLineDidTap()
     }
     
 }
