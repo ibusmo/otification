@@ -136,7 +136,7 @@ class ActionsTableViewCell: UITableViewCell, iCarouselDataSource, iCarouselDeleg
             frame.origin.y = frame.origin.y
             label.frame = frame
             label.strokeColor = UIColor.whiteColor()
-            label.strokeSize = 1.5
+            label.strokeSize = Otification.calculatedHeightFromRatio(6.0)
             label.setNeedsDisplay()
         })
         

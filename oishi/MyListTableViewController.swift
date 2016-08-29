@@ -203,16 +203,12 @@ class MyListTableViewController: OishiTableViewController, ToggleButtonDelegate,
         if (!fileManager.fileExistsAtPath(dataPath)) {
             do {
                 try NSFileManager.defaultManager().createDirectoryAtPath(dataPath, withIntermediateDirectories: false, attributes: nil)
-                print("check")
             } catch let error as NSError {
                 print(error.localizedDescription);
             }
         } else {
-            print("video path \(dataPath)/tempVideo.mov")
             if (fileManager.fileExistsAtPath(dataPath + "/tempVideo.mov")) {
-                print("tempVideo.mov exist")
             } else {
-                print("tempVideo.mov not exist")
             }
         }
         

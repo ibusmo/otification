@@ -148,7 +148,6 @@ class VideoPreviewViewController: UIViewController, DownloadViewControllerDelega
         CMTimeShow(interval)
         self.avPlayer.addPeriodicTimeObserverForInterval(interval, queue: nil, usingBlock: { time in
             self.timeTrack.setProgress(CGFloat(CGFloat(time.seconds) / CGFloat(self.duration)), animated: true)
-            print("check \(CMTimeGetSeconds(time)) \(time.seconds) \(self.duration)")
         })
         
         self.avPlayer.play()
@@ -178,7 +177,6 @@ class VideoPreviewViewController: UIViewController, DownloadViewControllerDelega
     }
     
     func closeDidTap() {
-        print("closethisfuckingview")
         self.avPlayer.pause()
         self.dismissViewControllerAnimated(false, completion: nil)
     }

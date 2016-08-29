@@ -418,17 +418,13 @@ class CustomAlarmViewController: OishiViewController, AVAudioRecorderDelegate {
         if (!fileManager.fileExistsAtPath(dataPath)) {
             do {
                 try NSFileManager.defaultManager().createDirectoryAtPath(dataPath, withIntermediateDirectories: false, attributes: nil)
-                print("check")
             } catch let error as NSError {
                 print(error.localizedDescription);
             }
         } else {
-            print("video path \(dataPath)/tempVideo.mov")
             if (fileManager.fileExistsAtPath(dataPath + "/tempVideo.mov")) {
-                print("tempVideo.mov exist")
                 self.removeTempVideo("tempVideo", fileExtension: "mov")
             } else {
-                print("tempVideo.mov not exist")
             }
         }
         

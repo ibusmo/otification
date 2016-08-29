@@ -125,7 +125,6 @@ class EditAlarmTableViewController: OishiTableViewController, RepeatAlarmTableVi
     // MARK: - tabbar
     
     override func leftButtonDidTap() {
-        print("check this")
         ViewControllerManager.sharedInstance.presentMyList()
     }
     

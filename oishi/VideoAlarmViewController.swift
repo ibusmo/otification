@@ -118,13 +118,11 @@ class VideoAlarmViewController: UIViewController, SnoozeButtonDelegate {
         if (!fileManager.fileExistsAtPath(dataPath)) {
             do {
                 try NSFileManager.defaultManager().createDirectoryAtPath(dataPath, withIntermediateDirectories: false, attributes: nil)
-                print("check")
             } catch let error as NSError {
                 print(error.localizedDescription);
             }
         } else {
             dataPath = dataPath + "/\(fileName)"
-            print("dataPath: \(dataPath)")
             if (fileManager.fileExistsAtPath(dataPath)) {
                 return dataPath
             } else {
