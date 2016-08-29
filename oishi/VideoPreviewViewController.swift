@@ -93,6 +93,7 @@ class VideoPreviewViewController: UIViewController, DownloadViewControllerDelega
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: AVPlayerItemDidPlayToEndTimeNotification, object: nil)
+        self.avPlayer.replaceCurrentItemWithPlayerItem(nil)
     }
     
     override func viewDidAppear(animated: Bool) {

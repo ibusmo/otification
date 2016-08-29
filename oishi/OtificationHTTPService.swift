@@ -27,7 +27,8 @@ class OtificationHTTPService {
                 for (_, group): (String, JSON) in json["playlist"]["group"] {
                     var actionInfos = [ActionInfo]()
                     for (_, list): (String, JSON) in group["list"] {
-                        actionInfos.append(ActionInfo.getActionInfo(list))
+                        let actionInfo = ActionInfo.getActionInfo(list)
+                        actionInfos.append(actionInfo)
                     }
                     dict[group["no"].string!] = actionInfos
                 }

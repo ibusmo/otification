@@ -233,7 +233,15 @@ class CustomAlarmViewController: OishiViewController, AVAudioRecorderDelegate {
             do {
                 try session.setCategory(AVAudioSessionCategoryPlayAndRecord)
                 try session.setActive(true)
-                self.startAudioRecording()
+                session.requestRecordPermission() { [unowned self] (allowed: Bool) -> Void in
+                    dispatch_async(dispatch_get_main_queue()) {
+                        if allowed {
+                            self.startAudioRecording()
+                        } else {
+                            // failed to record!
+                        }
+                    }
+                }
             } catch {
                 // failed to record!
                 self.isRecordingAudio = 0
@@ -305,6 +313,13 @@ class CustomAlarmViewController: OishiViewController, AVAudioRecorderDelegate {
     // MARK: - camera
     
     func presentCameraView() {
+        
+        if (self.recorder != nil) {
+            if (self.recorder.recording) {
+                self.recorder.stop()
+            }     
+        }
+        
         self.camera = LLSimpleCamera(quality: AVCaptureSessionPresetHigh, position: LLCameraPositionFront, videoEnabled: true)
         self.initCameraView()
         self.camera?.view.layer.zPosition = 1001
@@ -365,21 +380,23 @@ class CustomAlarmViewController: OishiViewController, AVAudioRecorderDelegate {
     }
     
     func updateTimeLabel() {
-        self.counter += 1
-        if (self.counter <= 5) {
-            self.timeLabel.text = "00 : 0\(self.counter)"
-        }
-        if (self.counter == 5) {
-            self.camera?.stopRecording()
-            self.snapButton.layer.removeAllAnimations()
-            self.recordingIndicator.layer.removeAllAnimations()
-        }
-        if (self.counter >= 7) {
-            self.timer.invalidate()
-            self.counter = 0
-            self.camera?.stop()
-            self.camera?.view.removeFromSuperview()
-        }
+        dispatch_async(dispatch_get_main_queue(), {
+            self.counter += 1
+            if (self.counter <= 5) {
+                self.timeLabel.text = "00 : 0\(self.counter)"
+            }
+            if (self.counter == 6) {
+                self.camera?.stopRecording()
+                self.snapButton.layer.removeAllAnimations()
+                self.recordingIndicator.layer.removeAllAnimations()
+            }
+            if (self.counter >= 7) {
+                self.timer.invalidate()
+                self.counter = 0
+                self.camera?.stop()
+                self.camera?.view.removeFromSuperview()
+            }
+        })
     }
     
     func swapCamera() {

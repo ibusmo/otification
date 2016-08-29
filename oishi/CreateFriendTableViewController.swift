@@ -26,6 +26,7 @@ class CreateFriendTableViewController: OishiTableViewController, ActionsTableVie
 
     var dictionary = Dictionary<String, [ActionInfo]>()
     var selectedActionInfo = [ActionInfo]()
+    var selectedActionInfoNo = "1"
     
     var moviePlayer = MPMoviePlayerController()
     
@@ -207,7 +208,10 @@ class CreateFriendTableViewController: OishiTableViewController, ActionsTableVie
             if let dictionary = response where success {
                 self.dictionary = dictionary
                 print("dictionary.count: \(self.dictionary.count)")
-                if let actionInfos = self.dictionary["1"] {
+                if (self.selectedActionInfo.count > 0) {
+                    self.selectedActionInfoNo = self.selectedActionInfo[0].no!
+                }
+                if let actionInfos = self.dictionary[self.selectedActionInfoNo] {
                     print("actionInfos at 1 size: \(actionInfos.count)")
                     for actionInfo in actionInfos {
                         self.selectedActors.append(actionInfo.actor!)

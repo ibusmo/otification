@@ -28,6 +28,7 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
     
     var dictionary = Dictionary<String, [ActionInfo]>()
     var selectedActionInfo = [ActionInfo]()
+    var selectedActionInfoNo = "1"
     
     var isLoadingDataFromAPI = false
     
@@ -180,8 +181,10 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
     // MARK: - actorspickertableviewcelldelegate
     
     func didSelectAction(action: Action) {
+        print("didSelectAction: \(action.action) \(action.actionName)")
         self.action = action
         if let actionInfos = self.dictionary[self.action.action!] {
+            self.selectedActionInfo.removeAll()
             self.selectedActionInfo = actionInfos
             self.tableView.reloadData()
         }
@@ -197,21 +200,13 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
     
     func didSelectActor(actor: Actor, active: Bool) {
         if (active) {
+            print(self.selectedActionInfo[0].videoUrlString)
             for (_, actionInfo) in self.selectedActionInfo.enumerate() {
                 if let act = actionInfo.actor where act == actor.name {
                     let videoUrlString = actionInfo.videoUrlString
-                    
                     let videoPreview = VideoPreviewViewController(nibName: "VideoPreviewViewController", bundle: nil)
                     videoPreview.videoUrlString = videoUrlString!
                     self.presentViewController(videoPreview, animated: false, completion: nil)
-                    
-                    /*
-                    self.moviePlayer = MPMoviePlayerController(contentURL: NSURL(string: videoUrlString!))
-                    self.moviePlayer.view.frame = CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight)
-                    self.view.addSubview(self.moviePlayer.view)
-                    self.moviePlayer.fullscreen = true
-                    self.moviePlayer.controlStyle = MPMovieControlStyle.Embedded
-                     */
                 }
             }
         }
@@ -348,7 +343,11 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
             if let dictionary = response where success {
                 self.dictionary.removeAll(keepCapacity: false)
                 self.dictionary = dictionary
-                if let actionInfos = self.dictionary["1"] {
+                if (self.selectedActionInfo.count > 0) {
+                    self.selectedActionInfoNo = self.selectedActionInfo[0].no!
+                }
+                if let actionInfos = self.dictionary[self.selectedActionInfoNo] {
+                    self.selectedActionInfo.removeAll()
                     self.selectedActionInfo = actionInfos
                     self.tableView.reloadData()
                 }
