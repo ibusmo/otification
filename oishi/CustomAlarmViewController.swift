@@ -232,17 +232,7 @@ class CustomAlarmViewController: OishiViewController, AVAudioRecorderDelegate {
             do {
                 try session.setCategory(AVAudioSessionCategoryPlayAndRecord)
                 try session.setActive(true)
-                session.requestRecordPermission() { [unowned self] (allowed: Bool) -> Void in
-                    dispatch_async(dispatch_get_main_queue()) {
-                        if allowed {
-                            self.startAudioRecording()
-                        } else {
-                            // failed to record!
-                            self.isRecordingAudio = 0
-                            self.updateSoundRecordingIndicator()
-                        }
-                    }
-                }
+                self.startAudioRecording()
             } catch {
                 // failed to record!
                 self.isRecordingAudio = 0

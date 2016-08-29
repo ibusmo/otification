@@ -183,11 +183,18 @@ class CreateFriendTableViewController: OishiTableViewController, ActionsTableVie
             for (_, actionInfo) in self.selectedActionInfo.enumerate() {
                 if let act = actionInfo.actor where act == actor.name {
                     let videoUrlString = actionInfo.videoUrlString
+                    
+                    let videoPreview = VideoPreviewViewController(nibName: "VideoPreviewViewController", bundle: nil)
+                    videoPreview.videoUrlString = videoUrlString!
+                    self.presentViewController(videoPreview, animated: false, completion: nil)
+                    
+                    /*
                     self.moviePlayer = MPMoviePlayerController(contentURL: NSURL(string: videoUrlString!))
                     self.moviePlayer.view.frame = CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight)
                     self.view.addSubview(self.moviePlayer.view)
                     self.moviePlayer.fullscreen = true
                     self.moviePlayer.controlStyle = MPMovieControlStyle.Embedded
+                     */
                 }
             }
         }

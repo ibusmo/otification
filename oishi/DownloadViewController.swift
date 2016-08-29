@@ -36,6 +36,8 @@ class DownloadViewController: UIViewController {
     var videoDownloaded: Bool = false
     var audioDownloaded: Bool = false
     
+    var isDownloadVideoPreview: Bool = false
+    
     var delegate: DownloadViewControllerDelegate?
     
     /*
@@ -98,7 +100,12 @@ class DownloadViewController: UIViewController {
         self.backgroundImageView.addSubview(self.progressBar)
         // self.backgroundImageView.addSubview(self.progressLabel)
         
-        self.initDownload()
+        if (self.isDownloadVideoPreview) {
+            self.initSingleDownload()
+            self.view.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.95)
+        } else {
+            self.initDownload()
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -128,34 +135,6 @@ class DownloadViewController: UIViewController {
                 let localPath: NSURL = directoryURL.URLByAppendingPathComponent(pathComponent)
                 self.fileURLs.append(videoUrlString)
                 self.fileDestinations.append(localPath)
-                
-                /*
-                Alamofire.download(.GET,
-                    videoUrlString,
-                    destination: { (temporaryURL, response) in
-                        let directoryURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
-                        let pathComponent = "video/\(fileName)"
-                        
-                        localPath = directoryURL.URLByAppendingPathComponent(pathComponent)
-                        return localPath!
-                })
-                    .progress {bytesRead, totalBytesRead, totalBytesExpectedToRead in
-                        print(totalBytesRead)
-                        
-                        // This closure is NOT called on the main queue for performance
-                        // reasons. To update your ui, dispatch to the main queue.
-                        dispatch_async(dispatch_get_main_queue()) {
-                            print("Total bytes read on main queue: \(totalBytesRead)")
-                        }
-                    }
-                    .response { request, response, _, error in
-                        if let error = error {
-                            print("Failed with error: \(error)")
-                        } else {
-                            print("Downloaded file successfully at \(localPath!)")
-                        }
-                } 
-                */
             } else {
                 print("file \(fileName) downloaded")
                 self.videoDownloaded = true
@@ -235,6 +214,66 @@ class DownloadViewController: UIViewController {
                             self.percentageLabel.text = "\(percent)%"
                         }
                         let progress = ((CGFloat(totalBytesRead) / CGFloat(totalBytesExpectedToRead)) / 2.0) + self.baseProgress
+                        print("progress \(progress)")
+                        self.progressBar.setProgress(progress, animated: false)
+                    }
+                }
+                .response { request, response, _, error in
+                    if let error = error {
+                        print("Failed with error: \(error)")
+                    } else {
+                        print("Downloaded file successfully")
+                        if (self.fileURLs.count > 0) {
+                            self.downloadFile()
+                            self.basePercent = 50
+                            self.baseProgress = 0.5
+                        } else {
+                            self.delegate?.finishedDownloadResources()
+                        }
+                    }
+            }
+        }
+    }
+    
+    func initSingleDownload() {
+        if let videoUrlString = self.videoUrlString {
+            let splitedString = videoUrlString.characters.split{$0 == "/"}.map(String.init)
+            let fileName = splitedString[splitedString.count - 1]
+            print("videoFilePath: \(self.getVideoFilePath(fileName))")
+            print("videoFileName: \(fileName)")
+            
+            if (!self.isFileDownloaded(self.getVideoFilePath(fileName))) {
+                let directoryURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
+                let pathComponent = "video/\(fileName)"
+                let localPath: NSURL = directoryURL.URLByAppendingPathComponent(pathComponent)
+                self.fileURLs.append(videoUrlString)
+                self.fileDestinations.append(localPath)
+                self.downloadSingleFile()
+            } else {
+                self.delegate?.finishedDownloadResources()
+            }
+        }
+    }
+    
+    func downloadSingleFile() -> Void {
+        if let url = self.fileURLs.popLast() {
+            Alamofire.download(.GET,
+                url,
+                destination: { (temporaryURL, response) in
+                    let path = self.fileDestinations.popLast()
+                    return path!
+            })
+                .progress { bytesRead, totalBytesRead, totalBytesExpectedToRead in
+                    // This closure is NOT called on the main queue for performance
+                    // reasons. To update your ui, dispatch to the main queue.
+                    dispatch_async(dispatch_get_main_queue()) {
+                        // print("Total bytes read on main queue: \((Float(totalBytesRead) / Float(totalBytesExpectedToRead)) * 100.0) : \(totalBytesRead) \(totalBytesExpectedToRead)")
+                        var percent = (Int(floor(((Float(totalBytesRead) / Float(totalBytesExpectedToRead)) * 100.0))))
+                        percent = self.basePercent + percent
+                        if (percent != 100) {
+                            self.percentageLabel.text = "\(percent)%"
+                        }
+                        let progress = ((CGFloat(totalBytesRead) / CGFloat(totalBytesExpectedToRead))) + self.baseProgress
                         print("progress \(progress)")
                         self.progressBar.setProgress(progress, animated: false)
                     }

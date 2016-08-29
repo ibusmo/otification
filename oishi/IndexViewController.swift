@@ -38,6 +38,7 @@ class IndexViewController: UIViewController {
         self.backgroundImageView.image = UIImage(named: "index")
         
         self.button.frame = CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight)
+        self.button.addTarget(self, action: #selector(IndexViewController.skipIndex), forControlEvents: UIControlEvents.TouchUpInside)
         
         self.view.addSubview(self.backgroundImageView)
         self.view.addSubview(self.button)
@@ -55,6 +56,7 @@ class IndexViewController: UIViewController {
     
     func skipIndex() {
         // TODO: - goto tutorial or mylist
+        self.timer.invalidate()
         let defaults = NSUserDefaults.standardUserDefaults()
         if let bool: Bool = defaults.boolForKey("first_launch") where bool {
             ViewControllerManager.sharedInstance.presentMyList()

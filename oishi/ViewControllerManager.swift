@@ -142,4 +142,17 @@ class ViewControllerManager {
         self.appDelegate.window?.makeKeyAndVisible()
     }
     
+    // MARK: - videopreview
+    
+    func getVideoPreview(videoUrlString: String) -> VideoPreviewViewController {
+        let videoPreview = VideoPreviewViewController(nibName: "VideoPreviewViewController", bundle: nil)
+        videoPreview.videoUrlString = videoUrlString
+        return videoPreview
+    }
+    
+    func presentVideoPreview(videoUrlString: String) {
+        self.appDelegate.window?.rootViewController = self.getVideoPreview(videoUrlString)
+        self.appDelegate.window?.makeKeyAndVisible()
+    }
+    
 }

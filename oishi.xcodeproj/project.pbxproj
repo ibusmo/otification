@@ -33,6 +33,9 @@
 		A22BDE101D673AA6004FA6CB /* THLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A22BDE0F1D673AA6004FA6CB /* THLabel.m */; };
 		A23219A71D73F86500BED06B /* IndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23219A51D73F86500BED06B /* IndexViewController.swift */; };
 		A23219A81D73F86500BED06B /* IndexViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A23219A61D73F86500BED06B /* IndexViewController.xib */; };
+		A23219AC1D73FD5B00BED06B /* VideoPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23219AA1D73FD5B00BED06B /* VideoPreviewViewController.swift */; };
+		A23219AD1D73FD5B00BED06B /* VideoPreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A23219AB1D73FD5B00BED06B /* VideoPreviewViewController.xib */; };
+		A23219AF1D743DAB00BED06B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A23219AE1D743DAB00BED06B /* LaunchScreen.storyboard */; };
 		A23CBDE51D708994004ED38E /* M13ProgressViewBorderedBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A23CBDE41D708994004ED38E /* M13ProgressViewBorderedBar.m */; };
 		A23CBDE81D708A1B004ED38E /* M13ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A23CBDE71D708A1B004ED38E /* M13ProgressView.m */; };
 		A23CBDEE1D713650004ED38E /* GalleryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23CBDEC1D713650004ED38E /* GalleryTableViewController.swift */; };
@@ -42,7 +45,6 @@
 		A23CBDFC1D71721A004ED38E /* VideoPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23CBDFB1D71721A004ED38E /* VideoPreviewView.swift */; };
 		A24E205E1D5B454F00985409 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24E205D1D5B454F00985409 /* AppDelegate.swift */; };
 		A24E20651D5B454F00985409 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A24E20641D5B454F00985409 /* Assets.xcassets */; };
-		A24E20701D5B456B00985409 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A24E206F1D5B456B00985409 /* LaunchScreen.storyboard */; };
 		A2508A2E1D5C45FF00DFD781 /* OishiTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2508A2D1D5C45FF00DFD781 /* OishiTabBarView.swift */; };
 		A2508A301D5C460D00DFD781 /* OishiTabBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2508A2F1D5C460D00DFD781 /* OishiTabBarView.xib */; };
 		A2508A351D5C747C00DFD781 /* OishiTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2508A341D5C747C00DFD781 /* OishiTableViewController.swift */; };
@@ -150,6 +152,9 @@
 		A22BDE0F1D673AA6004FA6CB /* THLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THLabel.m; sourceTree = "<group>"; };
 		A23219A51D73F86500BED06B /* IndexViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexViewController.swift; sourceTree = "<group>"; };
 		A23219A61D73F86500BED06B /* IndexViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndexViewController.xib; sourceTree = "<group>"; };
+		A23219AA1D73FD5B00BED06B /* VideoPreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPreviewViewController.swift; sourceTree = "<group>"; };
+		A23219AB1D73FD5B00BED06B /* VideoPreviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoPreviewViewController.xib; sourceTree = "<group>"; };
+		A23219AE1D743DAB00BED06B /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A23CBDE31D708994004ED38E /* M13ProgressViewBorderedBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M13ProgressViewBorderedBar.h; sourceTree = "<group>"; };
 		A23CBDE41D708994004ED38E /* M13ProgressViewBorderedBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M13ProgressViewBorderedBar.m; sourceTree = "<group>"; };
 		A23CBDE61D708A1B004ED38E /* M13ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M13ProgressView.h; sourceTree = "<group>"; };
@@ -163,7 +168,6 @@
 		A24E205D1D5B454F00985409 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A24E20641D5B454F00985409 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A24E20691D5B454F00985409 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A24E206F1D5B456B00985409 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A2508A2D1D5C45FF00DFD781 /* OishiTabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OishiTabBarView.swift; sourceTree = "<group>"; };
 		A2508A2F1D5C460D00DFD781 /* OishiTabBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OishiTabBarView.xib; sourceTree = "<group>"; };
 		A2508A341D5C747C00DFD781 /* OishiTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OishiTableViewController.swift; sourceTree = "<group>"; };
@@ -426,6 +430,15 @@
 			name = index;
 			sourceTree = "<group>";
 		};
+		A23219A91D73FD4A00BED06B /* videopreview */ = {
+			isa = PBXGroup;
+			children = (
+				A23219AA1D73FD5B00BED06B /* VideoPreviewViewController.swift */,
+				A23219AB1D73FD5B00BED06B /* VideoPreviewViewController.xib */,
+			);
+			name = videopreview;
+			sourceTree = "<group>";
+		};
 		A23CBDE21D708986004ED38E /* M13 */ = {
 			isa = PBXGroup;
 			children = (
@@ -508,7 +521,6 @@
 				A272BC5E1D6AEC2000D06576 /* frameworks */,
 				A299FF2E1D61B09700EE74C1 /* resources */,
 				A24E20641D5B454F00985409 /* Assets.xcassets */,
-				A24E206F1D5B456B00985409 /* LaunchScreen.storyboard */,
 				A24E20691D5B454F00985409 /* Info.plist */,
 				A299FF281D6187D600EE74C1 /* todolist */,
 			);
@@ -518,6 +530,7 @@
 		A24E20711D5B457200985409 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A23219A91D73FD4A00BED06B /* videopreview */,
 				A23219A41D73F85500BED06B /* index */,
 				A23CBDEB1D713566004ED38E /* gallery */,
 				A272BCB31D6F994200D06576 /* download */,
@@ -888,6 +901,7 @@
 		A299FF2F1D61B0A900EE74C1 /* fonts */ = {
 			isa = PBXGroup;
 			children = (
+				A23219AE1D743DAB00BED06B /* LaunchScreen.storyboard */,
 				A217B7491D65BC7200021BFA /* helvethaicamon x */,
 				A217B7481D65BC6B00021BFA /* helvethaica x */,
 			);
@@ -970,6 +984,7 @@
 				A26ECD361D666FAD004EA733 /* DB HelvethaicaMon X Med It.ttf in Resources */,
 				A217B7551D65BC9800021BFA /* DB Helvethaica X.ttf in Resources */,
 				A26ECD341D666FAD004EA733 /* DB HelvethaicaMon X Bd.ttf in Resources */,
+				A23219AD1D73FD5B00BED06B /* VideoPreviewViewController.xib in Resources */,
 				A217B7501D65BC9800021BFA /* DB Helvethaica X Bd It.ttf in Resources */,
 				A261D1981D647E5500DEECF1 /* TimePickerTableViewCell.xib in Resources */,
 				A26ECD351D666FAD004EA733 /* DB HelvethaicaMon X It.ttf in Resources */,
@@ -981,8 +996,8 @@
 				A23219A81D73F86500BED06B /* IndexViewController.xib in Resources */,
 				A26ECD381D666FAD004EA733 /* DB HelvethaicaMon X.ttf in Resources */,
 				A217B7541D65BC9800021BFA /* DB Helvethaica X Med.ttf in Resources */,
+				A23219AF1D743DAB00BED06B /* LaunchScreen.storyboard in Resources */,
 				A272BC591D67627900D06576 /* RepeatAlarmTableViewCell.xib in Resources */,
-				A24E20701D5B456B00985409 /* LaunchScreen.storyboard in Resources */,
 				A2508A301D5C460D00DFD781 /* OishiTabBarView.xib in Resources */,
 				A272BC711D6BAF1500D06576 /* CustomAlarmViewController.xib in Resources */,
 				A299FF291D6187D700EE74C1 /* todolist in Resources */,
@@ -1115,6 +1130,7 @@
 				A272BC581D67627900D06576 /* RepeatAlarmTableViewCell.swift in Sources */,
 				A217B7611D66671E00021BFA /* MenuTableViewController.swift in Sources */,
 				A272BC6D1D6B9D1900D06576 /* DummyViewController.swift in Sources */,
+				A23219AC1D73FD5B00BED06B /* VideoPreviewViewController.swift in Sources */,
 				A217B75C1D65F28E00021BFA /* Otification+UIImage.swift in Sources */,
 				A261D18A1D63A17800DEECF1 /* OtificationTimePickerView.swift in Sources */,
 				A2508A2E1D5C45FF00DFD781 /* OishiTabBarView.swift in Sources */,
