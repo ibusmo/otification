@@ -42,7 +42,7 @@ class IndexViewController: UIViewController, PopupThankyouViewDelegate {
         self.backgroundImageView.image = UIImage(named: "index")
         
         self.button.frame = CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight)
-        self.button.addTarget(self, action: #selector(IndexViewController.skipIndex), forControlEvents: UIControlEvents.TouchUpInside)
+        // self.button.addTarget(self, action: #selector(IndexViewController.skipIndex), forControlEvents: UIControlEvents.TouchUpInside)
         
         self.view.addSubview(self.backgroundImageView)
         self.view.addSubview(self.button)
