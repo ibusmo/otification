@@ -381,7 +381,6 @@ class AlarmManager {
                 self.alarms.append(alarm)
             }
         }
-        print("number of alarm: \(self.alarms.count)")
     }
     
     func getAlarm(uid: String) -> (index: Int?, alarm: Alarm?) {
@@ -705,7 +704,6 @@ class AlarmManager {
                 self.friendAlarms.append(alarm)
             }
         }
-        print("number of alarm: \(self.alarms.count)")
     }
     
     func getFriendAlarm(uid: String) -> (index: Int?, alarm: Alarm?) {

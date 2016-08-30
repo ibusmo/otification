@@ -1,8 +1,11 @@
 PODS:
   - Alamofire (3.4.1)
   - AppsFlyer-SDK (4.5.3)
+  - Bolts/Tasks (1.8.4)
   - Kingfisher (2.4.3)
   - LLSimpleCamera (5.0.0)
+  - Parse (1.14.2):
+    - Bolts/Tasks (~> 1.8)
   - PickerView (0.2.2)
   - SwiftHEXColors (1.0.4)
   - SwiftKeychainWrapper (2.0.0)
@@ -13,6 +16,7 @@ DEPENDENCIES:
   - AppsFlyer-SDK
   - Kingfisher (~> 2.4)
   - LLSimpleCamera
+  - Parse
   - PickerView
   - SwiftHEXColors
   - SwiftKeychainWrapper
@@ -21,13 +25,15 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
   AppsFlyer-SDK: 39e1d4015cafc95ce6a2afbe47773e404d1e00f3
+  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   Kingfisher: 322a9c1c5b03212c1e741d6bece72d387b01a77a
   LLSimpleCamera: 7175ccb81be71c83d79933089322eb662b1f0327
+  Parse: 4335d65f40cb3d43190d723144bbe1afb9c38230
   PickerView: d6952d565ec80c9fcdbd7dff853723e4df0b2490
   SwiftHEXColors: b0ecc7bd83a1aa2e1956f9ba51f55ebb2bcf86ef
   SwiftKeychainWrapper: 3575838215fa36c816899c301a7afe370bd94814
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: 7ebc32ae44ca1ba9734e54620fe97dbda4ae31cf
+PODFILE CHECKSUM: 2c424f4845c3416a94f42a3c9e0f2269cc351596
 
 COCOAPODS: 1.0.1

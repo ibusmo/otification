@@ -11,6 +11,7 @@ import AudioToolbox
 import AVFoundation
 import SwiftKeychainWrapper
 import FBSDKCoreKit
+import Parse
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,7 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.setStatusBarHidden(true, withAnimation: UIStatusBarAnimation.None)
         
         let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-        UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
+        application.registerUserNotificationSettings(notificationSettings)
+        application.registerForRemoteNotifications()
         
         if ((UIScreen.mainScreen().bounds.size.height / UIScreen.mainScreen().bounds.size.width) < 1.5) {
             self.window = UIWindow(frame: CGRectMake(114.0, 32.0, 540.0, 960.0))
@@ -44,7 +46,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         ViewControllerManager.sharedInstance.presentIndex()
         
+        // MARK: - facebook
+        
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        // MARK: - appsflyer
+        
+        AppsFlyerTracker.sharedTracker().appsFlyerDevKey = "HGETasn6yh8FhMC2LQgEWP"
+        AppsFlyerTracker.sharedTracker().appleAppID = "965172855"
+        
+        // MARK: - parse
+        
+        Parse.setApplicationId("hcQPULoCz11pZmdmxDP5ZiDciS3ZmP5nXdcxjQzG", clientKey: "ZkIBK8C8AY0UAv6DbPtNupqfYbUoajEHh7maLRsN")
         
         return true
     }
@@ -74,6 +87,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+    }
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        let installation = PFInstallation.currentInstallation()
+        installation!.setDeviceTokenFromData(deviceToken)
+        installation!.saveInBackground()
     }
     
     // MARK: - oishi

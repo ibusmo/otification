@@ -14,5 +14,6 @@ target 'oishi' do
   pod 'LLSimpleCamera'
   pod 'SwiftKeychainWrapper'
   pod 'AppsFlyer-SDK'
+  pod 'Parse'
 
 end
