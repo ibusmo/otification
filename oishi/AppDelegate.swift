@@ -103,7 +103,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-        UIAlertView(title: "Alert !", message: "You didn't give our access for push notification.", delegate: self, cancelButtonTitle: "OK").show()
     }
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
