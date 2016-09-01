@@ -191,7 +191,7 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
         print("didSelectAction: \(action.action) \(action.actionName)")
         self.action = action
         let labels: [String] = ["GN", "Ex", "read", "wakeup", "appointment"]
-        OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "my_\(labels[Int(action.action!)!]))")
+        OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "my_\(labels[Int(action.action!)! - 1]))")
         // print("my_\(labels[Int(action.action!)!]))")
         if let actionInfos = self.dictionary[self.action.action!] {
             self.selectedActionInfo.removeAll()

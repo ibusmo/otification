@@ -163,7 +163,7 @@ class CreateFriendTableViewController: OishiTableViewController, ActionsTableVie
     
     func didSelectAction(action: Action) {
         let labels: [String] = ["hbd", "missu", "gn", "fight", "travel", "sorry", "thnx", "takecare"]
-        OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "bnt_f_\(labels[Int(action.action!)!]))")
+        OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "bnt_f_\(labels[Int(action.action!)! - 1]))")
         self.action = action
         if let actionInfos = self.dictionary[self.action.action!] {
             self.selectedActors.removeAll(keepCapacity: false)
