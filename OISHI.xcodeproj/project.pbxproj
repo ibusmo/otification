@@ -43,6 +43,8 @@
 		A23219C11D74DB7D00BED06B /* PopupThankyouView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23219C01D74DB7D00BED06B /* PopupThankyouView.swift */; };
 		A23219C31D74F4E600BED06B /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23219C21D74F4E600BED06B /* PopupView.swift */; };
 		A23219C51D75009E00BED06B /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A23219C41D75009E00BED06B /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		A23219DE1D7774A000BED06B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A23219DD1D7774A000BED06B /* GoogleService-Info.plist */; };
+		A23219E01D77786C00BED06B /* OtificationGoogleAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23219DF1D77786C00BED06B /* OtificationGoogleAnalytics.swift */; };
 		A23CBDE51D708994004ED38E /* M13ProgressViewBorderedBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A23CBDE41D708994004ED38E /* M13ProgressViewBorderedBar.m */; };
 		A23CBDE81D708A1B004ED38E /* M13ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A23CBDE71D708A1B004ED38E /* M13ProgressView.m */; };
 		A23CBDEE1D713650004ED38E /* GalleryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23CBDEC1D713650004ED38E /* GalleryTableViewController.swift */; };
@@ -178,6 +180,8 @@
 		A23219D41D75025E00BED06B /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		A23219D61D75026A00BED06B /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		A23219D81D75027600BED06B /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		A23219DD1D7774A000BED06B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A23219DF1D77786C00BED06B /* OtificationGoogleAnalytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtificationGoogleAnalytics.swift; sourceTree = "<group>"; };
 		A23CBDE31D708994004ED38E /* M13ProgressViewBorderedBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M13ProgressViewBorderedBar.h; sourceTree = "<group>"; };
 		A23CBDE41D708994004ED38E /* M13ProgressViewBorderedBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M13ProgressViewBorderedBar.m; sourceTree = "<group>"; };
 		A23CBDE61D708A1B004ED38E /* M13ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M13ProgressView.h; sourceTree = "<group>"; };
@@ -534,6 +538,7 @@
 		A24E20511D5B454F00985409 = {
 			isa = PBXGroup;
 			children = (
+				A23219DD1D7774A000BED06B /* GoogleService-Info.plist */,
 				A24E205C1D5B454F00985409 /* oishi */,
 				A24E205B1D5B454F00985409 /* Products */,
 				59AA73C3CB754314FE2DDC5B /* Pods */,
@@ -578,7 +583,7 @@
 				A23219A41D73F85500BED06B /* index */,
 				A23CBDEB1D713566004ED38E /* gallery */,
 				A272BCB31D6F994200D06576 /* download */,
-				A272BCA31D6EF62700D06576 /* notificationvdo */,
+				A272BCA31D6EF62700D06576 /* videoalarm */,
 				A2738ED11D6385D50075EE63 /* createalarm */,
 				A272BC761D6BC6CD00D06576 /* createfriend */,
 				A272BC6A1D6B624B00D06576 /* customalarm */,
@@ -788,6 +793,7 @@
 			children = (
 				A272BC681D6B464700D06576 /* OtificationHTTPService.swift */,
 				A23219B91D74D00700BED06B /* Reachability.swift */,
+				A23219DF1D77786C00BED06B /* OtificationGoogleAnalytics.swift */,
 			);
 			name = services;
 			sourceTree = "<group>";
@@ -882,13 +888,13 @@
 			name = cell;
 			sourceTree = "<group>";
 		};
-		A272BCA31D6EF62700D06576 /* notificationvdo */ = {
+		A272BCA31D6EF62700D06576 /* videoalarm */ = {
 			isa = PBXGroup;
 			children = (
 				A272BCA41D6EF68100D06576 /* VideoAlarmViewController.swift */,
 				A272BCA51D6EF68100D06576 /* VideoAlarmViewController.xib */,
 			);
-			name = notificationvdo;
+			name = videoalarm;
 			sourceTree = "<group>";
 		};
 		A272BCA81D6F43FF00D06576 /* api */ = {
@@ -1076,6 +1082,7 @@
 				A2508A421D5C83C300DFD781 /* MyListTableViewController.xib in Resources */,
 				A272BC841D6BC88700D06576 /* CreateFriendTableViewController.xib in Resources */,
 				A23CBDF91D717080004ED38E /* VideoPreviewTableViewCell.xib in Resources */,
+				A23219DE1D7774A000BED06B /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1143,6 +1150,7 @@
 				A23219BA1D74D00700BED06B /* Reachability.swift in Sources */,
 				A2508A411D5C83C300DFD781 /* MyListTableViewController.swift in Sources */,
 				A272BC8F1D6BECAD00D06576 /* FriendActionsTableViewCell.swift in Sources */,
+				A23219E01D77786C00BED06B /* OtificationGoogleAnalytics.swift in Sources */,
 				A21B05B81D717D7800F294B3 /* Otification+UIWindow.swift in Sources */,
 				A23CBDE81D708A1B004ED38E /* M13ProgressView.m in Sources */,
 				A23CBDFC1D71721A004ED38E /* VideoPreviewView.swift in Sources */,

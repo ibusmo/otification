@@ -146,6 +146,7 @@ class GalleryTableViewController: OishiTableViewController, ActorsPickerTableVie
     }
     
     func didTapLINEAtIndex(index: Int) {
+        OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "bnt_gall_share-line")
         let actionInfo = self.selectedActionInfo[index]
         let shareUrl = actionInfo.shareUrl
         let lineUrl = NSURL(string: "line://msg/text/\(shareUrl!)")
@@ -222,6 +223,7 @@ class GalleryTableViewController: OishiTableViewController, ActorsPickerTableVie
     // MARK: - facebook
     
     func didTapFBAtIndex(index: Int) {
+        OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "bnt_gall_share-fb")
         self.shareToFacebook(index)
     }
     

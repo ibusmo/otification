@@ -143,6 +143,17 @@ class ViewControllerManager {
         self.appDelegate.window?.makeKeyAndVisible()
     }
     
+    func getTutorial(numberOfTutorial: Int) -> TutorialViewController {
+        let tutorial = TutorialViewController(nibName: "TutorialViewController", bundle: nil)
+        tutorial.numberOfTutorial = numberOfTutorial
+        return tutorial
+    }
+    
+    func presentTutorial(numberOfTutorial: Int) {
+        self.appDelegate.window?.rootViewController = self.getTutorial(numberOfTutorial)
+        self.appDelegate.window?.makeKeyAndVisible()
+    }
+    
     // MARK: - index
     
     func getIndex() -> IndexViewController {

@@ -55,6 +55,8 @@ class MyListTableViewController: OishiTableViewController, ToggleButtonDelegate,
     
     override func viewDidAppear(animated: Bool) {
         // self.tableView.frame = CGRectMake(0.0, 0.0, Otification.dWidth, Otification.dHeight)
+        super.viewDidAppear(animated)
+        OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Page, action: .Opened, label: "page_list")
     }
 
     override func didReceiveMemoryWarning() {
@@ -168,6 +170,7 @@ class MyListTableViewController: OishiTableViewController, ToggleButtonDelegate,
     // MARK: -
     
     func createAlarm() {
+        OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "bnt_list_crebnt_list_create")
         ViewControllerManager.sharedInstance.presentCreateAlarm()
     }
     

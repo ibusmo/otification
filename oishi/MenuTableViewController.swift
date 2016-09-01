@@ -90,15 +90,25 @@ class MenuTableViewController: OishiTableViewController, MenuTableViewCellDelega
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.dismissViewControllerAnimated(false, completion: nil)
         if (indexPath.row == 0) {
+            OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "bnt_create")
             if !(self.presentingViewController is CreateAlarmTableViewController) {
                 ViewControllerManager.sharedInstance.presentCreateAlarm()
             }
         } else if (indexPath.row == 1) {
-            ViewControllerManager.sharedInstance.presentMyList()
+            OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "bnt_list")
+            if !(self.presentingViewController is MyListTableViewController) {
+                ViewControllerManager.sharedInstance.presentMyList()
+            }
         } else if (indexPath.row == 2) {
-            ViewControllerManager.sharedInstance.presentTutorial()
+            OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "bnt_howto")
+            if !(self.presentingViewController is TutorialViewController) {
+                ViewControllerManager.sharedInstance.presentTutorial()
+            }
         } else if (indexPath.row == 3) {
-            ViewControllerManager.sharedInstance.presentGallery()
+            OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "bnt_gallery")
+            if !(self.presentingViewController is GalleryTableViewController) {
+                ViewControllerManager.sharedInstance.presentGallery()
+            }
         }
     }
     
@@ -115,6 +125,7 @@ class MenuTableViewController: OishiTableViewController, MenuTableViewCellDelega
     }
     
     func shareFBDidTap() {
+        OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "bnt_main_share-FB")
         if let _ = FBSDKAccessToken.currentAccessToken() {
             let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "email,gender,link,first_name,last_name"], HTTPMethod: "GET")
             let connection = FBSDKGraphRequestConnection()
@@ -245,6 +256,7 @@ class MenuTableViewController: OishiTableViewController, MenuTableViewCellDelega
     }
     
     func shareLineDidTap() {
+        OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "bnt_main_share-line")
         if let shareUrlString = DataManager.sharedInstance.getObjectForKey("share_url") {
             let lineUrl = NSURL(string: "line://msg/text/\(shareUrlString)")
             if (UIApplication.sharedApplication().canOpenURL(lineUrl!)) {

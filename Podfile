@@ -15,5 +15,6 @@ target 'oishi' do
   pod 'SwiftKeychainWrapper'
   pod 'AppsFlyer-SDK'
   pod 'Parse'
+  pod 'Google/Analytics'
 
 end

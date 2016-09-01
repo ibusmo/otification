@@ -91,6 +91,7 @@ class VideoAlarmViewController: UIViewController, SnoozeButtonDelegate {
     func snoozeDidDrag(snooze: SnoozeButton) {
         if (snooze.state == .Stop) {
             // TODO: - cancel
+            OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "bnt_close_snooze")
             self.stopVideo()
             ViewControllerManager.sharedInstance.presentMyList()
             let index = AlarmManager.sharedInstance.findAlarm(self.uid!)
@@ -99,6 +100,7 @@ class VideoAlarmViewController: UIViewController, SnoozeButtonDelegate {
             AlarmManager.sharedInstance.saveAlarm(alarm)
         } else if (snooze.state == .Snooze) {
             // TODO: - set new localnotification with the same noti
+            OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "bnt_close_alert")
             self.stopVideo()
             ViewControllerManager.sharedInstance.presentMyList()
             AlarmManager.sharedInstance.setSnoozeAlarm(self.uid!)

@@ -185,6 +185,7 @@ class VideoPreviewViewController: UIViewController, DownloadViewControllerDelega
     }
     
     func closeDidTap() {
+        OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "bnt_Preview-close")
         self.avPlayer.pause()
         self.avPlayer.removeTimeObserver(self.timer!)
         self.dismissViewControllerAnimated(false, completion: nil)

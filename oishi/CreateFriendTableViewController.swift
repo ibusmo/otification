@@ -162,6 +162,8 @@ class CreateFriendTableViewController: OishiTableViewController, ActionsTableVie
     // MARK: - actionstableviewcelldelegate
     
     func didSelectAction(action: Action) {
+        let labels: [String] = ["hbd", "missu", "gn", "fight", "travel", "sorry", "thnx", "takecare"]
+        OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "bnt_f_\(labels[Int(action.action!)!]))")
         self.action = action
         if let actionInfos = self.dictionary[self.action.action!] {
             self.selectedActors.removeAll(keepCapacity: false)
@@ -238,6 +240,7 @@ class CreateFriendTableViewController: OishiTableViewController, ActionsTableVie
     // MARK: - oishitabbardelegate
     
     override func leftButtonDidTap() {
+        OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "bnt_myself")
         ViewControllerManager.sharedInstance.presentCreateAlarm()
     }
     
@@ -254,6 +257,7 @@ class CreateFriendTableViewController: OishiTableViewController, ActionsTableVie
     // MARK: - share to facebook
     
     func shareToFacebook() {
+        OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "bnt_f_fb")
         if let _ = FBSDKAccessToken.currentAccessToken() {
             let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "email,gender,link,first_name,last_name"], HTTPMethod: "GET")
             let connection = FBSDKGraphRequestConnection()
@@ -398,6 +402,7 @@ class CreateFriendTableViewController: OishiTableViewController, ActionsTableVie
     // MARK: - share to line
     
     func shareToLine() {
+        OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "bnt_f_line")
         for (_, actionInfo) in self.selectedActionInfo.enumerate() {
             if let act = actionInfo.actor where act == actor.name {
                 // save friend alarm

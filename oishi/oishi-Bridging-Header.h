@@ -8,3 +8,4 @@
 #import "M13ProgressViewBorderedBar.h"
 #import "SWTableViewCell.h"
 #import "AppsFlyerTracker.h"
+#import <Google/Analytics.h>

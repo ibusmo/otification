@@ -378,7 +378,8 @@ class AlarmManager {
         for uid in list {
             let result = self.getAlarm(uid)
             if let _ = result.index, alarm = result.alarm {
-                self.alarms.append(alarm)
+                // self.alarms.append(alarm)
+                self.alarms.insert(alarm, atIndex: 0)
             }
         }
     }
@@ -411,13 +412,15 @@ class AlarmManager {
         
         if let uid = alarm.uid where list.count < 8 {
             // desc: - append new alarm list uid, set new alarmlist forkey "alarm_list"
-            list.append(uid)
+            // list.append(uid)
+            list.insert(uid, atIndex: 0)
             defaults.removeObjectForKey("alarm_list")
             defaults.setObject(list, forKey: "alarm_list")
             
             // desc: - save alarm object to userdefaults mapped by alarm.uid
             defaults.setObject(NSKeyedArchiver.archivedDataWithRootObject(alarm), forKey: alarm.uid!)
-            self.alarms.append(alarm)
+            // self.alarms.append(alarm)
+            self.alarms.insert(alarm, atIndex: 0)
             self.setAlarm(alarm)
             
             // todo: - notify observers
@@ -438,13 +441,15 @@ class AlarmManager {
         if (alarmIndex == -1) {
             if let uid = alarm.uid where list.count < 8 {
                 // desc: - append new alarm list uid, set new alarmlist forkey "alarm_list"
-                list.append(uid)
+                // list.append(uid)
+                list.insert(uid, atIndex: 0)
                 defaults.removeObjectForKey("alarm_list")
                 defaults.setObject(list, forKey: "alarm_list")
                 
                 // desc: - save alarm object to userdefaults mapped by alarm.uid
                 defaults.setObject(NSKeyedArchiver.archivedDataWithRootObject(alarm), forKey: alarm.uid!)
-                self.alarms.append(alarm)
+                // self.alarms.append(alarm)
+                self.alarms.insert(alarm, atIndex: 0)
                 self.setAlarm(alarm)
                 
                 // todo: - notify observers
@@ -701,7 +706,8 @@ class AlarmManager {
         for uid in list {
             let result = self.getFriendAlarm(uid)
             if let _ = result.index, alarm = result.alarm {
-                self.friendAlarms.append(alarm)
+                // self.friendAlarms.append(alarm)
+                self.friendAlarms.insert(alarm, atIndex: 0)
             }
         }
     }
@@ -734,13 +740,15 @@ class AlarmManager {
         let uid = NSUUID().UUIDString
         let newAlarm = Alarm(uid: uid, title: actionName, date: NSDate(), actorNo: actorNo)
         
-        list.append(uid)
+        // list.append(uid)
+        list.insert(uid, atIndex: 0)
         defaults.removeObjectForKey("friend_alarm_list")
         defaults.setObject(list, forKey: "friend_alarm_list")
         
         // desc: - save alarm object to userdefaults mapped by alarm.uid
         defaults.setObject(NSKeyedArchiver.archivedDataWithRootObject(newAlarm), forKey: newAlarm.uid!)
-        self.friendAlarms.append(newAlarm)
+        // self.friendAlarms.append(newAlarm)
+        self.friendAlarms.insert(newAlarm, atIndex: 0)
         
         return true
     }

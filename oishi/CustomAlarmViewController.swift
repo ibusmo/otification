@@ -205,10 +205,12 @@ class CustomAlarmViewController: OishiViewController, AVAudioRecorderDelegate {
     // MARK: - oishitabbardelegate
     
     override func leftButtonDidTap() {
+        OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "bnt_custom_edit")
         ViewControllerManager.sharedInstance.presentCreateAlarm()
     }
     
     override func rightButtonDidTap() {
+        OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "bnt_custom_save")
         if (self.recordedSound && self.recordedVideo) {
             // TODO: - save alarm
             AlarmManager.sharedInstance.unsaveAlarm?.custom = true
@@ -233,6 +235,8 @@ class CustomAlarmViewController: OishiViewController, AVAudioRecorderDelegate {
     
     func prepareAudioRecording() {
         print("prepareAudioRecording")
+        
+        OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "bnt_sound_rec")
         
         if (self.isRecordingAudio == 0 || self.isRecordingAudio == 3) {
             self.isRecordingAudio = 1
@@ -303,6 +307,7 @@ class CustomAlarmViewController: OishiViewController, AVAudioRecorderDelegate {
     }
     
     func playRecordedAudio() {
+        OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "bnt_sound_play")
         do {
             try self.audioPlayer = AVAudioPlayer(contentsOfURL: NSURL.fileURLWithPath(self.getSoundFilePath()))
             self.audioPlayer.prepareToPlay()
@@ -350,7 +355,8 @@ class CustomAlarmViewController: OishiViewController, AVAudioRecorderDelegate {
     }
     
     func snapDidTap() {
-        print("snapDidTap")
+        OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "bnt_camera")
+        
         if (!(self.camera?.recording)!) {
             self.recordingIndicator.alpha = 0.0
             self.cameraTopBar.addSubview(self.recordingIndicator)

@@ -77,7 +77,7 @@ class IndexViewController: UIViewController, PopupThankyouViewDelegate {
                 ViewControllerManager.sharedInstance.presentMyList()
             } else {
                 defaults.setBool(true, forKey: "first_launch")
-                ViewControllerManager.sharedInstance.presentTutorial()
+                ViewControllerManager.sharedInstance.presentTutorial(2)
             }
         } else {
             if (Reachability.isConnectedToNetwork()) {

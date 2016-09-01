@@ -190,6 +190,9 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
     func didSelectAction(action: Action) {
         print("didSelectAction: \(action.action) \(action.actionName)")
         self.action = action
+        let labels: [String] = ["GN", "Ex", "read", "wakeup", "appointment"]
+        OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "my_\(labels[Int(action.action!)!]))")
+        // print("my_\(labels[Int(action.action!)!]))")
         if let actionInfos = self.dictionary[self.action.action!] {
             self.selectedActionInfo.removeAll()
             self.selectedActionInfo = actionInfos
@@ -222,6 +225,7 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
     // MARK: - savebuttondidtap
     
     func saveNewAlarm() {
+        OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "my_bnt_save")
         if let h = self.hour, m = self.minute where self.selectedActorActive {
             // TODO: download vdo & sound first
             
@@ -289,6 +293,7 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
     // MARK: - custombuttondidtap
     
     func customAlarm() {
+        OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "my_bnt_custom")
         if let h = self.hour, m = self.minute {
             AlarmManager.sharedInstance.prepareNewAlarm(self.action.actionName!, hour: h, minute: m)
             let notiInfo = self.getNotiTitleAndMessageForCustomAlarm()
@@ -346,6 +351,7 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
     // MARK: - oishinavigationbardelegate
     
     override func menuDidTap() {
+        OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "bnt_menu")
         self.popup?.removeFromSuperview()
         let menu = MenuTableViewController(nibName: "MenuTableViewController", bundle: nil)
         menu.modalPresentationStyle = .OverCurrentContext
@@ -355,8 +361,12 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
     
     // MARK: - oishitabbardelegate
     
+    override func leftButtonDidTap() {
+    }
+    
     override func rightButtonDidTap() {
         ViewControllerManager.sharedInstance.presentCreateFriend()
+        OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "bnt_send-f")
     }
     
     // MARK: - mpmovieplayer

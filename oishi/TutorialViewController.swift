@@ -15,6 +15,8 @@ class TutorialViewController: UIViewController, UICollectionViewDataSource, UICo
     
     var closeButton = UIButton()
     
+    var numberOfTutorial: Int = 6
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
@@ -63,7 +65,15 @@ class TutorialViewController: UIViewController, UICollectionViewDataSource, UICo
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return self.numberOfTutorial
+        /*
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let bool: Bool = defaults.boolForKey("first_tutorial") where bool {
+            return 6
+        } else {
+            return 2
+        }
+         */
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -80,6 +90,7 @@ class TutorialViewController: UIViewController, UICollectionViewDataSource, UICo
     // MARK: - closbutton
     
     func closeDidTap() {
+        OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "tutorial_close")
         let defaults = NSUserDefaults.standardUserDefaults()
         if let bool: Bool = defaults.boolForKey("first_tutorial") where bool {
             ViewControllerManager.sharedInstance.presentMyList()
