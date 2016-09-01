@@ -66,6 +66,7 @@ class IndexViewController: UIViewController, PopupThankyouViewDelegate {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        OtificationHTTPService.sharedInstance.startGame()
     }
     
     func skipIndex() {

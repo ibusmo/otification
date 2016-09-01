@@ -136,6 +136,11 @@ class VideoPreviewViewController: UIViewController, DownloadViewControllerDelega
     }
     
     func playVideo(videoFilePath: String) {
+        let splitedString = videoFilePath.characters.split{$0 == "/"}.map(String.init)
+        let fileName = splitedString[splitedString.count - 1]
+        let clipName = fileName.characters.split{$0 == "."}.map(String.init)
+        OtificationHTTPService.sharedInstance.loadClip(clipName[0])
+        
         self.avPlayerLayer.removeFromSuperlayer()
         
         self.avPlayer = AVPlayer(URL: NSURL.fileURLWithPath(videoFilePath))

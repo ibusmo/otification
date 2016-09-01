@@ -171,7 +171,11 @@ class MyListTableViewController: OishiTableViewController, ToggleButtonDelegate,
     
     func createAlarm() {
         OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "bnt_list_crebnt_list_create")
-        ViewControllerManager.sharedInstance.presentCreateAlarm()
+        if (self.tabBar.leftButtonSelected) {
+            ViewControllerManager.sharedInstance.presentCreateAlarm()
+        } else {
+            ViewControllerManager.sharedInstance.presentCreateFriend()
+        }
     }
     
     // MARK: - togglebuttondelegate

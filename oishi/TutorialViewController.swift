@@ -51,6 +51,7 @@ class TutorialViewController: UIViewController, UICollectionViewDataSource, UICo
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Page, action: .Opened, label: "page_howto")
         self.view.frame = CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight)
         self.collectionView.frame = CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight)
     }

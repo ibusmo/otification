@@ -364,10 +364,6 @@ class AlarmManager {
         
         self.list = list
         
-        for l in list {
-            print("list: \(l)")
-        }
-        
         return list
     }
     

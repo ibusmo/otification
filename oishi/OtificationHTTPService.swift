@@ -117,4 +117,84 @@ class OtificationHTTPService {
         }
     }
     
+    // MARK: - otification stat
+    
+    func saveGame(isFriend: Bool, time: String, isCustom: Bool, videoId: String) {
+        var url: String = "http://www.oishidrink.com/otification/api/mobile/submitGame.aspx"
+        if let api_save = DataManager.sharedInstance.getObjectForKey("api_save") as? String {
+            url = api_save
+        }
+        var parameters = Dictionary<String, AnyObject>()
+        parameters["param1"] = "ios"
+        
+        var param2 = ""
+        if (!isFriend) {
+            param2 = "1|\(time)|"
+        } else {
+            param2 = "2|\(time)|"
+        }
+        
+        if (isCustom) {
+            param2 = "\(param2)custom|"
+        }
+        
+        param2 = "\(param2)\(videoId)"
+        
+        parameters["param2"] = param2
+        parameters["access"] = "mobileapp"
+        parameters["access"] = ""
+        parameters["caller"] = "json"
+        Alamofire.request(.POST, url, parameters: parameters)
+    }
+    
+    func openApp() {
+        var url: String = "http://www.oishidrink.com/otification/api/mobile/applicationstatlog.aspx"
+        if let api_stat = DataManager.sharedInstance.getObjectForKey("api_stat") as? String {
+            url = api_stat
+        }
+        var parameters = Dictionary<String, AnyObject>()
+        parameters["stat"] = "otification"
+        parameters["param1"] = "ios"
+        parameters["param2"] = "openapp"
+        Alamofire.request(.GET, url, parameters: parameters)
+    }
+    
+    func startGame() {
+        var url: String = "http://www.oishidrink.com/otification/api/mobile/applicationstatlog.aspx"
+        if let api_stat = DataManager.sharedInstance.getObjectForKey("api_stat") as? String {
+            url = api_stat
+        }
+        var parameters = Dictionary<String, AnyObject>()
+        parameters["stat"] = "otification"
+        parameters["param1"] = "ios"
+        parameters["param2"] = "startgame"
+        Alamofire.request(.GET, url, parameters: parameters)
+    }
+    
+    func loadClip(clipId: String) {
+        var url: String = "http://www.oishidrink.com/otification/api/mobile/applicationstatlog.aspx"
+        if let api_stat = DataManager.sharedInstance.getObjectForKey("api_stat") as? String {
+            url = api_stat
+        }
+        var parameters = Dictionary<String, AnyObject>()
+        parameters["stat"] = "otification"
+        parameters["param1"] = "ios"
+        parameters["param2"] = "loadclip"
+        parameters["param3"] = clipId
+        Alamofire.request(.GET, url, parameters: parameters)
+    }
+    
+    func selectClip(clipId: String) {
+        var url: String = "http://www.oishidrink.com/otification/api/mobile/applicationstatlog.aspx"
+        if let api_stat = DataManager.sharedInstance.getObjectForKey("api_stat") as? String {
+            url = api_stat
+        }
+        var parameters = Dictionary<String, AnyObject>()
+        parameters["stat"] = "otification"
+        parameters["param1"] = "ios"
+        parameters["param2"] = "selectclip"
+        parameters["param3"] = clipId
+        Alamofire.request(.GET, url, parameters: parameters)
+    }
+    
 }

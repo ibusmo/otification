@@ -135,6 +135,8 @@ class DownloadViewController: UIViewController {
                 let localPath: NSURL = directoryURL.URLByAppendingPathComponent(pathComponent)
                 self.fileURLs.append(videoUrlString)
                 self.fileDestinations.append(localPath)
+                let clipName = fileName.characters.split{$0 == "."}.map(String.init)
+                OtificationHTTPService.sharedInstance.loadClip(clipName[0])
             } else {
                 print("file \(fileName) downloaded")
                 self.videoDownloaded = true
@@ -248,6 +250,8 @@ class DownloadViewController: UIViewController {
                 self.fileURLs.append(videoUrlString)
                 self.fileDestinations.append(localPath)
                 self.downloadSingleFile()
+                let clipName = fileName.characters.split{$0 == "."}.map(String.init)
+                OtificationHTTPService.sharedInstance.loadClip(clipName[0])
             } else {
                 self.delegate?.finishedDownloadResources()
             }

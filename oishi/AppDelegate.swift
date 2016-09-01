@@ -17,6 +17,7 @@ import Parse
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var isLoadIndex: Bool = true
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -44,7 +45,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // AlarmManager.sharedInstance.removeAllAlarm()
         
-        ViewControllerManager.sharedInstance.presentIndex()
+        if let options = launchOptions {
+            if let notification = options[UIApplicationLaunchOptionsLocalNotificationKey] as? UILocalNotification {
+                if let userInfo = notification.userInfo {
+                    let custom = userInfo["custom"] as! Bool
+                    let uid = userInfo["uid"] as! String
+                    self.isLoadIndex = false
+                    NSLog("launchingOptionsLocalNotificaionKey")
+                    if (custom) {
+                        ViewControllerManager.sharedInstance.presentVideoAlarm(uid + ".mov", uid: uid)
+                    } else {
+                        let fileName = userInfo["video"] as! String
+                        print("userInfo fileName: \(fileName)")
+                        ViewControllerManager.sharedInstance.presentVideoAlarm(fileName, uid: uid)
+                    }
+                } else {
+                    ViewControllerManager.sharedInstance.presentIndex()
+                }
+            } else {
+                ViewControllerManager.sharedInstance.presentIndex()
+            }
+        } else {
+            ViewControllerManager.sharedInstance.presentIndex()
+        }
         
         // MARK: - facebook
         
@@ -69,7 +92,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Optional: configure GAI options.
         let gai = GAI.sharedInstance()
         gai.trackUncaughtExceptions = true  // report uncaught exceptions
-        gai.logger.logLevel = GAILogLevel.Verbose  // remove before app release
+        gai.logger.logLevel = GAILogLevel.Error  // remove before app release
+        
+        OtificationHTTPService.sharedInstance.openApp()
         
         return true
     }
@@ -118,17 +143,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+        NSLog("didReceiveLocalNotification")
         if let userInfo = notification.userInfo {
             let custom = userInfo["custom"] as! Bool
             let uid = userInfo["uid"] as! String
+            self.isLoadIndex = false
+            NSLog("isLoadIndex: false")
             if (custom) {
                 ViewControllerManager.sharedInstance.presentVideoAlarm(uid + ".mov", uid: uid)
             } else {
                 let fileName = userInfo["video"] as! String
+                print("userInfo fileName: \(fileName)")
                 ViewControllerManager.sharedInstance.presentVideoAlarm(fileName, uid: uid)
             }
             UIApplication.sharedApplication().cancelLocalNotification(notification)
         }
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
     }
 
 }

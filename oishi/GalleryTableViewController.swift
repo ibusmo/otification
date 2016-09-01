@@ -86,6 +86,7 @@ class GalleryTableViewController: OishiTableViewController, ActorsPickerTableVie
     }
     
     override func viewDidAppear(animated: Bool) {
+        OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Page, action: .Opened, label: "page_gallery")
         self.tableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, Otification.calculatedHeightFromRatio(100.0), 0.0)
         self.tableView.setNeedsDisplay()
     }
