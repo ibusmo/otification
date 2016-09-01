@@ -364,13 +364,17 @@ class AlarmManager {
         
         self.list = list
         
+        for l in list {
+            print("list: \(l)")
+        }
+        
         return list
     }
     
     func saveAlarmList() {
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.removeObjectForKey("alarm_list")
-        defaults.setObject(list, forKey: "alarm_list")
+        defaults.setObject(self.list, forKey: "alarm_list")
     }
     
     func getAlarmListToObjects() {
@@ -378,8 +382,8 @@ class AlarmManager {
         for uid in list {
             let result = self.getAlarm(uid)
             if let _ = result.index, alarm = result.alarm {
-                // self.alarms.append(alarm)
-                self.alarms.insert(alarm, atIndex: 0)
+                self.alarms.append(alarm)
+                // self.alarms.insert(alarm, atIndex: 0)
             }
         }
     }
@@ -448,6 +452,7 @@ class AlarmManager {
                 
                 // desc: - save alarm object to userdefaults mapped by alarm.uid
                 defaults.setObject(NSKeyedArchiver.archivedDataWithRootObject(alarm), forKey: alarm.uid!)
+                
                 // self.alarms.append(alarm)
                 self.alarms.insert(alarm, atIndex: 0)
                 self.setAlarm(alarm)
@@ -698,7 +703,7 @@ class AlarmManager {
     func saveFriendAlarmList() {
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.removeObjectForKey("friend_alarm_list")
-        defaults.setObject(list, forKey: "friend_alarm_list")
+        defaults.setObject(self.friendList, forKey: "friend_alarm_list")
     }
     
     func getFriendAlarmListToObjects() {
@@ -706,8 +711,8 @@ class AlarmManager {
         for uid in list {
             let result = self.getFriendAlarm(uid)
             if let _ = result.index, alarm = result.alarm {
-                // self.friendAlarms.append(alarm)
-                self.friendAlarms.insert(alarm, atIndex: 0)
+                self.friendAlarms.append(alarm)
+                // self.friendAlarms.insert(alarm, atIndex: 0)
             }
         }
     }

@@ -42,6 +42,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AlarmManager.sharedInstance.getAlarmListToObjects()
         AlarmManager.sharedInstance.getFriendAlarmListToObjects()
         
+        // AlarmManager.sharedInstance.removeAllAlarm()
+        
         ViewControllerManager.sharedInstance.presentIndex()
         
         // MARK: - facebook
