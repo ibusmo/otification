@@ -107,6 +107,17 @@ class ViewControllerManager {
         self.appDelegate.window?.makeKeyAndVisible()
     }
     
+    func getCustomAlarm(actionId: String) -> CustomAlarmViewController {
+        let custom = CustomAlarmViewController(nibName: "CustomAlarmViewController", bundle: nil)
+        custom.action = actionId
+        return custom
+    }
+    
+    func presentCustomAlarm(actionId: String) {
+        self.appDelegate.window?.rootViewController = self.getCustomAlarm(actionId)
+        self.appDelegate.window?.makeKeyAndVisible()
+    }
+    
     // MARK: - videoalarm
     
     func getVideoAlarm(fileName: String, uid: String) -> VideoAlarmViewController {

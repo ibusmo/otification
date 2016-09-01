@@ -273,8 +273,16 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
                         AlarmManager.sharedInstance.unsaveAlarm?.notiMessage = notiMessage
                         AlarmManager.sharedInstance.unsaveAlarm?.soundFileName = audioFileName
                         AlarmManager.sharedInstance.unsaveAlarm?.vdoFileName = videoFileName
+                        let alarm = AlarmManager.sharedInstance.unsaveAlarm!
                         if (AlarmManager.sharedInstance.saveAlarm()) {
                             // present popup here
+                            
+                            let dateFormatter = NSDateFormatter()
+                            dateFormatter.dateFormat = "HH:mm"
+                            let time = dateFormatter.stringFromDate(alarm.date!)
+                            let videoId: String = videoFileName
+                            OtificationHTTPService.sharedInstance.saveGame(false, time: time, isCustom: false, videoId: videoId)
+                            
                             self.popup = PopupThankyouView(frame: CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight))
                             popup?.isOnlyThankyou = false
                             popup?.initPopupView()
@@ -304,7 +312,7 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
             let notiInfo = self.getNotiTitleAndMessageForCustomAlarm()
             AlarmManager.sharedInstance.unsaveAlarm?.notiTitle = notiInfo.0
             AlarmManager.sharedInstance.unsaveAlarm?.notiMessage = notiInfo.1
-            ViewControllerManager.sharedInstance.presentCustomAlarm()
+            ViewControllerManager.sharedInstance.presentCustomAlarm(self.action.action!)
         }
     }
     

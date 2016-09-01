@@ -57,6 +57,7 @@ class CustomAlarmViewController: OishiViewController, AVAudioRecorderDelegate {
     var timer = NSTimer()
     var counter: Int = 0
     var popupView: PopupView?
+    var action: String = ""
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -214,8 +215,13 @@ class CustomAlarmViewController: OishiViewController, AVAudioRecorderDelegate {
         if (self.recordedSound && self.recordedVideo) {
             // TODO: - save alarm
             AlarmManager.sharedInstance.unsaveAlarm?.custom = true
+            let alarm = AlarmManager.sharedInstance.unsaveAlarm!
             if (AlarmManager.sharedInstance.saveAlarm()) {
                 // show popup
+                let dateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "HH:mm"
+                let time = dateFormatter.stringFromDate(alarm.date!)
+                OtificationHTTPService.sharedInstance.saveGame(false, time: time, isCustom: true, videoId: self.action)
                 ViewControllerManager.sharedInstance.presentMyList()
             } else {
                 // TODO: - sth error
