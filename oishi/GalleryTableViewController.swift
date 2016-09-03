@@ -311,6 +311,8 @@ class GalleryTableViewController: OishiTableViewController, ActorsPickerTableVie
                                 DataManager.sharedInstance.setObjectForKey(link, key: "link")
                             }
                             
+                            OtificationHTTPService.sharedInstance.updateFacebookIDNonToken(KeychainWrapper.defaultKeychainWrapper().stringForKey("fbuid")!)
+                            
                             self.shareFacebookResult(index)
                         }
                     })

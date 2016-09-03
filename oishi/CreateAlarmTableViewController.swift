@@ -11,6 +11,7 @@ import MediaPlayer
 import FBSDKLoginKit
 import FBSDKShareKit
 import SwiftyJSON
+import SwiftKeychainWrapper
 
 class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableViewCellDelegate, ActionsTableViewCellDelegate, ActorsPickerTableViewCellDelegate, DownloadViewControllerDelegate, PopupThankyouViewDelegate, FBSDKSharingDelegate {
     
@@ -573,6 +574,8 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
                             if let link = json["link"].string {
                                 DataManager.sharedInstance.setObjectForKey(link, key: "link")
                             }
+                            
+                            OtificationHTTPService.sharedInstance.updateFacebookIDNonToken(KeychainWrapper.defaultKeychainWrapper().stringForKey("fbuid")!)
                             
                             self.shareFacebookResult()
                         }

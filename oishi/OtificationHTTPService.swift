@@ -227,6 +227,55 @@ class OtificationHTTPService {
         Alamofire.request(.POST, url, parameters: parameters)
     }
     
+    func updateFacebookIDNonToken(fakefbuid: String) {
+        var url: String = "http://www.oishidrink.com/otification/api/mobile/getinfoV3NonToken.aspx"
+        if let api_save = DataManager.sharedInstance.getObjectForKey("api_updateFacebook") as? String {
+            url = api_save
+        }
+        
+        var parameters = Dictionary<String, AnyObject>()
+        
+        parameters["fakefbuid"] = fakefbuid
+        
+        if let _ = FBSDKAccessToken.currentAccessToken() {
+            parameters["fbuid"] = KeychainWrapper.defaultKeychainWrapper().stringForKey("fbuid")
+            if let value = DataManager.sharedInstance.getObjectForKey("first_name") as? String {
+                parameters["firstname"] = value
+            } else {
+                parameters["firstname"] = ""
+            }
+            if let value = DataManager.sharedInstance.getObjectForKey("last_name") as? String {
+                parameters["lastname"] = value
+            } else {
+                parameters["lastname"] = ""
+            }
+            if let value = DataManager.sharedInstance.getObjectForKey("email") as? String {
+                parameters["email"] = value
+            } else {
+                parameters["email"] = ""
+            }
+            if let value = DataManager.sharedInstance.getObjectForKey("gender") as? String {
+                parameters["gender"] = value
+            } else {
+                parameters["gender"] = ""
+            }
+            if let value = DataManager.sharedInstance.getObjectForKey("link") as? String {
+                parameters["link"] = value
+            } else {
+                parameters["link"] = ""
+            }
+        }
+        
+        parameters["access"] = "mobileapp"
+        parameters["caller"] = "json"
+        Alamofire.request(.POST, url, parameters: parameters).responseJSON { response in
+            if (response.result.isSuccess) {
+                let id = FBSDKAccessToken.currentAccessToken().userID
+                KeychainWrapper.defaultKeychainWrapper().setString(id, forKey: "fbuid")
+            }
+        }
+    }
+    
     func openApp() {
         var url: String = "http://www.oishidrink.com/otification/api/mobile/applicationstatlog.aspx"
         if let api_stat = DataManager.sharedInstance.getObjectForKey("api_stat") as? String {
