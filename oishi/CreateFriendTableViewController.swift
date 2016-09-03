@@ -388,18 +388,20 @@ class CreateFriendTableViewController: OishiTableViewController, ActionsTableVie
     
     func sharer(sharer: FBSDKSharing!, didCompleteWithResults results: [NSObject : AnyObject]!) {
         print("didCompleteWithResults")
-        OtificationHTTPService.sharedInstance.saveFBShare(results["postId"] as! String)
-        OtificationHTTPService.sharedInstance.shareResult()
-        // save friend alarm
-        self.popup = PopupThankyouView(frame: CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight))
-        popup?.isOnlyThankyou = true
-        popup?.initPopupView()
-        popup?.delegate = self
-        self.view.addSubview(popup!)
-        
-        for (_, actionInfo) in self.selectedActionInfo.enumerate() {
-            if let act = actionInfo.actor where act == actor.name {
-                AlarmManager.sharedInstance.saveFriendAlarm(Otification.friendAlarmActions[Int(actionInfo.no!)! - 1].actionName!, actorNo: actionInfo.actor!)
+        if let _ = results["postId"] {
+            OtificationHTTPService.sharedInstance.saveFBShare(results["postId"] as! String)
+            OtificationHTTPService.sharedInstance.shareResult()
+            // save friend alarm
+            self.popup = PopupThankyouView(frame: CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight))
+            popup?.isOnlyThankyou = true
+            popup?.initPopupView()
+            popup?.delegate = self
+            self.view.addSubview(popup!)
+            
+            for (_, actionInfo) in self.selectedActionInfo.enumerate() {
+                if let act = actionInfo.actor where act == actor.name {
+                    AlarmManager.sharedInstance.saveFriendAlarm(Otification.friendAlarmActions[Int(actionInfo.no!)! - 1].actionName!, actorNo: actionInfo.actor!)
+                }
             }
         }
     }

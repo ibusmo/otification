@@ -67,7 +67,7 @@ class NewTutorialViewController: UIViewController, iCarouselDataSource, iCarouse
         self.carousel.bounces = false
         self.carousel.clipsToBounds = true
         
-        self.shadowView.frame = CGRectMake(Otification.calculatedWidthFromRatio(109.0), Otification.calculatedHeightFromRatio(88.0), Otification.calculatedWidthFromRatio(1020.0), Otification.calculatedHeightFromRatio(1815.0))
+        self.shadowView.frame = CGRectMake(Otification.calculatedWidthFromRatio(109.0), Otification.calculatedHeightFromRatio(90.0), Otification.calculatedWidthFromRatio(1020.0), Otification.calculatedHeightFromRatio(1815.0))
         self.shadowView.backgroundColor = UIColor.whiteColor()
         self.shadowView.layer.shadowColor = UIColor.blackColor().CGColor
         self.shadowView.layer.shadowOffset = CGSizeMake(5.0, 5.0)

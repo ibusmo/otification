@@ -622,8 +622,11 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
     
     func sharer(sharer: FBSDKSharing!, didCompleteWithResults results: [NSObject : AnyObject]!) {
         print("didCompleteWithResults")
-        OtificationHTTPService.sharedInstance.saveFBShare(results["postId"] as! String)
-        OtificationHTTPService.sharedInstance.shareResult()
+        
+        if let _ = results["postId"] {
+            OtificationHTTPService.sharedInstance.saveFBShare(results["postId"] as! String)
+            OtificationHTTPService.sharedInstance.shareResult()
+        }
         // save friend alarm
     }
     
