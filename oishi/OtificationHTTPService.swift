@@ -9,6 +9,8 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import FBSDKCoreKit
+import SwiftKeychainWrapper
 
 class OtificationHTTPService {
     
@@ -119,6 +121,70 @@ class OtificationHTTPService {
     
     // MARK: - otification stat
     
+    func saveGameNonToken(isFriend: Bool, time: String, isCustom: Bool, videoId: String) {
+        var url: String = "http://www.oishidrink.com/otification/api/mobile/submitGameNonToken.aspx"
+        if let api_save = DataManager.sharedInstance.getObjectForKey("api_saveNonToken") as? String {
+            url = api_save
+        }
+        var parameters = Dictionary<String, AnyObject>()
+        parameters["param1"] = "ios"
+        
+        var param2 = ""
+        if (!isFriend) {
+            param2 = "1|\(time)|"
+        } else {
+            param2 = "2|\(time)|"
+        }
+        
+        if (isCustom) {
+            param2 = "\(param2)custom|"
+        }
+        
+        param2 = "\(param2)\(videoId)"
+        
+        parameters["param2"] = param2
+        
+        if let _ = FBSDKAccessToken.currentAccessToken() {
+            parameters["fbuid"] = KeychainWrapper.defaultKeychainWrapper().stringForKey("fbuid")
+            if let value = DataManager.sharedInstance.getObjectForKey("first_name") as? String {
+                parameters["firstname"] = value
+            } else {
+                parameters["firstname"] = ""
+            }
+            if let value = DataManager.sharedInstance.getObjectForKey("last_name") as? String {
+                parameters["lastname"] = value
+            } else {
+                parameters["lastname"] = ""
+            }
+            if let value = DataManager.sharedInstance.getObjectForKey("email") as? String {
+                parameters["email"] = value
+            } else {
+                parameters["email"] = ""
+            }
+            if let value = DataManager.sharedInstance.getObjectForKey("gender") as? String {
+                parameters["gender"] = value
+            } else {
+                parameters["gender"] = ""
+            }
+            if let value = DataManager.sharedInstance.getObjectForKey("link") as? String {
+                parameters["link"] = value
+            } else {
+                parameters["link"] = ""
+            }
+        } else {
+            parameters["fbuid"] = KeychainWrapper.defaultKeychainWrapper().stringForKey("fbuid")
+            parameters["firstname"] = ""
+            parameters["lastname"] = ""
+            parameters["email"] = ""
+            parameters["gender"] = ""
+            parameters["link"] = ""
+        }
+        
+        parameters["access"] = "mobileapp"
+        parameters["caller"] = "json"
+        Alamofire.request(.POST, url, parameters: parameters)
+    }
+    
     func saveGame(isFriend: Bool, time: String, isCustom: Bool, videoId: String) {
         var url: String = "http://www.oishidrink.com/otification/api/mobile/submitGame.aspx"
         if let api_save = DataManager.sharedInstance.getObjectForKey("api_save") as? String {
@@ -142,8 +208,22 @@ class OtificationHTTPService {
         
         parameters["param2"] = param2
         parameters["access"] = "mobileapp"
-        parameters["access"] = ""
         parameters["caller"] = "json"
+        Alamofire.request(.POST, url, parameters: parameters)
+    }
+    
+    func saveFBShare(postId: String) {
+        let url: String = "http://www.oishidrink.com/otification/api/mobile/saveShareToWall.aspx"
+        var parameters = Dictionary<String, AnyObject>()
+        parameters["type"] = "postshare"
+        parameters["postid"] = postId
+        parameters["access"] = "mobileapp"
+        parameters["caller"] = "json"
+        
+        if let _ = FBSDKAccessToken.currentAccessToken() {
+            parameters["code"] = FBSDKAccessToken.currentAccessToken().tokenString
+        }
+        
         Alamofire.request(.POST, url, parameters: parameters)
     }
     

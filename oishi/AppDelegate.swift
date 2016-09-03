@@ -73,6 +73,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
+        if let _ = FBSDKAccessToken.currentAccessToken() {
+            let id = FBSDKAccessToken.currentAccessToken().userID
+            KeychainWrapper.defaultKeychainWrapper().setString(id, forKey: "fbuid")
+        } else {
+            if let _ = KeychainWrapper.defaultKeychainWrapper().stringForKey("fbuid") {
+                //
+            } else {
+                let id = "fakefbuid_\(NSUUID().UUIDString)"
+                KeychainWrapper.defaultKeychainWrapper().setString(id, forKey: "fbuid")
+            }
+        }
+        
         // MARK: - appsflyer
         
         AppsFlyerTracker.sharedTracker().appsFlyerDevKey = "HGETasn6yh8FhMC2LQgEWP"

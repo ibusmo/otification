@@ -281,7 +281,7 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
                             dateFormatter.dateFormat = "HH:mm"
                             let time = dateFormatter.stringFromDate(alarm.date!)
                             let videoId: String = videoFileName
-                            OtificationHTTPService.sharedInstance.saveGame(false, time: time, isCustom: false, videoId: videoId)
+                            OtificationHTTPService.sharedInstance.saveGameNonToken(false, time: time, isCustom: false, videoId: videoId)
                             
                             self.popup = PopupThankyouView(frame: CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight))
                             popup?.isOnlyThankyou = false
@@ -502,7 +502,6 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
                 } else {
                     var json = JSON(result)
                     
-                    // var params = Dictionary<String, AnyObject>()
                     if let firstname = json["first_name"].string {
                         DataManager.sharedInstance.setObjectForKey(firstname, key: "first_name")
                     }
@@ -620,6 +619,7 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
     
     func sharer(sharer: FBSDKSharing!, didCompleteWithResults results: [NSObject : AnyObject]!) {
         print("didCompleteWithResults")
+        OtificationHTTPService.sharedInstance.saveFBShare(results["postId"] as! String)
         // save friend alarm
     }
     

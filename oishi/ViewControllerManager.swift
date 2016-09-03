@@ -145,8 +145,8 @@ class ViewControllerManager {
     
     // MARK: - tutorial
     
-    func getTutorial() -> TutorialViewController {
-        return TutorialViewController(nibName: "TutorialViewController", bundle: nil)
+    func getTutorial() -> NewTutorialViewController {
+        return NewTutorialViewController(nibName: "NewTutorialViewController", bundle: nil)
     }
     
     func presentTutorial() {
@@ -154,8 +154,8 @@ class ViewControllerManager {
         self.appDelegate.window?.makeKeyAndVisible()
     }
     
-    func getTutorial(numberOfTutorial: Int) -> TutorialViewController {
-        let tutorial = TutorialViewController(nibName: "TutorialViewController", bundle: nil)
+    func getTutorial(numberOfTutorial: Int) -> NewTutorialViewController {
+        let tutorial = NewTutorialViewController(nibName: "NewTutorialViewController", bundle: nil)
         tutorial.numberOfTutorial = numberOfTutorial
         return tutorial
     }

@@ -45,6 +45,8 @@
 		A23219C51D75009E00BED06B /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A23219C41D75009E00BED06B /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		A23219DE1D7774A000BED06B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A23219DD1D7774A000BED06B /* GoogleService-Info.plist */; };
 		A23219E01D77786C00BED06B /* OtificationGoogleAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23219DF1D77786C00BED06B /* OtificationGoogleAnalytics.swift */; };
+		A23219E51D7A815100BED06B /* NewTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23219E31D7A815100BED06B /* NewTutorialViewController.swift */; };
+		A23219E61D7A815100BED06B /* NewTutorialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A23219E41D7A815100BED06B /* NewTutorialViewController.xib */; };
 		A23CBDE51D708994004ED38E /* M13ProgressViewBorderedBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A23CBDE41D708994004ED38E /* M13ProgressViewBorderedBar.m */; };
 		A23CBDE81D708A1B004ED38E /* M13ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A23CBDE71D708A1B004ED38E /* M13ProgressView.m */; };
 		A23CBDEE1D713650004ED38E /* GalleryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23CBDEC1D713650004ED38E /* GalleryTableViewController.swift */; };
@@ -182,6 +184,8 @@
 		A23219D81D75027600BED06B /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		A23219DD1D7774A000BED06B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A23219DF1D77786C00BED06B /* OtificationGoogleAnalytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtificationGoogleAnalytics.swift; sourceTree = "<group>"; };
+		A23219E31D7A815100BED06B /* NewTutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTutorialViewController.swift; sourceTree = "<group>"; };
+		A23219E41D7A815100BED06B /* NewTutorialViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewTutorialViewController.xib; sourceTree = "<group>"; };
 		A23CBDE31D708994004ED38E /* M13ProgressViewBorderedBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M13ProgressViewBorderedBar.h; sourceTree = "<group>"; };
 		A23CBDE41D708994004ED38E /* M13ProgressViewBorderedBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M13ProgressViewBorderedBar.m; sourceTree = "<group>"; };
 		A23CBDE61D708A1B004ED38E /* M13ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M13ProgressView.h; sourceTree = "<group>"; };
@@ -484,6 +488,25 @@
 				A23219C21D74F4E600BED06B /* PopupView.swift */,
 			);
 			name = popup;
+			sourceTree = "<group>";
+		};
+		A23219E11D7A812900BED06B /* new */ = {
+			isa = PBXGroup;
+			children = (
+				A23219E31D7A815100BED06B /* NewTutorialViewController.swift */,
+				A23219E41D7A815100BED06B /* NewTutorialViewController.xib */,
+			);
+			name = new;
+			sourceTree = "<group>";
+		};
+		A23219E21D7A812E00BED06B /* old */ = {
+			isa = PBXGroup;
+			children = (
+				A272BC9E1D6BF10C00D06576 /* cell */,
+				A272BC9A1D6BF06600D06576 /* TutorialViewController.swift */,
+				A272BC9B1D6BF06600D06576 /* TutorialViewController.xib */,
+			);
+			name = old;
 			sourceTree = "<group>";
 		};
 		A23CBDE21D708986004ED38E /* M13 */ = {
@@ -872,9 +895,8 @@
 		A272BC911D6BF01500D06576 /* tutorial */ = {
 			isa = PBXGroup;
 			children = (
-				A272BC9E1D6BF10C00D06576 /* cell */,
-				A272BC9A1D6BF06600D06576 /* TutorialViewController.swift */,
-				A272BC9B1D6BF06600D06576 /* TutorialViewController.xib */,
+				A23219E21D7A812E00BED06B /* old */,
+				A23219E11D7A812900BED06B /* new */,
 			);
 			name = tutorial;
 			sourceTree = "<group>";
@@ -1065,6 +1087,7 @@
 				A2508A301D5C460D00DFD781 /* OishiTabBarView.xib in Resources */,
 				A272BC711D6BAF1500D06576 /* CustomAlarmViewController.xib in Resources */,
 				A299FF291D6187D700EE74C1 /* todolist in Resources */,
+				A23219E61D7A815100BED06B /* NewTutorialViewController.xib in Resources */,
 				A22BDE0B1D670D34004FA6CB /* MyListTableViewCell.xib in Resources */,
 				A217B7371D64EC2900021BFA /* ActorsPickerTableViewCell.xib in Resources */,
 				A26ECD2C1D666F59004EA733 /* MenuTableViewCell.xib in Resources */,
@@ -1172,6 +1195,7 @@
 				A272BC741D6BAF7E00D06576 /* OishiViewController.swift in Sources */,
 				A272BCBA1D6F9DCC00D06576 /* DownloadViewController.swift in Sources */,
 				1FB87CED1D64631E0097AC74 /* ToggleButton.swift in Sources */,
+				A23219E51D7A815100BED06B /* NewTutorialViewController.swift in Sources */,
 				A272BCAB1D6F466100D06576 /* Callback.swift in Sources */,
 				A2508A4C1D5E5C2A00DFD781 /* Otification.swift in Sources */,
 				A23CBDEE1D713650004ED38E /* GalleryTableViewController.swift in Sources */,
