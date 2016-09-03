@@ -11,6 +11,7 @@ import MediaPlayer
 import FBSDKLoginKit
 import FBSDKShareKit
 import SwiftyJSON
+import SwiftKeychainWrapper
 
 class CreateFriendTableViewController: OishiTableViewController, ActionsTableViewCellDelegate, ActorsPickerTableViewCellDelegate, FBSDKSharingDelegate, PopupThankyouViewDelegate {
 

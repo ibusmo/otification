@@ -10,6 +10,7 @@ import UIKit
 import FBSDKLoginKit
 import FBSDKShareKit
 import SwiftyJSON
+import SwiftKeychainWrapper
 
 class MenuTableViewController: OishiTableViewController, MenuTableViewCellDelegate, FBSDKSharingDelegate {
     
