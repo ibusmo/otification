@@ -356,6 +356,7 @@ class GalleryTableViewController: OishiTableViewController, ActorsPickerTableVie
     func sharer(sharer: FBSDKSharing!, didCompleteWithResults results: [NSObject : AnyObject]!) {
         print("didCompleteWithResults")
         OtificationHTTPService.sharedInstance.saveFBShare(results["postId"] as! String)
+        OtificationHTTPService.sharedInstance.shareResult()
         self.popup = PopupThankyouView(frame: CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight))
         popup?.isOnlyThankyou = true
         popup?.initPopupView()

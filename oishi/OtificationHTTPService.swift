@@ -326,4 +326,16 @@ class OtificationHTTPService {
         Alamofire.request(.GET, url, parameters: parameters)
     }
     
+    func shareResult() {
+        var url: String = "http://www.oishidrink.com/otification/api/mobile/applicationstatlog.aspx"
+        if let api_stat = DataManager.sharedInstance.getObjectForKey("api_stat") as? String {
+            url = api_stat
+        }
+        var parameters = Dictionary<String, AnyObject>()
+        parameters["stat"] = "otification"
+        parameters["param1"] = "ios"
+        parameters["param2"] = "shareresult"
+        Alamofire.request(.GET, url, parameters: parameters)
+    }
+    
 }
