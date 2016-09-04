@@ -139,7 +139,9 @@ class VideoPreviewViewController: UIViewController, DownloadViewControllerDelega
         let splitedString = videoFilePath.characters.split{$0 == "/"}.map(String.init)
         let fileName = splitedString[splitedString.count - 1]
         let clipName = fileName.characters.split{$0 == "."}.map(String.init)
+        
         OtificationHTTPService.sharedInstance.loadClip(clipName[0])
+        OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "preview_\(clipName[0])")
         
         self.avPlayerLayer.removeFromSuperlayer()
         

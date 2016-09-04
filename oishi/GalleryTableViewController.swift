@@ -23,6 +23,7 @@ class GalleryTableViewController: OishiTableViewController, ActorsPickerTableVie
     
     var action: Action = Otification.selfAlarmActions[0]
     var actor: Actor = Otification.actors[0]
+    var actorNames: [String] = ["Push", "Tor", "March", "Kang", "Mook", "Aof"]
     var selectedActorActive: Bool = true
     
     var dictionary = Dictionary<String, [ActionInfo]>()
@@ -151,6 +152,14 @@ class GalleryTableViewController: OishiTableViewController, ActorsPickerTableVie
         OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "bnt_gall_share-line")
         let actionInfo = self.selectedActionInfo[index]
         let shareUrl = actionInfo.shareUrl
+        
+        let videoFilePath = actionInfo.videoUrlString
+        let splitedString = videoFilePath!.characters.split{$0 == "/"}.map(String.init)
+        let fileName = splitedString[splitedString.count - 1]
+        let clipName = fileName.characters.split{$0 == "."}.map(String.init)[0]
+        
+        OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "send_line_\(clipName)")
+        
         let lineUrl = NSURL(string: "line://msg/text/\(shareUrl!)")
         if (UIApplication.sharedApplication().canOpenURL(lineUrl!)) {
             UIApplication.sharedApplication().openURL(lineUrl!)
@@ -182,6 +191,9 @@ class GalleryTableViewController: OishiTableViewController, ActorsPickerTableVie
         self.actorNameLabel.text = actor.actorName
         self.actor = actor
         self.selectedActorActive = active
+        
+        let name = self.actorNames[Int(actor.name!)! - 1]
+        OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: name)
         
         if let actionInfos = self.dictionary[self.actor.name!] {
             self.selectedActionInfo = actionInfos
@@ -325,6 +337,14 @@ class GalleryTableViewController: OishiTableViewController, ActorsPickerTableVie
     
     func shareFacebookResult(index: Int) {
         let actionInfo = self.selectedActionInfo[index]
+        
+        let videoFilePath = actionInfo.videoUrlString
+        let splitedString = videoFilePath!.characters.split{$0 == "/"}.map(String.init)
+        let fileName = splitedString[splitedString.count - 1]
+        let clipName = fileName.characters.split{$0 == "."}.map(String.init)[0]
+        
+        OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "send_fb_\(clipName)")
+        
         let contentImg = NSURL(string: actionInfo.shareImageUrlString!)
         let contentURL = NSURL(string: actionInfo.shareUrl!)
         let contentTitle = actionInfo.shareTitle!

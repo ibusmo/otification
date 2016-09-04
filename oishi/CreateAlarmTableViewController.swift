@@ -227,6 +227,10 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
                     let videoPreview = VideoPreviewViewController(nibName: "VideoPreviewViewController", bundle: nil)
                     videoPreview.videoUrlString = videoUrlString!
                     self.presentViewController(videoPreview, animated: false, completion: nil)
+                    
+                    print("videoUrlString: \(videoUrlString)")
+                    
+                    OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "preview_\(videoUrlString)")
                 }
             }
         }
@@ -287,8 +291,12 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
                             let dateFormatter = NSDateFormatter()
                             dateFormatter.dateFormat = "HH:mm"
                             let time = dateFormatter.stringFromDate(alarm.date!)
-                            let videoId: String = videoFileName
+                            let videoId: String = videoFileName.characters.split{$0 == "."}.map(String.init)[0]
+                            
+                            print("save_\(videoId)")
+                            
                             OtificationHTTPService.sharedInstance.saveGameNonToken(false, time: time, isCustom: false, videoId: videoId)
+                            OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "save_\(videoId)")
                             
                             self.popup = PopupThankyouView(frame: CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight))
                             popup?.isOnlyThankyou = false
@@ -356,7 +364,17 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
                     AlarmManager.sharedInstance.unsaveAlarm?.notiMessage = notiMessage
                     AlarmManager.sharedInstance.unsaveAlarm?.soundFileName = audioFileName
                     AlarmManager.sharedInstance.unsaveAlarm?.vdoFileName = videoFileName
-                    print("saveAlarmSuccess: \(AlarmManager.sharedInstance.saveAlarm())")
+                    
+                    let dateFormatter = NSDateFormatter()
+                    dateFormatter.dateFormat = "HH:mm"
+                    let alarm = AlarmManager.sharedInstance.unsaveAlarm!
+                    let time = dateFormatter.stringFromDate(alarm.date!)
+                    
+                    AlarmManager.sharedInstance.saveAlarm()
+                    
+                    let videoId: String = videoFileName.characters.split{$0 == "."}.map(String.init)[0]
+                    OtificationHTTPService.sharedInstance.saveGameNonToken(false, time: time, isCustom: false, videoId: videoId)
+                    OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "save_\(videoId)")
                     
                     self.popup = PopupThankyouView(frame: CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight))
                     popup?.isOnlyThankyou = false

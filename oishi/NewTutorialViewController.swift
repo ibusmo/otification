@@ -179,6 +179,7 @@ class NewTutorialViewController: UIViewController, iCarouselDataSource, iCarouse
     func leftButtonDidTap() {
         let index = self.carousel.currentItemIndex
         if (index > 0) {
+            OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "tutorial_back")
             self.carousel.scrollToItemAtIndex(index - 1, animated: true)
         }
     }
@@ -186,6 +187,7 @@ class NewTutorialViewController: UIViewController, iCarouselDataSource, iCarouse
     func rightButtonDidTap() {
         let index = self.carousel.currentItemIndex
         if (index < self.numberOfTutorial - 1) {
+            OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "tutorial_next")
             self.carousel.scrollToItemAtIndex(index + 1, animated: true)
         }
     }

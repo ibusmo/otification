@@ -355,6 +355,14 @@ class CreateFriendTableViewController: OishiTableViewController, ActionsTableVie
     func shareFacebookResult() {
         for (_, actionInfo) in self.selectedActionInfo.enumerate() {
             if let act = actionInfo.actor where act == actor.name {
+                let videoFilePath = actionInfo.videoUrlString
+                let splitedString = videoFilePath!.characters.split{$0 == "/"}.map(String.init)
+                let fileName = splitedString[splitedString.count - 1]
+                let clipName = fileName.characters.split{$0 == "."}.map(String.init)[0]
+                
+                print("send_fb_\(clipName)")
+                OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "send_fb_\(clipName)")
+                
                 let contentImg = NSURL(string: actionInfo.shareImageUrlString!)
                 let contentURL = NSURL(string: actionInfo.shareUrl!)
                 let contentTitle = actionInfo.shareTitle!
@@ -413,6 +421,14 @@ class CreateFriendTableViewController: OishiTableViewController, ActionsTableVie
         for (_, actionInfo) in self.selectedActionInfo.enumerate() {
             if let act = actionInfo.actor where act == actor.name {
                 // save friend alarm
+                let videoFilePath = actionInfo.videoUrlString
+                let splitedString = videoFilePath!.characters.split{$0 == "/"}.map(String.init)
+                let fileName = splitedString[splitedString.count - 1]
+                let clipName = fileName.characters.split{$0 == "."}.map(String.init)[0]
+                
+                print("send_line_\(clipName)")
+                OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "send_line_\(clipName)")
+                
                 let shareUrl = actionInfo.shareUrl
                 let lineUrl = NSURL(string: "line://msg/text/\(shareUrl!)")
                 if (UIApplication.sharedApplication().canOpenURL(lineUrl!)) {
