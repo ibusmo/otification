@@ -13,7 +13,7 @@ import FBSDKShareKit
 import SwiftyJSON
 import SwiftKeychainWrapper
 
-class GalleryTableViewController: OishiTableViewController, ActorsPickerTableViewCellDelegate, VideoPreviewTableViewCellDelegate, FBSDKSharingDelegate {
+class GalleryTableViewController: OishiTableViewController, ActorsPickerTableViewCellDelegate, VideoPreviewTableViewCellDelegate, FBSDKSharingDelegate, PopupThankyouViewDelegate {
     
     var popupView: PopupView?
     
@@ -70,7 +70,20 @@ class GalleryTableViewController: OishiTableViewController, ActorsPickerTableVie
         
         self.view.addSubview(self.actorNameLabel)
         
-        self.getPlaylistGallery()
+        if (Reachability.isConnectedToNetwork()) {
+            self.getPlaylistGallery()
+        } else {
+            // TODO: - popup
+            UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+                }, completion: { finished in
+                self.popupView = PopupView(frame: CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight))
+                self.popupView?.initPopupView("กรุณาตรวจสอบสัญญาณอินเทอร์เน็ต")
+                // self.popupView?.delegate = self
+                self.view.addSubview(self.popupView!)
+            })
+        }
+        
+        // self.getPlaylistGallery()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -386,8 +399,10 @@ class GalleryTableViewController: OishiTableViewController, ActorsPickerTableVie
         }
     }
     
-    /*
     func popupDidRemoveFromSuperview() {
+    }
+    
+    func popupErrorDidRemoveFromSuperview() {
         if (Reachability.isConnectedToNetwork()) {
             self.getPlaylistGallery()
         } else {
@@ -401,6 +416,5 @@ class GalleryTableViewController: OishiTableViewController, ActorsPickerTableVie
             })
         }
     }
-     */
 
 }

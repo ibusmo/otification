@@ -53,7 +53,17 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.getPlaylist()
+        // self.getPlaylist()
+        
+        if (Reachability.isConnectedToNetwork()) {
+            self.getPlaylist()
+        } else {
+            // TODO: - popup
+            self.popupView = PopupView(frame: CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight))
+            self.popupView?.initPopupView("กรุณาตรวจสอบสัญญาณอินเทอร์เน็ต")
+            // self.popupView?.delegate = self
+            self.view.addSubview(self.popupView!)
+        }
         
         self.tableView.bounces = false
         
@@ -234,15 +244,27 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
                 }
             }
         }
+        
+        /*
+        if (Reachability.isConnectedToNetwork()) {
+            
+        } else {
+            // TODO: - popup
+            self.popupView = PopupView(frame: CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight))
+            self.popupView?.initPopupView("กรุณาตรวจสอบสัญญาณอินเทอร์เน็ต")
+            // self.popupView?.delegate = self
+            self.view.addSubview(self.popupView!)
+        }
+         */
     }
     
     // MARK: - savebuttondidtap
     
     func saveNewAlarm() {
         OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "my_bnt_save")
+        
         if let h = self.hour, m = self.minute where self.selectedActorActive {
             // TODO: download vdo & sound first
-            
             for (_, actionInfo) in self.selectedActionInfo.enumerate() {
                 if let actor = actionInfo.actor where actor == self.actor.name {
                     let videoUrlString = actionInfo.videoUrlString
@@ -316,6 +338,18 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
         } else {
             print("failSaveNewAlarm")
         }
+        
+        /*
+        if (Reachability.isConnectedToNetwork()) {
+            
+        } else {
+            // TODO: - popup
+            self.popupView = PopupView(frame: CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight))
+            self.popupView?.initPopupView("กรุณาตรวจสอบสัญญาณอินเทอร์เน็ต")
+            // self.popupView?.delegate = self
+            self.view.addSubview(self.popupView!)
+        }
+         */
     }
     
     // MARK: - custombuttondidtap
@@ -335,6 +369,17 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
             self.popupView?.initPopupView("สามารถสร้างการตั้งปลุกได้สูงสุด\n 8 ครั้ง")
             self.view.addSubview(self.popupView!)
         }
+        
+        /*
+        if (Reachability.isConnectedToNetwork()) {
+        } else {
+            // TODO: - popup
+            self.popupView = PopupView(frame: CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight))
+            self.popupView?.initPopupView("กรุณาตรวจสอบสัญญาณอินเทอร์เน็ต")
+            // self.popupView?.delegate = self
+            self.view.addSubview(self.popupView!)
+        }
+         */
     }
     
     // MARK: - downloadviewcontrollerdelegate
@@ -504,6 +549,9 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
     
     func popupDidRemoveFromSuperview() {
         ViewControllerManager.sharedInstance.presentMyList(true)
+    }
+    
+    func popupErrorDidRemoveFromSuperview() {
     }
     
     func popupFBShareDidTap() {

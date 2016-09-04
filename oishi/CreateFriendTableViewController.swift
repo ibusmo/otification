@@ -17,6 +17,7 @@ class CreateFriendTableViewController: OishiTableViewController, ActionsTableVie
 
     let frontImageView = UIImageView()
     var popup: PopupThankyouView?
+    var popupView: PopupView?
     
     let actorNameLabel = UILabel()
     var sendToFriendImageView = UIImageView()
@@ -64,7 +65,15 @@ class CreateFriendTableViewController: OishiTableViewController, ActionsTableVie
         
         self.initCreateFriendView()
         
-        self.getPlaylistFriend()
+        if (Reachability.isConnectedToNetwork()) {
+            self.getPlaylistFriend()
+        } else {
+            // TODO: - popup
+            self.popupView = PopupView(frame: CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight))
+            self.popupView?.initPopupView("กรุณาตรวจสอบสัญญาณอินเทอร์เน็ต")
+            // self.popupView?.delegate = self
+            self.view.addSubview(self.popupView!)
+        }
     }
     
     override func viewWillAppear(animated: Bool) {

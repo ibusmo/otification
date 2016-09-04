@@ -10,6 +10,7 @@ import UIKit
 
 @objc protocol PopupThankyouViewDelegate {
     func popupDidRemoveFromSuperview()
+    optional func popupErrorDidRemoveFromSuperview()
     optional func popupFBShareDidTap()
     optional func popupLineShareDidTap()
 }

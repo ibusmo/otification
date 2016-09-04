@@ -104,6 +104,9 @@ class IndexViewController: UIViewController, PopupThankyouViewDelegate {
     }
     
     func popupDidRemoveFromSuperview() {
+    }
+    
+    func popupErrorDidRemoveFromSuperview() {
         self.timer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: #selector(IndexViewController.skipIndex), userInfo: nil, repeats: false)
     }
 

@@ -66,7 +66,7 @@ class PopupView: UIView {
     
     func closeButtonDidTap() {
         self.removeFromSuperview()
-        self.delegate?.popupDidRemoveFromSuperview()
+        self.delegate?.popupErrorDidRemoveFromSuperview!()
     }
 
 }
