@@ -267,97 +267,103 @@ class CreateFriendTableViewController: OishiTableViewController, ActionsTableVie
     // MARK: - share to facebook
     
     func shareToFacebook() {
-        OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "bnt_f_fb")
-        if let _ = FBSDKAccessToken.currentAccessToken() {
-            let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "email,gender,link,first_name,last_name"], HTTPMethod: "GET")
-            let connection = FBSDKGraphRequestConnection()
-            connection.addRequest(request, completionHandler: { (conn, result, error) -> Void in
-                if (error != nil) {
-                    print("\(error.localizedDescription)")
-                } else {
-                    var json = JSON(result)
-                    
-                    // var params = Dictionary<String, AnyObject>()
-                    if let firstname = json["first_name"].string {
-                        DataManager.sharedInstance.setObjectForKey(firstname, key: "first_name")
-                    }
-                    
-                    if let lastname = json["last_name"].string {
-                        DataManager.sharedInstance.setObjectForKey(lastname, key: "last_name")
-                    }
-                    
-                    if let email = json["email"].string {
-                        DataManager.sharedInstance.setObjectForKey(email, key: "email")
-                    }
-                    
-                    if let gender = json["gender"].string {
-                        DataManager.sharedInstance.setObjectForKey(gender, key: "gender")
-                    }
-                    
-                    if let link = json["link"].string {
-                        DataManager.sharedInstance.setObjectForKey(link, key: "link")
-                    }
-                    
-                    self.shareFacebookResult()
-                }
-            })
-            
-            connection.start()
-        } else {
-            let loginManager = FBSDKLoginManager()
-            loginManager.logOut()
-            
-            loginManager.loginBehavior = FBSDKLoginBehavior.Browser
-            
-            loginManager.logInWithReadPermissions(["public_profile", "email", "user_about_me"], fromViewController: self, handler: {
-                (result: FBSDKLoginManagerLoginResult!, error: NSError?) -> Void in
-                if (error != nil) {
-                    // fb login error
-                } else if (result.isCancelled) {
-                    // fb login cancelled
-                } else if (result.declinedPermissions.contains("public_profile") || result.declinedPermissions.contains("email") || result.declinedPermissions.contains("user_about_me")) {
-                    // declined "public_profile", "email" or "user_about_me"
-                } else {
-                    // TODO: api to update facebookid-nontoken
-                    _ = FBSDKAccessToken.currentAccessToken().userID
-                    let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "email,gender,link,first_name,last_name"], HTTPMethod: "GET")
-                    let connection = FBSDKGraphRequestConnection()
-                    connection.addRequest(request, completionHandler: { (conn, result, error) -> Void in
-                        if (error != nil) {
-                            print("\(error.localizedDescription)")
-                        } else {
-                            var json = JSON(result)
-                            
-                            // var params = Dictionary<String, AnyObject>()
-                            
-                            if let firstname = json["first_name"].string {
-                                DataManager.sharedInstance.setObjectForKey(firstname, key: "first_name")
-                            }
-                            
-                            if let lastname = json["last_name"].string {
-                                DataManager.sharedInstance.setObjectForKey(lastname, key: "last_name")
-                            }
-                            
-                            if let email = json["email"].string {
-                                DataManager.sharedInstance.setObjectForKey(email, key: "email")
-                            }
-                            
-                            if let gender = json["gender"].string {
-                                DataManager.sharedInstance.setObjectForKey(gender, key: "gender")
-                            }
-                            
-                            if let link = json["link"].string {
-                                DataManager.sharedInstance.setObjectForKey(link, key: "link")
-                            }
-                            
-                            OtificationHTTPService.sharedInstance.updateFacebookIDNonToken(KeychainWrapper.defaultKeychainWrapper().stringForKey("fbuid")!)
-                            
-                            self.shareFacebookResult()
+        if (Reachability.isConnectedToNetwork()) {
+            OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "bnt_f_fb")
+            if let _ = FBSDKAccessToken.currentAccessToken() {
+                let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "email,gender,link,first_name,last_name"], HTTPMethod: "GET")
+                let connection = FBSDKGraphRequestConnection()
+                connection.addRequest(request, completionHandler: { (conn, result, error) -> Void in
+                    if (error != nil) {
+                        print("\(error.localizedDescription)")
+                    } else {
+                        var json = JSON(result)
+                        
+                        // var params = Dictionary<String, AnyObject>()
+                        if let firstname = json["first_name"].string {
+                            DataManager.sharedInstance.setObjectForKey(firstname, key: "first_name")
                         }
-                    })
-                    connection.start()
-                }
-            })
+                        
+                        if let lastname = json["last_name"].string {
+                            DataManager.sharedInstance.setObjectForKey(lastname, key: "last_name")
+                        }
+                        
+                        if let email = json["email"].string {
+                            DataManager.sharedInstance.setObjectForKey(email, key: "email")
+                        }
+                        
+                        if let gender = json["gender"].string {
+                            DataManager.sharedInstance.setObjectForKey(gender, key: "gender")
+                        }
+                        
+                        if let link = json["link"].string {
+                            DataManager.sharedInstance.setObjectForKey(link, key: "link")
+                        }
+                        
+                        self.shareFacebookResult()
+                    }
+                })
+                
+                connection.start()
+            } else {
+                let loginManager = FBSDKLoginManager()
+                loginManager.logOut()
+                
+                loginManager.loginBehavior = FBSDKLoginBehavior.Browser
+                
+                loginManager.logInWithReadPermissions(["public_profile", "email", "user_about_me"], fromViewController: self, handler: {
+                    (result: FBSDKLoginManagerLoginResult!, error: NSError?) -> Void in
+                    if (error != nil) {
+                        // fb login error
+                    } else if (result.isCancelled) {
+                        // fb login cancelled
+                    } else if (result.declinedPermissions.contains("public_profile") || result.declinedPermissions.contains("email") || result.declinedPermissions.contains("user_about_me")) {
+                        // declined "public_profile", "email" or "user_about_me"
+                    } else {
+                        // TODO: api to update facebookid-nontoken
+                        _ = FBSDKAccessToken.currentAccessToken().userID
+                        let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "email,gender,link,first_name,last_name"], HTTPMethod: "GET")
+                        let connection = FBSDKGraphRequestConnection()
+                        connection.addRequest(request, completionHandler: { (conn, result, error) -> Void in
+                            if (error != nil) {
+                                print("\(error.localizedDescription)")
+                            } else {
+                                var json = JSON(result)
+                                
+                                // var params = Dictionary<String, AnyObject>()
+                                
+                                if let firstname = json["first_name"].string {
+                                    DataManager.sharedInstance.setObjectForKey(firstname, key: "first_name")
+                                }
+                                
+                                if let lastname = json["last_name"].string {
+                                    DataManager.sharedInstance.setObjectForKey(lastname, key: "last_name")
+                                }
+                                
+                                if let email = json["email"].string {
+                                    DataManager.sharedInstance.setObjectForKey(email, key: "email")
+                                }
+                                
+                                if let gender = json["gender"].string {
+                                    DataManager.sharedInstance.setObjectForKey(gender, key: "gender")
+                                }
+                                
+                                if let link = json["link"].string {
+                                    DataManager.sharedInstance.setObjectForKey(link, key: "link")
+                                }
+                                
+                                OtificationHTTPService.sharedInstance.updateFacebookIDNonToken(KeychainWrapper.defaultKeychainWrapper().stringForKey("fbuid")!)
+                                
+                                self.shareFacebookResult()
+                            }
+                        })
+                        connection.start()
+                    }
+                })
+            }
+        } else {
+            self.popupView = PopupView(frame: CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight))
+            self.popupView?.initPopupView("กรุณาตรวจสอบสัญญาณอินเทอร์เน็ต")
+            self.view.addSubview(self.popupView!)
         }
     }
     
@@ -426,31 +432,37 @@ class CreateFriendTableViewController: OishiTableViewController, ActionsTableVie
     // MARK: - share to line
     
     func shareToLine() {
-        OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "bnt_f_line")
-        for (_, actionInfo) in self.selectedActionInfo.enumerate() {
-            if let act = actionInfo.actor where act == actor.name {
-                // save friend alarm
-                let videoFilePath = actionInfo.videoUrlString
-                let splitedString = videoFilePath!.characters.split{$0 == "/"}.map(String.init)
-                let fileName = splitedString[splitedString.count - 1]
-                let clipName = fileName.characters.split{$0 == "."}.map(String.init)[0]
-                
-                print("send_line_\(clipName)")
-                OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "send_line_\(clipName)")
-                
-                let shareUrl = actionInfo.shareUrl
-                let lineUrl = NSURL(string: "line://msg/text/\(shareUrl!)")
-                if (UIApplication.sharedApplication().canOpenURL(lineUrl!)) {
-                    UIApplication.sharedApplication().openURL(lineUrl!)
-                    self.popup = PopupThankyouView(frame: CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight))
-                    popup?.isOnlyThankyou = true
-                    popup?.initPopupView()
-                    popup?.delegate = self
-                    self.view.addSubview(popup!)
+        if (Reachability.isConnectedToNetwork()) {
+            OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "bnt_f_line")
+            for (_, actionInfo) in self.selectedActionInfo.enumerate() {
+                if let act = actionInfo.actor where act == actor.name {
+                    // save friend alarm
+                    let videoFilePath = actionInfo.videoUrlString
+                    let splitedString = videoFilePath!.characters.split{$0 == "/"}.map(String.init)
+                    let fileName = splitedString[splitedString.count - 1]
+                    let clipName = fileName.characters.split{$0 == "."}.map(String.init)[0]
                     
-                    AlarmManager.sharedInstance.saveFriendAlarm(Otification.friendAlarmActions[Int(actionInfo.no!)! - 1].actionName!, actorNo: actionInfo.actor!)
+                    print("send_line_\(clipName)")
+                    OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "send_line_\(clipName)")
+                    
+                    let shareUrl = actionInfo.shareUrl
+                    let lineUrl = NSURL(string: "line://msg/text/\(shareUrl!)")
+                    if (UIApplication.sharedApplication().canOpenURL(lineUrl!)) {
+                        UIApplication.sharedApplication().openURL(lineUrl!)
+                        self.popup = PopupThankyouView(frame: CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight))
+                        popup?.isOnlyThankyou = true
+                        popup?.initPopupView()
+                        popup?.delegate = self
+                        self.view.addSubview(popup!)
+                        
+                        AlarmManager.sharedInstance.saveFriendAlarm(Otification.friendAlarmActions[Int(actionInfo.no!)! - 1].actionName!, actorNo: actionInfo.actor!)
+                    }
                 }
             }
+        } else {
+            self.popupView = PopupView(frame: CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight))
+            self.popupView?.initPopupView("กรุณาตรวจสอบสัญญาณอินเทอร์เน็ต")
+            self.view.addSubview(self.popupView!)
         }
     }
     

@@ -284,15 +284,21 @@ class CreateAlarmTableViewController: OishiTableViewController, TimePickerTableV
                     if (!(self.isFileDownloaded(self.getVideoFilePath(videoFileName)) && self.isFileDownloaded(self.getSoundFilePath(audioFileName)))) {
                         // let download = DownloadViewController(nibName: "DownloadViewController", bundle: nil)
                         if (AlarmManager.sharedInstance.alarms.count < 7) {
-                            self.download = DownloadViewController()
-                            self.download!.modalPresentationStyle = .OverCurrentContext
-                            
-                            self.download!.videoUrlString = videoUrlString
-                            self.download!.audioUrlString = audioUrlString
-                            self.download!.delegate = self
-                            
-                            self.definesPresentationContext = true
-                            self.presentViewController(self.download!, animated: false, completion: nil)
+                            if (Reachability.isConnectedToNetwork()) {
+                                self.download = DownloadViewController()
+                                self.download!.modalPresentationStyle = .OverCurrentContext
+                                
+                                self.download!.videoUrlString = videoUrlString
+                                self.download!.audioUrlString = audioUrlString
+                                self.download!.delegate = self
+                                
+                                self.definesPresentationContext = true
+                                self.presentViewController(self.download!, animated: false, completion: nil)
+                            } else {
+                                self.popupView = PopupView(frame: CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight))
+                                self.popupView?.initPopupView("กรุณาตรวจสอบสัญญาณอินเทอร์เน็ต")
+                                self.view.addSubview(self.popupView!)
+                            }
                         } else {
                             self.popupView = PopupView(frame: CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight))
                             self.popupView?.initPopupView("สามารถสร้างการตั้งปลุกได้สูงสุด\n 8 ครั้ง")
