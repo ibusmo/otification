@@ -222,7 +222,7 @@ class CustomAlarmViewController: OishiViewController, AVAudioRecorderDelegate {
                 dateFormatter.dateFormat = "HH:mm"
                 let time = dateFormatter.stringFromDate(alarm.date!)
                 OtificationHTTPService.sharedInstance.saveGameNonToken(false, time: time, isCustom: true, videoId: self.action)
-                ViewControllerManager.sharedInstance.presentMyList()
+                ViewControllerManager.sharedInstance.presentMyList(true)
             } else {
                 // TODO: - sth error
                 self.popupView = PopupView(frame: CGRectMake(0.0, 0.0, Otification.rWidth, Otification.rHeight))

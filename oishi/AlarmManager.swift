@@ -118,7 +118,8 @@ class AlarmManager {
                 }
                 
                 // TODO: check firedate day is not previous today
-                notification.fireDate = self.getFireDate(alarm.date!, weekday: index + 1)
+                let date = self.getFireDate(alarm.date!, weekday: index + 1)
+                notification.fireDate = date
                 notification.repeatInterval = .Weekday
                 
                 // TODO: if alarm have an soundfilepath use it instead of uid
@@ -140,6 +141,8 @@ class AlarmManager {
                 }
                 
                 notification.userInfo = userInfo
+                
+                self.cancelAlarm(date)
                 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
             }
@@ -165,7 +168,8 @@ class AlarmManager {
                 }
                 
                 // TODO: check firedate day is not previous today
-                notification.fireDate = self.getFireDate(alarm.date!)
+                let date = self.getFireDate(alarm.date!)
+                notification.fireDate = date
                 
                 // TODO: if alarm have an soundfilepath use it instead of uid
                 var userInfo = Dictionary<String, AnyObject>()
@@ -191,6 +195,8 @@ class AlarmManager {
                 }
                 
                 notification.userInfo = userInfo
+            
+                self.cancelAlarm(date)
                 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
         }
@@ -223,7 +229,8 @@ class AlarmManager {
                 }
                 
                 // TODO: check firedate day is not previous today
-                notification.fireDate = self.getFireDate(alarm.date!, weekday: index + 1)
+                let date = self.getFireDate(alarm.date!, weekday: index + 1)
+                notification.fireDate = date
                 
                 // TODO: if alarm have an soundfilepath use it instead of uid
                 var userInfo = Dictionary<String, AnyObject>()
@@ -251,6 +258,8 @@ class AlarmManager {
                 }
                 
                 notification.userInfo = userInfo
+                
+                self.cancelAlarm(date)
                 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
             }
@@ -276,7 +285,8 @@ class AlarmManager {
                 }
                 
                 // TODO: check firedate day is not previous today
-                notification.fireDate = self.getFireDate(alarm.date!)
+                let date = self.getFireDate(alarm.date!)
+                notification.fireDate = date
                 
                 // TODO: if alarm have an soundfilepath use it instead of uid
                 var userInfo = Dictionary<String, AnyObject>()
@@ -304,7 +314,9 @@ class AlarmManager {
                 }
                 
                 notification.userInfo = userInfo
-                
+            
+                self.cancelAlarm(date)
+            
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
         }
     }
@@ -343,6 +355,17 @@ class AlarmManager {
                     if info["uid"] == alarm.uid! {
                         UIApplication.sharedApplication().cancelLocalNotification(notification)
                     }
+                }
+            }
+        }
+    }
+    
+    func cancelAlarm(date: NSDate) {
+        if let notifications = UIApplication.sharedApplication().scheduledLocalNotifications {
+            for notification in notifications as [UILocalNotification] {
+                print("fireDate: \(notification.fireDate), date: \(date)")
+                if (notification.fireDate?.compare(date) == NSComparisonResult.OrderedSame) {
+                    UIApplication.sharedApplication().cancelLocalNotification(notification)
                 }
             }
         }
@@ -487,6 +510,7 @@ class AlarmManager {
         defaults.removeObjectForKey(uid)
         let index = self.findAlarm(uid)
         if (index >= 0) {
+            self.unsetAlarm(uid)
             self.alarms.removeAtIndex(index)
         }
         
