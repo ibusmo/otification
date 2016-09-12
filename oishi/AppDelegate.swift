@@ -89,7 +89,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         AppsFlyerTracker.sharedTracker().appsFlyerDevKey = "HGETasn6yh8FhMC2LQgEWP"
         AppsFlyerTracker.sharedTracker().appleAppID = "965172855"
-        AppsFlyerTracker.sharedTracker().trackAppLaunch()
         
         // MARK: - parse
         
@@ -129,6 +128,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         FBSDKAppEvents.activateApp()
+        AppsFlyerTracker.sharedTracker().trackAppLaunch()
     }
 
     func applicationWillTerminate(application: UIApplication) {
