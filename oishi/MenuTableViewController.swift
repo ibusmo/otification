@@ -18,7 +18,7 @@ class MenuTableViewController: OishiTableViewController, MenuTableViewCellDelega
     
     var popup: PopupThankyouView?
     
-    let menu: [String] = ["สร้างการเตือน", "รายการตั้งเตือน", "วิธีการเล่น", "แกลลอรี่", "แชร์"]
+    let menu: [String] = ["หน้าแรก", "สร้างการเตือน", "รายการตั้งเตือน", "วิธีการเล่น", "แกลลอรี่", "แชร์"]
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -91,21 +91,24 @@ class MenuTableViewController: OishiTableViewController, MenuTableViewCellDelega
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.dismissViewControllerAnimated(false, completion: nil)
         if (indexPath.row == 0) {
+            // TODO: - present homeviewcontroller
+        }
+        else if (indexPath.row == 1) {
             OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "bnt_create")
             if !(self.presentingViewController is CreateAlarmTableViewController) {
                 ViewControllerManager.sharedInstance.presentCreateAlarm()
             }
-        } else if (indexPath.row == 1) {
+        } else if (indexPath.row == 2) {
             OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "bnt_list")
             if !(self.presentingViewController is MyListTableViewController) {
                 ViewControllerManager.sharedInstance.presentMyList()
             }
-        } else if (indexPath.row == 2) {
+        } else if (indexPath.row == 3) {
             OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "bnt_howto")
             if !(self.presentingViewController is TutorialViewController) {
                 ViewControllerManager.sharedInstance.presentTutorial()
             }
-        } else if (indexPath.row == 3) {
+        } else if (indexPath.row == 4) {
             OtificationGoogleAnalytics.sharedInstance.sendGoogleAnalyticsEventTracking(.Button, action: .Clicked, label: "bnt_gallery")
             if !(self.presentingViewController is GalleryTableViewController) {
                 ViewControllerManager.sharedInstance.presentGallery()
