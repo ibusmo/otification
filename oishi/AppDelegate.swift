@@ -89,6 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         AppsFlyerTracker.sharedTracker().appsFlyerDevKey = "HGETasn6yh8FhMC2LQgEWP"
         AppsFlyerTracker.sharedTracker().appleAppID = "965172855"
+        AppsFlyerTracker.sharedTracker().trackAppLaunch()
         
         // MARK: - parse
         

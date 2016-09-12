@@ -46,9 +46,19 @@ class OtificationHTTPService {
         return Alamofire.request(.GET, url).responseJSON { response in
             if let data: AnyObject = response.result.value {
                 let json = JSON(data)
-                let appData = json["appdata"][0]
-                for key in OtificationHTTPService.APP_DATA_KEY {
-                    DataManager.sharedInstance.setObjectForKey(appData[key].string, key: key)
+                for appData in json["appdata"].array! {
+                    if let appName = appData["appname"].string {
+                        for key in OtificationHTTPService.APP_DATA_KEY {
+                            DataManager.sharedInstance.setObjectForKey(appData[key].string, key: key, appName: appName)
+                            // DataManager.sharedInstance.setObjectForKey(appData[key].string, key: key)
+                        }
+                        if (appName == "otification") {
+                            DataManager.sharedInstance.setObjectForKey(appData["noti_final_date"].string, key: "noti_final_date", appName: appName)
+                        }
+                        if (appName == "sendcode") {
+                            DataManager.sharedInstance.setObjectForKey(appData["poll_start_date"].string, key: "poll_start_date", appName: appName)
+                        }
+                    }
                 }
                 cb.callback(true, true, nil, nil)
             } else {

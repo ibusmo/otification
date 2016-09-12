@@ -99,6 +99,7 @@ class IndexViewController: UIViewController, PopupThankyouViewDelegate {
         OtificationHTTPService.sharedInstance.getDataInfo(Callback() { (result, success, errorString, error) in
             if (success) {
                 self.isLoadedData = true
+                self.checkNotificationFinalDate()
             }
         })
     }
@@ -108,6 +109,21 @@ class IndexViewController: UIViewController, PopupThankyouViewDelegate {
     
     func popupErrorDidRemoveFromSuperview() {
         self.timer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: #selector(IndexViewController.skipIndex), userInfo: nil, repeats: false)
+    }
+    
+    func checkNotificationFinalDate() {
+        let finalDateString = DataManager.sharedInstance.getObjectForKey("noti_final_date", appName: "otification") as! String!
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd'/'MM'/'yyyy' 'hh:mm"
+        let finalDate = dateFormatter.dateFromString(finalDateString)
+        let now = NSDate()
+        print("noti_final_date: \(finalDateString), \(finalDate) \(now)")
+        if (now.compare(finalDate!) == NSComparisonResult.OrderedDescending) {
+            print("after noti_final_date")
+            UIApplication.sharedApplication().cancelAllLocalNotifications()
+        } else {
+            print("before noti_final_date")
+        }
     }
 
     /*
